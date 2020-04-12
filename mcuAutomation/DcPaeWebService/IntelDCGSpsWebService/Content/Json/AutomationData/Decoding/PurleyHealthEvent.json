@@ -1,0 +1,151 @@
+{
+	"event" : "Intel® ME Firmware Health Event", 
+	"responsedata" : [
+		{
+			"description" : "Byte 5 – Event Data 1",
+			"dependence"  : "",
+			"hex"		  : "False",
+			"positions" : [ 
+				{"position" : "[6:7]", "values" : [{"value" : "10b", "description" : "OEM code in byte 2"}]},
+				{"position" : "[4:5]", "values" : [{"value" : "10b", "description" : "OEM code in byte 3"}]},
+				{"position" : "[0:3]", "values" : [{"value" : "000b", "description" : "Firmware Status"}, 
+												   {"value" : "001b", "description" : "SMBus link failure"}]}
+			]
+		},
+		{
+			"description" : "Byte 6 – Event Data 2",
+			"dependence"  : "",
+			"hex"		  : "True",
+			"positions" : [
+				{"position" : "[0:7]", "values" : [
+					{"value" : "00", "description" : "Recovery GPIO forced. Recovery Image loaded due to recovery MGPIO pin asserted. Pin number is configurable in factory presets, Default recovery pin is MGPIO1. Repair action: Deassert MGPIO1 and reset the Intel® ME"},
+					{"value" : "01", "description" : "Image execution failed. Recovery Image or backup operational image loaded because operational image is corrupted. This may be either caused by Flash device corruption or failed upgrade procedure. Repair action: Either the Flash device must be replaced (if error is persistent) or the upgrade procedure must be started again."},
+					{"value" : "02", "description" : "Flash erase error. Error during Flash erasure procedure probably due to Flash part corruption. Repair action: The Flash device must be replaced."}, 
+					{"value" : "03", "description" : "Flash state information. Repair action: Check extended info byte in Event Data 3 (byte 7) whether this is wear-out protection causing this event. If so just wait until wear-out protection expires, otherwise probably the flash device must be replaced (if error is persistent)."},
+					{"value" : "04", "description" : "Internal error. Error during firmware execution – Repair action: Firmware should automatically recover from error state. If error is persistent then operational image shall be updated or hardware board repair is needed."},
+					{"value" : "05", "description" : "BMC did not respond correctly to Chassis Control - Power Down command triggered by Intel® Node Manager policy failure action and Intel® ME forced shutdown. Repair action: Verify the Intel® Node Manager policy configuration."},
+					{"value" : "06", "description" : "Direct Flash update requested by the BIOS. Intel® ME Firmware will switch to recovery mode to perform full update from BIOS. Repair action: This is transient state. Intel® ME Firmware should return to operational mode after successful image update performed by the BIOS."},
+					{"value" : "07", "description" : "Manufacturing error. Wrong manufacturing configuration detected by Intel® ME Firmware. Repair action: If error is persistent the Flash device must be replaced or FW configuration must be updated."},
+					{"value" : "08", "description" : "Automatic Restore to Factory Presets Repair action: If error is persistent the Flash device must be replaced."},
+					{"value" : "09", "description" : "Firmware Exception. Repair action: Restore factory presets using 'Force ME Recovery' IPMI command or by doing AC power cycle with Recovery umper asserted. If this does not clear the issue,reflash the SPI flash. If the issue persists, provide the content of Event Data 3 to Intel support team for interpretation. (Event Data 3 codes are not documented because they only provide clues that must be interpreted individually.)"},
+					{"value" : "0A", "description" : "Flash Wear-Out Protection Warning. Warning threshold for number of flash operations has been exceeded. Repair action: No immediate repair action needed. This is just a warning event."},
+					{"value" : "0D", "description" : "PECI over DMI interface error. This is a notification that PECI over DMI interface failure was detected and it isnot functional any more. It may indicate the situation when PECI over DMI was not configured by BIOS or a defect which may require a CPU Host reset to recover from. Repair action: Recovery via CPU Host reset or platform"},
+					{"value" : "0E", "description" : "MCTP interface error. This is a notification that MCTP interface failure was detected and it is not functional any more. It may indicate the situation when MCTP was not configured by BIOS or a defect which may need a Host reset to recover from. Repair action: Recovery via CPU Host reset or platform reset."},
+					{"value" : "0F", "description" : "Auto-configuration finished. Operational image finished power source auto-configuration. Repair action: Auto-configuration could be enforced by restore to factory defaults."},
+					{"value" : "10", "description" : "Unsupported Segment Defined Feature. Feature not supported in current segment detected by Intel® ME Firmware. Repair action: Proper FW configuration must be updated or use the Flash device with proper FW configuration."},
+					{"value" : "11", "description" : "Reserved"},
+					{"value" : "12", "description" : "CPU Debug Capability Disabled."},
+					{"value" : "13", "description" : "UMA operation error. This is a notification that UMA was not initialized correctly during POST or error occurred while copying page to/from UMA. It may indicate situations when BIOS did not grant memory for UMA, granted memory size differs from requested, checksum of copied page differs from expected or timeout occurred during copying data to/from UMA. Repair action: Platform reset when UMA not configured correctly, or when error occurred during normal operation on correctly configured UMA multiple times leading to Intel ME entering Recovery or restricted operation mode."},
+					{"value" : "14", "description" : "Reserved – Debug Message"},
+					{"value" : "15", "description" : "Reserved – Debug Message"},
+					{"value" : "16", "description" : "PTT Health Event"},
+					{"value" : "17", "description" : "Boot Guard Health Event"},
+					{"value" : "18", "description" : "Restricted mode info. Firmware entered restricted smode due to error conditions met, or exited restricted mode due to ME reset or entering recovery mode."},
+					{"value" : "19", "description" : "MultiPCH mode misconfiguration."},
+					{"value" : "1A", "description" : "Flash Descriptor Region Verification Error. Repair action: Flash Descriptor Region must be created correctly."},
+					{"value" : "1B", "description" : "Reserved"},
+					{"value" : "1C", "description" : "Reserved"},
+					{"value" : "1D", "description" : "Reserved"},
+					{"value" : "1E", "description" : "Reserved"},
+					{"value" : "1F", "description" : "Reserved"},
+					{"value" : "20", "description" : "Reserved"},
+					{"value" : "21", "description" : "Reserved"},
+					{"value" : "22", "description" : "Reserved"},
+					{"value" : "23", "description" : "Reserved"},
+					{"value" : "24", "description" : "Reserved"},
+					{"value" : "25", "description" : "Reserved"},
+					{"value" : "26", "description" : "Reserved"},
+					{"value" : "27", "description" : "Reserved"},
+					{"value" : "28", "description" : "Reserved"},
+					{"value" : "29", "description" : "Reserved"},
+					{"value" : "30", "description" : "Reserved"}
+				]}
+			]
+		},
+		{
+			"description" : "Byte 7 - Event Data 3",
+			"dependence"  : "Byte 6 – Event Data 2",
+			"hex"		  : "True",
+			"positions" : [
+				{"position" : "[0:7]", "values" : [
+					{"value" : "03", "description" : "", "values" : [
+						{"value" : "00", "description" : "flash partition table, recovery image or factory presets image corrupted"},
+						{"value" : "01", "description" : "flash erase limit has been reached"},
+						{"value" : "02", "description" : "flash write limit has been reached, writing to flash has been disabled."},
+						{"value" : "03", "description" : "writing to the flash has been enabled"}
+						] },
+					{"value" : "07", "description" : "", "values" : [
+						{"value" : "00", "description" : "Generic error"},
+						{"value" : "01", "description" : "Wrong or missing VSCC table"},
+						{"value" : "02", "description" : "Wrong sensor scanning period in PIA"},
+						{"value" : "03", "description" : "Wrong device definition in PIA"},
+						{"value" : "04", "description" : "Reserved (Wrong SMART/CLST configuration)"},
+						{"value" : "05", "description" : "Intel® ME FW configuration is inconsistent or out of range"},
+						{"value" : "06", "description" : "Reserved"},
+						{"value" : "07", "description" : "Intel® ME FW configuration is corrupted"},
+						{"value" : "08", "description" : "SMLink0/0B misconfiguration"}
+					] },
+					{"value" : "0A", "description" : "percentage of flash write operations which have been conducted", "values" : [
+						
+					] },
+					{"value" : "0D", "description" : "For Event Data 2 (byte 6) equal to 0Dh", "values" : [
+						{"value" : "01", "description" : "DRAM Init Done HECI message not received by ME before EOP"},
+						{"value" : "02", "description" : "System PCIe bus configuration not known or not valid on DID HECI message arrival to ME"},
+						{"value" : "03", "description" : "PECI over DMI run-time failure"}						
+					] },
+					{"value" : "0E", "description" : "For Event Data 2 (byte 6) equal to 0Eh", "values" : [
+						{"value" : "01", "description" : "No DID HECI message received before EOP"},
+						{"value" : "02", "description" : "No MCTP_SET_BUS_OWNER HECI message received by ME on EOP arrival to ME, while MCTP stack is configured in Bus Owner Proxy mode"}						
+					] },
+					{"value" : "0F", "description" : "", "values" : [] },
+					{"value" : "10", "description" : "For Event Data 2 (byte 6) equal to 10h", "values" : [
+						{"value" : "00", "description" : "Other Segment Defined Feature"},
+						{"value" : "01", "description" : "Fast NM limiting"},
+						{"value" : "02", "description" : "Volumetric Airflow and Outlet Temperature"},						
+						{"value" : "03", "description" : "CUPS"},
+						{"value" : "04", "description" : "Thermal policies and Inlet Temperature"},
+						{"value" : "05", "description" : "Platform limiting with MICs"},
+						{"value" : "06", "description" : ""},						
+						{"value" : "07", "description" : "Shared power supplies"},
+						{"value" : "08", "description" : "MIC Proxy"},
+						{"value" : "09", "description" : "Reset warning"},
+						{"value" : "0A", "description" : "PMBus Proxy"},						
+						{"value" : "0B", "description" : "Always on"},
+						{"value" : "0C", "description" : "IPMI ME FW update"},
+						{"value" : "0D", "description" : "MCTP bus owner"},
+						{"value" : "0E", "description" : "MCTP bus owner proxy"},
+						{"value" : "0F", "description" : "Dual BIOS"},
+						{"value" : "10", "description" : "Battery less"}						
+					] },
+					{"value" : "11", "description" : "Event Data 2 (byte 6) equal to 11h", "values" : [
+						{"value" : "01", "description" : "OEM Public Key verification error"},
+						{"value" : "02", "description" : "Flash Descriptor Region Manifest verification error"},
+						{"value" : "03", "description" : "Soft Straps verification error"}
+					] },
+					{"value" : "13", "description" : "Event Data 2 (byte 6) equal to 13h", "values" : [
+						{"value" : "00", "description" : "UMA Read integrity error. Checksum of data read from UMA differs from expected one."},
+						{"value" : "01", "description" : "UMA Read/Write timeout. Timeout occurred during copying data from/to UMA."},
+						{"value" : "02", "description" : "UMA not granted. BIOS did not grant any UMA or DRAM INIT done message was not received from BIOS before EOP. ME FW goes to recovery."},
+						{"value" : "03", "description" : "UMA size granted by BIOS differs from requested. ME FW goes to recovery."}						
+					] },
+					{"value" : "16", "description" : "For Event Data 2 (byte 6) equal to 16h", "values" : [
+						{"value" : "", "description" : "PTT disabled (PTT region is not present)."},
+						{"value" : "01", "description" : "PTT downgrade (PTT data should be not available)."},
+						{"value" : "02", "description" : "PTT disabled (battery less configuration)."}						
+					] },
+					{"value" : "18", "description" : "For event data 2 (byte 6) equal to 18h", "values" : [
+						{"value" : "01", "description" : "Firmware entered restricted mode – UMA is not available, restricted features set."},
+						{"value" : "02", "description" : "Firmware exited restricted mode."}						
+					] },
+					{"value" : "19", "description" : "For Event Data 2 (byte 6) equal to 19h", "values" : [
+						{"value" : "01", "description" : "BIOS did not set reset synchronization in multiPCH mode"},
+						{"value" : "02", "description" : "PMC indicates different non/legacy mode for the PCH than BMC set on the GPIO"},
+						{"value" : "03", "description" : "Misconfiguration MPCH support enabled due to BTG support enabled"}
+					] }
+					
+				]}
+				
+			]
+		}
+	]
+}

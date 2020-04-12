@@ -1,0 +1,163 @@
+﻿@using WindowService.DataModel;
+
+@model McuRelease
+@if (@Model != null)
+{
+    String idCpuID = "cpuID_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idStepping = "stepping_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idCpuCodeName = "cpuCodeName_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idMicrocode = "microcode_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idPlatformID = "platformID_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Stepping, new { @style = "color:steelblue;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                @Html.TextBoxFor(m => m.Stepping, new { @id = idStepping, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Enter stepping ---", onchange = "onSteppingChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:white;border-color:steelblue;border-radius:3px;" })
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                @Html.LabelFor(m => m.Scope, new { @style = "color:steelblue;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                @Html.TextBoxFor(m => m.Scope, new { placeholder = "--- Enter scope ---", @readonly = "true", onchange = "onScopeChanged(this);", @id = "scope", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:white;border-color:steelblue;border-radius:3px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.CpuID, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                @Html.TextBoxFor(m => m.CpuID, new { @id = @idCpuID, @title = "The CPU ID will be read from header.", placeholder = "Read only in Header", @readonly = "true", onchange = "onCpuIDChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:silver;border-color:grey;border-radius:3px;" })
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                @Html.LabelFor(m => m.CPUCodeName, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                @Html.TextBoxFor(m => m.CPUCodeName, new { @id = @idCpuCodeName, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Enter CPU code name ---", onchange = "onCpuCodeNameChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:silver;border-color:grey;border-radius:3px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.PlatformID, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                @Html.Partial("_PlatformID", @Model, new ViewDataDictionary { { Definitions.MCU_VIEW_DATA_KEY, ViewData[Definitions.MCU_VIEW_DATA_KEY] }, { Definitions.VIEW_DATA_RELEASE_TO_KEY, ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY] } })
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                @Html.LabelFor(m => m.MicroCode, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                @Html.TextBoxFor(m => m.MicroCode, new { @id = @idMicrocode, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Mcu File Name ---", onchange = "onMicrocodeChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+            </td>
+        </tr>
+    </table>
+}
+
+<script type="text/javascript">
+    function onSteppingChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateStepping',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"Stepping\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onScopeChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateScope',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"Scope\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onCpuIDChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateCpuID',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"CpuID\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onCpuCodeNameChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateCPUCodeName',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"CPUCodeName\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onMicrocodeChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateMicrocode',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"Microcode\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+</script>

@@ -1,0 +1,47 @@
+{
+    "Devices": [
+      {
+        "Device" :{
+          "Name" : "Tiago Pass",
+          "BmcIpAddress" : "10.23.52.234",
+          "User" : "root",
+          "Password" : "0penBmc",
+          "Invoke" : "Aadvark",
+          "Selected" : "",
+          "TargetIP" : "10.23.52.211"
+      }},
+      {
+        "Device" :{
+          "Name" : "CRB-Henry",
+          "BmcIpAddress" : "10.23.60.2",
+          "User" : "root",
+          "Password" : "superuser",
+          "Invoke" : "BMC",
+          "Selected" : "checked",
+          "TargetIP" : "10.23.60.23"
+          
+      }},
+      {
+        "Device" :{
+          "Name" : "CRB-JieHu",
+          "BmcIpAddress" : "10.23.60.5",
+          "User" : "root",
+          "Password" : "superuser",
+          "Invoke" : "BMC",
+          "Selected" : "",
+          "TargetIP" : "10.23.60.27"
+      }},
+
+      {
+        "Device" :{
+          "Name" : "CRB-Henry -2",
+          "BmcIpAddress" : "10.23.60.5",
+          "User" : "root",
+          "Password" : "superuser",
+          "Invoke" : "Aadvark",
+          "Selected" : "",
+          "TargetIP" : "10.23.60.26"
+      }}
+
+    ]
+}

@@ -1,0 +1,1002 @@
+﻿@using WindowService.DataModel;
+
+@model MicrocodeReleaseModel
+
+@{
+    ViewBag.Title = "Index";
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (null != @Model)
+{
+    <h3 align="left" style="color:dodgerblue;">@Model.Title</h3>
+    <hr />
+    String inlineDocument = String.Format(@"NOTE :(1). This application is an automation of microcode release process.
+(2). The following MCU format are supported:
+-- mxxyyyyy_zzzzzzzz.inc --, -- m_xx_yyyyy_zzzzzzzz.inc --, -- mxxyyyyyzz.inc --, -- maabcdef.inc --, -- muabcdef.inc --
+(3). All input/select parameters marked with '*' in front are required.
+(4). There is a [Submit] button that is used to start the release process.  This button will not be visible until all required input parameters are provided for all microcode binary files.
+(5). The NDA and Public releases are the most frequently used Release targets from the dropdown list of [Select Release To].  To add/remove a release target from the dropdown list, enter the name and click on the [+/-] sign.
+(6). Multiple microcodes are allowed to be released to a specific release target.  To add/remove one microcode file to a release, click on the [+/-] sign. [{0}] is the maximum number of microcode files that can be released at a time.
+(7). When all selected microcode files have been submitted to release system, and before the release process starts, all of the input parameteres, including the microcode file names, will be sanity checked against the microcode file header data information.  The mismatched input parameters must be corrected before click submit button again.", Definitions.MAX_ONE_TIME_MCU_RELEASE);
+    String postMethod = "StartMicrododeReleaseLocal";
+    String mculabel = "MCU filename";
+
+    if (Model.ReleaseMcuSource == "HSD")
+    {
+        postMethod = "StartMicrododeReleaseHSD";
+        mculabel = "HSD article ID";
+    }
+    using (Html.BeginForm(postMethod, "MicrocodeRelease", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formMicrocodeRelease", name = "formMicrocodeRelease" }))
+    {
+        @Html.AntiForgeryToken()
+        int idx = 0;
+        var releasetoName = "";
+        <table style="width:100%;">
+            <tr>
+                <td style="width:35%;">
+                    <table style="font-size: small; width: 100%; height: 30px; border: 1px; border-radius: 5px;">
+                        <tr>
+                            <td colspan="4">
+                                @Html.LabelFor(m => m.NewReleaseToName, new { @style = "color:steelblue;font-size:smaller;" })
+                            </td>
+                            <td colspan="5">
+                                <div class="btn-group">
+                                    <select class="btn btn-toolbar" id="releaseToSelect" onchange="onSelectedReleaseToChanged();" style="background-color:rgba(41, 42, 43, 0.9);color:white;font-size:small;height:30px; width:280px;overflow-x: scroll;overflow-y: scroll;">
+                                        <option id="-1" value="N/A" data-bind="">-- Select Release To --</option>
+                                        @foreach (var releaseLee in @Model.ReleaseLees)
+                                        {
+                                            var key = releaseLee.ReleaseTo;
+                                            <option id="@key" value="@key">@key</option>
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                            <td style="color:dodgerblue;font-size:small;">
+                                <div class="custom-control custom-radio">
+                                    <label class="radio-inline">
+                                        @if (Model.ReleaseMcuSource == "Local")
+                                        {
+                                            <label class="radio-inline">
+                                                <input id="radio-input-source" type="radio" class="custom-control-input" name="insradio" value="Local" checked="checked" onclick="onSelectSelectReleaseSourceClick('Local');">Local
+                                            </label>
+                                        }
+                                        else
+                                        {
+                                            <label class="radio-inline">
+                                                <input id="radio-input-source" type="radio" class="custom-control-input" name="insradio" value="Local" onclick="onSelectSelectReleaseSourceClick('Local');">Local
+                                            </label>
+                                        }
+                                    </label>
+                                </div>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="color:dodgerblue;font-size:small;">
+                                <div class="custom-control custom-radio">
+                                    @if (Model.ReleaseMcuSource == "HSD")
+                                    {
+                                        <label class="radio-inline">
+                                            <input id="radio-input-source" type="radio" class="custom-control-input" name="insradio" value="HSD" checked="checked" onclick="onSelectSelectReleaseSourceClick('HSD');">HSD
+                                        </label>
+                                    }
+                                    else
+                                    {
+                                        <label class="radio-inline">
+                                            <input id="radio-input-source" type="radio" class="custom-control-input" name="insradio" value="HSD" onclick="onSelectSelectReleaseSourceClick('HSD');">HSD
+                                        </label>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td style="height:3px;"></td></tr>
+                        <tr style="background-color: rgba(41, 42, 43, 0.9);">
+                            <td>&nbsp;</td>
+                            <td />
+                            <td style="width:1%;"><span style="color: gray; font-size: smaller;">Add/remove release To:&nbsp;</span></td>
+
+                            <td>
+                                <img id='imgAddReleaseTo' width="32" height="32" src="~/Images/Plus.png" title="Add a new release to." onclick="onAddReleaseToClick();">
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <img id='imgRemoveReleaseTo' width="24" height="24" src="~/Images/Minus.png" title="Remove a selected release to." onclick="onRemoveReleaseToClick();">
+                            </td>
+
+                            <td style="width:1%;" />
+                            <td>
+                                @if (Model.SelectedReleaseLee != null)
+                                {
+                                    releasetoName = Model.SelectedReleaseLee.ReleaseTo;
+                                }
+                                @Html.TextBoxFor(m => m.NewReleaseToName, new { @Value = releasetoName, placeholder = "--- Enter a new release to here ---", onchange = "onNewReleaseToNameChanged();", @id = "newReleaseToName", @class = "form-control", @style = "width:260px;height:25px;background-color:black;font-size:small;color:white;border-color:steelblue;border-radius:3px;" })
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="width:1%;"><span style="color: aqua; font-size: smaller;">Add/remove microcode:&nbsp;</span></td>
+
+                            <td>
+                                <img id='imgAddMcu' width="32" height="32" src="~/Images/Plus.png" title="Add a microcode release." onclick="onAddMcuClicked();">
+                            </td>
+                            <td>
+                                <img id='imgRemoveMcu' width="24" height="24" src="~/Images/Minus.png" title="Remove a selected microdo." onclick="onRemoveMcuClicked();">
+                            </td>
+                            @*<td>&nbsp;&nbsp;</td>*@
+                            <td align="right">
+                                <span id="spRefresh" style="color:grey; font-size:14px;" title="Refresh" onclick="onRefreshClick();"><i id="iRefresh" style="color:lime;" class="glyphicon glyphicon-refresh"></i></span>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr><td style="height:5px;" /></tr>
+                        <tr>
+                            <td colspan="12">
+                                <table style="background-color: rgba(41, 42, 43, 0.9); font-size: smaller; width: 100%; height: 30px; border: 1px; border-radius: 5px;">
+                                    <tr>
+                                        <td style="width:1%;" />
+                                        <td style="width:1%;"><span style="color:gray;font-size:smaller;">Selection Update infomation:&nbsp;&nbsp;</span></td>
+                                        <td style="width:93%;">
+                                            <span id="spNotification" style="width:100%;background-color:transparent;color:gray;font-size:small;font-weight:lighter;text-align:left;text-wrap:normal;"></span>
+                                        </td>
+                                        <td>
+                                            <img id='imgViewLog' width="38" height="28" src="~/Images/Binoculars-100.png" style="display:none;" title="Click to view log." onclick="onViewLogClicked();">
+                                        </td>
+                                        <td style="width:2%;"></td>
+                                        @*<td>
+                                                <img id="imgViewRefrence" width="24" height="24" src="~/Images/CoderWall.png" title="Load option references from README.md." onclick="onViewReferenceClicked();">
+                                            </td>*@
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td />
+                            <td colspan="14">
+                                <div class="btn-group">
+                                    @if (null != @Model.SelectedReleaseLee)
+                                    {
+                                        for (var i = 0; i < @Model.SelectedReleaseLee.Mcus.Length; i++)
+                                        {
+                                            var x = @Model.SelectedReleaseLee.Mcus[i];
+                                            <br />
+                                            var key = x.Mcu;
+                                            if (key == String.Empty)
+                                            {
+                                                key = string.Format(Definitions.MCU_DEFAULT_FORMAT, Definitions.GENERIC_MCU_BINARY_NAME, @idx);
+                                            }
+                                            <table style="color:gray;font-weight:normal;font-size:small;">
+                                                <tr>
+                                                    <td><span style="color:steelblue;">* @mculabel:</span></td>
+                                                    <td>&nbsp;</td>
+                                                    @if (Model.ReleaseMcuSource == "HSD")
+                                                    {
+                                                        <td>
+                                                            <input required type="text" id="@key" class="awesomplete" data-list=@Model.HsdArticleIDs name="@key" placeholder="--- Enter 2+ digits to search HSD article ID ---" style="height:28px;width:400px;border-width:thin;border-radius:3px;background-color:rgba(41, 42, 43, 0.9); color:steelblue;border-color:steelblue;font-size:14px;text-align:center;" onclick="onHsdMcuIdInputClicked();" />
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>
+                                                            <input required type="file" id="@key" class="btn btn-toolbar" title="@key" name="@key" style="background-color:rgba(41, 42, 43, 0.9); color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                                        </td>
+                                                    }
+                                                    <td>&nbsp;</td>
+                                                    <td align="right"><span style="color:aqua;font-size:smaller;">Check this box and use the minus button above to remove these fields:</span></td>
+                                                    <td>&nbsp;</td>
+                                                    <td>
+                                                        @Html.CheckBoxFor(m => m.SelectedReleaseLee[key].Selected, new { @id = key + "_Check", @class = "checkbox", onclick = "onMcuCheckClicked(this);" })
+
+                                                    </td>
+                                                </tr>
+                                                <tr style="height:5px;"><td /></tr>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        @Html.Partial("_McuRelease", Model.SelectedReleaseLee[key], new ViewDataDictionary { { Definitions.MCU_VIEW_DATA_KEY, @key }, { Definitions.VIEW_DATA_RELEASE_TO_KEY, Model.SelectedReleaseLee.ReleaseTo } })
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            idx += 1;
+                                        }
+                                    }
+                                </div>
+                            </td>
+                            <td />
+                        </tr>
+                        <tr>
+                            <td colspan="14" style="padding-left:10px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" style="width:80px;display:none;" name="Submit" id="Submit" value="Submit" onclick="onSumbitMcuReleaseClick();" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><td colspan="14" style="height:5px;" /></tr>
+                    </table>
+                </td>
+                <td style="width:1%;" />
+                <td style="width:5%;background-color:transparent;">
+                    @Html.Partial("../Shared/_Loader")
+                </td>
+                <td style="width:60%;">
+                    <table style="background-color: rgba(41, 42, 43, 0.9); font-size: smaller; width: 100%; height: 30px; border: 1px; border-radius: 5px;">
+                        <tr><td style="height:5px;" /></tr>
+                        <tr>
+                            <td align="center">
+                                @if (@Session[Definitions.RELEASE_TO_SESSION_KEY] != null && @Session[Definitions.RELEASE_TO_SESSION_KEY].ToString() != string.Empty)
+                                {
+                                    <span id="spProgress" class="badge badge-pill badge-primary" style="background-color:purple;font-size:small;font-weight:100;">@Session[Definitions.RELEASE_TO_SESSION_KEY].ToString()</span>
+                                    <span class="badge badge-pill badge-primary" style="background-color:dimgray;font-size:smaller;font-weight:100;color:silver;">- Release progress</span>
+                                }
+                            </td>
+                            <td>
+                                <img id='imgHSD-ES' width="90" height="25" src="~/Images/HSD-ES.PNG" title="Link to HSD ES microcode_repository" onclick="openExtenalUrlTab('https://hsdes.intel.com/appstore/community/#/2207766272?queryId=2207804418');">
+                                <img id='imgViewHsdMap' width="20" height="20" src="~/Images/grid-view-48.png" title="View HSD ID map." onclick="onViewHsdArticleIdMapClicked();">
+                                <img id='imgRefreshHsdMap' width="23" height="23" style="margin-top:5px;" src="~/Images/GearBlue.png" title="Refresh HSD article ID map" onclick="onRefresHsdAricleIdMapClick();" />
+                            </td>
+                            <td align="right">
+                                <img id='imgTeamForge' width="130" height="22" src="~/Images/TeamForge_2.png" title="Link to TeamForge." onclick="openExtenalUrlTab('https://tf-amr-1.devtools.intel.com/ctf/code/projects.microcode_release/repositories');">
+                            </td>
+                            <td align="right">
+                                <span style="background-color:transparent;color:gray;font-size:smaller;font-weight:lighter;text-align:left;text-wrap:normal;">GitLab&nbsp;</span>
+                                <img id='imgGitLab' width="30" height="28" src="~/Images/GitLab_2.png" title="Link to GitLab." onclick="openExtenalUrlTab('https://gitlab.devtools.intel.com/mcu-maintainters');">
+                            </td>
+                            <td align="right">
+                                <span style="background-color:transparent;color:gray;font-size:smaller;font-weight:lighter;text-align:left;text-wrap:normal;">GitHub&nbsp;</span>
+                                <img id='imgTeamForge' width="30" height="28" src="~/Images/Github-8-48.ico" title="Link to OTCShare in GitHub." onclick="openExtenalUrlTab('https://github.com/otcshare');">
+                            </td>
+                            <td align="right">
+                                <span style="background-color:transparent;color:gray;font-size:smaller;font-weight:lighter;text-align:left;text-wrap:normal;">Design doc&nbsp;</span>
+                                <img id='imgTeamForge' width="30" height="28" src="~/Images/CoderWall.png" title="Link to presentation." onclick="onViewDesignDocClicked();">
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr><td style="height:5px;" /></tr>
+                        <tr>
+                            <td colspan="6">
+                                <div id="divProgressBar" class="progress" style="display:none; margin-left:10px;margin-right:10px;">
+                                    <div class="progress-bar progress-bar-danger progress-bar-striped bg-danger active" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table style="font-size: smaller; color:gray; width: 100%; height: 15px;">
+                        <tr>
+                            <td style="width:20px;" />
+                            <td>Setup . . .</td>
+                        </tr>
+                    </table>
+                    <table style="font-size: smaller; width: 100%; height: 30px; border: 1px; border-radius: 5px;">
+
+                        <tr>
+                            <td style="width:5px;" />
+                            @*<td id="git_config_user" class="step_box_idle">Config user</td>
+                                <td id="git_config_user_email" class="step_box_idle">Config email</td>*@
+                            <td id="script_validation" class="step_box_idle">Inputs validation</td>
+                            <td id="git_clone_sandbox" class="step_box_idle">Clone sandbox</td>
+                            <td id="git_query_history_for_validation" class="step_box_idle">Tag Initialization</td>
+                            <td id="git_commit_history_validation" class="step_box_idle">Verify Commit history</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table style="font-size: smaller; color:gray; width: 100%; height: 15px;">
+                        <tr>
+                            <td style="width:20px;" />
+                            <td>Processing . . .</td>
+                        </tr>
+                    </table>
+                    <table style="font-size: smaller; color:gray; width: 100%; height: 15px;">
+                        <tr>
+                            <td style="width:5px;" />
+                            <td id="git_add_mcu_to_sandbox" class="step_box_idle">Add mcu to sandbox</td>
+                            <td id="git_edit_inf_file" class="step_box_idle">Edit inf file</td>
+                            <td id="edit_read_me" class="step_box_idle">Edit readme</td>
+                            @*<td id="git_commit_mcu" class="step_box_idle">Commit mcu</td>*@
+                        </tr>
+                    </table>
+                    <br />
+                    <table style="font-size: smaller; color:gray; width: 100%; height: 15px;">
+                        <tr>
+                            <td style="width:20px;" />
+                            <td>Publish . . .</td>
+                        </tr>
+                    </table>
+                    <table style="font-size: smaller; color:gray; width: 100%; height: 15px;">
+                        <tr>
+                            <td style="width:5px;" />
+                            <td id="script_prep_release_local" class="step_box_idle">Prep for release local</td>
+                            <td id="edit_manifest_file" class="step_box_idle">Edit manifest</td>
+                            <td id="git_query_history_for_commit" class="step_box_idle">Prep commit sandbox</td>
+                            <td id="git_commit" class="step_box_idle">Commit sandbox</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table style="font-size: smaller; color:gray; width: 100%; height: 15px;">
+                        <tr>
+                            <td style="width:5px;" />
+                            <td id="git_query_history_for_export" class="step_box_idle">Prepary export</td>
+                            <td id="git_invoke_export" class="step_box_idle">Git export</td>
+                            <td id="git_query_history_for_notes" class="step_box_idle">Prep for release notes</td>
+                            <td id="git_generate_release_notes" class="step_box_idle">Create release notes</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table style="font-size: smaller; color:gray; width: 100%; height: 15px;">
+                        <tr>
+                            <td id="git_query_commit_history" class="step_box_idle">Prep for post GitHub</td>
+                            <td id="script_prep_release_phase_3" class="step_box_idle">Push to GitHub</td>
+                            @*<td id="git_push_to_github" class="step_box_idle">Push to GitHub</td>*@
+                            <td id="cleanup" class="step_box_idle">Cleanup</td>
+                        </tr>
+                    </table>
+                    <br />
+                </td>
+                <td style="width:3%;">
+                <td>
+                    <table style="background-color:transparent;border-radius:10px;opacity:0.9;">
+                        <tr>
+                            <td colspan="2"><span style="font-size:xx-small;color:gray;width:50px;margin:2px;">Legend</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge" style="width:50px;font-size : xx-small;background-color: dimgray;color:white;margin:2px;opacity:0.8; ">Idle</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge" style="width:50px;font-size : xx-small;background-color: deepskyblue;color:white;margin:2px;opacity:0.8;">progress</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge" style="width:50px;font-size : xx-small;background-color: green;color:white;margin:2px;opacity:0.8;">success</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge" style="width:50px;font-size : xx-small;background-color: rgb(222, 152, 7);color:white;margin:2px;opacity:0.8;">aborted</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge" style="width:50px;font-size : xx-small;background-color: red;color:white;margin:2px;opacity:0.8;">failed</span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    }
+
+    <div id="divErrorMessage" style="display:none;">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <div id='divError' class='alert alert-dismissible alert-danger'>
+                        <span id="spError" style="font-size:small;">
+                            &nbsp;Failed to release.  Please Please contact the admin person to resolve the issues and try again.
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table style="width:100%;background-color:rgba(41, 42, 43, 0.9);border:1px;border-radius:5px;">
+        <tr><td style="height:10px;" /></tr>
+        <tr>
+            <td style="width:10px;" />
+            <td>
+                <span style="font-size:x-small;color:gray;">
+                    @inlineDocument
+                </span>
+            </td>
+            <td style="width:20px;" />
+        </tr>
+        <tr><td style="height:10px;" /></tr>
+    </table>
+}
+<script type="text/javascript">
+    function onSelectSelectReleaseSourceClick(releaseSource) {
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateReleasSource',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: releaseSource
+            },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    }
+    function onSumbitMcuReleaseClick() {
+        $.ajax({
+            url: '/MicrocodeRelease/VerifyMiddleWareServiceAvailable',
+            dataType: 'json',
+            type: "GET",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                if (data.JsonString != '') {
+                    window.alert(data.JsonString);
+                } else {
+                    showProgress();
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function showProgress() {
+        $('#divErrorMessage').attr("style", "display:none;");
+        if (IsFormFilled()) {
+            displayLoader(true);
+        } else {
+            $('#Submit').attr("style", "display:none;");
+        }
+    };
+    function updateMicrocodReleaeUI() {
+        @*model = @Html.Raw(Json.Encode(@Model));
+        if (null != model) {
+            document.getElementById('spNotification').innerHTML = model.NotificationMessage;
+        }*@
+        $.ajax({
+            url: '/MicrocodeRelease/GetTransactionState',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                var spNotification = document.getElementById('spNotification');
+                spNotification.innerHTML = data.modelRequest.NotificationMessage;
+                var spErrorMessage = document.getElementById('spError');
+                if (spErrorMessage != null) {
+                    spErrorMessage.innerHTML = data.modelRequest.ErrorMessage;
+                }
+                if (data.modelRequest.TransStatus == 'Progress') {
+                    $('#Submit').attr("style", "visibility:visible;");
+                } else {
+                    $('#Submit').attr("style", "display:none");
+                }
+
+                if (data.modelConfig.TransStatus == 'Progress' || data.modelRequest.ErrorMessage != '') {
+                    //$('#spRefresh').attr("style", "display:none;");
+                    disableGuids(true);
+                } else {
+                    //$('#spRefresh').attr("style", "visibility:visible;");
+                    disableGuids(false);
+                }
+
+                if (data.modelConfig.LogContents != '') {
+                    $('#imgViewLog').attr("style", "visibility:visible;");
+                } else {
+                    $('#imgViewLog').attr("style", "display:none;");
+                }
+
+                var transactions = data.modelConfig.Setup.ResultsTuple.concat(data.modelConfig.Processing.ResultsTuple).concat(data.modelConfig.Publish.ResultsTuple);
+                var divErrorMessage = $('#divErrorMessage')
+                divErrorMessage.attr("style", "display:none;");
+                for (var i = 0; i < data.modelConfig.StateTags.length; i++) {
+                    var state = data.modelConfig.StateTags[i];
+                    var stepbox = $("#{0}".format(state));
+                    if (null != stepbox) {
+                        for (var j = 0; j < transactions.length; j++) {
+                            var tuple = transactions[j];
+                            if (tuple.Item1 == state) {
+                                stepbox.removeClass("step_box_idle").removeClass("step_box_progress").removeClass("step_box_failed").removeClass("step_box_aborted").removeClass("step_box_success");
+                                var styleClass = status2StyleClassMap(tuple.Item2.status);
+                                var errormessage = tuple.Item2.error;
+                                if (tuple.Item2.status == 'Failed' || tuple.Item2.status == 'Aborted') {
+                                    if (errormessage != null && errormessage.trim() != '') {
+                                        divErrorMessage.attr("style", "visibility:visible;");
+                                    }
+                                }
+                                stepbox.attr('title', errormessage);
+                                stepbox.addClass(styleClass);
+                            }
+                        }
+                    }
+                }
+                if (data.modelConfig.TransStatus == 'Failed' || data.modelRequest.ErrorMessage.trim() != '') {
+                    divErrorMessage.attr("style", "visibility:visible;");
+                    spErrorMessage.innerHTML = data.modelConfig.TransError;
+                    $('#spRefresh').addClass('blinker');
+                } else {
+                    divErrorMessage.attr("style", "display:none;");
+                    $('#spRefresh').removeClass('blinker');
+                }
+
+                var isInprogress = false;
+                for (var i = 0; i < transactions.length; i++) {
+                    var tran = transactions[i];
+                    if (!tran.Item2.skip && tran.Item2.status == 'Progress') {
+                        isInprogress = true;
+                        break;
+                    }
+                }
+                displayLoader(isInprogress);
+                if (isInprogress) {
+                    $('#divProgressBar').attr("style", "visibility:visible; margin-left:10px;margin-right:10px;");
+
+                } else {
+                    $('#divProgressBar').attr("style", "display:none; margin-left:10px;margin-right:10px;");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        setTimeout(updateMicrocodReleaeUI, 500);
+    };
+    function disableGuids(val) {
+        var elements = [$('#imgAddReleaseTo'),
+                        $('#imgRemoveReleaseTo'),
+                        $('#imgAddMcu'),
+                        $('#imgRemoveMcu'),
+                        $('#releaseToSelect'),
+                        $('#newReleaseToName'),
+                        $('#radio-input-source')
+                       ];
+        elements.forEach(function (x) {
+            x.attr("disabled", val);
+            if (val) {
+                x.attr("title", "Locked if the login account is not granted to release MCU, or when the process is in progress.");
+            } else {
+                x.attr("title", "");
+            }
+        });
+    };
+    function status2StyleClassMap(status) {
+        var styleClass = "step_box_idle";
+        switch (status) {
+            case "Progress":
+                styleClass = "step_box_progress";
+                break;
+            case "Completed":
+                styleClass = "step_box_success";
+                break;
+            case "Failed":
+                styleClass = "step_box_failed";
+                break;
+            case "Aborted":
+                styleClass = "step_box_aborted";
+                break;
+            case "Idle":
+            default:
+                styleClass = "step_box_idle";
+                break;
+        }
+        return styleClass;
+    }
+    function onSelectedReleaseToChanged() {
+        var value = $('#releaseToSelect').val().toString();
+        if (value != 'N/A') {
+            $.ajax({
+                url: '/MicrocodeRelease/UpdateReleaseTo',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+                    JsonString: value
+                },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        }
+    };
+    function onAddReleaseToClick() {
+        var value = document.getElementById("newReleaseToName").value.trim();
+        if (value != '') {
+            $.ajax({
+                url: '/MicrocodeRelease/AddReleaseTo',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+                    JsonString: value
+                },
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        } else {
+            window.confirm('Please enter the release to name.')
+        }
+    };
+    function onRemoveReleaseToClick() {
+        $.ajax({
+            url: '/MicrocodeRelease/RemoveSelectedReleaseTo',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onNewReleaseToNameChanged() {
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateNewReleaseToname',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: document.getElementById("newReleaseToName").value
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onAddMcuClicked() {
+        model = @Html.Raw(Json.Encode(@Model));
+        if (null != model) {
+            if (model.SelectedReleaseLee == null) {
+                window.confirm('Please select a release to.');
+                return;
+            }
+        }
+        $.ajax({
+            url: '/MicrocodeRelease/AddMcu',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: document.getElementById("newReleaseToName").value
+            },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onRemoveMcuClicked() {
+        model = @Html.Raw(Json.Encode(@Model));
+        if (null != model) {
+            if (model.SelectedReleaseLee == null) {
+                window.confirm('Please select a release to.');
+                return;
+            }
+        }
+        var isACheckBoxSelected = false;
+        var ckbox = document.getElementsByClassName('checkbox');
+        for (var i = 0; i < ckbox.length; i++) {
+            if (ckbox[i].checked) {
+                isACheckBoxSelected = true;
+                break;
+            }
+        }
+        if (!isACheckBoxSelected) {
+            window.confirm('Please select a checkbox for removing.');
+            return;
+        }
+        $.ajax({
+            url: '/MicrocodeRelease/RemoveMcu',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onMcuCheckClicked(checkbox) {
+        var isChecked = checkbox.checked ? "true" : "false";
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateMcuSelected',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"IsChecked\":" + isChecked + ", \"Id\":\"" + checkbox.id + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onRefreshClick() {
+        ok = false;
+        for(var i = 0; i < 3 && !ok; ++i){
+            $.ajax({
+                url: '/MicrocodeRelease/Reset',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+
+                },
+                success: function (data) {
+                    $('#Submit').attr("style", "visibility:visible;");
+                    ok = true;
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        }
+        $('#divErrorMessage').attr("style", "display:none;");
+        location.reload();
+    };
+    function onRefresHsdAricleIdMapClick() {
+        if (window.confirm('\nPlease allow the sync process to have at lease 2 min to copmlete.\nYou may need to refresh the page to load the updated HSD article IDs.\n\nClick on [OK] to continue, Click on [Cancle] to abort.')) {
+            $('#imgRefreshHsdMap').addClass('blinker');
+            $.ajax({
+                url: '/MicrocodeRelease/RefreshHsdMap',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+
+                },
+                success: function (data) {
+                    $('#imgRefreshHsdMap').removeClass('blinker');
+                    window.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        }
+    };
+    function openExtenalUrlTab(href) {
+        Object.assign(document.createElement('a'), {
+            target: '_blank',
+            href,
+        }).click();
+    };
+    function onViewLogClicked() {
+        $.ajax({
+            url: '/MicrocodeRelease/GetLogContents',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                if (data.LogContents != '') {
+                    var myWindow = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=1000,height=400");
+                    myWindow.document.write("<pre>" + data.LogContents + "</pre>");
+                    myWindow.document.title = data.SessionLog;
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+
+    function onViewHsdArticleIdMapClicked() {
+         $.ajax({
+            url: '/MicrocodeRelease/GetHsdArticleIdMap',
+            dataType: 'json',
+            type: "GET",
+            cache: false,
+            data: {
+            },
+             success: function (data) {
+                 var hsdArticle = data.HsdArticle;
+                 var sb = [];
+                 sb.push("<html xmlns='http://www.w3.org/1999/xhtml'>");
+                 sb.push("<body>");
+                 sb.push("<table cellspacing='0' cellpadding='0' border='0' style='width: 96%; aling:center;margin-left:20px;'>");
+                 sb.push("<tr style='border:none;'><td>&nbsp;</td></tr>");
+                 sb.push("<tr style='border:none;'>");
+                 sb.push("<th style='border:1px; width:100%; height: 40px;background-color:steelblue; font-family:arial,helvetica; font-size:Large; font-weight:bold; color:white;text-align:center;border-radius:5px;'>");
+                 sb.push("HSD-ES Article ID - Attachment ID - MCU maps");
+                 sb.push("</th>");
+                 sb.push("</tr>");
+                 sb.push("</table>");
+                 sb.push("<table cellspacing='1' border='1' style='width: 96%; border-color:silver;border-radius:5px;align:center;margin-left:20px;'>");
+                 sb.push("<tr style='height: 28px;background-color:silver;font-weight: bold;font-size:smaller;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;text-align:center;color: black'>");
+                 sb.push("<td style='width:1%;'></td>");
+                 sb.push("<td style='width:33%;'>Article ID</td>");
+                 sb.push("<td style='width:33%;'>Attachement ID</td>");
+                 sb.push("<td style='width:33%;'>MCU file Name</td>");
+                 sb.push("</tr>");
+                 var toggle = true;
+                 for (var i = 0; i < hsdArticle.length; i++)
+                 {
+                     var item = hsdArticle[i];
+                     var bkcolor = "silver";
+                     if (toggle)
+                         bkcolor = "white";
+                     sb.push("<tr style='height:25px;background-color:" + bkcolor + ";font-size:small;font-family:Arial'>");
+                     sb.push("<td style='width:1%;'>" + (i + 1) + "</td>");
+                     sb.push("<td class='col_id'>" + item[0] + "</td>");
+                     sb.push("<td class='col_id'>" + item[1] + "</td>");
+                     sb.push("<td col_mcu>" + item[2] + "</td>");
+                     sb.push("</tr>");
+                     toggle = !toggle;
+                 }
+                 sb.push("</table>");
+                 sb.push("</body></html>");
+                 sb.push("<style>");
+                 sb.push(".col_id{width:33%;}");
+                 sb.push(".col_mcu{width:33%;}");
+                 sb.push("</style>");
+                 var myWindow = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=700,height=600");
+                 myWindow.document.body.innerHTML = sb.join('');
+            },
+             error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function _getChunckHtml(chunckidx, html) {
+        var data = '';
+        $.ajax({
+            url: '/MicrocodeRelease/StreamHsdArticleIdMap',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: chunckidx.toString()
+            },
+            success: function (chunckdata) {
+                data = chunckdata.JsonString;
+            },
+            complete: function(){
+                html = html + data;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+                success &= false;
+            }
+        });
+        return data;
+    }
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    function onViewDesignDocClicked() {
+        var myWindow = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=1044,height=720");
+        myWindow.document.write('<video id="VideoPlayer" src="/Images/McuReleaseAutomation.mp4" controls="true" width="1024" height="700" loop="true"/>');
+        myWindow.document.title = data.SessionLog;
+    };
+    function onViewReferenceClicked() {
+        $.ajax({
+            url: '/MicrocodeRelease/VolunteerInputUpdate',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onHsdMcuIdInputClicked() {
+        $.ajax({
+            url: '/MicrocodeRelease/SyncHsdIds',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+</script>
+
+<style>
+    .step_box_idle {
+        height: 40px;
+        width: 18%;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 40px;
+        margin-left: 15px;
+        margin-right: 15px;
+        float: left;
+        font-size: small;
+        color: silver;
+        background-color: rgba(120, 120, 120, 0.50);
+        border: 1px solid dimgray;
+        box-shadow: 3px 3px rgba(248, 243, 243, 0.3);
+    }
+
+    .step_box_progress {
+        height: 40px;
+        width: 18%;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 40px;
+        margin-left: 15px;
+        margin-right: 15px;
+        float: left;
+        font-size: small;
+        color: white;
+        text-wrap: normal;
+        background-color: rgba(60, 180, 249, 0.90);
+        border: 1px solid dimgray;
+        box-shadow: 3px 3px rgba(135, 234, 245, 0.5);
+        animation: blink 2s;
+        animation-iteration-count: infinite;
+    }
+
+    .step_box_success {
+        height: 40px;
+        width: 18%;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 40px;
+        margin-left: 15px;
+        margin-right: 15px;
+        float: left;
+        font-size: small;
+        color: white;
+        text-wrap: normal;
+        background-color: rgba(50, 234, 13, 0.40);
+        border: 1px solid dimgray;
+        box-shadow: 3px 3px rgba(182, 238, 152, 0.50);
+    }
+
+    .step_box_failed {
+        height: 40px;
+        width: 18%;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 40px;
+        margin-left: 15px;
+        margin-right: 15px;
+        float: left;
+        font-size: small;
+        color: white;
+        text-wrap: normal;
+        background-color: rgba(250, 31, 6, 0.55);
+        border: 1px solid dimgray;
+        box-shadow: 3px 3px rgba(122, 120, 120, 0.5);
+        animation: blink 3s;
+        animation-iteration-count: infinite;
+    }
+
+    .step_box_aborted {
+        height: 40px;
+        width: 18%;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 40px;
+        margin-left: 15px;
+        margin-right: 15px;
+        float: left;
+        font-size: small;
+        color: white;
+        text-wrap: normal;
+        background-color: rgba(222, 152, 7, 0.60);
+        border: 1px solid dimgray;
+        box-shadow: 3px 3px rgba(122, 120, 120, 0.26);
+    }
+</style>
+

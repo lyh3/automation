@@ -1,0 +1,20 @@
+<metadata xmlns="http://mcafeelabs.com/schema/automation/sample/metadata/2.0">
+	<samples>
+		<sample>
+			<hashes>
+				<hash type="md5">093989412A311E95AB2836AE922067F5</hash>
+			</hashes>
+			<detections>
+				<detection vendor="avast" date="2013-10-01T02:04:40" source="prescan"><![CDATA[NO_VIRUS]]></detection>
+			</detections>
+		</sample>
+		<sample>
+			<hashes>
+				<hash type="md5">0BC6B0528EA8FC129D10729A06D27576</hash>
+			</hashes>
+			<detections>
+				<detection vendor="avast" date="2013-10-01T02:04:40" source="prescan"><![CDATA[NO_VIRUS]]></detection>
+			</detections>
+		</sample>
+	</samples>
+</metadata>

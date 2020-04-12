@@ -1,0 +1,406 @@
+{
+    "UEFI":
+    {
+        "key":"UEFI",
+        "skip":true,
+        "tests":
+        [
+            {
+                "testid":"UEFI_001",
+                "skip":false,
+                "objective":"Apache Pass is discovered and trained during boot phase by the memory reference code as described in the Theory of Operations chapter. This test case provides specific verification of the discovery and training process. This test case may need to be repeated for each DIMM population combination to exercise paths in MRC as well as hardware paths on the board.",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":".\\archive\\UEFI_001.log"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"DDR4IdSample",
+                        "value":"[\"M393\", \"18AS\"]"
+                    },
+                    {
+                        "name":"IntelDDRTIdSample",
+                        "value":"[\"8089\", \"KVAQ\"]"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_002",
+                "skip":true,
+                "objective":"FIT (Nonvolatile Firmware Interface Table) support is provided through Intel UEFI reference code as part of the ACPI 6.x implementation for the platform.Document Number: 562981 Rev. 0.85 139 Intel Confidential Although the reference code is validated as part of the Purley Server Reference platform, customization of UEFI code may affect proper table population. The key objective of this test is to verify that the NFIT table is populated and that the number of entries matches the current Apache Pass DIMM population. This procedure uses acpidump and iasl utilities in a Linux environment. They are available as precompiled binaries for most Linux distributions. The procedure may need to be adjusted for other operating environments.",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                ],
+                "expecteddata":
+                [
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_003",
+                "skip":false,
+                "objective":"Verify installed Apache Pass Entities.",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"Extract NFIT table from live ACPI data - 1) acpidump _t PCAT > PCAT.dat. 2) acpixtract -a PCAT.dat. 3) iasl -d PCAT.dat.",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -dimm"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"FWVersion",
+                        "value":"01.00.00.4888"
+                    },
+                    {
+                        "name":"HealthState",
+                        "value":"Healthy"
+                    },
+                    {
+                        "name":"Capacity",
+                        "value":"125.7 GiB"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_004",
+                "skip":false,
+                "objective":"Apache Pass appears as a type 17 device with the table being populated with entries for each memory device available to the system along with DDR4 memory. Each of these devices are associated with a type 16 device (physical memory array).",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"Dump DMI memory table information : dmidecode _t memory > memory.txt",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":"dmidecode -t memory"
+                    }
+                ],
+                "expecteddata":
+                [
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            }
+        ]
+    },
+    "MGT":
+    {
+        "key":"MGT",
+        "skip":true,
+        "tests":
+        [
+            {
+                "testid":"MGT_001",
+                "skip":false,
+                "objective":"Part of validation of platform topology and SMBIOS tables. OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"Run the CLI commands and examine the returned details. Validate the recorded AEP serial number socket, channel and DIMM slot position are correct for all installed AEP devices. Ensure that no AEP devices are missing from returned data. 1, Execute the command with the extended option flag [-a|-all] to display all available attributes: show -a -topology106 2. Display the AEP device serial number for the associated DimmID and the compare the returned serial number to the manually recorded physical asset and position. show -d partnumber,serialnumber,socketid,channelid,channelpos -dimm (DimmIDs from step 1 list)",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -a -topology"
+                    }
+                ],
+                "expecteddata":
+                [
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"MGT_002",
+                "skip":false,
+                "objective":"Part of validation of platform topology and SMBIOS tables. OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"1. Run the CLI Show Socket command and examine the returned details. Execute the command with the extended option flag [-a|-all] to display all available attributes: show -a -socket 2. Review the output of the command. It should list all of the platform installed CPU sockets with correct values, including mapped memory limits and the current BIOS mapped memory.",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -socket"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"TotalMappedMemory",
+                        "value":">= 700.0  GiB"
+                    },
+                    {
+                        "name":"MappedMemoryLimit",
+                        "value":">=  1500 GiB"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"MGT_014",
+                "skip":false,
+                "objective":"CLI command to display the firmware information for active and staged firmware including the version and type; the commit identifier for the active firmware is also displayed. Part of validation of ACPI NFIT tables and that basic communications between the host and the DCPMM mailbox is successful. This command will be utilized as part of the firmware management related test cases.",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"1. Run the CLI Show Device Firmware command and examine the returned details.  Execute the command to display: show -dimm -firmware 2. Execute the command with the extended option flag [-a|-all] to display all available attributes: show -a -dimm -firmware or (Specify a specific device) show -a -dimm (DimmIDs) -firmware 3. Show device firmware expected values: * ActiveFWVersion matches Show Device Command FWVersion. * ActiveFWType: Typically 'Production' but may depend upon active image; one of alternative firmware image types 'DFx' or 'Debug'. * ActiveFWCommitID: a unique identifier * ActiveFWBuildConfiguration: prod (is most common) * StagedFWVersion: Known loaded version or N/A (when no version is loaded pending activation on next power cycle)",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -dimm -firmware"
+                    }
+                ],
+                "expecteddata":
+                [
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"MGT_005",
+                "skip":false,
+                "objective":"Part of validation of ACPI NFIT and PCAT entries. Demonstrated using the OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"1.Run the CLI Show System Capabilities command and examine the returned details. Execute the command with the extended option flag [_a|_all] to display all available attributes: show _a _system -capabilities 2. Review the output of the command. It should list all of the platform installed Apache Pass DIMMs with correct values.",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -a -system -capabilities"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"ChangeDevicePassphraseSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"FreezeDeviceSecuritySupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"UnlockDeviceSecuritySupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"DisableDeviceSecuritySupported",
+                        "value":"1"
+                    },
+                    {
+                        "name":"EnableDeviceSecuritySupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"EraseDeviceDataSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"AdrSupported",
+                        "value":"1"
+                    },
+                    {
+                        "name":"InitiateScrubSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"ShrinkAppDirectNamespaceSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"GrowAppDirectNamespaceSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"RenameNamespaceSupported",
+                        "value":"1"
+                    },
+                    {
+                        "name":"AppDirectMigrationSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"DimmSpareSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"AppDirectMirrorSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"MinNamespaceSize",
+                        "value":"1.0 GiB"
+                    },
+                    {
+                        "name":"RecommendedAppDirectSettings",
+                        "value":"x1"
+                    },
+                    {
+                        "name":"SupportedAppDirectSettings",
+                        "value":"x1"
+                    },
+                    {
+                        "name":"ModesSupported",
+                        "value":"1LM, Memory Mode, App Direct"
+                    },
+                    {
+                        "name":"AllowedAppDirectMode",
+                        "value":"App Direct"
+                    },
+                    {
+                        "name":"CurrentVolatileMode",
+                        "value":"Memory Mode"
+                    },
+                    {
+                        "name":"AllowedVolatileMode",
+                        "value":"Memory Mode"
+                    },
+                    {
+                        "name":"Alignment",
+                        "value":"1.0 GiB"
+                    },
+                    {
+                        "name":"PlatformConfigSupported",
+                        "value":"1"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"MGT_013",
+                "skip":false,
+                "objective":"",
+                "Test Setup / Preconditions":null,
+                "testProcedure":"",
+                "pass/failCreterial":null,
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -sensor"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"MediaTemperature",
+                        "value":"< 60 C"
+                    },
+                    {
+                        "name":"ControllerTemperature",
+                        "value":"< 70 C"
+                    },
+                    {
+                        "name":"Health",
+                        "value":"Healthy"
+                    },
+                    {
+                        "name":"PercentageRemaining",
+                        "value":"== 100 %"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            }
+        ]
+    },
+    "PERF":
+    {
+        "key":"PERF",
+        "skip":false,
+        "tests":
+        [
+            {
+                "testid":"PERF_001",
+                "skip":false,
+                "objective":"Document ID# 574422, Provide informative AEP ES1 Power and Performance (PnP) measurement data\n1. Compare AEP ES1 PnP measurements against targets for ES2 and PRQ\n2. Provide a tool to benchmark customer's systems against ES1 power\nand performance data provided by Intel\n3. AEP DIMM Bandwidth and Latency ES1 Measurements vs ES2 and PRQ\nTargets\n4. AEP PnP Tool for measuring ES1 performance",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"",
+                "pass/failCreterial":"",
+                "shellCommand":
+                [
+                    {
+                        "command":"./dcpmm_perf_sweep.sh -m ./mlc_avx512 -p /mnt/pmem0 -s 0"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"DCPMMIdleSequentialLatency",
+                        "value":"< 300 ns"
+                    },
+                    {
+                        "name":"DCPMMIdleRandomLatency",
+                        "value":"< 600 ns"
+                    },
+                    {
+                        "name":"AverageOfMaxDCPMMBandwidth",
+                        "value":"< 3500"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            }
+        ]
+    },
+    "timeout":"3000",
+    "recurring":"15",
+    "reporthtmlfilename":"HealthCheckReport.html",
+    "serialport":"COM4",
+    "serialportbaudrate":"115200",
+    "Client":
+    {
+        "ip":"201.0.0.65",
+        "user":"root",
+        "password":"inT3l123$"
+    },
+    "Report":
+    {
+        "versionCommand":"ipmctl version"
+    },
+    "PowerSwitcher":
+    {
+        "DLIPowerSwitch":
+        {
+            "active":false,
+            "power_switch_ip":"10.54.0.234",
+            "power_switch_user":"hct",
+            "power_switch_password":"donotchange",
+            "port":"2"
+        },
+        "usbPowerSwitch":
+        {
+            "active":false,
+            "power_splitter_path":"..\\USBPower.dll",
+            "port":"2"
+        },
+        "sshClient":
+        {
+            "active":true,
+            "ip":"201.0.0.65",
+            "user":"root",
+            "password":"inT3l123$"
+        }
+    },
+    "sftp":
+    {
+        "sourcePath":"C:/PythonSV/elkvalley/crHealthCheck/mlc",
+        "targetPath":"/root/mlc",
+        "OS":"Linux"
+    }
+}

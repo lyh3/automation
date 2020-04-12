@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AccessPrivilege" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AccessPrivilege" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:complexType name="ArrayOfAccessPrivilegeAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccessPrivilegeAttribute" nillable="true" type="tns:AccessPrivilegeAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccessPrivilegeAttribute" nillable="true" type="tns:ArrayOfAccessPrivilegeAttribute" />
+  <xs:complexType name="AccessPrivilegeAttribute">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System" base="q1:Attribute">
+        <xs:sequence>
+          <xs:element name="_x003C_AccessPrivilegeGroup_x003E_k__BackingField" type="tns:AccessPrivilegeGroup" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AccessPrivilegeAttribute" nillable="true" type="tns:AccessPrivilegeAttribute" />
+  <xs:simpleType name="AccessPrivilegeGroup">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ALL" />
+      <xs:enumeration value="GUEST" />
+      <xs:enumeration value="USER" />
+      <xs:enumeration value="DEVELOPER" />
+      <xs:enumeration value="SYSTEM_ADMIN" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AccessPrivilegeGroup" nillable="true" type="tns:AccessPrivilegeGroup" />
+</xs:schema>

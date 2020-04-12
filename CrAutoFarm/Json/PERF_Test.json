@@ -1,0 +1,81 @@
+{
+    "PERF":
+    {
+        "key":"PERF",
+        "skip":false,
+        "tests":
+        [
+            {
+                "testid":"PERF_001",
+                "skip":false,
+                "objective":"Document ID# 574422, Provide informative AEP ES1 Power and Performance (PnP) measurement data\n1. Compare AEP ES1 PnP measurements against targets for ES2 and PRQ\n2. Provide a tool to benchmark customer\u0027s systems against ES1 power\nand performance data provided by Intel\n3. AEP DIMM Bandwidth and Latency ES1 Measurements vs ES2 and PRQ\nTargets\n4. AEP PnP Tool for measuring ES1 performance",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"",
+                "pass/failCreterial":"",
+                "shellCommand":
+                [
+                    {
+                        "command":"sh ./dcpmm_perf_sweep.sh -m ./mlc_avx512 -p /mnt/AD1 -s 0"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"DCPMMIdleSequentialLatency",
+                        "value":"\u003c 300 ns"
+                    },
+                    {
+                        "name":"DCPMMIdleRandomLatency",
+                        "value":"\u003c 600 ns"
+                    },
+                    {
+                        "name":"AverageOfMaxDCPMMBandwidth",
+                        "value":"\u003c 3500"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            }
+        ]
+    },
+    "timeout":"3000",
+    "recurring":"15",
+    "reporthtmlfilename":"HealthCheckReport.html",
+    "skipAcCycle" : true,
+    "Client":
+    {
+        "ip":"201.0.0.65",
+        "user":"root",
+        "password":"inT3l123$"
+    },
+    "Report":
+    {
+        "versionCommand":"ipmctl version"
+    },
+    "PowerSwitcher":
+    {
+        "DLIPowerSwitch" : {
+            "active" : false,
+            "power_switch_ip" : "10.54.0.234",
+            "power_switch_user" : "hct",
+            "power_switch_password": "donotchange",
+            "port" : "2"
+        },
+        "usbPowerSwitch" : {
+            "active" : false,
+            "power_splitter_path" : "..\\USBPower.dll",
+            "port" : "2"
+        },
+        "sshClient" :  {
+            "active" : true,
+            "ip":"201.0.0.65",
+            "user":"root",
+            "password":"inT3l123$"
+        }
+    },
+    "sftp" : {
+        "sourcePath" : "C:/PythonSV/elkvalley/crHealthCheck/mlc",
+        "targetPath" : "/root/mlc",
+        "OS" : "Linux"
+    }
+}

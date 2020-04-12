@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5288dfb3-e096-4c86-be4a-2ed6e451d906" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AuthenticationService.xsd" MetadataType="Schema" ID="e7e63e9f-19d4-48ad-8270-69d990be8647" SourceId="1" SourceUrl="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AuthenticationService1.xsd" MetadataType="Schema" ID="e177052a-1f8d-4778-97d9-a7d3ddf64c19" SourceId="1" SourceUrl="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AuthenticationService.disco" MetadataType="Disco" ID="24fe8527-23c7-4e25-b388-7293301ac0da" SourceId="1" SourceUrl="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?disco" />
+    <MetadataFile FileName="AuthenticationService2.xsd" MetadataType="Schema" ID="c916501c-9e1b-4b41-8509-98b8efdf7781" SourceId="1" SourceUrl="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?xsd=xsd3" />
+    <MetadataFile FileName="AuthenticationService3.xsd" MetadataType="Schema" ID="27d56383-c2c3-40a1-b3e0-2052351cf367" SourceId="1" SourceUrl="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?xsd=xsd4" />
+    <MetadataFile FileName="AuthenticationService4.xsd" MetadataType="Schema" ID="12c83dc2-1678-45e4-8102-c0779523e90a" SourceId="1" SourceUrl="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Authentication.wsdl" MetadataType="Wsdl" ID="488d7c8f-3334-402e-aae1-be0fa70565a9" SourceId="1" SourceUrl="http://beadv1dbprof1.corp.avertlabs.internal/WCFAuthenticationService/AuthenticationService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,17 @@
+﻿<ns0:XpathMergeRoot xmlns:ns0="http://BizTalk_Server_Project1.XmlPathMerge">
+	<Merges Description="DynamicMergeDemo">
+		<Merge  Description="Insert app key">
+			<NavitationXpath>
+				<LocalName>/configuration/appSettings</LocalName>
+				<Namespace></Namespace>
+			</NavitationXpath>
+			<Action Name="SelectInsertXml" SkipOnLastSuccess="false">
+				<Contents>
+					<Key><![CDATA[<add key="Hello" value="World"/>]]>
+					</Key>
+					<Value></Value>
+				</Contents>
+			</Action>
+		</Merge>
+	</Merges>
+</ns0:XpathMergeRoot>

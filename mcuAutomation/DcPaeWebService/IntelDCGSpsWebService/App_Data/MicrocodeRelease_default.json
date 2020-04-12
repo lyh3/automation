@@ -1,0 +1,328 @@
+{
+  "Setup" : {
+    "key":"Setup",
+    "skip" : false,
+    "States": [
+      {
+        "git_set_proxy": {
+          "skip" : true,
+          "status": "Idel",
+          "stateData" : {
+            "path" : "%SAND_BOX%/microcode_release-sandbox-automation-testing",
+            "command" : "git",
+            "parameters" : ["config", "--global",
+                            "http.proxy",
+                            "http://%USER_NAME%:%PASSWORD%@proxy-us.intel.com:911"]
+          },
+          "waitkeystroke":false
+        }
+      },
+      {
+          "git_config_user": {
+            "skip" : false,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "",
+              "command" : "config",
+              "parameters" : ["user.name", "%USER_NAME%"]
+            },
+            "waitkeystroke":false
+          }
+      },
+      {
+          "git_config_user_email": {
+            "skip" : false,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "",
+              "command" : "config",
+              "parameters" : ["user.email", "mcu_administator@intel.com"]
+            },
+            "waitkeystroke":false
+          }
+      },
+      {
+        "git_clone_sandbox": {
+          "skip" : false,
+          "status": "Idel",
+          "stateData": {
+            "path" : "Sandbox",
+            "repoUrl" : "ssh://$username$@git-amr-1.devtools.intel.com:29418/microcode_release-sandbox-automation-testing"
+          },
+          "waitkeystroke":false
+        }
+      },
+      {
+        "git_clone_staging": {
+          "skip" : true,
+          "status": "Idel",
+          "stateData": {
+            "path" : "Staging",
+            "repoUrl" : "ssh://$username$@git-amr-1.devtools.intel.com:29418/microcode_release-staging-%RELEASE_TO%"
+          },
+          "waitkeystroke":false
+        }
+      },
+      {
+        "git_clone_iafw_cr_tools": {
+          "skip" : true,
+          "status": "Idel",
+          "stateData": {
+            "path" : "Staging",
+            "repoUrl" : "ssh://$username$@git-amr-7.devtools.intel.com:29418/iafw-cr-tools"
+          },
+          "waitkeystroke":false
+        }
+      }
+    ]
+  },
+  "Processing": {
+    "key": "Processing",
+    "skip": false,
+    "States":[
+      {
+          "git_add_mcu_to_sandbox": {
+            "skip" : false,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "%SAND_BOX%/microcode_release-sandbox-automation-testing/InternalOnly/repository",
+              "command" : "",
+              "parameters" : []
+            },
+            "waitkeystroke":false
+          }
+      },
+      {
+          "git_edit_inf_file": {
+            "skip" : false,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "%SAND_BOX%/microcode_release-sandbox-automation-testing/InternalOnly",
+              "command" : "",
+              "parameters" : ["InfTemplate"]
+            },
+            "waitkeystroke":false
+          }
+      },
+      {
+          "edit_read_me": {
+            "skip" : false,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "%SAND_BOX%/microcode_release-sandbox-automation-testing/README.md",
+              "script" : "",
+              "parameters" : []
+            },
+            "waitkeystroke":false
+          }
+      },
+      {
+          "git_commit_mcu": {
+            "skip" : false,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "%SAND_BOX%/microcode_release-sandbox-automation-testing",
+              "command" : "",
+              "parameters" : []
+            },
+            "waitkeystroke":false
+          }
+      }
+    ]
+  },
+  "Publish": {
+    "key": "Publish",
+    "skip": false,
+    "States":[
+      {
+        "script_prep_release_local": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+              "path": "%SAND_BOX%/microcode_release-sandbox-automation-testing/InternalOnly",
+              "script": "PrepReleaseLocal.py",
+              "parameters": ["-d", "%SAND_BOX%/microcode_release-sandbox-automation-testing",
+                             "-r", "%DEV_ROOT%",
+                             "-v"
+                            ]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+          "edit_manifest_file": {
+            "skip" : false,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "",
+              "script" : "",
+              "parameters" : []
+            },
+            "waitkeystroke":false
+          }
+      },
+      {
+        "git_query_commit_history": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+            "path": "%SAND_BOX%/microcode_release-sandbox-automation-testing",
+              "command" : "git",
+              "parameters" : ["log",
+                              "--pretty=format:\"%H %D\""
+                             ]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+        "git_commit": {
+            "skip" : false,
+          "status": "Idel",
+            "stateData" : {
+              "path" : "%SAND_BOX%/microcode_release-sandbox-automation-testing",
+              "command" : "",
+              "parameters" : []
+            },
+            "waitkeystroke":false
+          }
+      },
+      {
+        "git_query_commit_history": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+            "path": "%SAND_BOX%/microcode_release-sandbox-automation-testing",
+              "command" : "git",
+              "parameters" : ["log",
+                              "--pretty=format:\"%H %D\""
+                             ]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+        "git_invoke_export": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+              "path": "%DEV_ROOT%",
+              "script": "PrepReleasePhase1.py",
+              "parameters": ["-i", "%GIT_EXPORT_INI%",
+                             "-r", "%DEV_ROOT%",
+                             "-u", "%USER_NAME%",
+                             "-B", "%START_COMMIT_HASH%",
+                             "-E", "%END_COMMIT_HASH%",
+                             "-s", "%STAGING%",
+                             "--verbose"
+                            ]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+        "git_query_commit_history": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+            "path": "%DEV_ROOT%/microcode_release-staging-automation-testing",
+              "command" : "git",
+              "parameters" : ["log",
+                              "--pretty=format:\"%H %D\""
+                             ]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+        "git_generate_release_notes": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+            "path": "%DEV_ROOT%",
+              "command": "git",
+              "parameters": ["--name-only",
+                             "--diff-filter=AR",
+                             "*.inc"]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+        "git_query_commit_history": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+            "path": "%SAND_BOX%/microcode_release-sandbox-automation-testing",
+              "command" : "git",
+              "parameters" : ["log",
+                              "--pretty=format:\"%H %D\""
+                             ]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+        "script_prep_release_phase_3": {
+          "skip": false,
+          "status": "Idel",
+          "stateData": {
+            "path": "%DEV_ROOT%",
+            "script": "PrepReleasePhase3.py",
+            "parameters": [
+              "-i",
+              "%REPO_NAME%",
+              "-r",
+              "%DEV_ROOT%",
+              "-u",
+              "%USER_NAME%",
+              "-e",
+              "henry.li@intel.com",
+              "-s",
+              "%STAGING%",
+              "-t",
+              "%TAG%",
+              "--verbose"
+            ]
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+        "git_push_to_github": {
+          "skip": true,
+          "status": "Idle",
+          "error": "",
+          "stateData": {
+            "path": "%SAND_BOX%/microcode_release-sandbox/InternalOnly",
+            "command": "'%GITHUB_TOKEN%'",
+            "parameters": []
+          },
+          "waitkeystroke": false
+        }
+      },
+      {
+          "cleanup": {
+            "skip" : true,
+            "status": "Idel",
+            "stateData" : {
+              "path" : "",
+              "script" : "",
+              "parameters" : []
+            },
+            "waitkeystroke":false
+          }
+      }
+    ]
+  },
+  "McuDropBox": "./ReleaseDropBox",
+  "WorkSpace" : "C:/MCUWorkspace",
+  "timeout":"30000",
+  "LogName" : "McuReleaseAutomation",
+  "TestingRepoEx": "-automation-testing",
+  "TransStatus": "Idle",
+  "TransError": "",
+  "DryRun" : false,
+  "OneTimeOnly" : true,
+  "RebaseSilent" : false
+}

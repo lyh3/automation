@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC96B726-C727-42AF-B2C7-E58B80ACE411}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>McAfeeLabs.Engineering.Automation.Base.XmlMergeDataModel</RootNamespace>
+    <AssemblyName>XmlMergeDataModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MergeWorker.cs" />
+    <Compile Include="MergeWorkState\CreateAttributeState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\CreateXmlState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\DeleteState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\InsertXmlState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\MergeWorkerState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\SelectCloneState.cs" />
+    <Compile Include="MergeWorkState\SelectCreateXmlState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\SelectDeleteState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\SelectInsertXmlState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\SelectState.cs" />
+    <Compile Include="MergeWorkState\SelectUpdateState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MergeWorkState\UpdateState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MergeConfigurationUtil.cs" />
+    <Compile Include="MergeWorkState\SelectCombineXmlState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries.csproj">
+      <Project>{10BE0056-0FB7-4739-A097-B91E8C9C78AA}</Project>
+      <Name>Libraries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModulePlugin\ModulePlugin.csproj">
+      <Project>{AC824222-8ED8-4A1B-A8BC-641D059D80B9}</Project>
+      <Name>ModulePlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkerThreadModel\WorkerThreadModel.csproj">
+      <Project>{6FC41CCA-79B0-440F-9E78-66EAAE974F82}</Project>
+      <Name>WorkerThreadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlMergeUtil\XmlMergeUtil.csproj">
+      <Project>{00B75C6D-C01A-4615-853D-96A39652B5C9}</Project>
+      <Name>XmlMergeUtil</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem copy /Y "$(TargetDir)$(TargetName).*" "$(ProjectDir)..\..\..\libs"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

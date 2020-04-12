@@ -1,0 +1,21 @@
+{
+    "IpmiCommand":"chasis power reset",
+    "CanSubmit":true,
+    "DeviceType":"BMC",
+    "RestType":"MeCold",
+    "IsRemote":true,
+    "BMCCfig":
+    {
+        "BmcIpAddress":"10.23.60.5",
+        "User":"root",
+        "Password":"superuser",
+        "CanSubmit":true
+    },
+    "SutCfig":
+    {
+        "IpAddress":"10.23.60.7",
+        "IsPowerOn":false
+    },
+    "Repeat":"1",
+    "ConfigJson":""
+}

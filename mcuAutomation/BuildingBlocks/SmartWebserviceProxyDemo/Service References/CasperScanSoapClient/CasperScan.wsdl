@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Scan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ftpUri" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sampleName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ScanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ScanResult" type="tns:ScanResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ScanResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ScannerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DatName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScanPath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScanSwitches" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Md5" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sha1" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Detected" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Detections" type="tns:ArrayOfDetection" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActionTaken" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Failed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FailureMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScanErrors" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScanMilliseoonds" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDetection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Detection" nillable="true" type="tns:Detection" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Detection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VirusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VirusType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DetectType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ScanSoapIn">
+    <wsdl:part name="parameters" element="tns:Scan" />
+  </wsdl:message>
+  <wsdl:message name="ScanSoapOut">
+    <wsdl:part name="parameters" element="tns:ScanResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CasperScanSoap">
+    <wsdl:operation name="Scan">
+      <wsdl:input message="tns:ScanSoapIn" />
+      <wsdl:output message="tns:ScanSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CasperScanSoap" type="tns:CasperScanSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Scan">
+      <soap:operation soapAction="http://tempuri.org/Scan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CasperScanSoap12" type="tns:CasperScanSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Scan">
+      <soap12:operation soapAction="http://tempuri.org/Scan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CasperScan">
+    <wsdl:port name="CasperScanSoap" binding="tns:CasperScanSoap">
+      <soap:address location="http://beaav1cspscan01/CasperScanWS/CasperScan.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CasperScanSoap12" binding="tns:CasperScanSoap12">
+      <soap12:address location="http://beaav1cspscan01/CasperScanWS/CasperScan.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

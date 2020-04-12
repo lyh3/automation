@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://mcafeelabs.com/services/automation/sample/metadata/2.0" elementFormDefault="qualified" targetNamespace="http://mcafeelabs.com/services/automation/sample/metadata/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?xsd=xsd1" namespace="http://mcafeelabs.com/schema/automation/sample/metadata/2.0" />
+  <xs:import schemaLocation="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetMetadata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ftpUri" type="tns:ArrayOfString" />
+        <xs:element minOccurs="0" maxOccurs="1" name="requestId" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="unpack" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetMetadataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="GetMetadataResult" type="tns:metadataResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="metadataResponse">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://mcafeelabs.com/schema/automation/sample/metadata/2.0" minOccurs="0" maxOccurs="1" name="metadata" type="q1:metadata" />
+      <xs:element minOccurs="0" maxOccurs="1" name="resultMessage" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="resultStatus" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScanAndStore">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ftpUri" nillable="true" type="q2:ArrayOfstring" />
+        <xs:element minOccurs="0" name="requestId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="unpack" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScanAndStoreResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ScanAndStoreResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StoreMetaData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://mcafeelabs.com/schema/automation/sample/metadata/2.0" minOccurs="0" maxOccurs="1" name="metaData" type="q3:metadata" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StoreMetaDataResponse">
+    <xs:complexType />
+  </xs:element>
+</xs:schema>

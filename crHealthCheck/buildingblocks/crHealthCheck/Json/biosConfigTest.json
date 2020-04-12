@@ -1,0 +1,48 @@
+{
+    "BIOConfigDictionary":
+    {
+        "Serial Debug Message Level - Mininal":
+        {
+            "navs":
+            [
+                {
+                    "to":"EDK II Menue",
+                    "navigation":"",
+                    "recuring":"1",
+                    "invoke":"carrigeReturn"
+                },
+                {
+                    "to":"Platform Configuration",
+                    "navigation":"arrowKeyDown",
+                    "recuring":"5",
+                    "invoke":"carrigeReturn"
+                },
+                {
+                    "to":"Miscellaneous Configuration",
+                    "navigation":"arrowKeyDown",
+                    "recuring":"1",
+                    "invoke":"carrigeReturn"
+                },
+                {
+                    "to":"Reset",
+                    "navigation":"arrowKeyDown",
+                    "recuring":"3",
+                    "invoke":"carrigeReturn"
+                }
+            ]
+        }
+    },
+    "serial":
+    {
+        "port":"COM3",
+        "baud":"115200"
+    },
+    "Client":
+    {
+        "ip":"201.0.0.67",
+        "user":"root",
+        "password":"inT3l123$"
+    },
+    "recurring":"15",
+    "timeout":"300"
+}

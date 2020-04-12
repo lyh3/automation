@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4bb25e0b-2bbe-4982-b34d-657011cd769c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MetaDataService.wsdl" MetadataType="Wsdl" ID="b8a0f50c-2343-4c69-9c47-4ad0c66331ab" SourceId="1" SourceUrl="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="MetaDataService.disco" MetadataType="Disco" ID="58a6e70b-4e14-4236-8531-fb0ee184fbf9" SourceId="1" SourceUrl="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?disco" />
+    <MetadataFile FileName="MetaDataService.xsd" MetadataType="Schema" ID="d29524b6-ffcb-42ee-a2c3-f976ee766b20" SourceId="1" SourceUrl="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MetaDataService1.xsd" MetadataType="Schema" ID="51c70937-f0ba-4b82-a1c3-e00abfa9fbc7" SourceId="1" SourceUrl="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MetaDataService2.xsd" MetadataType="Schema" ID="ea388ce2-2753-48bb-ae5a-f211f5917422" SourceId="1" SourceUrl="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MetaDataService3.xsd" MetadataType="Schema" ID="bfaa4836-4e7a-49fb-be15-58c3c8a39b8b" SourceId="1" SourceUrl="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MetaDataService1.wsdl" MetadataType="Wsdl" ID="aa1e7f41-5d78-4448-8477-0602d81ddcba" SourceId="1" SourceUrl="http://beaav1rdnmeta01.corp.avertlabs.internal/MetaDataWS/MetaDataService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

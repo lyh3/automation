@@ -1,0 +1,291 @@
+{
+    "UEFI":
+    {
+        "key":"UEFI",
+        "skip":false,
+        "tests":
+        [
+            {
+                "testid":"UEFI_001",
+                "skip":false,
+                "objective":"Apache Pass is discovered and trained during boot phase by the memory reference code as described in the Theory of Operations chapter. This test case provides specific verification of the discovery and training process. This test case may need to be repeated for each DIMM population combination to exercise paths in MRC as well as hardware paths on the board.",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"",
+                "pass/failCreterial":"Test passes if all installed DDR4 and Apache Pass dimm are discovered and trained with all channels enabled.",
+                "shellCommand":
+                [
+                    {
+                        "command":".\\archive\\UEFI_001.log"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"IntelDDRTIdSample",
+                        "value":"[8089, KVAQ]"
+                    },
+                    {
+                        "name":"DDR4IdSample",
+                        "value":"[M393, 18AS]"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_002",
+                "skip":true,
+                "objective":"FIT (Nonvolatile Firmware Interface Table) support is provided through Intel UEFI reference code as part of the ACPI 6.x implementation for the platform.Document Number: 562981 Rev. 0.85 139 Intel Confidential Although the reference code is validated as part of the Purley Server Reference platform, customization of UEFI code may affect proper table population. The key objective of this test is to verify that the NFIT table is populated and that the number of entries matches the current Apache Pass DIMM population. This procedure uses acpidump and iasl utilities in a Linux environment. They are available as precompiled binaries for most Linux distributions. The procedure may need to be adjusted for other operating environments.",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"",
+                "pass/failCreterial":"Passes if Number of Apache Pass entries matches what is physically installed.",
+                "shellCommand":
+                [
+                ],
+                "expecteddata":
+                [
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_003",
+                "skip":false,
+                "objective":"Verify installed Apache Pass Entities.",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"Extract NFIT table from live ACPI data - 1) acpidump _t PCAT \u003e PCAT.dat. 2) acpixtract -a PCAT.dat. 3) iasl -d PCAT.dat.",
+                "pass/failCreterial":"Examine resulting PCAT.dsl for number of Apache Pass entries. A quick way to do that is to count occurrences of \u0027Serial Number:\u0027 in the file. The number of occurrences should match the number of Apache Pass installed in chassis.",
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -dimm"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"Capacity",
+                        "value":"125.7 GiB"
+                    },
+                    {
+                        "name":"HealthState",
+                        "value":"Healthy"
+                    },
+                    {
+                        "name":"FWVersion",
+                        "value":"01.00.00.4888"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_004",
+                "skip":false,
+                "objective":"Apache Pass appears as a type 17 device with the table being populated with entries for each memory device available to the system along with DDR4 memory. Each of these devices are associated with a type 16 device (physical memory array).",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"Dump DMI memory table information : dmidecode _t memory \u003e memory.txt",
+                "pass/failCreterial":"Key data is present and accurate.",
+                "shellCommand":
+                [
+                    {
+                        "command":"dmidecode -t memory"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"Intel",
+                        "value":"Apache pass Dimm"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            }
+        ]
+    },
+    "MGT":
+    {
+        "key":"MGT",
+        "skip":false,
+        "tests":
+        [
+            {
+                "testid":"MGT_001",
+                "skip":false,
+                "objective":"Part of validation of platform topology and SMBIOS tables. OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"Run the CLI commands and examine the returned details. Validate the recorded AEP serial number socket, channel and DIMM slot position are correct for all installed AEP devices. Ensure that no AEP devices are missing from returned data. 1, Execute the command with the extended option flag [-a|-all] to display all available attributes: show -a -topology106 2. Display the AEP device serial number for the associated DimmID and the compare the returned serial number to the manually recorded physical asset and position. show -d partnumber,serialnumber,socketid,channelid,channelpos -dimm (DimmIDs from step 1 list)",
+                "pass/failCreterial":"Pass - Commands must complete without error. DIMM topology data is accurate and complete when validated against installed physical asset inventory, including capacity. Physical position of AEP for each serial number has been validated as correct. Fail- All remaining instances.",
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -a -topology"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"DeviceLocator",
+                        "value":"@"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"MGT_002",
+                "skip":false,
+                "objective":"Part of validation of platform topology and SMBIOS tables. OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":"The platform and BIOS DDR-T training and discovery of the AEP DIMM(s) was successful and that basic communications between the host and the Apache Pass SMBus mailbox are setup correctly.",
+                "testProcedure":"1. Run the CLI Show Socket command and examine the returned details. Execute the command with the extended option flag [-a|-all] to display all available attributes: show -a -socket 2. Review the output of the command. It should list all of the platform installed CPU sockets with correct values, including mapped memory limits and the current BIOS mapped memory.",
+                "pass/failCreterial":"Pass - Command must complete without error. All installed, CPUs must show up in the list with correct values for the command attributes, including the CPU SKU mapped memory limits and the current BIOS mapped memory capacity.",
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -socket"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"TotalMappedMemory",
+                        "value":"\u003e= 700.0  GiB"
+                    },
+                    {
+                        "name":"MappedMemoryLimit",
+                        "value":"\u003e=  1500 GiB"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"MGT_005",
+                "skip":false,
+                "objective":"Part of validation of ACPI NFIT and PCAT entries. Demonstrated using the OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":"1. The platform and BIOS DDR-T training and discovery of the AEP DIMM(s) was successful and that basic communications between the host and the Apache Pass mailbox is setup correctly.Document Number: 562981 Rev. 0.85 111 Intel Confidential 2. BIOS Volatile Memory Mode setting is known.3. Additional AEP enabling BIOS capabilities and/or AEP driver support are known.",
+                "testProcedure":"1.Run the CLI Show System Capabilities command and examine the returned details. Execute the command with the extended option flag [_a|_all] to display all available attributes: show _a _system -capabilities 2. Review the output of the command. It should list all of the platform installed Apache Pass DIMMs with correct values.",
+                "pass/failCreterial":"Pass - Command must complete without error and validate returned data with expected values",
+                "shellCommand":
+                [
+                    {
+                        "command":"ipmctl show -a -system -capabilities"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"PlatformConfigSupported",
+                        "value":"1"
+                    },
+                    {
+                        "name":"Alignment",
+                        "value":"1.0 GiB"
+                    },
+                    {
+                        "name":"AllowedVolatileMode",
+                        "value":"Memory Mode"
+                    },
+                    {
+                        "name":"CurrentVolatileMode",
+                        "value":"Memory Mode"
+                    },
+                    {
+                        "name":"AllowedAppDirectMode",
+                        "value":"App Direct"
+                    },
+                    {
+                        "name":"ModesSupported",
+                        "value":"1LM, Memory Mode, App Direct"
+                    },
+                    {
+                        "name":"SupportedAppDirectSettings",
+                        "value":"x1"
+                    },
+                    {
+                        "name":"RecommendedAppDirectSettings",
+                        "value":"x1"
+                    },
+                    {
+                        "name":"MinNamespaceSize",
+                        "value":"1.0 GiB"
+                    },
+                    {
+                        "name":"AppDirectMirrorSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"DimmSpareSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"AppDirectMigrationSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"RenameNamespaceSupported",
+                        "value":"1"
+                    },
+                    {
+                        "name":"GrowAppDirectNamespaceSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"ShrinkAppDirectNamespaceSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"InitiateScrubSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"AdrSupported",
+                        "value":"1"
+                    },
+                    {
+                        "name":"EraseDeviceDataSupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"EnableDeviceSecuritySupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"DisableDeviceSecuritySupported",
+                        "value":"1"
+                    },
+                    {
+                        "name":"UnlockDeviceSecuritySupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"FreezeDeviceSecuritySupported",
+                        "value":"0"
+                    },
+                    {
+                        "name":"ChangeDevicePassphraseSupported",
+                        "value":"0"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            }
+        ]
+    },
+    "timeout":"300",
+    "recurring":"15",
+    "reporthtmlfilename":"HealthCheckReport.html",
+    "serialport":"COM3",
+    "serialportbaudrate":"115200",
+    "Client":
+    {
+        "ip":"201.0.0.67",
+        "user":"root",
+        "password":"inT3l123$"
+    },
+    "Report":
+    {
+        "versionCommand":"ipmctl version"
+    }
+}

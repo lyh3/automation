@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://mcafeelabs.com/schema/automation/sample/metadata/2.0" elementFormDefault="qualified" targetNamespace="http://mcafeelabs.com/schema/automation/sample/metadata/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="metadata">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="samples" type="tns:ArrayOfSampleType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="perfmetric" type="tns:perfmetricType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSampleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sample" type="tns:sampleType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sampleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="classificationtype" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="classificationname" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="size" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="activities" type="tns:ArrayOfActivityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="flags" type="tns:ArrayOfString" />
+      <xs:element minOccurs="0" maxOccurs="1" name="virtranhittypes" type="tns:ArrayOfVirtranHitTypeName" />
+      <xs:element minOccurs="0" maxOccurs="1" name="features" type="tns:ArrayOfFeatureType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="fingerprints" type="tns:ArrayOfFingerprintType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="hashes" type="tns:ArrayOfHashType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="systemclassifications" type="tns:ArrayOfSystemClassificationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="pegeometry" type="tns:peGeometryType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="behaviors" type="tns:ArrayOfBehaviorActionCollection" />
+      <xs:element minOccurs="0" maxOccurs="1" name="sources" type="tns:ArrayOfSampleSourceType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="uris" type="tns:ArrayOfUriType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="rules" type="tns:ArrayOfRuleType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="detections" type="tns:ArrayOfDetectionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="relationships" type="tns:ArrayOfSampleRelationshipType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="fielddata" type="tns:ArrayOfPrevalenceType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="packages" type="tns:ArrayOfPackageType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="digitalsignatures" type="tns:ArrayOfDigitalSignatureType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="additionalinfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="dats" type="tns:datCollection" />
+      <xs:element minOccurs="0" maxOccurs="1" name="scanerrors" type="tns:ArrayOfScanErrorType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfActivityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="activity" type="tns:activityType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="activityType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="id" type="xs:int" use="required" />
+        <xs:attribute name="type" type="xs:string" />
+        <xs:attribute name="name" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="flag" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfVirtranHitTypeName">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="virtranhittype" type="tns:virtranHitTypeName" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="virtranHitTypeName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pe" />
+      <xs:enumeration value="dll" />
+      <xs:enumeration value="com" />
+      <xs:enumeration value="exe" />
+      <xs:enumeration value="htm" />
+      <xs:enumeration value="js" />
+      <xs:enumeration value="text" />
+      <xs:enumeration value="UNKNOWN" />
+      <xs:enumeration value="BOOT" />
+      <xs:enumeration value="PART" />
+      <xs:enumeration value="COM" />
+      <xs:enumeration value="SYS" />
+      <xs:enumeration value="EXE" />
+      <xs:enumeration value="NE" />
+      <xs:enumeration value="PE" />
+      <xs:enumeration value="OLE" />
+      <xs:enumeration value="WORD6" />
+      <xs:enumeration value="WORD97" />
+      <xs:enumeration value="EXCEL" />
+      <xs:enumeration value="LE" />
+      <xs:enumeration value="VBA" />
+      <xs:enumeration value="ACCESS" />
+      <xs:enumeration value="ELF" />
+      <xs:enumeration value="JS" />
+      <xs:enumeration value="VBS" />
+      <xs:enumeration value="TEXT" />
+      <xs:enumeration value="BAT" />
+      <xs:enumeration value="DLL" />
+      <xs:enumeration value="MESSAGE" />
+      <xs:enumeration value="WINMEM" />
+      <xs:enumeration value="REGISTRY" />
+      <xs:enumeration value="COOKIE" />
+      <xs:enumeration value="CLIB" />
+      <xs:enumeration value="CVERB" />
+      <xs:enumeration value="SWF" />
+      <xs:enumeration value="CEX" />
+      <xs:enumeration value="EXO" />
+      <xs:enumeration value="LAX" />
+      <xs:enumeration value="BP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfFeatureType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="feature" type="tns:featureType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="featureType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="type" type="xs:string" />
+        <xs:attribute name="class" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFingerprintType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="fingerprint" type="tns:fingerprintType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fingerprintType">
+    <xs:simpleContent>
+      <xs:extension base="xs:hexBinary">
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="classificationtype" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfHashType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="hash" type="tns:hashType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hashType">
+    <xs:simpleContent>
+      <xs:extension base="xs:hexBinary">
+        <xs:attribute name="type" type="tns:hashTypeName" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="hashTypeName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="md5" />
+      <xs:enumeration value="sha1" />
+      <xs:enumeration value="sha256" />
+      <xs:enumeration value="sha512" />
+      <xs:enumeration value="crc32" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfSystemClassificationType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="systemclassification" type="tns:systemClassificationType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="systemClassificationType">
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="date" type="xs:dateTime" />
+    <xs:attribute name="source" type="xs:string" />
+    <xs:attribute name="value" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="peGeometryType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="pesection" type="tns:peSectionType" />
+    </xs:sequence>
+    <xs:attribute name="crc32" type="xs:string" />
+    <xs:attribute name="entrypoint" type="xs:string" />
+    <xs:attribute name="compiledate" type="xs:dateTime" />
+    <xs:attribute name="headersize" type="xs:string" />
+    <xs:attribute name="headerflags" type="xs:string" />
+    <xs:attribute name="sectioncount" type="xs:string" />
+    <xs:attribute name="codesize" type="xs:string" />
+    <xs:attribute name="initdatasize" type="xs:string" />
+    <xs:attribute name="uninitdatasize" type="xs:string" />
+    <xs:attribute name="importsize" type="xs:string" />
+    <xs:attribute name="exportsize" type="xs:string" />
+    <xs:attribute name="resourcesize" type="xs:string" />
+    <xs:attribute name="boundimportsize" type="xs:string" />
+    <xs:attribute name="appendeddatasize" type="xs:string" />
+    <xs:attribute name="headerbin" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="peSectionType">
+    <xs:attribute name="flags" type="xs:string" />
+    <xs:attribute name="crc32" type="xs:string" />
+    <xs:attribute name="id" type="xs:string" />
+    <xs:attribute name="name" type="xs:hexBinary" />
+    <xs:attribute name="vsize" type="xs:string" />
+    <xs:attribute name="rva" type="xs:string" />
+    <xs:attribute name="fsize" type="xs:string" />
+    <xs:attribute name="fofs" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBehaviorActionCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="source" type="tns:behaviorActionCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="behaviorActionCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="action" type="tns:behaviorType" />
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="id" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="behaviorType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="actorname" type="xs:string" />
+        <xs:attribute name="actortype" type="tns:behaviorObjectType" />
+        <xs:attribute name="actor_md5" type="xs:string" />
+        <xs:attribute name="action" type="xs:string" />
+        <xs:attribute name="targetname" type="xs:string" />
+        <xs:attribute name="targettype" type="tns:behaviorObjectType" />
+        <xs:attribute name="target_md5" type="xs:string" />
+        <xs:attribute name="behaviordatatype" type="tns:behaviorDataType" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="behaviorObjectType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="file" />
+      <xs:enumeration value="registry" />
+      <xs:enumeration value="process" />
+      <xs:enumeration value="network" />
+      <xs:enumeration value="thread" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="behaviorDataType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="string" />
+      <xs:enumeration value="binary" />
+      <xs:enumeration value="number" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfSampleSourceType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="samplesource" type="tns:sampleSourceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sampleSourceType">
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="date" type="xs:dateTime" />
+    <xs:attribute name="name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUriType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="uri" type="tns:uriType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="uriType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="port" type="xs:int" use="required" />
+        <xs:attribute name="protocol" type="xs:string" />
+        <xs:attribute name="server" type="xs:string" />
+        <xs:attribute name="relationship" type="tns:uriRelationshipTypeName" use="required" />
+        <xs:attribute name="date" type="xs:dateTime" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="uriRelationshipTypeName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="source" />
+      <xs:enumeration value="contact" />
+      <xs:enumeration value="parsed" />
+      <xs:enumeration value="sms" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfRuleType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="rule" type="tns:ruleType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ruleType">
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="threshold" type="xs:int" />
+    <xs:attribute name="score" type="xs:int" />
+    <xs:attribute name="ruleid" type="xs:int" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDetectionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="detection" type="tns:detectionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detectionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="vendor" type="xs:string" />
+        <xs:attribute name="date" type="xs:dateTime" />
+        <xs:attribute name="datversion" type="xs:string" />
+        <xs:attribute name="engineversion" type="xs:string" />
+        <xs:attribute name="source" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSampleRelationshipType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="related" type="tns:sampleRelationshipType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sampleRelationshipType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="child_md5" type="xs:hexBinary" />
+        <xs:attribute name="type" type="tns:sampleRelationshipTypeName" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="sampleRelationshipTypeName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="created" />
+      <xs:enumeration value="modified" />
+      <xs:enumeration value="renamed" />
+      <xs:enumeration value="deleted" />
+      <xs:enumeration value="unpacked" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfPrevalenceType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="prevalence" type="tns:prevalenceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="prevalenceType">
+    <xs:attribute name="periodinhours" type="xs:int" />
+    <xs:attribute name="source" type="xs:string" />
+    <xs:attribute name="periodending" type="xs:dateTime" />
+    <xs:attribute name="count" type="xs:int" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="package" type="tns:packageType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="packageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="platforms" type="tns:ArrayOfString1" />
+      <xs:element minOccurs="0" maxOccurs="1" name="sources" type="tns:ArrayOfString2" />
+      <xs:element minOccurs="0" maxOccurs="1" name="categories" type="tns:ArrayOfString3" />
+      <xs:element minOccurs="0" maxOccurs="1" name="languages" type="tns:ArrayOfString4" />
+    </xs:sequence>
+    <xs:attribute name="discoverytype" type="tns:packageDiscoveryTypeName" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="manufacturer" type="xs:string" />
+    <xs:attribute name="version" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="platform" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="packagesource" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString3">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="category" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString4">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="language" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="packageDiscoveryTypeName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="file" />
+      <xs:enumeration value="human" />
+      <xs:enumeration value="vendor" />
+      <xs:enumeration value="field" />
+      <xs:enumeration value="msdn" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfDigitalSignatureType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="digitalsignature" type="tns:digitalSignatureType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="digitalSignatureType">
+    <xs:simpleContent>
+      <xs:extension base="xs:hexBinary">
+        <xs:attribute name="issuer" type="xs:string" />
+        <xs:attribute name="subject" type="xs:string" />
+        <xs:attribute name="signdate" type="xs:dateTime" use="required" />
+        <xs:attribute name="expiredate" type="xs:dateTime" use="required" />
+        <xs:attribute name="signkey" type="xs:hexBinary" />
+        <xs:attribute name="signkeyhash" type="xs:hexBinary" />
+        <xs:attribute name="certhash" type="xs:hexBinary" />
+        <xs:attribute name="valid" type="xs:string" />
+        <xs:attribute name="signtype" type="xs:string" />
+        <xs:attribute name="veralgorithm" type="xs:string" />
+        <xs:attribute name="classificationtype" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="datCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="dat" type="tns:datType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="datType">
+    <xs:attribute name="type" type="xs:string" />
+    <xs:attribute name="version" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfScanErrorType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="scanerror" type="tns:scanErrorType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="scanErrorType">
+    <xs:attribute name="errorcode" type="xs:string" />
+    <xs:attribute name="errordescription" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="perfmetricType">
+    <xs:attribute name="appname" type="xs:string" />
+    <xs:attribute name="operation" type="xs:string" />
+    <xs:attribute name="startdate" type="xs:dateTime" />
+    <xs:attribute name="enddate" type="xs:dateTime" />
+  </xs:complexType>
+</xs:schema>

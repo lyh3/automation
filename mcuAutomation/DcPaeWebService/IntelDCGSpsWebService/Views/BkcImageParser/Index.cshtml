@@ -1,0 +1,230 @@
+﻿@using IntelDCGSpsWebService.Models;
+@using System.Text;
+@using IntelDCGSpsWebService.Models;
+
+@model BkcImageParserModel
+@{
+    ViewBag.Title = "BkcImageParser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (null != @Model)
+{
+    <h3 align="left" style="color:dodgerblue;">@Model.Title</h3><hr />
+    using (Html.BeginForm("UploadIfwiImages", "BkcImageParser", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formBkcImageParser", name = "formBkcImageParser" }))
+    {
+        @Html.AntiForgeryToken()
+        <table style="width:100%;">
+            <tr>
+                <td style ="width:20%;">
+                    <table style="border: 1px; border-radius: 5px;">
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.IfwiImage, new {@type = "file", @style = "color:gray;font-size:small;" })
+                                <input required type="file" id="ifwiImage" class="btn btn-toolbar" name="ifwiImage" style="background-color:rgb(41, 42, 43); color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                @Html.ValidationMessageFor(m => m.IfwiImage, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                            </td>
+                        </tr>
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit" onclick="showProgress();" />
+                                        </td>
+                                        <td style="width:60px;" />
+                                        <td>
+                                            <input type="button" class="btn btn-danger" style="width:80px;display:none;" name="btnCancel" id="btnCancel" value="Cancel" onclick="location.reload();" />
+                                        </td>
+
+                                        <td>
+                                            <div style="background-color:transparent;">
+                                                <span id="spRefresh" style="color: white; font-size: small;" onclick="onRefreshClick();">Refresh&nbsp;<i id="iRefresh" style="color:lime;" class="glyphicon glyphicon-refresh"></i></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td />
+                <td style="width:2%;" />
+                <td style="width:20%;">
+                    @Html.Partial("../Shared/_Loader_Intel")
+                </td>
+                <td style="width:58%;">
+                    <table style="background-color:transparent; border: 1px; border-radius: 5px;">
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.SelectedConfigJson, new { @style = "color:gray;font-size:small;" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="divEmbeddedConfigJson" class="btn-group" style="width:600px;">
+                                    <select class="btn btn-toolbar" id="configJsonSelect" onchange="onSelectedConfigJsonChanged();" style="background-color:rgb(41, 42, 43);color:white;font-size:smaller;height:30px; width:500px;overflow-x: scroll;overflow-y: scroll;">
+                                        <option id="-1" value="N/A" data-bind="">--- Select a Json config file ---</option>
+                                        @foreach (var k in Model.EmbeddedJsonDictionary.Keys)
+                                        {
+                                            var key = k;
+                                            <option id="@key" value="@key">@key </option>
+                                        }
+                                    </select>
+                                </div>
+                                <div id="divUserInputConfigJson" style="display:none;">
+                                    <input type="file" id="userSelectedJson" class="btn btn-toolbar" name="userSelectedJson" style="background-color:rgb(41, 42, 43); color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                    @Html.ValidationMessageFor(m => m.SelectedConfigJson, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td style="color:dodgerblue;font-size:small;">
+                                <div id="divSelectViewType" class="custom-control custom-radio">
+                                    <label class="radio-inline">
+                                        <input id="radio-embedded-config" type="radio" class="custom-control-input" name="configradio" value="EmbeddedConfig" checked="checked" onclick="onSelectViewTypeClick('EmbeddedConfig');">Embedded Json
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="radio-userinput-config" type="radio" class="custom-control-input" name="configradio" value="UserInputConfig" onclick="onSelectViewTypeClick('UserInputConfig');">User Input Config Json
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    }
+    if (null != @Model && @Model.ProcessFailed)
+    {
+        <div id="divErrorMessage">
+            <table style="width:100%;">
+                <tr>
+                    <td>
+                        <div id='divError' class='alert alert-dismissible alert-danger'>
+                            <span id="spError" style="font-size:small;">
+                                &nbsp;Failed to process the image file.  Please verify your source are available and in correct format.  Make sure the map file is valid and the region data correct and try again.
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    using (Html.BeginForm("DownloadSpiImage", "BkcImageParser", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formSpiMerge_download", name = "formSpiMerge_download" }))
+    {
+        <table style="width:100%;background-color:rgb(41, 42, 43);border:1px;border-radius:5px;">
+            <tr><td style="height:10px;" /></tr>
+            <tr>
+                <td style="width:10px;" />
+                <td>
+                    @if (null != @Model && @Model.IsDownloadAvailable)
+                    {
+                        <div class="blinker">
+                            <input type="submit" class="btn btn-success" name="download" id="download" value="Download" onclick="onDownloadClick();" />
+                        </div>
+                     }
+                    </td>
+                <td style="width:20px;" />
+                <td>
+                    <span style="font-size:smaller;color:gray;">
+                        NOTE : This tool is used to extracte the BIOS region from an IFWI image and parse out the ingrediants of the sub-regions.  The input file should be the full IFWI binary image, e.g. WLYDCRB.86B.xx.xx.xx.xx.x.xx.xx_xx.xx_xx_LBG_SPS.bin.
+                    </span>
+                </td>
+                <td style="width:20px;" />
+            </tr>
+            <tr><td style="height:10px;" /></tr>
+        </table>
+    }
+}
+<script type="text/javascript">
+    function onSelectViewTypeClick(selectedViewType) {
+        $.ajax({
+            url: '/BkcImageParser/UpdateSelectedViewType',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: selectedViewType
+            },
+            success: function (data) {
+                var userInput = $('#userSelectedJson');
+                if ('UserInputConfig' == selectedViewType) {
+                    $('#divEmbeddedConfigJson').attr("style", "display:none;");
+                    $('#divUserInputConfigJson').attr("style", "visibility:visible;");
+                    userInput.attr('required', true);
+                } else {
+                    $('#divUserInputConfigJson').attr("style", "display:none;");
+                    $('#divEmbeddedConfigJson').attr("style", "visibility:visible;");
+                    userInput.attr('required', false);
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    }
+
+    function onSelectedConfigJsonChanged() {
+        var value = $('#configJsonSelect').val().toString();
+        $.ajax({
+            url: '/BkcImageParser/UpdateSelectedConfigJson',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: value
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    }
+    function resetUI() {
+        displayLoader(false);
+        $('#download').attr("style", "display:none;");
+        $('#Submit').attr("style", "visibility:visible;");
+        $('btnCancel').attr("style", "display:none;");
+    }
+    function onCancelUpload() {
+        $('#download').attr("style", "display:none;");
+        onCancelClick();
+    }
+    function showProgress() {
+        $('#spRefresh').attr("style", "display:none;");
+        $('#divErrorMessage').attr("style", "display:none;");
+        if (IsFormFilled()) {
+            displayLoader(true);
+        } else {
+            $('#Submit').attr("style", "display:none;");
+            $('#spRefresh').attr("style", "visibility:visible;");
+        }
+    }
+    function onRefreshClick() {
+        $.ajax({
+            url: '/BkcImageParser/Reset',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+
+            },
+            success: function (data) {
+                $('#Submit').attr("style", "visibility:visible;");
+                $('#spRefresh').attr("style", "display:none;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        $('#divErrorMessage').attr("style", "display:none;");
+        location.reload();
+    }
+</script>

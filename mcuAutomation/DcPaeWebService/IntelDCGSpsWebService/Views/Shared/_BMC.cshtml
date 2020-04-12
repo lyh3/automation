@@ -1,0 +1,84 @@
+﻿@using IntelDCGSpsWebService.Models;
+
+@model BMCConfig
+
+<table style="width:100%;">
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.BmcIpAddress, new { @style = "color:gray;font-size:smaller;" })
+            @Html.TextBoxFor(m => m.BmcIpAddress, new { placeholder = "Please enter a valid IP address", onchange = "onBmcIPChanged();", @id = "bmcIpAddress", @class = "form-control", @style = "width:400px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+        </td>
+    </tr>
+    <tr><td style="height:10px;" /></tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.User, new { @style = "color:gray;font-size:smaller;" })
+            @Html.TextBoxFor(m => m.User, new { placeholder = "Please enter the BMC user name (root)", onchange = "onBmcUserChanged();", @id = "bmcUser", @class = "form-control", @style = "width:400px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+        </td>
+    </tr>
+    <tr><td style="height:10px;" /></tr>
+    <tr>
+        <td>
+            @Html.LabelFor(m => m.Password, new { @style = "color:gray;font-size:smaller;" })
+            @Html.TextBoxFor(m => m.Password, new { placeholder = "Please enter BMC paasword (superuser)", onchange = "onBmcPasswordChanged();", @id = "bmcPassword", @class = "form-control", @style = "width:400px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+        </td>
+    </tr>
+</table>
+<br/>
+<table>
+    <tr style="color:steelblue;font-size:smaller;">
+        <td>
+            @Html.LabelFor(m => m.Connected)
+            <img id='imgBMCReady' width="16" height="16" style='display:none;' src="~/Images/Connected.png">
+            <img id='imgBMCDisconnected' width="16" height="16" style='display:none;' src="~/Images/CrossRed.png">
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><span>ME Operational Mode:</span></td>
+        <td>
+            <label class="radio-inline;" style="display:none;">
+                <input readonly id="radio-recovery" type="checkbox" name="moderadio" value="Recovery" checked="checked">Recovery
+            </label>
+            <label class="radio-inline;" style="display:none;">
+                <input readonly id="radio-operational" type="checkbox" name="moderadio" value="Operational">Operational
+            </label>
+            <img id='imgRecovery' width="16" height="16" style='display:none;' src="~/Images/ExclamationSign.png" title="Recovery">
+            <img id='imgOperations' width="16" height="16" style='display:none;' src="~/Images/Connected.png" title="Operational">
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function updateBMCStatus() {
+        $.ajax({
+            url: '/RemoteSystemReset/PingBMC',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                if (data.Connected) {
+                    $('#imgBMCReady').attr("style", "visibility:visible;");
+                    $('#imgBMCDisconnected').attr("style", "display:none;");
+                } else {
+                    $('#imgBMCReady').attr("style", "display:none;");
+                    $('#imgBMCDisconnected').attr("style", "visibility:visible;");
+                }
+                if (data.MEMode == 'Operational') {
+                    $('#radio-operational').prop('checked', 'checked');
+                    $('#radio-recovery').prop('checked', '');
+                    $('#imgOperations').attr("style", "visibility:visible;");
+                    $('#imgRecovery').attr("style", "display:none;");
+                } else {
+                    $('#radio-operational').prop('checked', '');
+                    $('#radio-recovery').prop('checked', 'checked');
+                    $('#imgOperations').attr("style", "display:none;");
+                    $('#imgRecovery').attr("style", "visibility:visible;");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        setTimeout(updateBMCStatus, 1000);
+    }
+</script>

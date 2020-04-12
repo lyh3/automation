@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Url DB REST readAPI</title>
+</head>
+<body>
+    <table style="border:groove;
+                  border-spacing:1px;
+                  border-width:1px;
+                  border-color:lightblue;
+                  width:1200px;">
+        <thead>
+            <tr>
+                <th class="th" style="width:150px;">Db Name</th>
+                <th class="th">Usages</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="float-center"><b>urldb</b></td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="subth" style="width:100px;">Collection</th>
+                                <th class="subth" style="width:600px;">Field</th>
+                                <th class="subth" style="width:500px;">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="float-center"><b>url</b></td>
+                                <td>
+                                    <table>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb</b>/?encoded={<b>false</b>}&url={url}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb</b>/?encoded={<b>true</b>}&url={base64String}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb</b>/?<b>seenCount</b>={<b>{logic}</b>&rowlimit={optional : rowCount}</td></tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller">http://localhost:61905/readapi/urldb?encoded=false&url=*://google.com</td></tr>
+                                        <tr><td style="font-size:x-small;padding-bottom:5px;">http://localhost:61905/readapi/urldb?encoded=false
+                                            &url=aHR0cDovL3d3dy5qaWFqaWFlbmdsaXNoLmNvbS8yLmV4Z
+                                            T9fdXB0PTcxYTFkMDI3MTQyNjI4NjgwMyZfdXBkPTIwNmw0MjZsNzAyLmV4ZQ==</td></tr>
+                                        <tr><td class="tdSmaller">ttp://localhost:61905/readapi/urldb?<b>seenCount= >= 50</b>&rowlimit=200</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="float-center"><b>harvester_event</b></td>
+                                <td>
+                                    <table>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/HarvesterEvent</b>/?encoded={<b>false</b>}&url={url}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/HarvesterEvent</b>/?encoded={<b>true</b>}&url={base64String}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/HarvesterEvent</b>/?<b>source</b>=<b>{value}</b>&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/HarvesterEvent</b>/?<b>firstSeen</b>={logic}<b>{value}</b></td></tr>
+                                   </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller">http://localhost:61905/readapi/urldb/HarvesterEvent?encoded=false&url=*://google.com</td></tr>
+                                        <tr><td style="font-size:x-small;padding-bottom:5px;">http://localhost:61905/readapi/urldb/HarvesterEvent?encoded=false
+                                            &url=aHR0cDovL3d3dy5qaWFqaWFlbmdsaXNoLmNvbS8yLmV4Z
+                                            T9fdXB0PTcxYTFkMDI3MTQyNjI4NjgwMyZfdXBkPTIwNmw0MjZsNzAyLmV4ZQ==</td></tr>
+                                        <tr><td class="tdSmaller">ttp://localhost:61905/readapi/urldb/HarvesterEvent?<b>source=AutoRating</b>&rowlimit=200</td></tr>
+                                        <tr><td  class="tdSmaller">http://localhost:61905/readapi/<b>urldb/HarvesterEvent</b>/?<b>firstSeen >= </b>={<b>2/2/2015 5:04:08 PM</b>&rowlimit=200</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="float-center"><b>workflow_event</b></td>
+                                <td>
+                                    <table>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/WorkflowEvent</b>/?encoded={<b>false</b>}&url={url}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/WorkflowEvent</b>/?encoded={<b>true</b>}&url={base64String}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/WorkflowEvent</b>/?<b>seenCount</b>=<b>{logic}</b>&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/WorkflowEvent</b>/?<b>rootDomain</b>=<b>{value}</b>&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/WorkflowEvent</b>/?<b>contentMd5</b>=<b>{value}</b>&rowlimit={optional : rowCount}</td></tr>
+                                   </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller">http://localhost:61905/readapi/urldb/WorkflowEvent?encoded=false&url=*://google.com</td></tr>
+                                        <tr><td style="font-size:x-small;padding-bottom:5px;">http://localhost:61905/readapi/urldb/WorkflowEvent?encoded=false
+                                            &url=aHR0cDovL3d3dy5qaWFqaWFlbmdsaXNoLmNvbS8yLmV4Z
+                                            T9fdXB0PTcxYTFkMDI3MTQyNjI4NjgwMyZfdXBkPTIwNmw0MjZsNzAyLmV4ZQ==</td></tr>
+                                        <tr><td class="tdSmaller">ttp://localhost:61905/readapi/urldb/WorkflowEvent?<b>seenCount= >= 50</b>&rowlimit=200</td></tr>
+                                        <tr><td  class="tdSmaller">http://localhost:61905/readapi/<b>urldb/WorkflowEvent</b>/?<b>rootDomain</b>={<b>google.com</b>&rowlimit=200</td></tr>
+                                        <tr><td  class="tdSmaller">http://localhost:61905/<b>urldb/WorkflowEvent</b>/?<b>contentMd5</b>=<b>21ae53b328b5ab077d3e9cd410051f36</b></td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr style="background-color:silver;">
+                <td class="float-center" style="background-color:white;"><b>prevalence</b></td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="subth" style="width:100px;">Collection</th>
+                                <th class="subth" style="width:600px;">Field</th>
+                                <th class="subth" style="width:500px;">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="float-center" style="color:white;font-size:small;"><b>vDomainsTelemetry</b></td>
+                                <td>
+                                    <table>
+                                        <tr><td  class="tdSmaller" style="color:white;">http://{host}/readapi/<b>telemetry/vDomainsTelemetry/url</b>?encoded={<b>false</b>}&url={url}</td></tr>
+                                        <tr><td  class="tdSmaller" style="color:white;">http://{host}/readapi/<b>telemetry/vDomainsTelemetry/url</b>?encoded={<b>true</b>}&url={url}</td></tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller" style="color:white;">http://localhost:61905/readapi/telemetry/vDomainsTelemetry?encoded=false&url=*://google.com</td></tr>
+                                        <tr><td style="font-size:x-small;padding-bottom:5px;color:white;">http://localhost:61905/readapi/telemetry/vDomainsTelemetry?encoded=false
+                                            &url=aHR0cDovL3d3dy5qaWFqaWFlbmdsaXNoLmNvbS8yLmV4Z
+                                            T9fdXB0PTcxYTFkMDI3MTQyNjI4NjgwMyZfdXBkPTIwNmw0MjZsNzAyLmV4ZQ==</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="float-center" style="color:white;font-size:small;"><b>vTelemetry</b></td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller" style="color:white;">http://{host}/readapi/<b>urldb/telemetry/vDomainsTelemetry</b>?encoded={<b>false</b>}&url={url}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td class="tdSmaller" style="color:white;">http://{host}/readapi/<b>urldb/telemetry/vDomainsTelemetry</b>?encoded={<b>true</b>}&url={base64String}&rowlimit={optional : rowCount}</td></tr>
+                                   </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller" style="color:white;">http://localhost:61905/readapi/urldb/PublicationHistory/url?encoded=false&url=*://google.com</td></tr>
+                                        <tr><td style="font-size:x-small;padding-bottom:5px;color:white;">http://localhost:61905/readapi/urldb/PublicationHistory/url?encoded=false
+                                            &url=aHR0cDovL3d3dy5qaWFqaWFlbmdsaXNoLmNvbS8yLmV4Z
+                                            T9fdXB0PTcxYTFkMDI3MTQyNjI4NjgwMyZfdXBkPTIwNmw0MjZsNzAyLmV4ZQ==</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                       </tbody>
+
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="float-center"><b>threat</b></td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="subth" style="width:100px;">Collection</th>
+                                <th class="subth" style="width:600px;">Field</th>
+                                <th class="subth" style="width:500px;">Example</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                            <tr>
+                                <td class="float-center"><b>domainz</b></td>
+                                <td>
+                                    <table>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>threat/DomainZ/url</b>?encoded={<b>false</b>}&url={url}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>threat/DomainZ/url</b>?encoded={<b>true</b>}&url={url}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>threat/DomainZ?ip</b>={<b>{value}e</b>}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>threat/DomainZ/firstSeen</b>/?={date value}<b>>&rowlimit={optional : rowCount}</td></tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller">http://localhost:61905/readapi/DomainZ/url?encoded=false&url=*://google.com</td></tr>
+                                        <tr><td style="font-size:x-small;padding-bottom:5px;">http://localhost:61905/readapi/urldb?encoded=false
+                                            &url=aHR0cDovL3d3dy5qaWFqaWFlbmdsaXNoLmNvbS8yLmV4Z
+                                            T9fdXB0PTcxYTFkMDI3MTQyNjI4NjgwMyZfdXBkPTIwNmw0MjZsNzAyLmV4ZQ==</td></tr>
+                                        <tr><td class="tdSmaller">ttp://localhost:61905/readapi<b>/DomainZ?ip=94.102.212.231</b>&rowlimit=200</td></tr>
+                                        <tr><td class="tdSmaller">ttp://localhost:61905/readapi<b>/DomainZ?firstSeen= >= 3/25/2015 16:23:00</b>&rowlimit=200</td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="float-center"><b>publication_history</b></td>
+                                <td>
+                                    <table>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/PublicationHistory/url</b>?encoded={<b>false</b>}&url={url}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/PublicationHistory/url</b>?encoded={<b>true</b>}&url={base64String}&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/PublicationHistory?domain?</b>=<b>{value}</b>&rowlimit={optional : rowCount}</td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/PublicationHistory?reputation</b>=<b>{logic} {value}</b></td></tr>
+                                        <tr><td  class="tdSmaller">http://{host}/readapi/<b>urldb/PublicationHistory?category</b>=<b>{value}</b></td></tr>
+                                   </table>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr><td class="tdSmaller">http://localhost:61905/readapi/urldb/PublicationHistory/url?encoded=false&url=*://google.com</td></tr>
+                                        <tr><td style="font-size:x-small;padding-bottom:5px;">http://localhost:61905/readapi/urldb/PublicationHistory/url?encoded=false
+                                            &url=aHR0cDovL3d3dy5qaWFqaWFlbmdsaXNoLmNvbS8yLmV4Z
+                                            T9fdXB0PTcxYTFkMDI3MTQyNjI4NjgwMyZfdXBkPTIwNmw0MjZsNzAyLmV4ZQ==</td></tr>
+                                        <tr><td class="tdSmaller">ttp://localhost:61905/readapi/urldb/PublicationHistory?domain=<b>source=AutoRating</b>&rowlimit=200</td></tr>
+                                        <tr><td class="tdSmaller">http://localhost:61905/readapi/<b>urldb/PublicationHistory</b>/?<b>reputation = </b><b>30</b>&rowlimit=200</td></tr>
+                                        <tr><td class="tdSmaller">http://localhost:61905/readapi/<b>urldb/PublicationHistory</b>/?<b>category = </b><b>30</b></td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                       </tbody>
+                   </table>
+                </td>
+            </tr>
+            <tr style="background-color:silver;">
+                <td class="float-center"></td>
+                <td></td>
+            </tr>
+
+        </tbody>
+    </table>
+</body>
+</html>
+<style type="text/css">
+    .th {
+        background-color:dimgray;
+        color:white;
+        width:450px;
+        height:50px;
+    }
+    .subth {
+        background-color:silver;
+        font-size:smaller;
+        background-color:dimgray;
+        color:white;
+    }
+    .float-center{
+        text-align:center;
+    }
+    .grid {
+    }
+    ul li {
+    }
+    ul li span {
+    }
+    table tr {
+        border-width:1px;
+        border-color:gray;
+    }
+    table td {
+        font-size:medium;
+        color:dimgray;
+    }
+    .tdSmaller {
+        font-size:smaller;
+        color:dimgray;
+        padding-bottom:5px;
+    }
+ p.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	}
+</style>

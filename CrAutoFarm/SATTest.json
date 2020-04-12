@@ -1,0 +1,19 @@
+{
+    "Client":
+    {
+        "ip":"10.54.0.236",
+        "user":"root",
+        "password":"inT3l123$"
+    },
+    "PowerSwitcher":
+    {
+        "DLIPowerSwitch" : {
+            "active" : true,
+            "power_switch_ip" : "10.54.0.234",
+            "power_switch_user" : "hct",
+            "power_switch_password": "donotchange",
+            "port" : "2"
+        }
+    },
+    "delay" : 30
+}

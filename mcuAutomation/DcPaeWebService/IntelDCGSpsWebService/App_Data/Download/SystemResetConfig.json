@@ -1,0 +1,330 @@
+{
+    "TimeoutInMimutes":5,
+    "CurrentCount":1,
+    "ErrorMessage":"",
+    "IpmiResponse":" 50 01 04 14 02 21 57 01 00 0a 0b 04 25 60 01<br/>",
+    "UserCanceled":false,
+    "IpmiCommand":"-b 6 -t 0x2c raw 6 1",
+    "CanSubmit":true,
+    "DeviceType":"BMC",
+    "RestType":"CustomerDefined",
+    "Status":"ShutDown",
+    "IsRemote":true,
+    "BMCCfig":
+    {
+        "BmcIpAddress":"10.23.60.3 ",
+        "User":"root",
+        "Password":"superuser",
+        "Connected":false,
+        "IpmiAccessable":true,
+        "MEMode":"Operational",
+        "CanSubmit":true
+    },
+    "SutCfig":
+    {
+        "IpAddress":"10.23.60.3",
+        "IsPowerOn":true,
+        "ifAboutAtFailure":false
+    },
+    "Repeat":"1",
+    "ConfigJson":"",
+    "CustomerDefinedCommand":"-b 6 -t 0x2c raw 6 1",
+    "Delay":"2",
+    "CmdMaps":
+    {
+        "CommandMapList":
+        [
+            {
+                "Name":"Get Device ID",
+                "IpmiCommand":"-b 6 -t 0x2c raw 6 1",
+                "CommandCode":null
+            },
+            {
+                "Name":"Get Self Test Results",
+                "IpmiCommand":"-b 6 -t 0x2c raw 6 4",
+                "CommandCode":null
+            },
+            {
+                "Name":"Cold Reset",
+                "IpmiCommand":"-b 6 -t 0x2c raw 6 2",
+                "CommandCode":null
+            },
+            {
+                "Name":"Get IDLM PID",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x30 0x26 0x57 1 0 4 6 2 0xb0 0x80",
+                "CommandCode":null
+            },
+            {
+                "Name":"Force Intel(R) ME Recovery -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0xDF 0x57 1 0 1",
+                "CommandCode":"(DFh)"
+            },
+            {
+                "Name":"Force Intel(R) ME Operational -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0xDF 0x57 1 0 2",
+                "CommandCode":"(DFh)"
+            },
+            {
+                "Name":"Verify PECI DMI -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x40 0x57 1 0 0 0",
+                "CommandCode":"(40h)"
+            },
+            {
+                "Name":"Agregated Send RAW PECI - PECI over DMI only -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x41 0x57 1 0 0x70 0 0",
+                "CommandCode":"(41h)"
+            },
+            {
+                "Name":"CPUs PROCHOT# Send RAW PECI - to 0x30 -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x41 0x57 1 0 0x30 0 0",
+                "CommandCode":"(41h)"
+            },
+            {
+                "Name":"CPUs PROCHOT# Send RAW PECI - to 0x31 -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x41 0x57 1 0 0x32 0 0",
+                "CommandCode":"(41h)"
+            },
+            {
+                "Name":"CPUs PROCHOT# Send RAW PECI - to 0x32 -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x41 0x32 0x57 1 0 0 0",
+                "CommandCode":"(41h)"
+            },
+            {
+                "Name":"Check if CUPS enable -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x64 0x57 1 0",
+                "CommandCode":"(64h)"
+            },
+            {
+                "Name":"Check CUPS initial status -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x65 0x03 0x57 1 0",
+                "CommandCode":"(65h)"
+            },
+            {
+                "Name":"Check CUPS sensor - Memory CUPS #192 (0xC0) -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x04 0x2d 0x57 1 0 0xC0",
+                "CommandCode":"(04h)"
+            },
+            {
+                "Name":"Check CUPS sensor - Core CUPS #190 (0xBE) -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x04 0x2d 0x57 1 0 0xBE",
+                "CommandCode":"(04h)"
+            },
+            {
+                "Name":"Check CUPS sensor - IO CUPS #191 (0xBF) -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x04 0x2d 0x57 1 0 0xBF",
+                "CommandCode":"(04h)"
+            },
+            {
+                "Name":"Get CPU & Memory Temperature -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0x4B 1 0 0 0 0 0 0 0 0",
+                "CommandCode":"(4Bh)"
+            },
+            {
+                "Name":"Set Max Allowed CPU P/T state- P(8), T(0) -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0xD2 0x57 1 0 8 0",
+                "CommandCode":"(D2h)"
+            },
+            {
+                "Name":"Get Max Allowed CPU P/T state -",
+                "IpmiCommand":"-b 6 -t 0x2c raw 0x2e 0xD3 0x57 1 0 0",
+                "CommandCode":"(D3h)"
+            },
+            {
+                "Name":"Get Node Manager Capabilities -",
+                "IpmiCommand":"-b 0x06 -t 0x2c raw 0x2e 0xc9 0x57 0x01 0 0 16",
+                "CommandCode":"(C9h)"
+            },
+            {
+                "Name":"Get Node Manager Capabilities -",
+                "IpmiCommand":"-b 0x06 -t 0x2c raw 0x2e 0x61 0x57 0x01 0x00 0x01",
+                "CommandCode":"(61h)"
+            },
+            {
+                "Name":"Get Node Manager Statistics  -",
+                "IpmiCommand":"-b 6 -t 44 raw 0x2e 0xc8 87 1 0 1 0 1",
+                "CommandCode":"(C8h)"
+            },
+            {
+                "Name":"Get Node Manager Capabilities -",
+                "IpmiCommand":"-b 6 -t 44 raw 0x2e 0xc9 0x57 0x01 0 0 16",
+                "CommandCode":"(C9h)"
+            },
+            {
+                "Name":"Set Node Manager Power Draw Range -",
+                "IpmiCommand":"-b 6 -t 44 raw 0x2e 0xcb 0x57 0x01 0x00 0x00 0x01 0xf4 0x01",
+                "CommandCode":"(CBh)"
+            },
+            {
+                "Name":"Set Node Manager Policy (entire 250W) -",
+                "IpmiCommand":"-b 6 -t 44 raw 0x2e 0xc1 0x57 0x01 0x00 0x10 0x01 0x30 0x00 0xFA 0 0xE8 0x03 0 0 0 0 1 0",
+                "CommandCode":"(C1h)"
+            },
+            {
+                "Name":"Set Node Manager Policy (CPU 200W) -",
+                "IpmiCommand":"-b 6 -t 44 raw 0x2e 0xc1 0x57 0x01 0x00 0x11 0x02 0x30 0x00 0xCB  0 0xE8 0x03 0 0 0  0 1 0 0x00",
+                "CommandCode":"(C1h)"
+            },
+            {
+                "Name":"Get PTT Version -",
+                "IpmiCommand":"-b 6 -t 44 raw 0x2e 0x70 0x57 1 0",
+                "CommandCode":"(70h)"
+            },
+            {
+                "Name":"Restart MCTP Discovery -",
+                "IpmiCommand":"-b 6 -t 44 raw 0x2e 0xE8 0x57 0x01 0x00",
+                "CommandCode":"(E0h)"
+            },
+            {
+                "Name":"Print all FRU information",
+                "IpmiCommand":"fru print",
+                "CommandCode":null
+            },
+            {
+                "Name":"Sensor Info",
+                "IpmiCommand":"sensor list",
+                "CommandCode":null
+            },
+            {
+                "Name":"Sensor Data",
+                "IpmiCommand":"sdr list",
+                "CommandCode":null
+            },
+            {
+                "Name":"Serial Over LAN (SOL)",
+                "IpmiCommand":"sol info",
+                "CommandCode":null
+            },
+            {
+                "Name":"MC info",
+                "IpmiCommand":"mc info",
+                "CommandCode":null
+            },
+            {
+                "Name":"BMC Warm Reset",
+                "IpmiCommand":"mc reset warm",
+                "CommandCode":null
+            },
+            {
+                "Name":"BMC Cold Reset",
+                "IpmiCommand":"mc reset cold",
+                "CommandCode":null
+            },
+            {
+                "Name":"Set SOL UART baud rate (non pesist)",
+                "IpmiCommand":"sol volatile-bit-rate 115.2",
+                "CommandCode":null
+            },
+            {
+                "Name":"Set SOL UART baud rate (pesist)",
+                "IpmiCommand":"sol non-volatile-bit-rate 115.2",
+                "CommandCode":null
+            },
+            {
+                "Name":"Set SOL session, exit by '~.'",
+                "IpmiCommand":"sol activate",
+                "CommandCode":null
+            },
+            {
+                "Name":"Clear SEL log",
+                "IpmiCommand":"sel clear",
+                "CommandCode":null
+            },
+            {
+                "Name":"Get SEL log",
+                "IpmiCommand":"sel list",
+                "CommandCode":null
+            }
+        ],
+        "CommandDocList":
+        [
+            {
+                "CommandCode":"(04h)",
+                "Request":"None",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard\r\n Completion Codes are shown in Section 2.15)\r\n =D5h - Returned if self-tests is not finished\r\n yet.\r\n Byte 2\r\n =55h - No error. All Self-Tests Passed.\r\n =56h - Self Test function not implemented invthis controller.v=57h - Corrupted or inaccessible data or\r\n vdevices.v=58h - Fatal hardware error (system shouldvconsider BMC inoperative). This will indicatevthat the controller hardware (including\r\n associated devices such as sensor hardwarevor RAM) may need to be repaired or\r\n vreplaced, or that multiple softwarevexceptions occurred.\r\n =80h - PSU Monitoring service error seevByte 3 for error description only if Intel ME\r\n Firmware directly monitors PMBUS PSU.vPMBUS PSU Monitoring service will return the\r\n vcurrent status of all defined PSUs on �Get\r\n Self-Test Results� call.\r\n Note: The error code is continuously updated\r\n in runtime in S0/S1 host power states by the\r\n Monitoring Service. Additionally, the test will\r\n be performed in any host power state if\r\n Manufacturing Test On Command is issued.\r\n =81h - Firmware entered Recovery bootloader mode\r\n =82h - HSC Monitoring service error see\r\n Byte 3 for error description only if Intel ME\r\n Firmware directly monitors HSC. PMBUS HSC\r\n Monitoring service will return the current\r\n status of all defined HSCs on �Get Self-Test\r\n Results� call.\r\n Note: The error code is continuously updated\r\n in runtime in S0/S1 host power states by the\r\n Monitoring Service. Additionally, the test will\r\n be performed in any host power state if\r\n Manufacturing Test On Command is issued.\r\n =83h - Firmware entered non-UMA restricted\r\n mode of operation\r\n =FFh - reserved.\r\n Byte 3\r\n For byte 2 = 55h, 56h, FFh:v=00hvFor byte 2 = 58h: Exception type.vFor byte 2 = 57h: Self-test error bit field.\r\n [7] - SEL access error.\r\n [6] - SDR access error.[5] - FRU access error.\r\n [4] - Reserved.\r\n [3] - PIA access error.v[2] - SDR repository empty.\r\n [1] - Firmware boot error.\r\n [0] - Operational Image or Factory Presets\r\n checksum error.\r\n For byte 2 = 80h: PSU monitoring error bit\r\n field, where each bit corresponds to one of\r\n the PSU�s in order. If bit[N] is set to 1b\r\n PSU[N] is not responding. PSU order is set by\r\n factory presets.\r\n For byte 2 = 81h: byte 3 contains reasonv\r\n =00h - recovery entered due to recovery\r\n jumper being asserted\r\n =01h - recovery entered due to Security\r\n strap override jumper being asserted\r\n =02h - recovery mode entered by IPMI\r\n command �Force ME Recovery�\r\n =03h - Invalid flash configuration, either:\r\n - flash master access permissions are wrong\r\n - VSCC entry is missing or wrong\r\n - flash erase block size in Intel ME region is\r\n wrong\r\n =04h - Intel ME internal error Intel ME\r\n could not start operational mode.\r\n For byte 2 = 82h: HSC monitoring error bit\r\n field, where each bit corresponds to one of\r\n the HSC�s in order. If bit[N] is set to 1b\r\n HSC[N] is not responding at all or responds\r\n with Energy / Power value = 0. HSC order is\r\n set by factory presets. Bit[7]=1 may indicate\r\n some problem with at least one HSC.\r\n For byte 2 = 83h: byte 3 contains reason\r\n =00h - 3 consecutive UMA errors\r\n =01h - DWR flow\r\n =02h - Pre-Go-S1 flow"
+            },
+            {
+                "CommandCode":"(40h)",
+                "Request":"Byte [1:3] = Intel Manufacturer ID - 000157h, LS byte\r\n first.\r\n Byte 4 PECI Client Address and interface selection\r\n [7:6] - PECI Interface selection:\r\n =00b - Intel ME will send the PECI request using PECI\r\n over DMI interface. If in-band PECI is not functional (not\r\n configured by BIOS or not working due to failures),\r\n Intel ME will use serial PECI interface when connected\r\n directly to chipset. For nonlocal PCI Config Read requests,\r\n Intel ME will only use serial PECI interface.\r\n =01b - Intel ME will send the PECI request using PECI\r\n over DMI. Intel ME will not try the serial PECI interface.\r\n This option is not supported for nonlocal PCI Config Read\r\n requests.\r\n =10b - Intel ME will send the PECI request serial PECI\r\n interface, if the interface is connected directly to the\r\n chipset.\r\n =11b - Reserved - Not used\r\n [5:0] - PECI Client Address (values shall be in the range\r\n from 30h through 37h).\r\n Byte 5 - Write Length (part of PECI standard header);\r\n this field shall be set to the proper value for this PECI\r\n command as if there was AWFCS byte provided but\r\n Intel ME FW does not verify if the length matches the\r\n PECI protocol specification.\r\n Byte 6 - Read Length (part of PECI standard header);\r\n this field shall be set to the proper value for this PECI\r\n command but Intel ME FW does not verify if the length\r\n matches the PECI protocol specification.\r\n Byte 7:M - The remaining part of PECI command\r\n following the Read Length field (if any - this field does\r\n not exist for PECI Ping command); only write data bytes\r\n shall be put here, excluding AWFCS bytes (AWFCS will be\r\n added by Intel ME FW); note that the retry bit shall\r\n normally be set to zero and the command code byte shall\r\n be one of the codes understood by Intel ME FW (01h,\r\n F7h, A1h, A5h, B1h, B5h, 61h, 65h, E1h, E5h; note that\r\n only Domain 0 codes are supported).",
+                "Response":"Byte 1 - Completion Code (Remaining standard\r\n Completion Codes are shown in Section 2.15)\r\n =00h - PECI response successfully retuned (see PECI\r\n response Completion Code for detailed response from\r\n PECI client, which may be not fully successful).\r\n =A2h - Command response timeout.\r\n =A3h - Inband PECI interface is down. PECI response\r\n data invalid.\r\n =A4h - Bad read FCS in the response.\r\n =A5h - Bad write FCS field in the response.\r\n =A8h - Selected PECI interface not available\r\n =ABh - Wrong command code.\r\n =ACh - CPU not present.=D5h - Platform not in S0/S1 state.\r\n =FFh - Other error encountered.\r\n Byte [2:4] = Intel Manufacturer ID - 000157h, LS byte\r\n first.\r\n Bytes 5:N - PECI response data (if any - no data is\r\n returned for Ping command or for Completion Code in\r\n Byte#1 other than 00h); data following the Write FCS\r\n field are put here exactly as received from PECI client\r\n during Read transaction phase, excluding the Write FCS\r\n and Read FCS bytes.\r\n Retries:\r\n In case of PECI errors, before sending the IPMI response\r\n back to BMC, Intel ME FW performs PECI retry attempts\r\n according to the regular PECI retry rules published for the\r\n specific processor (the processor specific External Design\r\n Specification document lists the retry rules and\r\n guidelines). This is true for situations when there is no\r\n response at all form the processor (all zeroes), checksum\r\n verification fails, including Abort FCS, as well as the PECI\r\n completion code indicates a PECI client error, such as a\r\n timeout. Also according to the PECI retry rules, ME FW\r\n sets the retry bit in the PECI request when necessary.\r\n An error response is returned to BMC only after all the\r\n retry attempts fail."
+            },
+            {
+                "CommandCode":"(41h)",
+                "Request":"Byte [1:3] = Intel Manufacturer ID - 000157h, LS byte\r\n first.\r\n Bytes 4:M - Raw PECI command bytes formatted\r\n according to the same rules as bytes 4 to M in Send Raw\r\n PECI.\r\n Bytes M+1:N - Next RAW PECI command (if any).\r\n PECI Interface Selection field must be same for all PECI\r\n transactions listed in the request\r\n The command initiates\r\n multiple PECI transactions.\r\n One IPMI request can contain\r\n multiple of PECI RAW\r\n transactions.\r\n The only PECI 3.0 command\r\n set is fully supported.\r\n The PECI 3.0 command suite\r\n retains only the Ping()",
+                "Response":"Byte 1 - Completion Code related to overall IPMI request\r\n (Remaining standard Completion Codes are shown in\r\n Section 2.15).\r\n =00h - Success; it means that all the PECI raw requests\r\n have been processed and the responses fit in the IPMI\r\n response message (not necessarily that all the responses\r\n have completed with success). The completion codes for\r\n the particular PECI raw transactions are included in the\r\n appropriate parts of this response frame.\r\n =A0h - Partial response (all the PECI commands have\r\n been executed but only few first responses are provided;\r\n the remaining responses did not fit in the IPMI response\r\n message as the response message would exceed\r\n maximum IPMI message size supported see 0).\r\n =A3h - Inband PECI interface is down. PECI response\r\n data invalid.\r\n =A8h - Selected PECI interface not available\r\n =ABh - Wrong command code.\r\n =D5h - Platform not in S0/S1 state."
+            },
+            {
+                "CommandCode":"(4Bh)",
+                "Request":"Byte 1:3 = Intel Manufacturer ID - 000157h, LS byte\r\n first.\r\n Byte 4 - CPUs for which temperature readings are\r\n requested.\r\n [0] - Bit set indicates CPU#0 readings are requested; bit\r\n clear indicates that readings are not requested.\r\n \r\n [1] - Bit set indicates CPU#1 readings are requested; bit\r\n clear indicates that readings are not requested.\r\n v2] - Bit set indicates CPU#2 readings are requested; bit\r\n clear indicates that readings are not requested.\r\n [3] - Bit set indicates CPU#3 (PECI readings arerequested; bit clear indicates that readings are not\r\n requested.\r\n [5:4] - CPU set - defines which CPU set should be used\r\n =0 - CPU0 to CPU3\r\n =1 - CPU4 to CPU7\r\n =2 - CPU8 to CPU11 (not supported by Intel ME FW in\r\n the current generation - Intel ME FW will return A1h\r\n completion code)\r\n =3 - CPU12 to CPU15 (not supported by Intel ME FW in\r\n the current generation - Intel ME FW will return A1h\r\n completion code)\r\n [6] - Memory channels set - defines which memory\r\n channel set should be used.v=0 - Channel 0 to channel 3\r\n =1 - Channel 4 to channel 7\r\n [7] - Request format\r\n =0 - Standard frame format - up to 4 DIMM per\r\n CHANNEL\r\n =1 - Extended frame format - up to 8 DIMM per\r\n CHANNELvFor standard frame format:\r\n Byte 5:6 - 16 bits for CPU#0 indicating memory channelsvand DIMMs for which temperature readings are requested\r\n (4x4 bitmask):\r\n Byte 5 [0] - CHANNEL#0(4), DIMM#0.\r\n Byte 5 [1] - CHANNEL#0(4), DIMM#1.\r\n Byte 5 [2] - CHANNEL#0(4), DIMM#2.\r\n Byte 5 [3] - CHANNEL#0(4), DIMM#3.\r\n Byte 5 [4] - CHANNEL#1(5), DIMM#0.\r\n Byte 5 [5] - CHANNEL#1(5), DIMM#1.\r\n Byte 5 [6] - CHANNEL#1(5), DIMM#2.\r\n Byte 5 [7] - CHANNEL#1(5), DIMM#3.\r\n Byte 6 [0] - CHANNEL#2(6), DIMM#0.\r\n Byte 6 [1] - CHANNEL#2(6), DIMM#1.\r\n Byte 6 [2] - CHANNEL#2(6), DIMM#2.\r\n Byte 6 [3] - CHANNEL#2(6), DIMM#3.\r\n Byte 6 [4] - CHANNEL#3(7), DIMM#0.\r\n Byte 6 [5] - CHANNEL#3(7), DIMM#1.\r\n Byte 6 [6] - CHANNEL#3(7), DIMM#2.\r\n Byte 6 [7] - CHANNEL#3(7), DIMM#3.\r\n Byte 7:8 - 16 bits for CPU#1 indicating memory channels\r\n and DIMMs for which temperature readings are requested\r\n (4x4 bitmask) - the format is the same as for CPU#0.\r\n Byte 9:10 - 16 bits for CPU#2 indicating memory\r\n channels and DIMMs for which temperature readings are\r\n requested (4x4 bitmask) - the format is the same as for\r\n CPU#0.\r\n Byte 11:12 - 16 bits for CPU#3 indicating memory\r\n channels and DIMMs for which temperature readings are\r\n requested (4x4 bitmask) - the format is the same as for\r\n CPU#0.\r\n For Extended frame format:\r\n Byte 5:8 - 32 bits for first CPU from set indicating\r\n memory channels and DIMMs for which temperaturereadings are requested (4x8 bitmask):\r\n Byte 5 [0] - CHANNEL#0(4), DIMM#0.\r\n Byte 5 [1] - CHANNEL#0(4), DIMM#1.\r\n Byte 5 [2] - CHANNEL#0(4), DIMM#2.\r\n Byte 5 [3] - CHANNEL#0(4), DIMM#3.\r\n Byte 5 [4] - CHANNEL#0(4), DIMM#4.\r\n Byte 5 [5] - CHANNEL#0(4), DIMM#5.\r\n Byte 5 [6] - CHANNEL#0(4), DIMM#6.\r\n Byte 5 [7] - CHANNEL#0(4), Memory Controller\r\n Temperature.\r\n Byte 6 [0] - CHANNEL#1(5), DIMM#0.\r\n Byte 6 [1] - CHANNEL#1(5), DIMM#1.\r\n Byte 6 [2] - CHANNEL#1(5), DIMM#2.\r\n Byte 6 [3] - CHANNEL#1(5), DIMM#3.\r\n Byte 6 [4] - CHANNEL#1(5), DIMM#4.\r\n Byte 6 [5] - CHANNEL#1(5), DIMM#5.\r\n Byte 6 [6] - CHANNEL#1(5), DIMM#6.\r\n Byte 6 [7] - CHANNEL#1(5), Memory Controller\r\n Temperature.\r\n Byte 7 [0] - CHANNEL#2(6), DIMM#0.\r\n Byte 7 [1] - CHANNEL#2(6), DIMM#1.\r\n Byte 7 [2] - CHANNEL#2(6), DIMM#2.\r\n Byte 7 [3] - CHANNEL#2(6), DIMM#3.\r\n Byte 7 [4] - CHANNEL#2(6), DIMM#4.\r\n Byte 7 [5] - CHANNEL#2(6), DIMM#5.\r\n Byte 7 [6] - CHANNEL#2(6), DIMM#6.\r\n Byte 7 [7] - CHANNEL#2(6), Memory Controller\r\n Temperature.\r\n Byte 8 [0] - CHANNEL#3(7), DIMM#0.\r\n Byte 8 [1] - CHANNEL#3(7), DIMM#1.\r\n Byte 8 [2] - CHANNEL#3(7), DIMM#2.\r\n Byte 8 [3] - CHANNEL#3(7), DIMM#3.\r\n Byte 8 [4] - CHANNEL#3(7), DIMM#4.\r\n Byte 8 [5] - CHANNEL#3(7), DIMM#5.\r\n Byte 8 [6] - CHANNEL#3(7), DIMM#6.\r\n Byte 8 [7] - CHANNEL#3(7), Memory Controller\r\n Temperature.\r\n Byte 9:12 - 32 bits for second CPU from set indicating\r\n memory channels and DIMMs for which temperature\r\n readings are requested (4x8 bitmask) - the format is the\r\n same as for CPU#0.\r\n Byte 13:16 - 32 bits for third CPU from set indicating\r\n memory channels and DIMMs for which temperature\r\n readings are requested (4x8 bitmask) - the format is the\r\n same as for CPU#0.\r\n Byte 17:20 - 32 bits for fourth CPU from set indicating\r\n memory channels and DIMMs for which temperature\r\n readings are requested (4x8 bitmask) - the format is the\r\n same as for CPU#0.",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard Completion Codesvre shown in Section 2.15).vA1h - Wrong CPU number.=A3h - Inband PECI interface is down. Response datavnvalid.\r\n =D5h - Platform not in S0/S1 state.\r\n =ADh - Response cannot be delivered because its length\r\n is not supported for underlying transport.\r\n =FFh - Other error encountered.\r\n When byte 1 indicates success, the remaining bytes\r\n contain the thermal status information for requested\r\n CPUs and memory DIMMs. Information bytes are not\r\n returned for remaining CPUs or memory DIMMs (the\r\n length of the response depends on the number of\r\n requested CPUs or DIMMs). In other words, the order of\r\n bytes returning the readings is the same as listed in this\r\n specification in the request, skipping items that are not\r\n requested.\r\n Byte 2:4 = Intel Manufacturer ID - 000157h, LS byte\r\n first.vyte 5:N - CPU temperatures (up to 4 bytes - only bytes\r\n for the requested CPUs are returned); the data is\r\n returned as an unsigned integer; it is representing the\r\n number of degrees of Celsius below the Thermal Control\r\n Circuit Activation temperature, with some values are\r\n reserved to provide error indication, as specified below.\r\n Byte N+1:M - Memory DIMM temperatures (up to 64\r\n bytes - only bytes for the requested DIMMs are\r\n returned); each byte shall be interpreted as an unsigned\r\n value containing the absolute temperature expressed in\r\n degrees of Celsius with the following values reserved to\r\n provide error indication:\r\n =FFh - Sensor or device not present.\r\n =FEh - Reserved.\r\n =FDh - Data unavailable due to sensor or interface\r\n failure."
+            },
+            {
+                "CommandCode":"(61h)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 4 - Domain ID\r\n [3:0] - Domain ID (Identifies the Intel NM PTU domain to\r\n obtain characterization data from)\r\n =00h - Entire platform\r\n =01h - CPU subsystem\r\n =02h - Memory subsystem\r\n =03h-0Fh - Reserved\r\n [6:4] - Reserved\r\n [7] - Power domain. This field is ignored for Domain ID other\r\n than 0.\r\n =0b - Primary (AC) side power domain (default)\r\n =1b - Secondary (DC) side power domain.\r\n External power\r\n manager/BMC can\r\n collect the power draw\r\n data determined during\r\n previous Intel NM PTU\r\n characterizations which\r\n are stored persistently\r\n using this command.\r\n Intel Node Manager\r\n responds with the\r\n characterization data\r\n from the requested\r\n domain ID. The data\r\n returned is from the\r\n latest characterization",
+                "Response":"Byte 1 - Completion Code\r\n Generic IPMI as defined in Section 2.15 plus the following\r\n command specific codes:\r\n =81h - Invalid Domain ID. This code is also returned when\r\n for domain 03h on monolithic systems.\r\n =82h - Invalid Characterization. Indicates an error during the\r\n characterization process.\r\n Byte 2:4 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 5:8 - IPMI Specification based Time Stamp which\r\n identifies when the Calibration data collected in Intel ME.\r\n Byte 9:10 - Maximum Power Draw in [Watts].This is an\r\n unsigned integer value.\r\n Byte 11:12 - Minimum Power Draw in [Watts]. This is an\r\n unsigned integer value\r\n Byte 13:14 - Efficient Power Draw in [Watts]. This is an\r\n unsigned integer value\r\n Byte 15 - Intel NM PTU version ID number BCD encoded\r\n =A.B where A = Major ID and B = Minor ID\r\n Byte 16 - Inflection Point Power Value Determination\r\n [0] - Maximum\r\n =0b - Consecutive data within �3% variability\r\n =1b - Average of data within 1 standard deviation from entire\r\n sample set\r\n [1] - Minimum\r\n =0b - Consecutive data within �3% variability\r\n =1b - Average of data within 1 standard deviation from entire\r\n sample set\r\n [2] - Efficient (not applicable for domain ID equal to 02h)\r\n =0b - Consecutive data within �3% variability\r\n =1b - Average of data within 1 standard deviation from entire\r\n sample set\r\n [7:3] - Reserved"
+            },
+            {
+                "CommandCode":"(64h)",
+                "Request":"Byte 1:3 = Intel manufacturers ID - 000157h, LS byte\r\nfirst",
+                "Response":"Response\r\n Byte 1 - Completion Code\r\n Generic IPMI as defined in Section 2.15\r\n Byte 2:4 - Intel manufacturers ID - 000157h, LS byte first\r\n Byte 5 - CUPS Capabilities\r\n [0] - CUPS feature availability\r\n =0b - CUPS feature is disabled\r\n =1b - CUPS feature is enabled\r\n [1:7] - Reserved should be 0000000b\r\n Byte 6 - CUPS Policy\r\n [0] - CUPS policy configuration\r\n =0b - CUPS policies configuration not available\r\n =1b - CUPS policies configuration available\r\n [1:7] - Reserved should be 0000000b\r\n Byte 7 - CUPS version\r\n =1 - version used with 4th generation Intel Core�\r\n processors\r\n Byte 8 - Reserved for future use"
+            },
+            {
+                "CommandCode":"(65h)",
+                "Request":"Byte 1:3 = Intel manufacturers ID - 000157h, LS byte\r\n first\r\n Byte 4 = Parameter Selector\r\n =1 - CUPS Index\r\n =2 - Dynamic load factors\r\n =3-255 - Reserved\r\n This command allows BMC or\r\n Remote Console to retrieve\r\n the CUPS data.\r\n Request byte 4 is the\r\n parameter selector which is\r\n provided in the table below.\r\n The number of respons",
+                "Response":"Byte 1 - Completion Code\r\n Generic IPMI as defined in Section 2.15 plus the following\r\n command specific codes:\r\n =80h - Internal error\r\n =81h - Hardware resources not available\r\n =82h - Not initialized\r\n Byte 2:4 - Intel manufacturers ID - 000157h, LS byte first\r\n Byte 5:N - Requested parameter data\r\n For request byte 4 = 1 (CUPS Index)\r\n Data bytes 1:2 - CUPS Index (MS-byte first)\r\n For request byte 4 = 2 (Dynamic Load Factors)\r\n Data bytes 1:6 - Dynamic load factors (MS-byte first)\r\n [1:2] - CPU CUPS dynamic Load factor\r\n [3:4] - Memory CUPS dynamic Load factor\r\n [5:6] - IO CUPS dynamic Load factor"
+            },
+            {
+                "CommandCode":"(70h)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID -\r\n 000157h, LS byte first.",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard\r\n Completion Codes are shown in Section\r\n 2.15).\r\n Byte 2:4 - Intel Manufacturer ID -\r\n 000157h, LS byte first.\r\n Byte 5 - Intel PTT version\r\n =01h - Supported Intel PTT gen 3.0\r\n =02h - FFh - Reserved for future use.\r\n Byte 6 - IPMI interface version\r\n =01h - Intel PTT IPMI version 1.0\r\n Byte 7 - Security Version Number (SVN)\r\n =01h - FEh - Security Version Number\r\n (SVN = 1 - 254).\r\n =FFh - Not available in the current state,try again.\r\n Byte 8 - Patch version (binary encoded).\r\n Byte 9 - Major Firmware revision (binary\r\n encoded) - identifies current build of the\r\n code -and should contain the same value as\r\n the Get Device Id command�s response byte\r\n 4 [6:0] - Major firmware revision.\r\n Byte 10 - Minor Firmware revision (BCD\r\n encoded) - identifies current build of the\r\n code and should contain the same value as\r\n the �Get Device Id� command response byte\r\n 5 Minor firmware revision."
+            },
+            {
+                "CommandCode":"(C1h)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 4 - Domain ID\r\n [3:0] - Domain ID (Identifies the domain that this Intel\r\n Node Manager policy applies to)\r\n =00h - Entire platform=01h - CPU subsystem\r\n =02h - Memory subsystem\r\n =03h - HW protection\r\n =04h - High Power I/O subsystem\r\n Others - Reserved\r\n [4] - Policy Enabled (set to 1 if policy should be enabled\r\n by default during policy creation/modification). Policy will\r\n be enforced (enabled and evaluated in runtime) if the\r\n vorresponding Per Domain control as well as Global control\r\n is already enabled see C0h command.\r\n [7:5] - Reserved. Write as 000b.\r\n Byte 5 - Policy ID\r\n Byte 6 - Policy Type | Policy Trigger Type\r\n [3:0] - Policy Trigger Type\r\n =0 - No Policy Trigger (In that case Policy Trigger Limit\r\n should be ignored)\r\n =1 - Inlet Temperature Limit Policy Trigger in [Celsius].\r\n =2 - Missing Power Reading Timeout in 1/10th of second.\r\n =3 - Time After Host Reset or Startup Trigger in 1/10th of\r\n second. If BMC does not send Set Event Receiver\r\n command within this time after Power Button Override or\r\n Host start up Intel Node Manager will activate this policy.\r\n This policy could be defined in addition to the standard\r\n limiting policies. Once triggered, the policy shall remain\r\n active until next G3 entry or reception of Set Event\r\n Receiver. The value of the limit must be greater than 0.\r\n =4 - Boot time policy. This policy will apply the power\r\n policy at boot time. This type of policy can be applied only\r\n to the Domain 00h and will be applied on each platform\r\n restart.\r\n =5 - Reserved\r\n =6 - MGPIO Policy Trigger. This policy can be set only in\r\n the HW protection domain. If the policy already exists, this\r\n command will result in re-arming policy trigger.\r\n[4] - Policy Configuration Action\r\n =0 - Policy Pointed by Policy Id shall be removed\r\n (remaining bytes shall be ignored on read). Corresponding\r\n (with the same Policy ID) Alert Thresholds and Suspend\r\n Periods will be removed as well.\r\n =1 - Add Power Policy. This command creates/modifies\r\n policy of type that will maintain Power limit.\r\n [6:5] - Aggressive CPU Power Correction\r\n For policies with Domain ID 0 (Entire platform) and 1 (CPU\r\n subsystem) the flag indicates whether Intel NM can user\n CPU T-states to control CPU power consumption. This\r\n setting is ignored for some types of policies. I.e. a boot\r\n time policy is never aggressive and a policy with missing\r\n power reading timeout trigger is always aggressive.\r\n =00b - Automatic mode (default). Usage of T-states\r\n depends on Shutdown System bit in Policy Exception\r\n Actions field. When the bit is set to 1, Intel NM shall use\r\n aggressive mode for power limiting (T-states and memory\r\n throttling). When the bit is cleared, Intel NM does not use\r\n T-states and memory throttling. This behavior is backward\r\n compatible with Intel NM 1.5.\r\n =01b - Force unaggressive mode e.g., Intel NM is not\r\n allowed to use T-states and memory throttling. User\r\n will be created with this policy\r\n Id. Modification of some\r\n parameters is possible only if\r\n that policy for the specified\r\n Policy ID is disabled. For\r\n more details see Section\r\n 3.1.5.\r\n Note: The Policy ID is unique\r\n over all domains. Set done for\r\n existing Policy ID may move\r\n the policy to a different\r\n domain if different Domain ID\r\n is provided.\r\n The operator may define a\r\n special kind of policy called\r\n Minimum Power Consumption\r\n policy with the Power Limit\r\n set to 0. The policy does not\r\n have the power limit defined.vhen policy is triggered, the\r\n Intel Server Platform\r\n Services firmware reduces\r\n the power consumption to\r\n minimum by requesting OSPM\r\n or SMM to set minimum Pstate and T-state. The\r\n Minimum Power Consumption\r\n policy will not trigger the\r\n correction action to �System\r\n Shutdown�, but this settingvould be used by the operator\r\n to specify whether the\r\n Intel NM shall minimize\r\n power consumption by only\r\n reducing P-state or the\r\n firmware shall use both Pstate and T-state.\r\n The maximum number of\r\n policies supported for each\r\n domain can be obtained via\r\n Get Node Manager\r\n Capabilities command.\r\n Remove or modify operations\r\n would be performed only if\r\n responder LUN match with\r\n responder LUN from request\r\n when policy was created.\r\n Policy Exception Actions are\r\n not supported for Boot Time\r\n Policy and for Predictive\r\n Power Limiting Policy.\r\n Note - The Statistics\r\n Reporting Period used by\r\n Intel ME FW may not match\r\n exactly the period set by this\r\n command. The exact perioshould use this setting if the Intel NM should use only\r\n performance-friendly controls.\r\n =10b - Force aggressive mode e.g., Intel NM is allowed\r\n to use T-states and memory throttling. User should use\r\n this setting only if the target limit should be kept at any\r\n cost.\r\n =11b - Reserved.\r\n For policies with Domain ID 2 (Memory subsystem) the\r\n field shall be set to 0.\r\n [7] - Policy storage option\r\n =0b - persistent storage (default) to be used by external\r\n consoles\r\n =1b - volatile memory to be used by local management\r\n entities\r\n Byte 7 - Policy Exception Actions performed if policy\r\n cannot be maintained (if maintained policy power limit\r\n given by bytes 8-9 is exceeded over Correction Time Limit\r\n or 1 second in case of Predictive Power Limiting policy).\r\n [0] - Send alert\r\n [1] - Shutdown system (soft shutdown via BMC as\r\n described in [INT_GUIDE]).\r\n [6:2] - Reserved. Write as 00000b.\r\n [7] - The policy power domain. This setting influences the\r\n power limiting and reporting of this policy. This field is\r\n ignored for NM policies with Domain ID other than 0.\r\n =0h - The policy works in the primary side power domain.\r\n =1h - The policy works in the secondary (DC) power\r\n domain.\r\n Byte 8:9 - Policy Target Limit\r\n For the following Policy Trigger Type value 0, 1 or 3 (Byte\r\n 6 bits [3:0]) this field contains the power limit to be\r\n maintained in watts as unsigned integer value. Zero value\r\n is treated in a special way. If the limit is set to zero,\r\n Intel NM sets highest throttling level regardless of the\r\n power consumption in the domain. In such case Intel NM\r\n does not processed configured Policy Exception Actions,\r\n does not send Power Limit Exceeded event or execute\r\n system shutdown. The zero value can be set even if the\r\n minimum power set for the domain is not zero.\r\n For the following Policy Trigger Type value 2 - Throttling\r\n level of the platform in %, where 100% enables maximum\r\n throttling of the system.\r\n For the following Policy Trigger Type value 4 - Power\r\n profile to be applied to the platform at boot time:\r\n [0] - Platform Booting mode\r\n =0 - Platform should boot (during BIOS POST) in power\r\n optimized mode. In this mode it�s expected that BIOS will\r\n consume less power i.e. by running the CPU in LFM and\r\n using the least amount of threads.\r\n =1 - Platform should boot (during BIOS POST) in\r\n performance optimized mode.\r\n [7:1] - Cores Disabled - the number of physical CPU cores\r\n that should be disabled on each CPU socket. After\r\n disabling the cores BIOS POST should lock that value to\r\n the OS so that it cannot enable the cores. E.g. 1 passed on\r\n that field means that on each CPU package 1 core shoulde disabled by the BIOS.\r\n [15:8] - Reserved. Write as 00000000b.\r\n For the following Policy Trigger Type values 6 - Power limit\r\n to be maintained in Watts. Setting this value to zero will\r\n result in highest throttling level regardless of the power\r\n consumption in the domain.\r\n Byte 10:13 - Correction Time Limit - the maximum time\r\n in milliseconds, in which the Intel Node Manager must\r\n take corrective actions in order to bring the platform back\r\n to the specified power limit before taking the action\r\n specified in the �Policy Exception Action� parameter. This\r\n is an unsigned integer value.\r\n Correction Time does not apply to Boot Time Policy. If\r\n Trigger Type defines Boot Time Policy (4) the Correction\r\n Time Limit parameter should be set to zero.\r\n Correction Time set to 0 with Policy Trigger Type set to No\r\n Policy Trigger indicates that Predictive Power Limiting\r\n policy should be created. This setting is applicable only for\r\n policies with both Domain ID=0 and power domain=0\r\n (primary side).\r\n Byte 14:15 - Policy Trigger Limit\r\n For the following Policy Trigger Type value (Byte 6 bits\r\n [0:3]) this field contains the following data:\r\n =0 - Policy Trigger Value will be ignored.\r\n =1 - Policy Trigger Value should define the Inlet\r\n temperature in Celsius. The inlet temperature value will be\r\n compared against this limit and if exceeded, cause a\r\n trigger to start enforcing the Power Limit specified (Power\r\n limit will not be enforced until the trigger happens).\r\n =2 - Policy Trigger should define time in 1/10 of second to\r\n perform an action if Missing Power Reading Timeout is\r\n detected.\r\n =3 - Policy Trigger should define time in 1/10 of second\r\n after Host reset or startup. If BMC does not send Set\r\n Event Receiver command within this time after Host reset\r\n or start up Intel Node Manager will activate this policy.\r\n This policy could be defined in addition to the standard\r\n limiting policies. The policy is automatically disabled after\r\n next Host reset. The value of the limit must be greater\r\n than 0.\r\n =4 - Policy Trigger is not applicable for boot time policy\r\n and should be set to 0.\r\n =6 - Policy Trigger is not applicable for MGPIO triggered\r\n policy and should be set to 0.\r\n Byte 16:17 - Statistics Reporting Period in seconds. The\r\n number of seconds that the measured power will be\r\n averaged over for the purpose of reporting statistics to\r\n external management SW. This is a moving window\r\n length. Note that this value is different from the period\r\n that Intel NM uses for maintaining an average for the\r\n purpose of power control. This is unsigned integer value.",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard Completion Codes\r\n are shown in Section 2.15).=80h - Policy ID Invalid.\r\n =81h - Domain ID Invalid.\r\n =82h - Unknown or unsupported Policy Trigger Type.\r\n =84h - Power Limit out of range.\r\n =85h - Correction Time out of range (use Get Node\r\n Manager Capabilities command to get the minimal and\r\n maximal correction time for given domain and policy\r\n type).\r\n =86h - Policy Trigger value out of range.\r\n =89h - Statistics Reporting Period out of range.\r\n =8Bh - Invalid value of Aggressive CPU Power Correction\r\n field or Exception Action invalid for the given policy type.\r\n =D4h - Insufficient privilege level due wrong responder\r\n LUN\r\n =D5h - Policy could not be updated since Policy ID already\r\n exists and one of it parameters, which is changing, isn�t\r\n modifiable when policy is enabled.\r\n =D6h - Policies in given power domain cannot be created\r\n in the current configuration (e.g. attempt to create\r\n predictive power limiting policy in DC power domain).\r\n For more details, see Section 3.1.5.\r\n Byte 2:4 - Intel Manufacturer ID - 000157h, LS byte first."
+            },
+            {
+                "CommandCode":"(C8h)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 4 - Mode\r\n [4:0] - Mode\r\n =01h - Global power statistics in [Watts]\r\n =02h - Global inlet temperature statistics in [Celsius].\r\n =03h - Global throttling statistics [%]\r\n =04h - Global volumetric airflow statistics [1/10th of CFM]\r\n =05h - Global outlet airflow temperature statistics\r\n [Celsius]=06h - Global chassis power statistics [Watts]\r\n =07h - Reserved\r\n =08h - Global energy accumulator [mJ]\r\n =09h - 10h - Reserved\r\n =11h - Per policy power statistics in [Watts]\r\n =12h - Per policy trigger statistics in [Celsius]\r\n =13h - Per policy throttling statistics in [%]\r\n =14h - 1Ah - Reserved\r\n =1Bh - Global Host Unhandled Requests statistics.\r\n =1Ch - Global Host Response Time statistics\r\n =1Dh - Global CPU throttling statistics (deprecated,\r\n Mode=03h, Domain ID=01h shall be used instead)\r\n =1Eh - Global memory throttling statistics (deprecated,\r\nMode=03h, Domain ID=02h shall be used instead)\r\n =1Fh - Global Host Communication Failure statistics\r\n [7:5] - Reserved. Write as 000b.\r\n Byte 5 - Domain ID\r\n [3:0] - Domain ID (Identifies the domain that this Intel\r\n Node Manager policy applies to)\r\n=00h - Entire platform\r\n =01h - CPU subsystem\r\n =02h - Memory subsystem\r\n =03h - HW Protection\r\n =04h - High Power I/O subsystem\r\n Others - Reserved.\r\n Note:\r\nFor Mode in a range 1Bh - 1Fh Domain ID must be set to\r\n 00h.\r\n [4] - Power domain. This field is ignored for Domain ID\r\n other than 00h.\r\n =0h - Statistics shall be reported for the primary side\r\n power domain (AC).\r\n =1h - Statistics shall be reported for the secondary side\r\n power domain (DC).\r\n [6:5] - Reserved. Write as 000b.\r\n [7] - Per-component control - allows for getting data for\r\n chosen domain component\r\n =0 - Accumulated data for whole domain will be returned\r\n =1 - {Purley} Data from single component in domain will\r\n be returned and Byte 6 contains component identifier\r\n Byte 6 - Policy ID / Component Identifier\r\n For Modes 01h and 08h if bit 7 in Byte 5 is set to 1 then\r\n this field indicates component identifier for which data will\r\n be returned. Refer to Section 3.1.6 for description of this\r\n field.\r\n For modes 11h-13h this field indicates the Policy ID for\r\n which the statistics are requested.\r\n For all other modes this field is ignored.",
+                "Response":"Byte 1 - Completion code=00h - Success (Remaining standard Completion Codes\r\n are shown in Section 2.15).\r\n =80h - Policy ID / Component Identifier Invalid.\r\n =81h - Domain ID Invalid.\r\n =88h - Invalid Mode.\r\n =CCh - Power domain not supported for given Domain ID and\r\n Mode combination.\r\n Byte 2:4 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 5:12 Statistics data\r\n \r\nFor Mode set to 08h (Global energy accumulator);\r\nByte 5:12 Accumulated energy value (unsigned integer)\r\n[mJ]\r\n For other Modes;\r\n Byte 5:6 - Current Value* see 3.1.1\r\nByte 7:8 - Minimum Value* see 3.1.2\r\n Byte 9:10 - Maximum Value* see 3.1.3\r\n Byte 11:12 - Average Value* see 3.1.4\r\n For Mode 08h (Global energy accumulator);\r\n Byte 13:16 - Timestamp of the last collected sample in\r\n milliseconds.\r\n For other Modes;\r\n Byte 13:16 - Timestamp as defined by the IPMI v2.0\r\n specification indicating when the response message was\r\n sent. If Intel NM cannot obtain valid time, the timestamp\r\n is set to FFFFFFFFh as defined in the IPMI v2.0\r\n specification.Byte 17:20 - Statistics Reporting Period (the timeframe inseconds, over which the firmware collects statistics). Thisis unsigned integer value. For all global statistics this fieldcontains the time after the last statistics reset.Byte 21 - Domain ID | Policy State[3:0] - Domain ID (Identifies the domain that this IntelNode Manager policy applies to)=00h - Entire platform.=01h - CPU subsystem.=02h - Memory subsystem.=03h - HW Protection.=04h - High Power I/O subsystem.=Others - Reserved.[4] - Policy/Global Administrative state.If request Byte 4 is in range 11h-13h state\r\n =1 - If policy is enabled by user and Intel Node Manager\r\n Policy Control is Globally Enabled (see C0h command) andIntel Node Manager Domain control is also Enabled (see\r\n \r\n C0h command).\r\n =0 - Otherwise.\r\n If request Byte 4 is in range 01h-08h state\r\n = 1 - if Intel Node Manager Policy Control is Globally\r\n Enabled (see C0h command).\r\n =0 - Otherwise.\r\n If request Byte 4 is in range 1Bh-1Fh state= Reserved\r\n [5] - Policy Operational state\r\n If request Byte 4 is in range 01h-08h or 1Bh-1Fh state\r\n =Reserved.\r\n If request Byte 4 is in range 11h-13h state\r\n =1 - Policy is actively monitoring defined trigger (power or\r\n thermal) and will start enforcing the power limit if defined\r\n trigger is exceeded.\r\n =0 - Policy is suspended so it cannot actively limit to\r\n defined power limit. It may happen if one of the defined\r\n below events happens:\r\n - Suspend period is enforced.\r\n - There is a problem with trigger readings.\r\n- There is a host communication problem.\r\n - Host is in Sx state.\r\n - Host did not send End Of POST notification.\r\n - Policy limit is below minimal power draw range.\r\n - Policy is administratively disabled.\r\n [6] - Measurements state\r\n If request Byte 4 is in range 01h-08h or 11h-13h state\r\n =1 - Measurements in progress\r\n =0 - Measurements stopped or readings problems\r\n detected\r\n Note: Measurements state depends on readings source\r\n availability in given power state. For some devices\r\n readings in Sx states aren�t available (e.g., CPU) thus for\r\n measurements related to these devices this bit could be\r\ncleared as a result of entering not supported power state\r\n or reading problem detection in supported state. For\r\n devices that are available in all power states this bit would\r\n remain set as long as the devices provide proper readings.\r\n If request Byte 4 is in range 1Bh-1Fh state\r\n =Reserved.\r\n [7] - Policy activation state\r\n If request Byte 4 is in range 01h-08h or 1Bh-1Fh state\r\n =Reserved.\r\n If request Byte 4 is in range 11h-13h state\r\n =1 - Policy is triggered and is actively limiting to the\r\n defined power limit.\r\n =0 - Policy is not triggered.\r\n Note: For Host Response Time, Host Unhandled Requests,\r\n Host Communication Failure, CPU, and memory throttling\r\n statistics Byte 21 is always set to 0.\r\n If request Byte 4 is in range 11h-13h state\r\n =1 - If policy is enabled by user and Intel Node Manager\r\n Policy Control is Globally Enabled (see C0h command) andIntel Node Manager Domain control is also Enabled (see\r\n \r\n C0h command).\r\n =0 - Otherwise.\r\n If request Byte 4 is in range 01h-08h state\r\n = 1 - if Intel Node Manager Policy Control is Globally\r\n Enabled (see C0h command).\r\n =0 - Otherwise.\r\n If request Byte 4 is in range 1Bh-1Fh state= Reserved\r\n [5] - Policy Operational state\r\n If request Byte 4 is in range 01h-08h or 1Bh-1Fh state\r\n =Reserved.\r\n If request Byte 4 is in range 11h-13h state\r\n =1 - Policy is actively monitoring defined trigger (power or\r\n thermal) and will start enforcing the power limit if defined\r\n trigger is exceeded.\r\n =0 - Policy is suspended so it cannot actively limit to\r\n defined power limit. It may happen if one of the defined\r\n below events happens:\r\n - Suspend period is enforced.\r\n - There is a problem with trigger readings.\r\n- There is a host communication problem.\r\n - Host is in Sx state.\r\n - Host did not send End Of POST notification.\r\n - Policy limit is below minimal power draw range.\r\n - Policy is administratively disabled.\r\n [6] - Measurements state\r\n If request Byte 4 is in range 01h-08h or 11h-13h state\r\n =1 - Measurements in progress\r\n =0 - Measurements stopped or readings problems\r\n detected\r\n Note: Measurements state depends on readings source\r\n availability in given power state. For some devices\r\n readings in Sx states aren�t available (e.g., CPU) thus for\r\n measurements related to these devices this bit could be\r\ncleared as a result of entering not supported power state\r\n or reading problem detection in supported state. For\r\n devices that are available in all power states this bit would\r\n remain set as long as the devices provide proper readings.\r\n If request Byte 4 is in range 1Bh-1Fh state\r\n =Reserved.\r\n [7] - Policy activation state\r\n If request Byte 4 is in range 01h-08h or 1Bh-1Fh state\r\n =Reserved.\r\n If request Byte 4 is in range 11h-13h state\r\n =1 - Policy is triggered and is actively limiting to the\r\n defined power limit.\r\n =0 - Policy is not triggered.\r\n Note: For Host Response Time, Host Unhandled Requests,\r\n Host Communication Failure, CPU, and memory throttling\r\n statistics Byte 21 is always set to 0."
+            },
+            {
+                "CommandCode":"(C9h)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 4 - Domain ID\r\n [3:0] - Domain ID (Identifies the domain that this Intel\r\n Node Manager policy applies to)\r\n =00h - Entire platform.\r\n =01h - CPU subsystem.\r\n =02h - Memory subsystem.\r\n =03h - HW Protection.\r\n =04h - High Power I/O subsystem.,Others - Reserved.\r\n [7:4] - Reserved. Write as 0000b.\r\n Byte 5 - Policy Type | Policy Trigger Type\r\n [3:0] - Policy Trigger Type\r\n =0 - No Policy Trigger.\r\n =1 - Inlet Temperature Policy Trigger value in [Celsius].\r\n =2 - Missing Power Reading Timeout in 1/10th of second.\r\n =3 - Time After Host Reset Trigger in 1/10th of second.\r\n =4 - Boot time policy.\r\n =5 - Reserved.\r\n =6 - MGPIO Policy Trigger.\r\n Others - Reserved.\r\n [6:4] - Policy Type\r\n =1 - Power Control Policy.\r\n Others - Reserved.\r\n [7] - The policy power domain. This field is ignored for\r\n Domain Id other than 0.\r\n =0h - For policies working in the primary side power\r\n domain.\r\n =1h - For policies working in the secondary (DC) power\r\n domain.",
+                "Response":"Byte 1 - Completion Code \r\n =00h - Success (Remaining standard Completion Codes\r\n are shown in Section 2.15).\r\n =81h - Domain ID invalid or not supported in the current\r\n configuration.\r\n =82h - Unknown or unsupported Policy Trigger Type.\r\n =83h - Unknown Policy Type.\r\n Byte 2:4 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 5 - Max Concurrent Settings - number of policies\r\n supported for the given policy trigger type, policy type and\r\n Domain ID.\r\n Byte 6:7 Max Power/Thermal/Time After Reset\r\n If Policy Trigger Type in the request equals 0 or 6 (No\r\n Policy Trigger or MGPIO Policy Trigger) then this field\r\n contains maximum power Limit to be maintained. The\r\n power value is expressed in [Watts] as unsigned integer\r\n value. It can be either received from BIOS (for total power\r\n limit in domain 0) or read by Intel NM from CPU (for CPU\r\n and memory power limit in domains 1 and 2) or MIC cards\r\n (for domain 04h). It can also be set manually using Set\r\n Power Draw Range command. If Intel NM does not\r\n impose any limit or hardware capabilities are currently not\r\n known (e.g., in case of domain 04h there are no MIC cards\r\n installed in the system) this field is equal to 0x7FFF.\r\n If Policy Trigger Type in the request equals 1 (Inlet\r\n Temperature Policy Trigger) then this field contains\r\n maximum temperature value to be settable as trigger. The\r\n temperature is expressed in [Celsius] as unsigned integer\r\n value.\r\n If Policy Trigger Type in the request equals 2 (Missing\r\n Power Reading Timeout) or 3 (Time After Host Reset) then\r\n this field contains maximum time to be settable as trigger.\r\n The time is expressed in 1/10 seconds as unsigned integer\r\n value.\r\n If Policy Trigger Type in the request equals 4 (Boot time\r\n policy) then this field is not applicable and is set to 0.\r\n Byte 8:9 - Min Power/Thermal/Time After Reset\r\n If Policy Trigger Type in the request equals 0 or 6 (No\r\n Policy Trigger or MGPIO Policy Trigger) then this field\r\n contains minimum power Limit to be maintained. The\r\n power value is expressed in [Watts] as unsigned integer\r\n value. It can be either received from BIOS (for total power\r\n in domain 0) or read by Intel NM from CPU (for CPU and\r\n memory power limit in domains 1 and 2) or MIC cards (for\r\n domain 04h). It can also be set manually using Set Power\r\n Draw Range command. If Intel NM does not impose any\r\n limit or hardware capabilities are currently not known\r\n (e.g., in case of domain 04h there are no MIC cards\r\n installed in the system) this field is equal to 0x01.\r\n If Policy Trigger Type in the request equals 1 (Inlet\r\n Temperature Policy Trigger) then this field contains\r\n minimum temperature value to be settable as trigger. The\r\n temperature is expressed in [Celsius] as unsigned integer\r\n value.\r\n If Policy Trigger Type in the request equals 2 (Missing\r\n Power Reading Timeout) or 3 (Time After Host Reset) then\r\n this field contains minimum time to be settable as trigger.\r\n The time is expressed in 1/10 seconds as unsigned integer\r\n value.\r\n If Policy Trigger Type in the request equals 4 (Boot time\r\n policy) then this field is not applicable and is set to 0.\r\n Byte 10:13 - Min Correction Time settable in milliseconds\r\n as unsigned integer value.\r\n Byte 14:17 - Max Correction Time settable in milliseconds\r\n as unsigned integer value.\r\n Byte 18:19 - Min Statistics Reporting Period in seconds as\r\n unsigned integer value.\r\n Byte 20:21 - Max Statistics Reporting Period in seconds as\r\n unsigned integer value.\r\n Byte 22 - Domain limiting scope\r\n [0:3] - Domain ID (Identifies the domain that this Intel\r\n Node Manager policy applies to)\r\n =00h - Entire platform.\r\n =01h - CPU subsystem.\r\n =02h - Memory subsystem.\r\n =03h - HW Protection.\r\n =04h - High Power I/O subsystem\r\n Others - Reserved.\r\n [4:6] - Reserved. Write as 000b.\r\n [7] - Domain limiting based on*\r\n =0 - Primary side (Wall input) power - Intel NM has\r\n access to PSU input power.\r\n =1 - DC power only - PSU output power or bladed system\r\n or direct DC reading from the CPU.\r\n * This setting applies also to global statistics reporting and\r\n power draw range of given policy Domain ID and Trigger\r\n Type. Policies with Domain ID 00h may be configured to \n work in different power domain on per policies basis."
+            },
+            {
+                "CommandCode":"(CBh)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 4 - Domain ID\r\n [3:0] - Domain ID (Identifies the domain that this setting\r\n applies to)\r\n =00h - Entire platform.\r\n =01h - CPU subsystem.\r\n =02h - Memory subsystem.\r\n =03h - HW Protection.\r\n =04h - High Power I/O subsystem.\r\n Others - Reserved.[7:4] - Reserved. Write as 0000b.\r\n Byte 5:6 - Minimum Power Draw in [Watts]. For domain\r\n 00h, if set to 0 the minimum power draw value will beinvalidated and no val\r\n idation of policy parameters against\r\n minimum power consumption will be performed. For\r\n domain 01h and 02h, if set to zero, minimum power draw\r\n will be obtained from CPU via PECI. For domain 04h, if set\r\n to zero, minimum power draw range will be obtained from\r\n HPIO system. This is an unsigned integer value in a range\r\n <0:7FFFh>.\r\n Byte 7:8 - Maximum Power Draw in [Watts]. For domain\r\n 00h, if set to 0 the maximum power draw value will be\r\n invalidated and no validation of policy parameters against\r\n maximum power consumption will be performed. For\r\n domain 01h and 02h, if set to zero, maximum power draw\r\n will be obtained from CPU via PECI. For domain 03h on\r\n modular systems defines the actual limit for HW Protection\r\n Policy. For domain 04h, if set to zero, maximum power\r\n draw range will be obtained from HPIO system. This is an\r\n unsigned integer value in a range <0:7FFFh>.",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard Completion Codes\r\n are shown in Section 2.15).\r\n =C9h - Parameter out of range. Returned when Minimum\r\n Power Draw Range exceeds the Maximum one.\r\n =81h - Domain ID invalid or not supported in the current\r\n configuration. Returned for domain ID 03, when PSU is\r\n configured as the power reading source.\r\n Byte 2:4 - Intel Manufacturer ID - 000157h, LS byte first."
+            },
+            {
+                "CommandCode":"(D2h)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID - 000157h, LS byte first. Byte 4 - Domain ID\r\n[3:0] - Domain ID - Identifies the domain that this\r\nIntel NM setting applies to=00h - Entire platform - for compatibility with previous\r\nIntel NM versions P/T state settings are applied to CPU subsystem. Others - Reserved.\r\n[5:4] - Control Knob\r\n=00b - Set max allowed CPU P-state/T-state.\r\n=01b - Set max allowed logical processors.\r\n=10b - Reserved.\r\n=11b - Reserved.\r\n[7:6] - Reserved. Write as 00b.\r\nFor Control Knob set to 00b:\r\nByte 5 - P-state number to be set.\r\nByte 6 - T-state number to be set.\r\nFor Control Knob set to 01b:\r\nByte 5:6 - Set max allowed logical processors.\r\nNote - If any of the fields is set to FFh, it should be omitted when setting the value.\r\nNote - This setting is volatile. It is cleared after reset of either host or Intel ME side.\r\nThis command is optional and may be\r\nunavailable on certain implementations.\r\nThis command imposes additional limit on the\r\nhost side apart of the limit that may be\r\napplied by Intel NM Policy Control, or Total\r\nPower Budget. If the limit applied by Policy\r\nControl or Power Budget is lower than the effect of P-state/T-state limit\r\nthen that power limit is used. If P-state/T-state\r\nlimit imposes lower power limit than the Pstate/T-state limit is kept.\r\nAdditional power limit imposed by this command does not impact NM throttling statistic",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard Completion Codes are\r\n shown in Section 2.15).\r\n =81h - Invalid Domain ID.\r\n =8Ah - P-state or T-state out of range.\r\n =D5h - Command does not work since Hardware-controlled\r\n Performance States (HWP) are enabled in BIOS and legacy\r\n mode is not supported.\r\n Byte 2:4 - Intel Manufacturer ID - 000157h, LS byte first."
+            },
+            {
+                "CommandCode":"(D3h)",
+                "Request":"Byte 1:3 - Intel Manufacturer ID - 000157h, LS byte first.\r\n Byte 4 - Domain ID\r\n [3:0] - Domain ID - Identifies the domain that this\r\n Intel NM setting applies to\r\n =00h - Entire platform - for compatibility with previous\r\nIntel NM versions P/T state settings are applied to CPU\r\nsubsystem.\r\n Others - Reserved.\r\n [5:4] - Control Knob\r\n Returns the maximal\r\n CPU P/T state or\r\n number of logical CPUs\r\n cores.\r\n In case of multi socket\r\n system this command\r\n returns the maximum\r\n P/T state of all available\r\n CPU sockets. The\r\n number of availableIntel ME Intel NM IPMI Interface\r\n 118 Document Number: 550710, Rev. 2.05\r\n Intel Confidential\r\n Net Function = 2Eh-2Fh LUN = 00b\r\n Code Command Request, Response Data Description\r\n =00b - get max allowed CPU P-state/T-state.\r\n =01b - get max allowed logical processors.\r\n =10b - Reserved.\r\n =11b - Reserved.\r\n [7:6] - Reserved. Write as 00b.",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard Completion Codes are\r\n shown in Section 2.15).\r\n =81h - Invalid Domain ID.\r\n =D5h - Command does not work since Hardware-controlled\r\n Performance States (HWP) are enabled in BIOS and legacy\r\n mode is not supported.\r\n Byte 2:4 - Intel Manufacturer ID - 000157h, LS byte first.\r\n For Control Knob set to 00b:\r\n Byte 5 - Current maximum P-state.\r\n Byte 6 - Current maximum T-state.\r\n For Control Knob set to 01b:\r\n Byte 5:6 - Total requested by Intel ME number of allowed\r\n logical processors on a system. This is a number confirmed\r\n by OSPM and does not have to be equal to the one\r\n requested by Intel ME since OSPM is not obliged to fulfill a\r\n core idling request.\r\n Note - If any of the fields is set to FFh, it means that value\r\n is unavailable.\r\n Note - For Control Knob set to 01b this command returns\r\n the value recently confirmed by the host side. For a short\r\n while, it may be differ from the value set with D2h. If the\r\n difference persists, it indicates an issue on the host side."
+            },
+            {
+                "CommandCode":"(DFh)",
+                "Request":"Byte 1:3 = Intel Manufacturer ID -\r\n000157h, LS byte first.\r\nByte 4 - Command\r\n=01h Restart using Recovery Firmware\r\n(Intel ME FW configuration is not restored\r\nto factory defaults)\r\n=02h Restore Factory Default Variable\r\nvalues and restart the Intel ME FW\r\n=03h PTT Initial State Restore",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard\r\n Completion Codes are shown in Section\r\n 2.15).\r\n =81h - Unsupported Command parameter\r\n value in the Byte 4 of the request.\r\n Byte 2:4 = Intel Manufacturer ID -\r\n 000157h, LS byte first."
+            },
+            {
+                "CommandCode":"(E0h)",
+                "Request":"Byte 1:3 = Intel Manufacturer ID -\r\n 000157h, LS byte first.",
+                "Response":"Byte 1 - Completion Code\r\n =00h - Success (Remaining standard\r\n Completion Codes are shown in Section\r\n 2.15).\r\n Byte 2:4 = Intel Manufacturer ID -\r\n 000157h, LS byte first.\r\n Byte 5:8 - Vendor Label\r\n 4 bytes long data assigned by platform\r\n vendor at Intel ME image creation time.\r\n Byte 9:N - Factory defaults signature of\r\n length between 1..32 bytes."
+            },
+            {
+                "CommandCode":"()",
+                "Request":"",
+                "Response":""
+            }
+        ]
+    },
+    "RequestDoc":"",
+    "ResponseDoc":"",
+    "CommandCode":""
+}

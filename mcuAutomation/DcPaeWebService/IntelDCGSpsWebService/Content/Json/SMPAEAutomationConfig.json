@@ -1,0 +1,34 @@
+{
+	"Daemon": {
+		"PIDFolder": "/tmp",
+		"PIDFilename": "smpae_automation.pid",
+		"XMLRPCServer": "localhost",
+		"XMLRPCPort": 8001
+	},
+
+	"Logging": {
+		"LogFolder": ".",
+		"LogFile": "SMPAEAutomation.log",
+		"MaxBytes": 5242880,
+		"BackupCount": 5
+	},
+
+	"Commands": {
+		"BuildType": "ls -a /usr2/smartfilter/build/ | grep ^\\. | grep build_state$ | sed -e 's/_build_state//' | sed -e 's/\\.//'",
+		"ReputationReport": "/usr2/smartfilter/dbtools/reputation_report -u '${url}'",
+		"DisableCronjob": "crontab -l | grep -v 'AUTO_CREATED_BY_URL_RECLASSIFICATION_PORTAL' | sed -e '/${filter}/ s/^/#/' | crontab",
+		"EnableCronjob": "crontab -l | sed -e '/${filter}/ s/^#//' | crontab",
+		"ShutdownAgent": "${toolPrefix} /usr2/smartfilter/dbtools/shutdown_agent -n ${agentName}",
+		"BuildStop": "for pid in `ps -ef | egrep '(migt|build_lists)' | grep -v build_lists.sh | grep -v grep | grep -v vi | awk '{print $2}'`; do kill -9 $pid; done",
+		"BuildCheck": "ps -ef | egrep '(migt|build_lists)' | grep -v build_lists.sh | grep -v grep | grep -v vi | awk '{print $8\"  is running\"}'",
+		"BuildStart": "{ crontab -l && echo && echo '${buildStartTime} * /usr2/smartfilter/build/build_lists.sh resume ${buildType} #AUTO_CREATED_BY_URL_RECLASSIFICATION_PORTAL'; } | crontab",
+		"SFImport": "${toolPrefix} /usr2/smartfilter/import/sfimport -f s -l ${urlListFile} -a 21 -M -H \"WA Maintenance\" -S",
+		"TMAN": "/usr2/smartfilter/dbtools/tman -d -n 2 -l 10 -x 5",
+		"VMAN": "/usr2/smartfilter/dbtools/vman -t 1 -n 5 -s 100",
+		"WRUA": "/usr2/smartfilter/dbtools/wrua -t 1 -n 10"
+	},
+
+    "AppConfig": {
+		"timeout" : "250"
+    }
+}

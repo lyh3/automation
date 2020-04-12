@@ -1,0 +1,2 @@
+﻿<%@ServiceHost Service="WCFAuthenticationService.Authentication" %>
+<%@Assembly Name="WCFAuthenticationService" %>

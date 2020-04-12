@@ -1,0 +1,208 @@
+﻿@using WindowService.DataModel;
+<html>
+@Html.Partial("../Shared/_Head")
+<body style="background-image: url('../../Images/Worldmap.jpg'); " oncontextmenu="return true">
+    @*<body style="background-color:lightgray">
+    *@
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header navbar-left">
+            <img height='50' width='50' src='data:image/jpeg;base64,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'>
+        </div>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("SPS Web Service", "Index", "Home", null, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                @*<div class="navbar-header navbar-right">
+                        <table style="margin-top:10px;">
+                            <tr>
+                                <td><img id="imgTools" src="~/Images/Tools.png" width="24" height="24" /></td>
+                                <td style="width:2px;"></td>
+                                <td><span style="color:silver;font-size:small;">Tools</span></td>
+                                <td style="width:10px;"></td>
+                            </tr>
+                        </table>
+                    </div>*@
+                <ul class="nav navbar-nav">
+                    <li><a href="@(Url.Action("Index", "Home" ))"><i class="glyphicon glyphicon-home"></i><span class="icon icon-search"></span>&nbsp;Home</a></li>
+                    <li><a href="@(Url.Action("Contact", "Home"))"><i class="glyphicon glyphicon-user"></i><span class="icon icon-search"></span>&nbsp;Contact</a></li>
+                    <li><a href="@(Url.Action("About", "Home" ))"><i class="glyphicon glyphicon-star-empty"></i><span class="icon icon-search"></span>&nbsp;About</a></li>
+                    <li><a href="@(Url.Action("Index", "RemoteSystemReset"))"><i class="glyphicon glyphicon-repeat" style="color:red;"></i><span class="icon icon-search"></span>&nbsp;Remote System Reset</a></li>
+                    <li>
+                        <div style="background-color:transparent;">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-wrench" style="color:limegreen;"></i><span class="icon icon-search"></span>&nbsp;SPS Tools <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu" style="background-color:rgb(140,140,140);border-radius:5px;">
+                                        <li class="divider"></li>
+                                        <li><a href="@(Url.Action("Index", "SpsTools", new { @selectedTool = SpsToolsType.HealthEventDecode }))"><i class="glyphicon glyphicon-share"></i><span class="icon icon-search"></span>&nbsp;Health Event Decode</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="@(Url.Action("Index", "SpsTools", new { @selectedTool = SpsToolsType.SpiImageMerge }))"><i class="glyphicon glyphicon-align-left"></i><span class="icon icon-search"></span>&nbsp;SPI Image Merge</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i><span class="icon icon-search"></span>&nbsp;MEFST Register Decode - (under construction)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="background-color:transparent;">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-gift" style="color:dodgerblue;"></i><span class="icon icon-search"></span>&nbsp;BIOS Automation <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu" style="background-color:rgb(140,140,140);border-radius:5px;">
+                                        <li class="divider"></li>
+                                        <li><a href="@(Url.Action("Index", "BiosImageOperations"))"><i class="glyphicon glyphicon-wrench" style="color:white;"></i><span class="icon icon-search"></span>&nbsp;BIOS Image Operations</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="@(Url.Action("Index", "BkcImageParser"))"><i class="glyphicon glyphicon-scissors" style="color:purple;"></i><span class="icon icon-search"></span>&nbsp;IFWI Image Parser</a></li>
+                                        <li class="divider"></li>
+                                        @*<li><a href="@(Url.Action("Index", "ReleaseOchestration"))"><i class="glyphicon glyphicon-music" style="color:lightblue;"></i><span class="icon icon-search"></span>&nbsp;Release Orchestration</a></li>
+                                        <li class="divider"></li>*@
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="@(Url.Action("Index", "MicrocodeRelease"))"><i class="glyphicon glyphicon-cog" style="color:lawngreen;"></i><span class="icon icon-search"></span>&nbsp;Microcode Release</a></li>
+                    <li style="display:none;"><a href="@(Url.Action("Index", "RasAutomation"))"><i class="glyphicon glyphicon-thumbs-up" style="color:white;"></i><span class="icon icon-search"></span>&nbsp;RAS Automation</a></li>
+                </ul>
+                @*@Html.Partial("_LoginPartial")*@
+                <div class="navbar-header navbar-right">
+                    <ul class="dropdown-menu navbar-header navbar-left" style="background-color: transparent; margin-right: -20px;margin-top:-20px;">
+                        <li>@Html.Partial("./Tools/_Tools")</li>
+                    </ul>
+
+                    @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i><img id="imgTools" src="~/Images/Tools.png" width="24" height="24" />&nbsp;Shared Tools</i>
+                    </a>*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        @*@Html.Partial("../Shared/_Footer")*@
+    </div>
+
+    <div style="position: relative; bottom: 5px;">
+        @Html.Partial("../Shared/_Footer")
+    </div>
+    <style>
+        .container {
+            padding-right: 50px;
+            padding-left: 50px;
+            margin-right: auto;
+            margin-left: auto;  
+            width: 100%;
+        }
+        .blinker {
+        animation: blink 2s;
+        animation-iteration-count: infinite;
+    }
+    </style>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/Scripts/Site.js")
+    <script type="text/javascript">
+        String.prototype.format = function () {
+            var a = this;
+            for (var k in arguments) {
+                a = a.replace(new RegExp("\\{" + k + "\\}", 'g'), arguments[k]);
+            }
+            return a
+        }
+        $(document).ready(function () {
+            displayLoader(false);
+            
+            if (document.baseURI.endsWith('MicrocodeRelease')) {
+                updateMicrocodReleaeUI(document.baseURI.endsWith('MicrocodeRelease'));
+            } else if (document.baseURI.endsWith('RemoteSystemReset')) {
+                updateSystemResetUI();
+            } else if (document.baseURI.endsWith('ReleaseOchestration')) {
+                updateTransactionStatus();
+            } else {
+                updateBMCStatus();
+            }
+            $('#divCommandDoc').attr("style", "display:none;");
+        });
+        function rgb2hex(red, green, blue) {
+            var rgb = blue | (green << 8) | (red << 16);
+            return '#' + (0x1000000 + rgb).toString(16).slice(1)
+        }
+
+        function hex2rgb(hex) {
+            // long version
+            r = hex.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
+            if (r) {
+                return r.slice(1,4).map(function(x) { return parseInt(x, 16); });
+            }
+            // short version
+            r = hex.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
+            if (r) {
+                return r.slice(1,4).map(function(x) { return 0x11 * parseInt(x, 16); });
+            }
+            return null;
+        }
+
+        function rgb2hex(red, green, blue) {
+            var rgb = blue | (green << 8) | (red << 16);
+            return '#' + (0x1000000 + rgb).toString(16).slice(1)
+        }
+
+        function hex2rgb(hex) {
+            // long version
+            r = hex.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
+            if (r) {
+                return r.slice(1,4).map(function(x) { return parseInt(x, 16); });
+            }
+            // short version
+            r = hex.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
+            if (r) {
+                return r.slice(1,4).map(function(x) { return 0x11 * parseInt(x, 16); });
+            }
+            return null;
+        }
+        $('#imgTools').on('mouseover', function () {
+            var toolsWindow = $("#ToolsSelectWindow").data("kendoWindow");
+            toolsWindow.open()
+            $("#ToolsSelectWindow").closest(".k-window").css({
+                top: 50,
+                right: 5,
+            });
+        })
+        function IsFormFilled() {
+            var isFormFilled = true;
+            var inputs = document.getElementsByTagName('input');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].hasAttribute('required')) {
+                    if (inputs[i].value == "") {
+                        isFormFilled = false;
+                        break;
+                    }
+                }
+            }
+            return isFormFilled;
+        }
+    </script>
+</body>
+</html>
+
+<style>
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-text-fill-color: silver;
+        -webkit-transition-delay: 9999s;
+        -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+    }
+</style>

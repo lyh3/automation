@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://mcafeelabs.com/contract/automation/SSC/3.0" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SampleSubmission" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://mcafeelabs.com/contract/automation/SSC/3.0" location="http://beaqaacme1/SSC_V3/Service1.svc?wsdl=wsdl0" />
+  <wsdl:types />
+  <wsdl:binding name="BasicHttpBinding_ISampleSubmission" type="i0:ISampleSubmission">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProtocols">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/GetProtocols" style="document" />
+      <wsdl:input name="GetProtocolsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetProtocolsResponse1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePackage">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/ValidatePackage" style="document" />
+      <wsdl:input name="ValidatePackageRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ValidatePackageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitWithDownloadLocation">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/SubmitWithDownloadLocation" style="document" />
+      <wsdl:input name="SubmitWithDownloadLocationRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SubmitWithDownloadLocationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestUploadDetails">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/RequestUploadDetails" style="document" />
+      <wsdl:input name="RequestUploadDetailsRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RequestUploadDetailsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignalEndOfUpload">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/SignalEndOfUpload" style="document" />
+      <wsdl:input name="SignalEndOfUploadRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SignalEndOfUploadResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePackage_Async">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/ValidatePackage_Async" style="document" />
+      <wsdl:input name="ValidatePackage_Async1">
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SignalEndOfUpload_Async">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/SignalEndOfUpload_Async" style="document" />
+      <wsdl:input name="SignalEndOfUpload_Async1">
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitWithDownloadLocation_Async">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/SubmitWithDownloadLocation_Async" style="document" />
+      <wsdl:input name="SubmitWithDownloadLocation_Async">
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ServiceStatus">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/ServiceStatus" style="document" />
+      <wsdl:input name="ServiceStatusRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ServiceStatusResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reprocess_Async">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/Reprocess_Async" style="document" />
+      <wsdl:input name="Reprocess_Async">
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SignalUploadFailure">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/SignalUploadFailure" style="document" />
+      <wsdl:input name="SignalUploadFailureRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SignalUploadFailureResponse1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reprocess_Background">
+      <soap:operation soapAction="http://mcafeelabs.com/contract/automation/SSC/3.0/Reprocess_Background" style="document" />
+      <wsdl:input name="Reprocess_BackgroundRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="Reprocess_BackgroundResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SampleSubmission">
+    <wsdl:port name="BasicHttpBinding_ISampleSubmission" binding="tns:BasicHttpBinding_ISampleSubmission">
+      <soap:address location="http://beaqaacme1/SSC_V3/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

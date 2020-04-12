@@ -1,0 +1,16 @@
+﻿<div id="divProgress" class="loader" style="display:none;">
+    <img id="imgIntel" src="~/Images/Intel.gif" width="80" height="60" style="border-radius:10px;background-color:dimgray;" />
+</div>
+
+<script>
+    function displayLoader(visible) {
+        if (visible) {
+            $('#divProgress').attr("style", "visibility:visible;");
+            $('#btnCancel').attr("style", "visibility:visible;");
+
+        } else {
+            $('#divProgress').attr("style", "display:none;");
+            $('#btnCancel').attr("style", "display:none;");
+        }
+    };
+</script>

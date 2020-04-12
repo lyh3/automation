@@ -1,0 +1,58 @@
+{
+  "QuickDiagonostics": {
+    "navs":[
+      {"to":"EDK II Menue", "navigation" : "", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"Intel DIMM Gen 1 Congiguration", "navigation" : "arrowKeyDown", "recur" : "11", "invoke" : "carrigeReturn"},
+      {"to":"Diagonostics", "navigation" : "arrowKeyDown", "recur" : "4", "invoke" : "carrigeReturn; carrigeReturn; space;Y"}
+    ]
+  },
+  "P State Domain":{
+    "navs":[
+      {"to":"EDK II Menue", "navigation" : "", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"Socket Configuration", "navigation" : "arrowKeyDown", "recur" : "10", "invoke" : "carrigeReturn"},
+      {"to":"Advanced Power Management Configuration", "navigation" : "arrowKeyDown", "recur" : "5", "invoke" : "carrigeReturn"},
+      {"to":"CPU P State Control", "navigation" : "arrowKeyDown", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"P State Domain", "navigation" : "arrowKeyDown", "recur" : "5", "invoke" : "carrigeReturn"},
+      {"to":"ONE", "navigation" : "arrowKeyDown", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"Advanced Power Management Configuration", "navigation" : "escape", "recur" : "3", "invoke" : "Y"},
+      {"to":"Save", "navigation" : "", "recur" : "1", "invoke" : "Y"},
+      {"to":"EDK II Menue", "navigation" : "escape", "recur" : "1", "invoke" : ""},
+      {"to":"Reset", "navigation" : "arrowKeyDown", "recur" : "4", "invoke" : "carrigeReturn"}
+    ]
+  },
+  "Serial Debug Message Level - Normal" :{
+    "navs":[
+      {"to":"EDK II Menue", "navigation" : "", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"Platform Configuration", "navigation" : "arrowKeyDown", "recur" : "5", "invoke" : "carrigeReturn"},
+      {"to":"Miscellaneous Configuration", "navigation" : "arrowKeyDown", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"Serial Debug Message Level", "navigation" : "arrowKeyDown", "recur" : "14", "invoke" : "carrigeReturn"},
+      {"to":"Normal", "navigation" : "arrowKeyUp", "recur" : "2", "invoke" : "carrigeReturn"},
+      {"to":"F10 Save", "navigation" : "F10", "recur" : "1", "invoke" : "Y"},
+      {"to":"EDK II Menue", "navigation" : "escape", "recur" : "3", "invoke" : "arrowKeyDown"},
+      {"to":"Reset", "navigation" : "arrowKeyDown", "recur" : "3", "invoke" : "carrigeReturn"}
+    ]
+  },
+  "Serial Debug Message Level - Mininal" :{
+    "navs":[
+      {"to":"EDK II Menue", "navigation" : "", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"Platform Configuration", "navigation" : "arrowKeyDown", "recur" : "5", "invoke" : "carrigeReturn"},
+      {"to":"Miscellaneous Configuration", "navigation" : "arrowKeyDown", "recur" : "1", "invoke" : "carrigeReturn"},
+      {"to":"Serial Debug Message Level", "navigation" : "arrowKeyDown", "recur" : "14", "invoke" : "carrigeReturn"},
+      {"to":"Normal", "navigation" : "arrowKeyUp", "recur" : "3", "invoke" : "carrigeReturn"},
+      {"to":"F10 Save", "navigation" : "F10", "recur" : "1", "invoke" : "Y"},
+      {"to":"EDK II Menue", "navigation" : "escape", "recur" : "3", "invoke" : "arrowKeyDown"},
+      {"to":"Reset", "navigation" : "arrowKeyDown", "recur" : "3", "invoke" : ""}
+    ]
+  },
+  "serial" : {
+    "port": "COM3",
+    "baud": "115200"
+  },
+  "Client" : {
+      "ip" : "201.0.0.67",
+      "user" : "root",
+      "password" : "inT3l123$"
+  },
+  "timeout" : "300",
+  "recurring" : "15"
+}

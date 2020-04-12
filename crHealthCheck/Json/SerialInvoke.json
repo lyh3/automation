@@ -1,0 +1,14 @@
+{
+  "serialInvoke" : [
+    {"F2" : { "invoke" : "write", "data" : "\\x1b2"}},
+    {"F10" : { "invoke" : "write", "data" : "\\x1b0A"}},
+    {"arrowKeyUp" : { "invoke" : "writeLines", "data" : "^[A"}},
+    {"arrowKeyDown" : {  "invoke" : "writeLines", "data" : "^[B"}},
+    {"carrigeReturn" : {  "invoke" : "write", "data" : "\\x0d"}},
+    {"escape" : { "invoke" : "write", "data" : "\\x1b"}},
+    {"save" : { "invoke" : "write", "data" : "\\x1b\\x01\\x00"}},
+    {"space" : { "invoke" : "write", "data" : "\\x20"}},
+    {"Y" : { "invoke" : "writeLines", "data" : "\\x59"}},
+    {"N" : { "invoke" : "write", "data" : "\\x4E"}}
+  ]
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://mcafeelabs.com/schema/automation/scanning-services/2.0" elementFormDefault="qualified" targetNamespace="http://mcafeelabs.com/schema/automation/scanning-services/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd5" namespace="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.1" />
+  <xs:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd3" namespace="http://mcafeelabs.com/schema/business-services/sample-details/1.0" />
+  <xs:element name="metadata-update-request" type="tns:metadataUpdateRequestType" />
+  <xs:complexType name="metadataUpdateRequestType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="sample-identifier-list" type="tns:sampleIdentifierUrlType" />
+        <xs:element xmlns:q1="http://mcafeelabs.com/schema/business-services/sample-details/1.0" minOccurs="0" maxOccurs="1" ref="q1:samples" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sampleIdentifierUrlType">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.1" minOccurs="0" maxOccurs="1" name="url" type="q2:urlSubmissionBaseType" />
+    </xs:sequence>
+    <xs:attribute name="hashType">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="MD5" />
+          <xs:enumeration value="SHA256" />
+          <xs:enumeration value="SHA1" />
+          <xs:enumeration value="DATAID" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>

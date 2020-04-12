@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.1" elementFormDefault="qualified" targetNamespace="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="urlSubmissionBaseType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="sftp-full-path" type="tns:sftpUrlType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ftp-full-path" type="xs:anyURI" />
+        <xs:element minOccurs="0" maxOccurs="1" name="http-full-path" type="xs:anyURI" />
+        <xs:element minOccurs="0" maxOccurs="1" name="https-full-path" type="tns:httpsUrlType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="custom-protocol" type="tns:customProtocolType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sftpUrlType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="url" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="public-key" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="httpsUrlType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="url" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="client-cert" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customProtocolType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="protocol-name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="urlSubmissionType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:urlSubmissionBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="package" type="tns:filePackageType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="filePackageType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="raw-file" type="tns:rawFilePackageType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="directory" type="tns:directoryPackageType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="custom-package">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="open-archive" type="tns:openArchivePackageType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="encrypted-zip" type="tns:encryptedZipPackageType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rawFilePackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="directoryPackageType">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="1" name="md5-manifest-list" type="tns:md5FileType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="md5-manifest-location" type="xs:string" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="md5FileType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="filepath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="openArchivePackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="encryptedZipPackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

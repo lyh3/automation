@@ -1,0 +1,76 @@
+﻿@using WindowService.DataModel;
+
+@model McuRelease
+@if (@Model != null)
+{
+    String idCpuID_1_Select = "cpuID_1_Select_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idCpuID_2_Select = "cpuID_2_Select_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    <table>
+        <tr>
+            <td>
+                <select class="btn btn-toolbar" id=@idCpuID_1_Select accesskey=@idCpuID_2_Select title=@ViewData[Definitions.MCU_VIEW_DATA_KEY] , onchange="onPlatformID_1_Changed(this);" style="background-color:rgba(41, 42, 43, 0.9);color:silver;font-size:small;height:30px; width:75px;overflow-x: scroll;overflow-y: scroll;">
+                    <option id="-1" value="" data-bind=""></option>
+                    @foreach (var x in Model.PlatformID_1)
+                    {
+                        var key = x;
+                        <option id="@key" value="@key">@key</option>
+                    }
+                </select>
+            </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>
+                <select class="btn btn-toolbar" id=@idCpuID_2_Select accesskey=@idCpuID_1_Select title=@ViewData[Definitions.MCU_VIEW_DATA_KEY] , onchange="onPlatformID_2_Changed(this);" style="background-color:rgba(41, 42, 43, 0.9);color:silver;font-size:small;height430px; width:75px;overflow-x: scroll;overflow-y: scroll;">
+                    <option id="-1" value="" data-bind=""></option>
+                    @foreach (var x in Model.PlatformID_2)
+                    {
+                        var key = x;
+                        <option id="@key" value="@key">@key</option>
+                    }
+                </select>
+            </td>
+        </tr>
+    </table>
+}
+
+<script type="text/javascript">
+    function onPlatformID_1_Changed(dropdown) {
+        var mcu = dropdown.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(dropdown.id).value.trim();
+        var value_2 = document.getElementById(dropdown.accessKey).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdatePlatformID_1',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"PlatformID_1\":\"" + value + "\", \"PlatformID_2\":\"" + value_2 + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onPlatformID_2_Changed(dropdown) {
+        var mcu = dropdown.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(dropdown.id).value.trim();
+        var value_1 = document.getElementById(dropdown.accessKey).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdatePlatformID_2',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"PlatformID_1\":\"" + value_1 + "\", \"PlatformID_2\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+</script>

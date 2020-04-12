@@ -1,0 +1,16 @@
+{
+  "ipmctl" : {
+      "CreateADGoal" : "create -f -goal persistentmemorytype=appdirect",
+      "CreateMMGoal" : "ipmctl create -f -goal memorymode={}",
+      "DeleteGoal" : "delete -goal",
+      "GetMemoryResource" : "show -o nvmxml -memoryresources",
+      "QueryPool" : "show -a -o nvmxml -pool",
+      "ShowDimm" : "show -dimm",
+      "GetRegion" : "list -R -u"
+    },
+    "ndctl" : {
+      "CreateNameSpace" : "create-namespace -r {} -m {} -f --verbose",
+      "GetNameSpace" : "list --namespaces -u",
+      "DestroyNameSpace" : "destroy-namespace {} -f"
+    }
+}

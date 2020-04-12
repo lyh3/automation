@@ -1,0 +1,717 @@
+{
+	"tests":
+	[
+		{
+			"testid" : "GetSelfTestResults",
+			"skip"   : "False",
+			"objective" : "Verify if the server platform is ready for compliance testing.",
+			"description" : "The ME self testing will detect the access belities from the following areas: SEL, SDR, FRU, PIA, PSU, Invalid flash configuration, HSC, UMA an ME internal errors.",
+			"mandatory/technology" : "Mandatory for basic platform and ME functions.",
+			"requirement" : "System is running in operational mode.",
+			"commands" : [
+				{
+					"description" : "Call the Self test results.",
+					"command" : "raw 0x06 0x04"
+				}
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "GetMeFWCapability",
+			"skip"   : "False",
+			"objective" : "Determain the compliance test cases can be done basede on the ME capability.",
+			"description" : "The ME capablicties are determined by the configuration of running image (FITc tool) and the SKU version of the chipset under testing",
+			"mandatory/technology" : "Optional for ME.",
+			"requirement" : "IPMI.",
+			"commands" : [
+				{
+					"description" : "Retrieve the ME FW capablities",
+					"command" : "0x2e 0xDE",
+					"format" : "0x00 0x00 0x00 0x00 0x00 0x02 0x00 0x00"
+				}
+			],
+			"positions" : 
+				[
+					{"position" : "[5:8]", "hex" : "False",
+						"description" : "Intel ME FW version - [Major].[Minor].[FW build#].[Patch#]", 
+						"values" :[],
+						"positions" : []},
+					{"position" : "[9:9]", 
+						"description" : "IPMI version", 
+						"values" :[
+							{"value" : "01b", "description" : "IPMI 1.0"},
+							{"value" : "02b", "description" : "IPMI 2.0"}
+						],
+						"positions" : []},
+					{"position" : "[10:11]", "hex" : "True", 
+						"description" : "IPMI Message Size Supported (bytes). Value includes encapsulation.", 
+						"values" :[],
+						"positions" : []},
+					{"position" : "[12:12]", "hex" : "True",
+						"description" : "ntel(R) ME FW Update and State Control Version", 
+						"values" :[
+							{"value" : "01b", "description" : "v1.0"},
+							{"value" : "02b", "description" : "v2.0"}
+						],
+						"positions" : []},
+					{"position" : "[13:13]", "hex" : "False", 
+						"description" : "Proxies supported by Intel(R) ME FW", 
+						"values" : [],
+						"positions" : [
+							{
+								"position" : "[6:7]",
+								"description" : "MIC Discovery", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]},						
+							{
+								"position" : "[4:5]",
+								"description" : "IPMB Proxy (aka MIC Proxy)", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]},							
+							{
+								"position" : "[2:3]",
+								"description" : "PMBUS proxy", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]},							
+							{
+								"position" : "[0:1]",
+								"description" : "PECI proxy", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]}
+						]
+					},
+					{"position" : "[14:14]", "hex" : "False", 
+						"description" : "Assist Modules", 
+						"values" :[], 
+						"positions" : [
+							{
+								"position" : "[6:7]",
+								"description" : "Performance Assist Module", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]},						
+							{
+								"position" : "[4:5]",
+								"description" : "RAS Assist Module", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]},							
+							{
+								"position" : "[2:3]",
+								"description" : "BIOS Assist Module", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]},							
+							{
+								"position" : "[0:1]",
+								"description" : "Power and Thermal (Intel(R) NM) Assist Module", 
+								"values" : [
+									{"value" : "00b", "description" : "not supported"},
+									{"value" : "01b", "description" : "supported, not enabled"},
+									{"value" : "10b", "description" : "reserved"},
+									{"value" : "11b", "description" : "supported and enabled"}
+								]}							
+						]}
+				],
+			"caution" : ""
+		},
+		{
+			"testid" : "PECI_003",
+			"skip"   : "False",
+			"objective" : "Verify PECI connectivity.",
+			"description" : "PECI interface is supported by the SPS FW FW. It could be PECI wire or/and DMI.",
+			"mandatory/technology" : "Mandatory for basic platform and NM functionality. It could be PECI wire or/and DMI.",
+			"requirement" : "IPMI commands are used, DMI interface connected to PCH or/and PECI wire connected to PCH. It is required that CPU0 is present on the board.",
+			"commands" : [
+				{
+					"description" : "Run Get CPU and Memory Temperature (4Bh) IPMI command to check if the PECI interface between CPUs and PCH works fine.",
+					"command" : "0x2e 0x4b",
+					"format" : "0x01 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00"
+				}
+			],
+			"caution" : ""
+		},			
+		{
+			"testid" : "PECI_004",
+			"skip"   : "False",
+			"objective" : "Verify PECI proxy interface functionality.",
+			"description" : "PECI proxy interface is provided by SPS FW when PECI wire or/and DMI interface is connected to PCH.",
+			"mandatory/technology" : "Optional technology to access PECI interface from other platform components.",
+			"requirement" : "PECI proxy interface is provided by SPS FW when PECI wire or/and DMI interface is connected to PCH.",
+			"commands" : [
+				{
+					"description" : "PECI over DMI with fallback to PECI wire : 0x41 0x57 0x01 0x00 0x30 0x00 0x00",
+					"command" : "0x2e 0x41",
+					"format" : "0x30 0x00 0x00"
+				},
+				{
+					"description" : "PECI over DMI only : 0x41 0x57 0x01 0x00 0x70 0x00 0x00",
+					"command" : "0x2e 0x41",
+					"format" : "0x70 0x00 0x00"
+				},
+				{
+					"description" : "PECI wire only : 0x41 0x57 0x01 0x00 0xB0 0x00 0x00",
+					"command" : "0x2e 0x41",
+					"format" : "0xb0 0x00 0x00"
+				}					
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "NM_002",
+			"skip"   : "False",
+			"objective" : "Verify that power consumption readings are correct in platform power domain.",
+			"description" : "Power consumption readings are required for NM power limiting functionality. Correct power consumption power readings need to be provided for each defined power domain.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC, external power meter, PTU.",
+			"commands" : [
+				{
+					"description" : "set power capping-framework",
+					"command" : "0x2e 0xC1",
+					"format" : "0x10 0x01 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0xA7 0x00",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "get platform power tatistics",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x00 0x01"
+				}
+			],
+			"caution" : "Please verify that platform domain are matching platform power consumption measured with external power meter on idle and loaded host system with 1% tolerance. Tips: CPU stress is needed for this test."
+		},
+		{
+			"testid" : "NM_003",
+			"skip"   : "False",
+			"objective" : "Verify that power consumption readings are correct in CPU power domain.",
+			"description" : "Power consumption readings are required for NM power limiting functionality. Correct power consumption power readings need to be provided for each defined power domain.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC, PTU.",
+			"commands" : [
+				{
+					"description" : "set power capping-CPU",
+					"command" : "0x2e 0xC1",
+					"format" : "0x11 0x02 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0xa7 0x00",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "get Cpu Power statistics",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x01 0x02"
+				}
+			],
+			"caution" : "CPU stress may need to this test case."
+		},
+		{
+			"testid" : "NM_004",
+			"skip"   : "False",
+			"objective" : "Verify that power consumption readings are correct in Memory power domain.",
+			"description" : "Power consumption readings are required for NM power limiting functionality. Correct power consumption power readings need to be provided for each defined power domain.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC, PTU.",
+			"commands" : [
+				{
+					"description" : "set powercapping-MEMORY",
+					"command" : "0x2e 0xC1",
+					"format" : "0x12 0x03 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0x0a 0x00",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "getMemoryPowerStatistics",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x02 0x03"
+				}
+			],
+			"caution" : "CPU stress may need to this test."
+		},
+		{
+			"testid" : "NM_005",
+			"skip"   : "False",
+			"objective" : "Verify that power consumption readings are correct in HPIO power domain if HPIO domain is enabled.",
+			"description" : "Power consumption readings are required for NM power limiting functionality. Correct power consumption power readings need to be provided for each defined power domain.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC, PTU.",
+			"commands" : [
+				{
+					"description" : "set powercapping-HPIO",
+					"command" : "0x2e 0xC1",
+					"format" : "0x14 0x04 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0xa7 0x00",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "getHPIOPowerStatistics",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x04 0x04"
+				}
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "NM_006",
+			"skip"   : "False",
+			"objective" : "Verify that valid RTC time is passed to NM.",
+			"description" : "Valid time is required for NM power limiting functionality. NM suspend periods are activated only if NM receives valid RTC time.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC.",
+			"commands" : [
+				{
+					"description" : "get SEL time",
+					"command" : "sel get time"
+				}
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "NM_007",
+			"skip"   : "False",
+			"objective" : "Verify that P-State/T-State limit change requests are correctly handled by OSPM.",
+			"description" : "Verify that P-State/T-State limit change requests are correctly handled by OSPM.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC",
+			"commands" : [
+				{
+					"description" : "set Mas allowed CPU T-state/P-state",
+					"command" : "0x2e 0xd2",
+					"format" : "0x00 {0} {1}",
+					"P-state nr" : "0x08",
+					"T-state nr" : "0x00"
+				},
+				{
+					"description" : "get Mas allowed CPU T-state/P-state",
+					"command" : "0x2e 0xd3",
+					"format" : "0x00"
+				}
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "NM_009",
+			"skip"   : "False",
+			"objective" : "Verify that power limiting is working correctly in platform power domain.",
+			"description" : "Power limiting is a key feature of NM.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC",
+			"commands" : [
+				{
+					"description" : "set platform power to 80% of current reading",
+					"command" : "0x2e 0xc1",
+					"format" : "0x10 0x01 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0x90 0x01",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "verify the current reading error in 5% range",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x00 0x01"
+				}
+			],
+			"caution" : "CPU stress may need to this test."
+		},
+		{
+			"testid" : "NM_010",
+			"skip"   : "False",
+			"objective" : "Verify that power limiting is working correctly in CPU power domain.",
+			"description" : "Power limiting is a key feature of NM.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC, FPT",
+			"commands" : [
+				{
+					"description" : "get NM capabilities in CPU domain",
+					"command" : "0x2e 0xC9",
+					"format" : "0x01 0x10"
+				},
+				{
+					"description" : "set platform power to 80% of current reading",
+					"command" : "0x2e 0xc1",
+					"format" : "0x11 0x02 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0x90 0x01",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "verify the current reading error in 5% range",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x01 0x02"
+				}
+			],
+			"caution" : "CPU stress may need to this test."
+		},
+		{
+			"testid" : "NM_011",
+			"skip"   : "False",
+			"objective" : "Verify that power limiting is working correctly in MEMORY power domain.",
+			"description" : "Power limiting is a key feature of NM.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC, FPT",
+			"commands" : [
+				{
+					"description" : "get NM capabilities in MEMORY domain",
+					"command" : "0x2e 0xC9",
+					"format" : "0x02 0x10"
+				},
+				{
+					"description" : "set platform power to 80% of current reading",
+					"command" : "0x2e 0xC1",
+					"format" : "0x12 0x03 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0x0a 0x00",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "verify the current reading error in 5% range",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x02 0x03"
+				}
+			],
+			"caution" : "CPU stress may need to this test."
+		},
+		{
+			"testid" : "NM_012",
+			"skip"   : "False",
+			"objective" : "Verify that power limiting is working correctly in HPIO power domain.",
+			"description" : "Power limiting is a key feature of NM.",
+			"mandatory/technology" : "Mandatory for NM.",
+			"requirement" : "MESDC, FPT",
+			"commands" : [
+				{
+					"description" : "get NM capabilities in HPIO domain",
+					"command" : "0x2e 0xC9",
+					"format" : "0x04 0x10"
+				},
+				{
+					"description" : "set platform power to 80% of current reading",
+					"command" : "0x2e 0xC1",
+					"format" : "0x12 0x04 0x50 0x00 {0} {1} 0x00 0x00 0x00 0x00 0x01 0x00",
+					"powerlimit" : "0x0a 0x00",
+					"correctiontime" : "0xE8 0x03"
+				},
+				{
+					"description" : "verify the current reading error in 5% range",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x04 0x04"
+				}
+			],
+			"caution" : ""
+		},			
+		{
+			"testid" : "NM_013",
+			"skip"   : "False",
+			"objective" : "Verify that power platform supports CPUs PROCHOT# assertion.",
+			"description" : "CPUs PROCHOT# is used for by NM for power capping in case CPU RAPL is not available (boot time power limiting or IB-PECI not available).",
+			"mandatory/technology" : "Optional technology to access PECI interface from other platform components.",
+			"requirement" : "MEDSC, FPT",
+			"commands" : [
+				{
+					"description" : "Raw PECI command sent to address 0x30",
+					"command" : "0x2e 0x41",
+					"format" : "0x30 0x00 0x00"
+				},
+				{
+					"description" : "Raw PECI command sent to address 0x31",
+					"command" : "0x2e 0x41",
+					"format" : "0x31 0x00 0x00"
+				},
+				{
+					"description" : "Raw PECI command sent to address 0x32",
+					"command" : "0x2e 0x41",
+					"format" : "0x32 0x00 0x00"
+				}					
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "NM_014",
+			"skip"   : "False",
+			"objective" : "Verify that Fast NM Limiting is working correctly.",
+			"description" : "1) Boot the SUT 2) Run load on host system with OS PTU. 3) With IPMI command 'Get NM Statistics' get global power statistics for platform power domain - current value (Byte 5:6). 4) With IPMI command 'Set Node Manager Power Draw Range' set power limit for HW protection domain in range from 1W to 80% of the power statistics current value collected in previous step. 5) Wait for 1 sec. 6) With IPMI command 'Get NM Statistics' get global per policy power statistics for HW protection domain and policy ID 00h - current value (Byte 5:6) and verify if it is matching set NM policy power limit with 5% tolerance. Check if policy activation state bit is set. Check if policy is actively limiting bit is set.",
+			"mandatory/technology" : "Optional for NM.",
+			"requirement" : "MESDC, FPT",
+			"commands" : [
+				{
+					"description" : "With IPMI command 'Get NM Statistics' get global power statistics for platform power domain - current value (Byte 5:6).",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x00 0x00"
+				},
+				{
+					"description" : "set platform power to 80% of current reading",
+					"command" : "0x2e 0xCB",
+					"format" : "0x00 {0} {1}"
+				},
+				{
+					"description" : "With IPMI command Get NM Statistics get global per policy power statistics for HW protection domain and policy ID 00h - current value (Byte 5:6) and verify if it is matching set NM policy power limit with 5% tolerance. Check if policy activation state bit is set. Check if policy is actively limiting bit is set.",
+					"command" : "0x2e 0xC8",
+					"format" : "0x01 0x03 0x00"
+				}
+			],
+			"caution" : "Power readings for platform domain need to be provided by HSC device(s) for Fast NM Limiting. CPU stress may need to turn off in order to pass this test."
+		},
+		{
+			"testid" : "SmaRT_001",
+			"skip"   : "False",
+			"objective" : "Verify SmaRT&CLST functionality",
+			"description" : "SmaRT&CLST feature serves as a protection of PSUs against over temperature and overcurrent events and against platform shutdown during undervoltage events.",
+			"mandatory/technology" : "Optional hardware protection technology.",
+			"requirement" : "IPMI command interface available to send commands to ME. CPU0 present on the platform. #SMBAlert signal assertion method: - changing PSU temperature or current thresholds using Send RAW PMBus command to the level when normal PSU operation triggers the alert.",
+			"commands" : [
+				{
+					"description" : "Read actual setting of the PSU temperature threshold that is used to generate SMBAlert, for reference: 0xD9 0x57 0x01 0x00 0x86 0xB0 0x00 0x00 0x01 0x02 0x51 Response will look like this: 0x00 0x57 0x01 0x00 0xA9 0xEB, where two last bytes represent the actual temperature setting",
+					"command" : "0x2e 0xD9",
+					"format" : "0x86 0xB0 0x00 0x00 0x01 0x02 0x51"
+				},
+				{
+					"description" : "Change PSU temperature threshold to the value below the ambient temperature - 7 Cecius degrees in this example, this will cause immediate SMBAlert assertion: 0xD9 0x57 0x01 0x00 0x88 0xB0 0x00 0x00 0x03 0x00 0x51 0x1C 0xF0",
+					"command" : "0x2e 0xD9",
+					"format" : "0x88 0xB0 0x00 0x00 0x03 0x00 0x51 0x1C 0xF0"
+				},
+				{
+					"description" : "Read actual PL2 limit sent to CPU0 by ME to check if the #SMBAlert assertion caused ME set limit of 0 W to force maximum CPU throttling: 0x40 0x57 0x01 0x00 0x30 0x05 0x05 0xA1 0x00 0x1B 0x00 0x00 Expected response is as follows: 0x00 0x57 0x01 0x00 0x40 0x00 0x80 0x47 0x00 0x80 means limit is set to 0 W and is active",
+					"command" : "0x2e 0x40",
+					"format" : "0x30 0x05 0x05 0xA1 0x00 0x1B 0x00 0x00"
+				},
+				{
+					"description" : "Restore the original PSU temperature threshold red in stage 2: 0xD9 0x57 0x01 0x00 0x88 0xB0 0x00 0x00 0x03 0x00 0x51 0xA9 0xEB.",
+					"command" : "0x2e 0xD9",
+					"format" : "0x88 0xB0 0x00 0x00 0x03 0x00 0x51 0xA9 0xEB"
+				}
+			],
+			"expectedvalues" : "0x40 0x00 0x80 0x47 0x00",
+			"caution" : "Before conduction this test it's important to check if the PSU suport the threshold changging commands and eventually use commands supported by PSU which powers the system."
+		},
+		{
+			"testid" : "CUPS_001",
+			"skip"   : "False",
+			"objective" : "CUPS feature enablement verification test.Verify CUPS feature is enabled on the platform. There are 2 ways to do this. 1) With IPMI cmd 2) ME-BIOS Interface Version Message",
+			"description" : "This test describes two ways of verifying if the CUPS feature is enabled or not. The IPMI method requires IPMI interface in order to run the IPMI cmd. The scond method is a HECI message between BIOS and ME FW. this requires access to HECI interface or bios capture with the SPS_CMD_GET_MEBIOS_INTERFACE_REQ and SPS_CMD_GET_MEBIOS_INTERFACE_RSP. Both the test cases require ME in Operational mode.",
+			"mandatory/technology" : "Mandatory unless CUPS feature enablement has been verified in other sections.",
+			"requirement" : "FITC/IPMI. System is running in operational mode.",
+			"commands" : [
+				{
+					"description" : "Run IPMI cmd to verify if CUPS is enabled.",
+					"command" : "0x2e 0x64",
+					"format" : ""
+				}
+			],
+			"expectedvalues" : "01 01 01 00",
+			"caution" : "Refer to NM4.0 External Interface Specification for details on the IPMI cmd. DOC ID - 550710 Refer to the ME-BIOS Interface Specification for details on the HECI message. DOC ID - 548530"
+		},
+		{
+			"testid" : "CUPS_002",
+			"skip"   : "False",
+			"objective" : "Verify that PECI over DMI is functional. In-Band PECI test",
+			"description" : "CUPS feature is available only if PECI over DMI is functional. If for some reason PECI over DMI has not been integrated successfully or has failed CUPS will not be available. This integration can be checked by forcing the Send Raw PECI cmd on PECI over DMI.",
+			"mandatory/technology" : "Mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "Send IPMI command 'Send Raw PECI'",
+					"command" : "0x2e 0x40",
+					"format" : "0x70 0x00 0x00",
+					"complitioncode" : {
+						"0xa2" : "Command response timeout.",
+						"0xa4" : "Bad read FSC in the response.",
+						"0xa5" : "Bad write FCS field in the response.",
+						"0xa8" : "Selected PECI interface not available",
+						"0xab" : "Wrong command code.",
+						"0xac" : "CPU not present.",
+						"0xd5" : "Platform not in S0/S1 state.",
+						"0xff" : "Other error encountered."
+					}				
+				}
+			],
+			"caution" : ""
+		},			
+		{
+			"testid" : "CUPS_003",
+			"skip"   : "False",
+			"objective" : "To verify if the CUPS sensors are configured correctly.",
+		    "description" : "CUPS data can be obtained for each of the 3 compute domains. There are 3 sensors provided for each domain. Proper configuration of these sensors is required in order for NM to report out the CUPS values.",
+			"mandatory/technology" : "mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "Get Memory CPUS sensor #192 (0xc0) reading",
+					"command" : "0x04 0x2d",
+					"format" : "0xc0"
+				},
+				{
+					"description" : "Get Core CPUS sensor #190 (0xbe) reading",
+					"command" : "0x04 0x2d",
+					"format" : "0xbe"
+				},
+				{
+					"description" : "Get IO CPUS mi sensor #191 (0xbf) reading",
+					"command" : "0x04 0x2d",
+					"format" : "0xbf"
+				}					
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "CUPS_005",
+			"skip"   : "False",
+			"objective" : "To verify that Intel ME FW has initialized all CUPS parameters and cleared all irrelevant values.",
+			"description" : "Intel ME FW will store the initial values for all 3 compute domains and after an AC cycle the values should always be zero. Any non zero value should mean initialization did not complete successfully. This command allows BMC or Remote Console to retrieve the CUPS data. Request byte 4 is the parameter selector which is provided in the table below. The number of response bytes varies based on the parameter selector requested.",
+			"mandatory/technology" : "Mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "Get CUPS data",
+					"command" : "0x2e 0x65",
+					"format" : "0x03"
+				}
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "PTAS_001",
+			"skip"   : "False",
+			"objective" : "Verify PTAS Thermals integrated successfully as part of Intel NM. This test has 2 parts. 1) Verify that SDR sensor is initialized correctly. 2) the values exposed in the SDR sensor are same as the values calculated by ME FW and exposed via C8h IPMI cmd.",
+			"description" : "PTAS Thermals is provided as part of Intel NM and the functionality is available if Intel NM has been integrated successfully. There are 3 sensors implemented by BMC, for inlet temp, outlet temp and volumetric airflow. All 3 should return a valid value when queried. The value shown in the SDR sensor should be the same as the value obtained from Get NM Statistics (C8h) IPMI command. This value is calculated dynamically by Intel ME. This calculation is dependent on a valid inlet temp value and a valid volumetric airflow value.",
+			"mandatory/technology" : "Mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "Read SDR Outlet Temp sensor #189",
+					"command" : "0x04 0x2d",
+					"format" : "0xBD"
+				},
+				{
+					"description" : "Get Intel Node Manager Statistics",
+					"command" : "0x2e 0xc8",
+					"format" : "0x05 0x00 0x00"
+				}
+			],
+			"caution" : "When values are read from SDR sensors Intel ME will not calculate the values, it relies on BMC to do that."
+		},
+		{
+			"testid" : "PTAS_002",
+			"skip"   : "False",
+			"objective" : "To verify volumetric airflow feature is functional in Intel ME. This test has 2 parts. 1) Verify that SDR sensor is initialized correctly. 2) the values exposed in the SDR sensor are same as the values calculated by ME FW and exposed via C8h IPMI cmd.",
+			"description" : "Volumetric Airflow data can be obtained from Intel ME if the Intel NM integration was successful and Intel ME can read global power statistics. Volumetric airflow is calculated on the fly by Intel ME based on the real time platform values and is available at any time by using the 'Get Node Manager Statistics' IPMI cmd.",
+			"mandatory/technology" : "Mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "Read SDR Outlet Temp sensor #162",
+					"command" : "0x04 0x2d",
+					"format" : "0xA2"
+				},
+				{
+					"description" : "Get Intel Node Manager Statistics",
+					"command" : "0x2e 0xc8",
+					"format" : "0x04 0x00 0x00"
+				}
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "PTAS_003",
+			"skip"   : "False",
+			"objective" : "To verify that ME FW is able to report the calculated Coefficients for the platform and can dynamically set/change the Coefficients.",
+			"description" : "Calculated Coefficients can be obtained from Intel ME if the platform calibration process was successful and raw data entered in to ME correctly. Platform Coefficient values can be obtained at any time by using the 'Get Cooling Coefficient(DBh)' IPMI cmd.",
+			"mandatory/technology" : "Mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "Get Cooling Coefficient",
+					"command" : "0x2e 0xdb",
+					"format" : "0x00 {0}"
+				},
+				{
+					"description" : "Set Cooling Coefficient",
+					"command" : "0x2e 0xda",
+					"format" : "0x00 {0} {1}"
+				},
+				{
+					"description" : "Verify the settings",
+					"command" : "0x2e 0xdb",
+					"format" : "0x00 {0}"
+				}				
+			],
+			"caution" : ""
+		},
+		{
+			"testid" : "PTAS_004",
+			"skip"   : "False",
+			"objective" : "To verify that ME FW is able to report the altitude value set by BIOS for the platform and can dynamically change the value during runtime to override the BIOS setting.",
+			"description" : "Altitude can be obtained from Intel ME if BIOS initialization was successful and BIOS assigned a value correctly. Altitude values can be obtained at any time by using the 'Platform Altitude Level(D5h)' IPMI cmd.",
+			"mandatory/technology" : "Mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "Get BIOS settings for platform altitude level",
+					"command" : "0x2e 0xd5",
+					"format" : "0x20 {0}"
+				},
+				{
+					"description" : "Set platform altitude level",
+					"command" : "0x2e 0xd5",
+					"format" : "0x00 {0}",
+					"usersettings" : ""
+				},
+				{
+					"description" : "Verify the altitude level settings",
+					"command" : "0x2e 0xd5",
+					"format" : "0x20 {0}"
+				}				
+			],
+			"caution" : "Ensure that the altitude value set is different from the value set by BIOS. Allowed altitude values are from range (-1000 to 10000)"
+		},
+		{
+			"testid" : "PTU_001",
+			"skip"   : "True",
+			"objective" : "",
+			"description" : "",
+			"mandatory/technology" : "Mandatory",
+			"requirement" : "IPMI",
+			"commands" : [
+				{
+					"description" : "",
+					"command" : "0x2e 0xd5",
+					"format" : "0x20 {0}"
+				},
+				{
+					"description" : "",
+					"command" : "0x2e 0xd5",
+					"format" : "0x00 {0}"
+				},
+				{
+					"description" : "",
+					"command" : "0x2e 0xd5",
+					"format" : "0x20 {0}"
+				}				
+			],
+			"caution" : ""
+		}			
+	],				
+	"ipmicomplitioncode" : "/opt/automationUI/Json/AutomationData/IpmiStandardCompletionCode.json",
+	"manufactureid" : "0x57 0x01 0x00",
+	"reporthtmlfilename" : "ComplianceTestReport.html",
+	"timeout" : "300"
+}

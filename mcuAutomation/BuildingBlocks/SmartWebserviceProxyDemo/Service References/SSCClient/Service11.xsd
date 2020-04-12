@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" elementFormDefault="qualified" targetNamespace="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd2" namespace="http://mcafeelabs.com/schema/automation/base/0.1" />
+  <xs:complexType name="supportedSubmissionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="upload-protocols" type="tns:supportedProtocolType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="download-protocols" type="tns:supportedProtocolType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="upload-packages" type="tns:supportedPackageType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="download-packages" type="tns:supportedPackageType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="supportedProtocolType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ftp" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="http" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="sftp" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="mtom" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="custom" type="tns:customProtocolType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customProtocolType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="protocol-name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="supportedPackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="encrypted-zip">
+        <xs:complexType>
+          <xs:attribute name="max-package-ksize" type="xs:unsignedInt" use="required" />
+          <xs:attribute name="max-file-ksize" type="xs:unsignedInt" use="required" />
+          <xs:attribute name="max-file-count" type="xs:unsignedInt" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="open-archive">
+        <xs:complexType>
+          <xs:attribute name="max-package-ksize" type="xs:unsignedInt" use="required" />
+          <xs:attribute name="max-file-ksize" type="xs:unsignedInt" use="required" />
+          <xs:attribute name="max-file-count" type="xs:unsignedInt" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="raw-file">
+        <xs:complexType>
+          <xs:attribute name="max-file-ksize" type="xs:unsignedInt" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="directory">
+        <xs:complexType>
+          <xs:attribute name="max-file-count" type="xs:unsignedInt" use="required" />
+          <xs:attribute name="max-recursion-depth" type="xs:unsignedInt" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="custom-package" type="tns:customPackageType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="customPackageType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="package-name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="validateRequestDetailsType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="upload" type="tns:urlSubmissionType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="download" type="tns:urlSubmissionType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="urlSubmissionType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:urlSubmissionBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="package" type="tns:filePackageType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="urlSubmissionBaseType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="ftp-full-path" type="xs:anyURI" />
+        <xs:element minOccurs="0" maxOccurs="1" name="https-full-path" type="tns:httpsUrlType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="sftp-full-path" type="tns:sftpUrlType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="custom-protocol" type="tns:customProtocolType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="http-full-path" type="xs:anyURI" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="httpsUrlType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="url" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="client-cert" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sftpUrlType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="url" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="public-key" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="filePackageType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="raw-file" type="tns:rawFilePackageType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="open-archive" type="tns:openArchivePackageType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="custom-package">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="1" name="directory" type="tns:directoryPackageType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="encrypted-zip" type="tns:encryptedZipPackageType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rawFilePackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="openArchivePackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="directoryPackageType">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element minOccurs="0" maxOccurs="1" name="md5-manifest-location" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="md5-manifest-list" type="tns:md5FileType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="md5FileType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="filepath" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="encryptedZipPackageType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="md5" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="submissionResponseType">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://mcafeelabs.com/schema/automation/base/0.1" minOccurs="0" maxOccurs="1" ref="q1:system-identifier" />
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="will-process-with-risk" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="will-process" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="will-not-process" type="tns:submissionErrorType" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="submissionErrorType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="response">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ACCESS_TO_URL_NOT_AVAILABLE" />
+            <xs:enumeration value="CUSTOM" />
+            <xs:enumeration value="UNSUPPORTED_PROTOCOL" />
+            <xs:enumeration value="ACCESS_TO_URL_UNKNOWN" />
+            <xs:enumeration value="UNSUPPORTED_PACKAGE_TYPE" />
+            <xs:enumeration value="IDENTIFIER_NOT_RECOGNISED" />
+            <xs:enumeration value="BASIC_PACKAGE_VALIDATION_FAILED" />
+            <xs:enumeration value="ALREADY_QUEUED_OR_PROCESSED" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="extension">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="downloadSessionDetailsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="location" type="tns:urlSubmissionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="uploadSessionCompletionType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:downloadSessionDetailsType">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://mcafeelabs.com/schema/automation/base/0.1" minOccurs="0" maxOccurs="1" ref="q2:system-identifier" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="submissionDetailsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="supported-protocols" type="tns:supportedProtocolType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="request-details">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="uploadSessionDetailsType">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://mcafeelabs.com/schema/automation/base/0.1" minOccurs="0" maxOccurs="1" name="upload-identifier" type="q3:identifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="upload-location" type="tns:urlUploadType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="urlUploadType">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="sftp-directory" type="tns:sftpUrlType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="custom-protocol" type="tns:customProtocolType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ftp-directory" type="xs:anyURI" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="uploadSessionFailureType">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://mcafeelabs.com/schema/automation/base/0.1" minOccurs="0" maxOccurs="1" name="upload-identifier" type="q4:identifierType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="uploadSessionFailureAcknowledgementType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

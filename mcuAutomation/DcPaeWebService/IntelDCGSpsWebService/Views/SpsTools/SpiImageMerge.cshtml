@@ -1,0 +1,208 @@
+﻿@using IntelDCGSpsWebService.Models;
+
+@model SpiImageMergeModel
+
+@{
+    ViewBag.Title = "SpiImageMerge";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (null != @Model)
+{
+    <h3 align="left" style="color:dodgerblue;">@Model.Title</h3><hr />
+
+    using (Html.BeginForm("UploadSpiImages", "SpsTools", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formSpiMerge", name = "formSpiMerge" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <table style="width:100%;">
+            <tr>
+                <td style="width:30%;">
+                    <table tyle="background-color:rgb(41, 42, 43); border: 1px; border-radius: 5px;">
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.SourceImage, new { @type = "file", @style = "color:gray;font-size:small;" })
+                                <input required type="file" id="sourceImage" class="btn btn-toolbar" name="sourceImage" style="background-color:rgb(41, 42, 43); color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                @Html.ValidationMessageFor(m => m.SourceImage, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                            </td>
+                        </tr>
+                        <tr><td style="height:10px;" /></tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.RegionImage, new { @type = "file", @style = "color:gray;font-size:small;" })
+                                <input required type="file" id="regionImage" class="btn btn-toolbar" name="regionImage" style="background-color:rgb(41, 42, 43); color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                @Html.ValidationMessageFor(m => m.RegionImage, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                            </td>
+                        </tr>
+                        <tr><td style="height:10px;" /></tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.MapFile, new { @type = "file", @style = "color:gray;font-size:small;" })
+                                <input required type="file" id="mapFile" class="btn btn-toolbar" name="mapFile" style="background-color:rgb(41, 42, 43);color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                @Html.ValidationMessageFor(m => m.MapFile, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                            </td>
+                        </tr>
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit" onclick="showProgress();" />
+                                        </td>
+                                        <td style="width:60px;" />
+                                        <td>
+                                            <input type="button" class="btn btn-danger" style="width:80px;display:none;" name="btnCancel" id="btnCancel" value="Cancel" onclick="location.reload();" />
+                                        </td>
+                                        <td />
+                                    </tr>
+                                </table>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width:20%;">
+                    @*<div id="divProgress" class="loader" style="display:none;">
+                        <img id="imgTools" src="~/Images/SqureSpinner.gif" width="64" height="64" style="border-radius:10px;background-color:dimgray;" />
+                    </div>*@
+                    @Html.Partial("../Shared/_Loader")
+                </td>
+                <td style="width:2%;" />
+                <td style="width:48%;">
+                    <table tyle="background-color:rgb(41, 42, 43); border: 1px; border-radius: 5px;">
+                        @if (Model.IsSpiFilesAvailable)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.SourceImage, new { @type = "file", @style = "color:gray;font-size:smaller;" })
+                                    @Html.TextBoxFor(m => m.SourceImage, new { @class = "form-control", @style = "width:400px;background-color:black;font-size:small;color:dimgray;border-color:grey;border-radius:3px;" })
+                                </td>
+                            </tr>
+                            <tr><td style="height:10px;" /></tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.RegionImage, new { @type = "file", @style = "color:gray;font-size:smaller;" })
+                                    @Html.TextBoxFor(m => m.RegionImage, new { @class = "form-control", @style = "width:400px;background-color:black;font-size:small;color:dimgray;border-color:grey;border-radius:3px;" })
+                                </td>
+                            </tr>
+                            <tr><td style="height:10px;" /></tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.MapFile, new { @type = "file", @style = "color:gray;font-size:smaller;" })
+                                    @Html.TextBoxFor(m => m.MapFile, new { @class = "form-control", @style = "width:400px;background-color:black;font-size:small;color:dimgray;border-color:grey;border-radius:3px;" })
+                                </td>
+                            </tr>
+                            <tr><td style="height:10px;" /></tr>
+                        }
+                        <tr>
+                            <td style="background-color:transparent;">
+                                @Html.LabelFor(m => m.RegionName, new { @style = "color:gray;font-size:small;" })
+                                @Html.TextBoxFor(m => m.RegionName, new
+                           {
+                               @class = "form-control",
+                               @placeholder = "Enter the region name, e.g. ME Region(case sensitive)",
+                               @style = "width:500px;background-color:rgb(41, 42, 43);font-size:small;color:white;border-color:grey;border-radius:3px;"
+                           })
+                                @Html.ValidationMessageFor(m => m.RegionName, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                            </td>
+                        </tr>
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.OutputName, new { @style = "color:gray;font-size:small;" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:transparent;">
+                                <table>
+                                    <tr>
+                                        @*@if (null != Model && !string.IsNullOrEmpty(Model.ResultsFile))
+                                            {
+                                                <td>
+                                                    <input type="submit" class="btn btn-success" name="download" id="download" value="Download" />
+                                                </td>
+                                            }*@
+                                        <td>
+                                            @Html.TextBoxFor(m => m.OutputName, new
+                                       {
+                                           @class = "form-control",
+                                           @placeholder = "Enter the output file name.",
+                                           @style = "width:500px;background-color:rgb(41, 42, 43);font-size:small;color:white;border-color:grey;border-radius:3px;"
+                                       })
+                                            @Html.ValidationMessageFor(m => m.OutputName, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    }
+    if (null != @Model && @Model.IsSpiFilesAvailable && string.IsNullOrEmpty(@Model.ResultsFile))
+    {
+        <table>
+            <tr>
+                <td>
+                    <div id='divErrorMessage' class='alert alert-dismissible alert-danger' style='width:100%;background-color:red;color:white;'>
+                        <span style="font-size:small;">
+                            &nbsp;Failed to merge file.  Please verify your wource and region images are in binary format.  Make sure the map file is valid and the region data correct.
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+    using (Html.BeginForm("DownloadSpiImage", "SpsTools", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formSpiMerge_download", name = "formSpiMerge_download" }))
+    {
+        <table style="width:100%;background-color:rgb(41, 42, 43);border:1px;border-radius:5px;">
+            <tr><td style="height:10px;" /></tr>
+            <tr>
+                <td style="width:10px;" />
+                <td>
+                    @if (null != @Model && !string.IsNullOrEmpty(@Model.ResultsFile))
+                    {
+
+                        <input type="submit" class="btn btn-success" name="download" id="download" value="Download" />
+                    }
+                </td>
+                <td style="width:20px;" />
+                <td>
+                    <span style="font-size:smaller;color:gray;">
+                        NOTE : This tool is used to swap an image/replace any region of a SPI image, for example, the ME region. In the case to debug a customer
+                        system and the BIOS image is created with a customer SPI utility this tool could provide a solution to depend on the BIOS image provided by customer.
+                        If use the Fitc tool to build the SPI image, the data such as the additional customer security data, will be wipped and the image created by Fitc tool
+                        may not be able to boot system. To use this tool, you need get your region image and map file ready. You may use the Fitc tool to reach that goal.  The
+                        size of the replace region image must be less or equl to the source reagion that to be rplaced.
+                    </span>
+                </td>
+                <td style="width:20px;" />
+            </tr>
+            <tr><td style="height:10px;" /></tr>
+        </table>
+    }
+}
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function resetUI() {
+            displayLoader(false);
+            $('#download').attr("style", "display:none;");
+            $('#Submit').attr("style", "visibility:visible;");
+            //$('btnCancelUpload').attr("style", "display:none;");
+            $('btnCancel').attr("style", "display:none;");
+        }
+        function onCancelUpload() {
+            $('#download').attr("style", "display:none;");
+            onCancelClick();
+        }
+        function showProgress() {
+            if (IsFormFilled()) {
+                displayLoader(true);
+            }
+        }
+    </script>
+}

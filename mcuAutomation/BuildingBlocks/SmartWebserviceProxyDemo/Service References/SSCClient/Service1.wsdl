@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://mcafeelabs.com/contract/automation/SSC/3.0" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://mcafeelabs.com/contract/automation/SSC/3.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://mcafeelabs.com/contract/automation/SSC/3.0/Imports">
+      <xsd:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd0" namespace="http://mcafeelabs.com/contract/automation/SSC/3.0" />
+      <xsd:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd1" namespace="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" />
+      <xsd:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd2" namespace="http://mcafeelabs.com/schema/automation/base/0.1" />
+      <xsd:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd3" namespace="http://mcafeelabs.com/schema/business-services/sample-details/1.0" />
+      <xsd:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd4" namespace="http://mcafeelabs.com/schema/automation/scanning-services/2.0" />
+      <xsd:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd5" namespace="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.1" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetProtocolsRequest" />
+  <wsdl:message name="GetProtocolsResponse1">
+    <wsdl:part name="GetProtocolsResponse" element="tns:GetProtocolsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidatePackageRequest">
+    <wsdl:part name="ValidatePackage" element="tns:ValidatePackage" />
+  </wsdl:message>
+  <wsdl:message name="ValidatePackageResponse">
+    <wsdl:part name="ValidatePackageResponse" element="tns:ValidatePackageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubmitWithDownloadLocationRequest">
+    <wsdl:part name="SubmitWithDownloadDetails" element="tns:SubmitWithDownloadDetails" />
+  </wsdl:message>
+  <wsdl:message name="SubmitWithDownloadLocationResponse">
+    <wsdl:part name="SubmitWithDownloadDetailsResponse" element="tns:SubmitWithDownloadDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RequestUploadDetailsRequest">
+    <wsdl:part name="RequestUploadDetails" element="tns:RequestUploadDetails" />
+  </wsdl:message>
+  <wsdl:message name="RequestUploadDetailsResponse">
+    <wsdl:part name="RequestUploadDetailsResponse" element="tns:RequestUploadDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SignalEndOfUploadRequest">
+    <wsdl:part name="SignalEndOfUpload" element="tns:SignalEndOfUpload" />
+  </wsdl:message>
+  <wsdl:message name="SignalEndOfUploadResponse">
+    <wsdl:part name="SignalEndOfUploadResponse" element="tns:SignalEndOfUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidatePackage_Async1">
+    <wsdl:part name="ValidatePackage_Async" element="tns:ValidatePackage_Async" />
+  </wsdl:message>
+  <wsdl:message name="SignalEndOfUpload_Async1">
+    <wsdl:part name="SignalEndOfUpload_Async" element="tns:SignalEndOfUpload_Async" />
+  </wsdl:message>
+  <wsdl:message name="SubmitWithDownloadLocation_Async">
+    <wsdl:part name="SubmitWithDownloadLocation_Async" element="tns:SubmitWithDownloadLocation_Async" />
+  </wsdl:message>
+  <wsdl:message name="ServiceStatusRequest" />
+  <wsdl:message name="ServiceStatusResponse">
+    <wsdl:part name="ServiceStatus" element="tns:ServiceStatus" />
+  </wsdl:message>
+  <wsdl:message name="Reprocess_Async">
+    <wsdl:part name="Reprocess_Async" element="tns:Reprocess_Async" />
+  </wsdl:message>
+  <wsdl:message name="SignalUploadFailureRequest">
+    <wsdl:part name="SignalUploadFailure" element="tns:SignalUploadFailure" />
+  </wsdl:message>
+  <wsdl:message name="SignalUploadFailureResponse1">
+    <wsdl:part name="SignalUploadFailureResponse" element="tns:SignalUploadFailureResponse" />
+  </wsdl:message>
+  <wsdl:message name="Reprocess_BackgroundRequest">
+    <wsdl:part name="Reprocess_Background" element="tns:Reprocess_Background" />
+  </wsdl:message>
+  <wsdl:message name="Reprocess_BackgroundResponse">
+    <wsdl:part name="Reprocess_BackgroundResponse" element="tns:Reprocess_BackgroundResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISampleSubmission">
+    <wsdl:operation name="GetProtocols">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/GetProtocols" name="GetProtocolsRequest" message="tns:GetProtocolsRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/GetProtocolsResponse" name="GetProtocolsResponse1" message="tns:GetProtocolsResponse1" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePackage">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ValidatePackage" name="ValidatePackageRequest" message="tns:ValidatePackageRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/ValidatePackageResponse" name="ValidatePackageResponse" message="tns:ValidatePackageResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitWithDownloadLocation">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/SubmitWithDownloadLocation" name="SubmitWithDownloadLocationRequest" message="tns:SubmitWithDownloadLocationRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/SubmitWithDownloadLocationResponse" name="SubmitWithDownloadLocationResponse" message="tns:SubmitWithDownloadLocationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestUploadDetails">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/RequestUploadDetails" name="RequestUploadDetailsRequest" message="tns:RequestUploadDetailsRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/RequestUploadDetailsResponse" name="RequestUploadDetailsResponse" message="tns:RequestUploadDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SignalEndOfUpload">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/SignalEndOfUpload" name="SignalEndOfUploadRequest" message="tns:SignalEndOfUploadRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/SignalEndOfUploadResponse" name="SignalEndOfUploadResponse" message="tns:SignalEndOfUploadResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidatePackage_Async">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ValidatePackage_Async" name="ValidatePackage_Async1" message="tns:ValidatePackage_Async1" />
+    </wsdl:operation>
+    <wsdl:operation name="SignalEndOfUpload_Async">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/SignalEndOfUpload_Async" name="SignalEndOfUpload_Async1" message="tns:SignalEndOfUpload_Async1" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitWithDownloadLocation_Async">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/SubmitWithDownloadLocation_Async" name="SubmitWithDownloadLocation_Async" message="tns:SubmitWithDownloadLocation_Async" />
+    </wsdl:operation>
+    <wsdl:operation name="ServiceStatus">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ServiceStatus" name="ServiceStatusRequest" message="tns:ServiceStatusRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/ServiceStatusResponse" name="ServiceStatusResponse" message="tns:ServiceStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="Reprocess_Async">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/Reprocess_Async" name="Reprocess_Async" message="tns:Reprocess_Async" />
+    </wsdl:operation>
+    <wsdl:operation name="SignalUploadFailure">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/SignalUploadFailure" name="SignalUploadFailureRequest" message="tns:SignalUploadFailureRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/SignalUploadFailureResponse" name="SignalUploadFailureResponse1" message="tns:SignalUploadFailureResponse1" />
+    </wsdl:operation>
+    <wsdl:operation name="Reprocess_Background">
+      <wsdl:input wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/Reprocess_Background" name="Reprocess_BackgroundRequest" message="tns:Reprocess_BackgroundRequest" />
+      <wsdl:output wsaw:Action="http://mcafeelabs.com/contract/automation/SSC/3.0/ISampleSubmission/Reprocess_BackgroundResponse" name="Reprocess_BackgroundResponse" message="tns:Reprocess_BackgroundResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

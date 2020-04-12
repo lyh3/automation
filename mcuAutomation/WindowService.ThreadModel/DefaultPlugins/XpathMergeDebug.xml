@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ns0:XpathMergeRoot xmlns:ns0="http://BizTalk_Server_Project1.XmlPathMerge">
+     <Merges Description="MergeDefaultConfiguration">
+	    <!--<Merge  Description="Select configSections section">
+			<NavitationXpath>
+				<LocalName>/*[local-name()='configuration']/*[local-name()='configSections']</LocalName>
+				<Namespace></Namespace>
+			</NavitationXpath>
+			<Action Name="Select" SkipOnLastSuccess="false">
+				<Contents>
+					<Key>
+					</Key>
+					<Value></Value>
+				</Contents>
+			</Action>
+	    </Merge>
+		<Merge  Description="Create configSections ">
+			<NavitationXpath>
+				<LocalName>/configuration</LocalName>
+				<Namespace></Namespace>
+			</NavitationXpath>
+			<Action Name="SelectInsertXml" SkipOnLastSuccess="true">
+				<Contents>
+					<Key>
+						<![CDATA[	<configSections>
+	<section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>
+	</configSections>]]>
+					</Key>
+					<Value></Value>
+				</Contents>
+			</Action>
+	   </Merge>-->
+	    <Merge  Description="Select log4net section">
+			<NavitationXpath>
+				<LocalName>/*[local-name()='configuration']/*[local-name()='configSections']/*[local-name()='section'][@name='log4net']</LocalName>
+				<Namespace></Namespace>
+			</NavitationXpath>
+			<Action Name="Select" SkipOnLastSuccess="false">
+				<Contents>
+					<Key>
+					</Key>
+					<Value></Value>
+				</Contents>
+			</Action>
+	    </Merge>
+	    <Merge  Description="Insert log4net entry to ConfigSections">
+		   <NavitationXpath>
+			   <LocalName>/configuration/configSections</LocalName>
+			   <Namespace></Namespace>
+		   </NavitationXpath>
+		   <Action Name="SelecteInsertXml" kipOnLastSuccess="true">
+			  <Contents>
+				  <Key>
+					  <![CDATA[<section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net"/>]]>
+				  </Key>
+				  <Value></Value>
+			  </Contents>
+		   </Action>
+	    </Merge>   
+		 
+	   <Merge  Description="Delete log4net body">
+		<NavitationXpath>
+			<LocalName>/*[local-name()='configuration']/*[local-name()='log4net']</LocalName>
+			<Namespace></Namespace>
+		</NavitationXpath>
+		<Action Name="SelectDelete" SkipOnLastSuccess="false">
+        <Contents>
+          <Key></Key>
+          <Value></Value>
+        </Contents>
+        </Action>
+       </Merge>
+	   <Merge  Description="Insert log4net body">
+		<NavitationXpath>
+			<LocalName>/configuration</LocalName>
+			<Namespace></Namespace>
+		</NavitationXpath>
+		<Action Name="SelectInsertXml" SkipOnLastSuccess="false">
+			<Contents>
+				<Key>
+					<![CDATA[	<log4net>
+		<appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+			<file value="McAfeeService.log" />
+			<threshold value="INFO" />
+			<appendToFile value="true" />
+			<rollingStyle value="Size" />
+			<maxSizeRollBackups value="10" />
+			<maximumFileSize value="1MB" />
+			<staticLogFileName value="true" />
+			<layout type="log4net.Layout.PatternLayout">
+				<conversionPattern value="%-5p %d - %m%n" />
+			</layout>
+		</appender>
+		<appender name="ColoredConsoleAppender" type="log4net.Appender.ColoredConsoleAppender">
+			<threshold value="INFO"/>
+			<filter type="log4net.Filter.LevelRangeFilter">
+				<levelMin value="INFO" />
+				<acceptOnMatch value="true" />
+			</filter>
+			<filter type="log4net.Filter.DenyAllFilter" />
+			<mapping>
+				<level value="INFO"/>
+				<foreColor value="Green, HighIntensity"/>
+			</mapping>
+			<mapping>
+				<level value="TRACE"/>
+				<foreColor value="White"/>
+			</mapping>
+			<mapping>
+				<level value="DEBUG"/>
+				<foreColor value="Cyan, HighIntensity"/>
+			</mapping>
+			<mapping>
+				<level value="WARN"/>
+				<foreColor value="Yellow, HighIntensity"/>
+			</mapping>
+			<mapping>
+				<level value="ERROR"/>
+				<foreColor value="Red, HighIntensity"/>
+			</mapping>
+			<mapping>
+				<level value="FATAL"/>
+				<foreColor value="Purple, HighIntensity"/>
+			</mapping>
+			<layout type="log4net.Layout.PatternLayout">
+				<conversionPattern value="%message%newline"/>
+			</layout>
+		</appender>
+		<root>
+			<appender-ref ref="RollingLogFileAppender" />
+			<appender-ref ref="ColoredConsoleAppender" />
+		</root>
+	</log4net>
+			]]></Key>
+				<Value></Value>
+			</Contents>
+		</Action>
+	   </Merge>
+
+		 <Merge  Description="Select connectionStrings section">
+			 <NavitationXpath>
+				 <LocalName>/*[local-name()='configuration']/*[local-name()='connectionStrings']</LocalName>
+				 <Namespace></Namespace>
+			 </NavitationXpath>
+			 <Action Name="Select" SkipOnLastSuccess="false">
+				 <Contents>
+					 <Key>
+					 </Key>
+					 <Value></Value>
+				 </Contents>
+			 </Action>
+		 </Merge>
+		 <Merge  Description="Create connectionStrings ">
+			 <NavitationXpath>
+				 <LocalName>/configuration</LocalName>
+				 <Namespace></Namespace>
+			 </NavitationXpath>
+			 <Action Name="SelectInsertXml" SkipOnLastSuccess="true">
+				 <Contents>
+					 <Key>
+						 <![CDATA[		<connectionStrings></connectionStrings>]]>
+					 </Key>
+					 <Value></Value>
+				 </Contents>
+			 </Action>
+		 </Merge>
+		 <Merge  Description="Delete profile connection string">
+			 <NavitationXpath>
+				 <LocalName>/*[local-name()='configuration']/*[local-name()='connectionStrings']/*[local-name()='add'][@name='RaidenAppProfilesEntities']</LocalName>
+				 <Namespace></Namespace>
+			 </NavitationXpath>
+			 <Action Name="SelectDelete" SkipOnLastSuccess="false">
+				 <Contents>
+					 <Key>
+					 </Key>
+					 <Value></Value>
+				 </Contents>
+			 </Action>
+		 </Merge>
+		 <Merge  Description="Insert profile connection string">
+			 <NavitationXpath>
+				 <LocalName>/configuration/connectionStrings</LocalName>
+				 <Namespace></Namespace>
+			 </NavitationXpath>
+			 <Action Name="SelectInsertXml" SkipOnLastSuccess="false">
+				 <Contents>
+					 <Key>
+						 <![CDATA[		<add name="RaidenAppProfilesEntities" connectionString="metadata=res://*/RaidenAppFrofilesDataModel.csdl|res://*/RaidenAppFrofilesDataModel.ssdl|res://*/RaidenAppFrofilesDataModel.msl;provider=System.Data.SqlClient;provider connection string=';data source=BeaDv1DBprof1;initial catalog=RaidenAppProfiles;persist security info=True;user id=SQLUser;password=SQLUser;multipleactiveresultsets=True;App=EntityFramework';" providerName="System.Data.EntityClient"/>
+								]]>
+					 </Key>
+					 <Value></Value>
+				 </Contents>
+			 </Action>
+		 </Merge>
+	 </Merges>
+</ns0:XpathMergeRoot>

@@ -1,0 +1,12 @@
+<metadata xmlns="http://mcafeelabs.com/schema/automation/sample/metadata/2.0">
+	<samples>
+		<sample>
+			<hashes>
+				<hash type="md5">0BC6B0528EA8FC129D10729A06D27576</hash>
+			</hashes>
+			<detections>
+				<detection vendor="ahnlab" date="2013-10-01T06:47:43" source="prescan"><![CDATA[NO_VIRUS]]></detection>
+			</detections>
+		</sample>
+	</samples>
+</metadata>

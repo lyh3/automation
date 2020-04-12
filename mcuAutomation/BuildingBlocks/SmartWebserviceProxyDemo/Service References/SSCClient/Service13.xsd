@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://mcafeelabs.com/contract/automation/SSC/3.0" elementFormDefault="qualified" targetNamespace="http://mcafeelabs.com/contract/automation/SSC/3.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd1" namespace="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" />
+  <xs:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd3" namespace="http://mcafeelabs.com/schema/business-services/sample-details/1.0" />
+  <xs:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd2" namespace="http://mcafeelabs.com/schema/automation/base/0.1" />
+  <xs:import schemaLocation="http://beaqaacme1/SSC_V3/Service1.svc?xsd=xsd4" namespace="http://mcafeelabs.com/schema/automation/scanning-services/2.0" />
+  <xs:element name="GetProtocolsResponse">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q1="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q1:supportedSubmissionType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidatePackage">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q2="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q2:validateRequestDetailsType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:q3="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" name="ValidatePackageResponse" type="q3:submissionResponseType" />
+  <xs:element name="SubmitWithDownloadDetails" type="tns:submitWithDownloadDetailsType" />
+  <xs:complexType name="submitWithDownloadDetailsType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q4:downloadSessionDetailsType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ssc-submission-properties" type="tns:submissionPropertiesType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="submissionPropertiesType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="submission-group" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="requested-priority" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="submission-option" type="tns:optionType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sample-option">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element xmlns:q5="http://mcafeelabs.com/schema/business-services/sample-details/1.0" minOccurs="0" maxOccurs="1" ref="q5:sample" />
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="option" type="tns:optionType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="optionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="name" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name="SubmitWithDownloadDetailsResponse">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q6="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q6:submissionResponseType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequestUploadDetails">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q7="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q7:submissionDetailsType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:q8="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" name="RequestUploadDetailsResponse" type="q8:uploadSessionDetailsType" />
+  <xs:element name="SignalEndOfUpload">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q9="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q9:uploadSessionCompletionType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:q10="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" name="SignalEndOfUploadResponse" type="q10:submissionResponseType" />
+  <xs:element name="ValidatePackage_Async">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q11="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q11:validateRequestDetailsType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignalEndOfUpload_Async">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q12="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q12:uploadSessionDetailsType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitWithDownloadLocation_Async" type="tns:submitWithDownloadDetailsType" />
+  <xs:element name="ServiceStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://mcafeelabs.com/schema/automation/base/0.1" minOccurs="0" maxOccurs="1" ref="q13:system-status" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Reprocess_Async" type="tns:reprocessRequestType" />
+  <xs:complexType name="reprocessRequestType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ssc-submission-properties" type="tns:submissionPropertiesType" />
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element xmlns:q14="http://mcafeelabs.com/schema/automation/base/0.1" minOccurs="0" maxOccurs="1" name="previous-submission-identifier" type="q14:identifierType" />
+        <xs:element xmlns:q15="http://mcafeelabs.com/schema/automation/scanning-services/2.0" minOccurs="0" maxOccurs="1" ref="q15:metadata-update-request" />
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SignalUploadFailure">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q16="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q16:uploadSessionFailureType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SignalUploadFailureResponse">
+    <xs:complexType>
+      <xs:complexContent mixed="false">
+        <xs:extension xmlns:q17="http://mcafeelabs.com/schema/automation/file-upload-protocols/0.2" base="q17:uploadSessionFailureAcknowledgementType" />
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Reprocess_Background" type="tns:reprocessRequestType" />
+  <xs:element name="Reprocess_BackgroundResponse" type="tns:processingIdentifierType" />
+  <xs:complexType name="processingIdentifierType">
+    <xs:sequence>
+      <xs:element xmlns:q18="http://mcafeelabs.com/schema/automation/base/0.1" minOccurs="0" maxOccurs="1" ref="q18:system-identifier" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

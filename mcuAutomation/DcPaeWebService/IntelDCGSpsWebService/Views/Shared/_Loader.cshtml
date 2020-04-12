@@ -1,0 +1,16 @@
+﻿<div id="divProgress" class="loader" style="display:none;">
+    <img id="imgGlobal" src="~/Images/Global.gif" width="160" height="90" style="border-radius:10px;background-color:dimgray;" />
+</div>
+
+<script>
+    function displayLoader(visible) {
+        if (visible) {
+            $('#divProgress').attr("style", "visibility:visible;");
+            $('#btnCancel').attr("style", "visibility:visible;");
+
+        } else {
+            $('#divProgress').attr("style", "display:none;");
+            $('#btnCancel').attr("style", "display:none;");
+        }
+    };
+</script>

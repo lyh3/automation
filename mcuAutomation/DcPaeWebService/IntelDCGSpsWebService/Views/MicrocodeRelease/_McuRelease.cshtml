@@ -1,0 +1,505 @@
+﻿@using WindowService.DataModel;
+
+@model McuRelease
+@if (@Model != null)
+{
+    String idCpuSegmentSelect = "cpuSegmentSelect_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idReleaseTargetSelect = "releaseTargetSelect_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idScopeSelect = "scopeSelect_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idCpuCodeName = "cpuCodeName_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idStepping = "stepping_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idCpuID = "cpuID_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idPlatformID = "platformID_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idMicrocode = "microcode_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+
+    String idCpuPubliSpecUpdate = "cpuPubliSpecUpdate_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idIntelProductSpec = "intelProductSpec_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idCpuNDASpecUpdate = "intelNDASpecUpdate_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idProducts = "products_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idProcessorModel = "processorModel_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+
+    String idOptional = "optional_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+    String idViewReferenceReady = "ImagViewSuggestions_" + ViewData[Definitions.MCU_VIEW_DATA_KEY];
+
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.CpuSegment, new { @style = "color:steelblue;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                <select class="btn btn-toolbar" id=@idCpuSegmentSelect title=@ViewData[Definitions.MCU_VIEW_DATA_KEY] , onchange="onSelectedCpuSegmentChanged(this);" style="background-color:rgba(41, 42, 43, 0.9);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                    @*<option id="-1" value="N/A" data-bind="">-- Cpu segment --</option>*@
+                    @foreach (var x in Model.CpuSegments)
+                    {
+                        var key = x;
+                        <option id="@key" value="@key">@key</option>
+                    }
+                </select>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp</td>
+            <td>
+                @Html.LabelFor(m => m.ReleaseTarget, new { @style = "color:steelblue;font-weight:normal;font-size:smaller;" })
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                <select class="btn btn-toolbar" id=@idReleaseTargetSelect title=@ViewData[Definitions.MCU_VIEW_DATA_KEY] , onchange="onSelectedReleaseTargetChanged(this);" style="background-color:rgba(41, 42, 43, 0.9);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                    @*<option id="-1" value="N/A" data-bind="">-- Select target --</option>*@
+                    @foreach (var x in Model.ReleaseTargets)
+                    {
+                        var key = x;
+                        <option id="@key" value="@key">@key</option>
+                    }
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%">
+        <tr>
+            <td align="left">
+                <img type="button" class="collapsible" title="View and select optional parameters to update the readme table. To add a new readme entry, all required parameters must be provided except for CPU ID and Platform ID." width="24" height="24" src="~/Images/Collapse-40.png" onclick="onCollapseClick(@idOptional);" />
+            </td>
+            <td>&nbsp;</td>
+            <td>
+                <span style="background-color:transparent;color:gray;font-size:x-small;font-weight:lighter;text-align:left;text-wrap:normal;">&nbsp;Click on this icon to open or collapse the override release parameters select options :</span>
+            </td>
+        </tr>
+    </table>
+    <div id="@idOptional" class="content" style="display:none;">
+        <table>
+            <tr><td style="height:3px;"></td></tr>
+            <tr>
+                <td colspan="7">
+                    <span style="color:grey; font-size:11px;">CAUTION: By default, all parameters that are used to update the README.md are extracted from the MCU header and README.md. The values of parameters are selected here by user are used to override the corresponding parameters. Be extreamly caution to the actions you do here and make sure if you really want to override the values without resulting bad impaction to the data integrity.  To abandon the selcted parameters you have done, click on the "Refresh" icon at the last row below. For a new or an obsolete mcu release, all required parameters, CpuSegment, Stepping, CPUCodeName, Microcod File Name and Mcu binary file, are mandatory fields need to input manually.</span>
+                </td>
+            </tr>
+            <tr><td style="height:3px;" /></tr>
+            <tr style="height:30px;background-color:rgba(41, 42, 43, 0.6);">
+                <td />
+                <td colspan="2">
+                    <span style="background-color:transparent;color:steelblue;font-size:small;font-weight:bold;text-align:left;text-wrap:normal;">&nbsp;&nbsp;* required</span>
+                </td>
+                <td colspan="3">
+                    <span style="background-color:transparent;color:grey;font-size:small;font-weight:normal;text-align:left;text-wrap:normal;">&nbsp;&nbsp;* volunteer</span>
+                </td>
+                <td>&nbsp;</td>
+                @*<td>
+                    @if (Model.IsReademReferenceAvailable)
+                    {
+                        <img id='@idViewReferenceReady' width="18" height="18" src="~/Images/CoderWall-white.png" title="Reference information loaded from README.md.">
+                    }
+                </td>*@
+            </tr>
+            <tr><td style="height:3px;" /></tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.Stepping, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @if (Model.IsReademReferenceAvailable)
+                    {
+                        <select class="btn btn-toolbar" id=@idStepping title=@ViewData[Definitions.MCU_VIEW_DATA_KEY] , onchange="onSteppingChanged(this);" style="background-color:rgba(41, 42, 43, 0.9);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                            @*<option id="-1" value="N/A" data-bind="">-- Select stepping --</option>*@
+                            @foreach (var x in Model.SteppingOptions)
+                            {
+                                var key = x;
+                                <option id="@key" value="@key">@key</option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+
+                        @Html.TextBoxFor(m => m.Stepping, new { @id = idStepping, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Enter stepping ---", onchange = "onSteppingChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:white;border-color:steelblue;border-radius:3px;" })
+
+                    }
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    @Html.LabelFor(m => m.CPUCodeName, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @if (Model.IsReademReferenceAvailable)
+                    {
+                        <select class="btn btn-toolbar" id=@idCpuCodeName title=@ViewData[Definitions.MCU_VIEW_DATA_KEY] , onchange="onCpuCodeNameChanged(this);" style="background-color:rgba(41, 42, 43, 0.9);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                            @*<option id="-1" value="N/A" data-bind="">-- Select cpu codename --</option>*@
+                            @foreach (var x in Model.CpuCodeNameOptions)
+                            {
+                                var key = x;
+                                <option id="@key" value="@key">@key</option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.CPUCodeName, new { @id = @idCpuCodeName, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Enter CPU code name ---", onchange = "onCpuCodeNameChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:silver;border-color:steelblue;border-radius:3px;" })
+                    }
+                </td>
+            </tr>
+            <tr><td style="height:3px;" /></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CpuID, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.CpuID, new { @id = @idCpuID, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "---Read only ---",@readonly = "true", onchange = "onCpuIDChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:silver;border-color:grey;border-radius:3px;" })
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    @Html.LabelFor(m => m.Scope, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Scope, new { placeholder = "--- Enter scope ---", @readonly = "true", onchange = "onScopeChanged(this);", @id = "scope", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                </td>
+            </tr>
+            <tr><td style="height:3px;" /></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.PlatformID, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.Partial("_PlatformID", @Model, new ViewDataDictionary { { Definitions.MCU_VIEW_DATA_KEY, ViewData[Definitions.MCU_VIEW_DATA_KEY] }, { Definitions.VIEW_DATA_RELEASE_TO_KEY, ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY] } })
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    @Html.LabelFor(m => m.MicroCode, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @if (Model.IsReademReferenceAvailable)
+                    {
+                        <select class="btn btn-toolbar" id=@idMicrocode title=@ViewData[Definitions.MCU_VIEW_DATA_KEY] , onchange="onMicrocodeChanged(this);" style="background-color:rgba(41, 42, 43, 0.9);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                            @*<option id="-1" value="N/A" data-bind="">-- Select mcu file name --</option>*@
+                            @foreach (var x in Model.McuFileNameOptions)
+                            {
+                                var key = x;
+                                <option id="@key" value="@key">@key</option>
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(m => m.MicroCode, new { @id = @idMicrocode, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Mcu File Name ---", onchange = "onMicrocodeChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                    }
+                </td>
+            </tr>
+            <tr><td style="height:3px;" /></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CpuPublicSpecUpdate, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.CpuPublicSpecUpdate, new { @id = @idCpuPubliSpecUpdate, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Cpu Pub Spec Update ---", onchange = "onCpuPublicSpecUpdateChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:grey;border-color:grey;border-radius:3px;" })
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    @Html.LabelFor(m => m.IntelProductSpec, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.IntelProductSpec, new { @id = @idIntelProductSpec, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Intel Product Spec ---", onchange = "onIntelProductSpecChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:grey;border-color:grey;border-radius:3px;" })
+                </td>
+            </tr>
+            <tr><td style="height:3px;" /></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.CpuNdaSpecUpdate, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.CpuNdaSpecUpdate, new { @id = @idCpuNDASpecUpdate, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- CPU NDA Spec Update ---", onchange = "onCpuNdaSpecUpdateChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:grey;border-color:grey;border-radius:3px;" })
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>
+                    @Html.LabelFor(m => m.Products, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Products, new { @id = @idProducts, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Enter Products ---", onchange = "onProductsChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:grey;border-color:grey;border-radius:3px;" })
+                </td>
+            </tr>
+            <tr><td style="height:3px;" /></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ProcessorModel, new { @style = "color:grey;font-weight:normal;font-size:smaller;" })
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.ProcessorModel, new { @id = @idProcessorModel, @title = @ViewData[Definitions.MCU_VIEW_DATA_KEY], placeholder = "--- Processor Model ---", onchange = "onProcessorModelChanged(this);", @class = "form-control", @style = "width: 150px;height:25px;background-color:black;font-size:small;color:grey;border-color:grey;border-radius:3px;" })
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+
+}
+
+<script type="text/javascript">
+    function onCollapseClick(optional) {
+        if (optional.style.display == "block") {
+          optional.style.display = "none";
+        } else {
+          optional.style.display = "block";
+        }
+    }
+    function onCpuCodeNameChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateCPUCodeName',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"CPUCodeName\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onSteppingChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateStepping',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"Stepping\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onCpuIDChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateCpuID',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"CpuID\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onPlatformIDChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdatePlatformID',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"PlatformID\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onMicrocodeChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateMicrocode',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"Microcode\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onSelectedCpuSegmentChanged(dropdown) {
+        var mcu = dropdown.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(dropdown.id).value.trim();
+        if (value != 'N/A') {
+            $.ajax({
+                url: '/MicrocodeRelease/UpdateCpuSegment',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+                    JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"CpuSegment\":\"" + value + "\"}"
+                },
+                success: function (data) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        }
+    };
+    function onSelectedReleaseTargetChanged(dropdown) {
+        var mcu = dropdown.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(dropdown.id).value.trim();
+        if (value != 'N/A') {
+            $.ajax({
+                url: '/MicrocodeRelease/UpdateReleaseTarget',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+                        JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"ReleaseTarget\":\"" + value + "\"}"
+                },
+                success: function (data) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        }
+    };
+    function onScopeChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateScope',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"Scope\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+
+    function onCpuPublicSpecUpdateChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateCpuPubliSpecUpdate',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"CpuPubliSpecUpdate\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onIntelProductSpecChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateIntelProductSpec',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"IntelProductSpec\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onCpuNdaSpecUpdateChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateCpuNDASpecUpdate',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"CpuNDASpecUpdate\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onProductsChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateProducts',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"Products\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+    function onProcessorModelChanged(textbox) {
+        var mcu = textbox.title;
+        var releaseTo = @Html.Raw(Json.Encode(ViewData[Definitions.VIEW_DATA_RELEASE_TO_KEY]));
+        var value = document.getElementById(textbox.id).value.trim();
+        $.ajax({
+            url: '/MicrocodeRelease/UpdateProcessorModel',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: "{\"ReleaseTo\":\"" + releaseTo + "\", \"SelectedMcu\":\"" + mcu + "\", \"ProcessorModel\":\"" + value + "\"}"
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    };
+
+</script>

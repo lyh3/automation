@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C7BC7D5-5E30-44E0-B70B-E507531FCA61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>McAfeeLabs.Engineering.Automation.Base</RootNamespace>
+    <AssemblyName>TestHarness</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Delimon.Win32.IO, Version=4.0.4764.1936, Culture=neutral, PublicKeyToken=6f601db60ebd9657, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\External\Delimon\Delimon.Win32.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\External\Ionic\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xceed.Zip.v5.1, Version=5.1.11480.15010, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Xceed.Zip.v5.1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AOP.Library.Test\DeadLockTest.cs" />
+    <Compile Include="AOP.Library.Test\InstallPerformanceCountersTest.cs" />
+    <Compile Include="AOP.Library.Test\PropertyChangedNotificationTest.cs" />
+    <Compile Include="AOP.Library.Test\TestBase.cs" />
+    <Compile Include="AOP.Library.Test\TestData.cs" />
+    <Compile Include="AOP.Library.Test\ValidationTest.cs" />
+    <Compile Include="DateTimeExtensionTest.cs" />
+    <Compile Include="FolderInspectorTest.cs" />
+    <Compile Include="LongNamePathTest.cs" />
+    <Compile Include="MapNetworkHelperTest.cs" />
+    <Compile Include="Monads.Test\ParserTest.cs" />
+    <Compile Include="Monads.Test\FunctionComponsitionTest.cs" />
+    <Compile Include="Monads.Test\MonadsTest.cs" />
+    <Compile Include="SevenZipSharpWrapperTest.cs" />
+    <Compile Include="SMSDownloadExtensionTest.cs" />
+    <Compile Include="XmlMerge.Test\XmlMergeUtilTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ZipBombTest.cs" />
+    <Compile Include="ExtensionTest.cs" />
+    <Compile Include="FTPClient.Test\FtpFileIntegrationTest.cs" />
+    <Compile Include="AOP.Library.Test\ITestData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistryExtensionTest.cs" />
+    <Compile Include="test.cs">
+      <DependentUpon>test.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestHarness.cs" />
+    <Compile Include="UtilityTest.cs" />
+    <Compile Include="ZipWalkerTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="EmbeddedTestData\DebugView.zip" />
+    <EmbeddedResource Include="EmbeddedTestData\Dynamic.config" />
+    <EmbeddedResource Include="EmbeddedTestData\MergeTarget.config">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbeddedTestData\SampleSubmissionDropBox.config" />
+    <EmbeddedResource Include="EmbeddedTestData\MetaDataMerge.zip" />
+    <None Include="test.xsd" />
+    <EmbeddedResource Include="EmbeddedTestData\zip_bomb.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AOP\AOP.Library.csproj">
+      <Project>{7622CB14-9717-41EA-8BE8-B04160BA1D60}</Project>
+      <Name>AOP.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Libraries.csproj">
+      <Project>{10BE0056-0FB7-4739-A097-B91E8C9C78AA}</Project>
+      <Name>Libraries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MD5SampleBatchDownloadUnityContainerFactory\MD5SampleBatchDownloadUnityContainerFactory.csproj">
+      <Project>{9FCCCBD5-D779-4C2A-AA32-43E989EF49AB}</Project>
+      <Name>MD5SampleBatchDownloadUnityContainerFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Monads\Monads.csproj">
+      <Project>{8F7AECC1-0D61-4884-A92A-06989BF4ECBB}</Project>
+      <Name>Monads</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SevenZipSharpWrapper\SevenZipSharpWrapper.csproj">
+      <Project>{83AA3F30-F9B6-48D5-B91F-DB89A6E58DBF}</Project>
+      <Name>SevenZipSharpWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SevnZipSharp\SevenZip\SevenZipSharp.csproj">
+      <Project>{4960DD14-3431-47EC-B9D9-9D2730A98DC3}</Project>
+      <Name>SevenZipSharp %28BuildingBlocks\SevenZipSharp\SevenZipSharp%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkerThreadModel\WorkerThreadModel.csproj">
+      <Project>{6FC41CCA-79B0-440F-9E78-66EAAE974F82}</Project>
+      <Name>WorkerThreadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlMergeDataModel\XmlMergeDataModel.csproj">
+      <Project>{FC96B726-C727-42AF-B2C7-E58B80ACE411}</Project>
+      <Name>XmlMergeDataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlMergeUtil\XmlMergeUtil.csproj">
+      <Project>{00B75C6D-C01A-4615-853D-96A39652B5C9}</Project>
+      <Name>XmlMergeUtil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZipWalker\ZipWalker.csproj">
+      <Project>{FB44AAD6-B640-4083-912C-5D902DD2599B}</Project>
+      <Name>ZipWalker</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\Test.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\BookStore.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\XpathMerge.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\SandboxReplicationFeed.config">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\SandboxXpathMerge.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\XpathCombine.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\MetadataSourceSamplet.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedTestData\MetadataTargetSamplet.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

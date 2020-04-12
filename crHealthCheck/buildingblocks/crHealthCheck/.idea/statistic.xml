@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Statistic">
+    <option name="excludedDirectories">
+      <list>
+        <option value="$PROJECT_DIR$/Json" />
+        <option value="$PROJECT_DIR$/.idea" />
+        <option value="$PROJECT_DIR$/archive" />
+        <option value="$PROJECT_DIR$/ConfigEditor" />
+        <option value="$PROJECT_DIR$/buildingblocks" />
+      </list>
+    </option>
+  </component>
+</project>

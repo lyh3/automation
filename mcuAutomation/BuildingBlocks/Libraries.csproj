@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10BE0056-0FB7-4739-A097-B91E8C9C78AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>McAfeeLabs.Engineering.Automation.Base</RootNamespace>
+    <AssemblyName>Libraries</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataAccessLayer">
+      <HintPath>..\..\Libs\DataAccessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Delimon.Win32.IO">
+      <HintPath>..\..\Libs\External\Delimon\Delimon.Win32.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\Libs\External\Ionic\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\Libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\..\Libs\External\Microsoft\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\Libs\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\Libs\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xceed.Zip.v5.1">
+      <HintPath>..\..\Libs\Xceed.Zip.v5.1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\SMSSampleDownloadExtension.cs" />
+    <Compile Include="Common\CommonUtility.cs" />
+    <Compile Include="Common\EmailService.cs" />
+    <Compile Include="Extentions\DateTimeExtension.cs" />
+    <Compile Include="DebugOutputTraceListener.cs" />
+    <Compile Include="DynamicJsonConverter.cs" />
+    <Compile Include="Extentions\DelimonWin32IOExtension.cs" />
+    <Compile Include="Extentions\JSONExtension.cs" />
+    <Compile Include="FileChangeMonitor\ConfigurationChangeMonitor.cs" />
+    <Compile Include="Extentions\CustomReflection.cs" />
+    <Compile Include="Extentions\DeepSerialization.cs" />
+    <Compile Include="Extentions\Extensions.cs" />
+    <Compile Include="Extentions\ReflectionExtension.cs" />
+    <Compile Include="Extentions\RegistryExtentions.cs" />
+    <Compile Include="Extentions\XmlExtentions.cs" />
+    <Compile Include="FileChangeMonitor\FileChangeMonitor.cs" />
+    <Compile Include="FileChangeMonitor\FileContentProperty.cs" />
+    <Compile Include="FileFilterProvider\FileFilterProvider.cs" />
+    <Compile Include="Common\FileServiceMD5BatchDownload.cs" />
+    <Compile Include="FolderInspector\FilteredFolderInspector.cs" />
+    <Compile Include="FolderInspector\FilteredFolderInstectorReceiver.cs" />
+    <Compile Include="FolderInspector\FileDetails.cs" />
+    <Compile Include="FolderInspector\FolderInspectorBase.cs" />
+    <Compile Include="FolderInspector\FolderInspecterCopyReceiver.cs" />
+    <Compile Include="FolderInspector\FolderInspector.cs" />
+    <Compile Include="FolderInspector\FolderInstectorReceiver.cs" />
+    <Compile Include="FTPClient\FTPFolderContainer.cs" />
+    <Compile Include="FTPClient\FTPClient.cs" />
+    <Compile Include="FTPClient\FTPFile.cs" />
+    <Compile Include="FTPClient\FTPFileContainer.cs" />
+    <Compile Include="FTPClient\FTPFolder.cs" />
+    <Compile Include="FTPClient\FTPTreeNode.cs" />
+    <Compile Include="FTPClient\IFTPClient.cs" />
+    <Compile Include="FileFilterProvider\IFileFilterProvider.cs" />
+    <Compile Include="Extentions\HashExtension.cs" />
+    <Compile Include="GlobalDefinitions.cs" />
+    <Compile Include="Hash\Hash.cs" />
+    <Compile Include="Hash\MD5Hash.cs" />
+    <Compile Include="FileChangeMonitor\IFileChangeMonitor.cs" />
+    <Compile Include="Common\IMD5BatchDowload.cs" />
+    <Compile Include="FolderInspector\IInspector.cs" />
+    <Compile Include="IniFile.cs" />
+    <Compile Include="IZipProvider.cs" />
+    <Compile Include="LimitedConcurrencyLevelTaskScheduler.cs" />
+    <Compile Include="MapNetworkExtensions\MapNetworkExtentions.cs" />
+    <Compile Include="MapNetworkExtensions\MapNetworkImport.cs" />
+    <Compile Include="MapNetworkExtensions\MapNetworkHelper.cs" />
+    <Compile Include="Extentions\ProcessEnvironmentExtension.cs" />
+    <Compile Include="Common\MD5BatchDownload.cs" />
+    <Compile Include="MapVirutalDriveHelper.cs" />
+    <Compile Include="MongoDBExtensions.cs" />
+    <Compile Include="UniversalUnityContainerFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extentions\QueryFerformanceCountersExtension.cs" />
+    <Compile Include="Hash\QueuedBackgroundWorker\OperationInfo.cs" />
+    <Compile Include="Hash\QueuedBackgroundWorker\OperationRequest.cs" />
+    <Compile Include="Hash\QueuedBackgroundWorker\QueuedBackgroundWorker.cs" />
+    <Compile Include="Hash\QueuedBackgroundWorker\QueuedBackgroundWorkerComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Hash\QueuedBackgroundWorker\QueuedBackgroundWorkerComponent.Designer.cs">
+      <DependentUpon>QueuedBackgroundWorkerComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hash\QueuedBackgroundWorker\RunWorkerCompletedEventArgsWithUserState.cs" />
+    <Compile Include="Hash\SHA1Hash.cs" />
+    <Compile Include="Hash\SHA256Hash.cs" />
+    <Compile Include="Extentions\TypeConversionExtension.cs" />
+    <Compile Include="Extentions\StreamExtensions.cs" />
+    <Compile Include="SampleManagementServiceClient.cs" />
+    <Compile Include="TempFolder.cs" />
+    <Compile Include="FileChangeMonitor\XmlConfigProperty.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="AOP\AOP.Library.csproj">
+      <Project>{7622CB14-9717-41EA-8BE8-B04160BA1D60}</Project>
+      <Name>AOP.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="JsonSourceCodeGenerator\JsonSourceCodeGenerator.csproj">
+      <Project>{F39125C2-8BB4-4538-8054-8DC55897119E}</Project>
+      <Name>JsonSourceCodeGenerator</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rem copy /Y "$(TargetDir)$(TargetName).*" "$(ProjectDir)..\..\libs"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

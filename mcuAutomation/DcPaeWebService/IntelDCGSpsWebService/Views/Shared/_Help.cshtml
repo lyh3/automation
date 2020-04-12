@@ -1,0 +1,155 @@
+﻿<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/SearchCommand.png"/>
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>To select a search command, usin the [<b>Left arrow &#60;-</b>] key to clear the text box and a drop down box is popped up to show all pre-defined search field from the list. A <b>white space</b> is required between the search command and a parameter of search value.  Press <b>Enter</b> to start search.  If a target database is the MongoDb, a raw <b>Json</b> filter can be used to search, e.g. <b>&#123;domain_history:&#123;&#36;exists:true&#125;.</b></p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/LogicCommand.png"/>
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>A simple comparision logic filter can be used to a filed search, the supported logic tokens include, <b>&#62;, &#62;&#61;, &#60;, &#60;&#61;, &#60;&#62;, &#61;&#61;, gt, greater, gte, greaterorequal, eq, equal, lt, lessthan, lte, le, lessthanorequal, ne, notequl</b>.  A white space is also required before and after the logic notations.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/Sync.png"  width="32" height="32" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>Click on this button to copy current search text to all other search collection commands in order to find the joined data from other URL databse. if a collection dosen't support the same search type the command will not be copied.  This provides the ability to review data from different resources in one place.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/JoinSearch.png"  width="24" height="24" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>Seavh with join commands.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/CancelBlack.png"  width="22" height="22" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>Click on this button to abort an on going search.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/Connected.png"  width="18" height="18" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>  Shows a database in connected status.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/Disconnected.png"  width="18" height="18" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>  Shows a database in failed to connect.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/MongoDb.png"  width="18" height="18" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>  Shows a database is a <b>MongoDb</b>.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img src="~/Images/db.png"  width="18" height="18" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p>  Shows a database is a <b>SQL</b> db.</p>
+            </td>
+        </tr>
+    </table>
+</div>
+&nbsp;
+<div class="bs-component">
+    <table>
+        <tr>
+            <td>
+                <img id="imgApiHelp" src="~/Images/Api.png"  width="20" height="20" />
+            </td>
+            <td>&nbsp</td>
+            <td>
+                <p><b>ReadApi</b> Help</p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $("#imgApiHelp").click(function (e) {
+        var readApiHelpWindow = $("#readApiHelp").data("kendoWindow");
+        readApiHelpWindow.center().open();
+    });
+</script>
+
+@(Html.Kendo().Window().Name("readApiHelp")
+    .Title("readApi Help")
+    .Visible(false)
+    .Draggable(true)
+    .Width(1200)
+    .Content(@Html.Partial("../Shared/_ReadApiHelp").ToHtmlString())
+)

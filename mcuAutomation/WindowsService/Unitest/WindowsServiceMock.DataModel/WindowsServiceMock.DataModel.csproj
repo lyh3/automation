@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2BCD011D-9FA1-4FEF-94A2-E2EFEBB0B5F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>McAfee.Service.DataModel</RootNamespace>
+    <AssemblyName>McAfeeServiceMock.MdataModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Libs\LogManager\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="WorkerState\IncreaseConsoleSizeState.cs" />
+    <Compile Include="WorkerState\FindConsoleWindowState.cs" />
+    <Compile Include="WorkerState\ConcreteWorkerStateA.cs" />
+    <Compile Include="WorkerState\ConcreteWorkerStateB.cs" />
+    <Compile Include="WorkerState\ConcreteWorkerStateC.cs" />
+    <Compile Include="WorkerState\ConcreteWorkerStateD.cs" />
+    <Compile Include="WorkerState\MockWorkerState.cs" />
+    <Compile Include="WorkerThread\ConcreteWorkerThreadA.cs" />
+    <Compile Include="WorkerThread\ConcreteWorkerThreadB.cs" />
+    <Compile Include="WorkerThread\ConcreteWorkerThreadC.cs" />
+    <Compile Include="WorkerThread\ConcreteWorkerThreadD.cs" />
+    <Compile Include="WorkerThread\MockWorkerThread.cs" />
+    <Compile Include="ProcessController\ConcreteMockMcAfeeServiceProcessA.cs" />
+    <Compile Include="ProcessController\ConcreteMockMcAfeeServiceProcessB.cs" />
+    <Compile Include="ProcessController\MockMcAfeeServiceProcess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\McAfeeService.DataModel\McAfeeService.DataModel.csproj">
+      <Project>{D9BE0881-AF55-4BC8-9EDE-4230795D96C6}</Project>
+      <Name>McAfeeService.DataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

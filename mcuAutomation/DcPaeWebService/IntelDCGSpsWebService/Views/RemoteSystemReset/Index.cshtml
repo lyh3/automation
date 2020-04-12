@@ -1,0 +1,712 @@
+﻿@using IntelDCGSpsWebService.Models;
+@using System.Text;
+@using IntelDCGSpsWebService.Models;
+@using WindowService.DataModel;
+
+@model IpmiResetModel
+
+@{
+    ViewBag.Title = "RemoteSystemReset";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <h3 align="left" style="color:dodgerblue;">Remote system reset</h3><hr />
+}
+@{
+    var maps = (CommandMaps)@Session[Definitions.COMMAND_MAP_KEY];
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <div class="col-md-8">
+                    @*@using (Html.BeginForm("Submit", "RemoteSystemReset", null, FormMethod.Post, new { encType = "multipart/form-data", id = "frmDownloadConfig", name = "frmDownloadConfig" }))
+                        {*@
+                    @Html.AntiForgeryToken()
+                    @Html.Partial("../Shared/_BMC", Model.BMCCfig)
+                    <table>
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.SutCfig.IpAddress, new { @style = "color:gray;font-size:smaller;" })
+                                @Html.TextBoxFor(m => m.SutCfig.IpAddress, new { placeholder = "Please enter a valid IP address", onchange = "onSutIPChanged();", @id = "sutIpAddress", @class = "form-control", @style = "width:400px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                            </td>
+                        </tr>
+                        <tr><td style="height:10px;" /></tr>
+                        <tr style="background-color:black;">
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            @Html.LabelFor(m => m.Repeat, new { @style = "color:gray;font-size:smaller;" })
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            @if (null != @Model)
+                                            {
+                                                @Html.TextBoxFor(m => m.Repeat, new { onchange = "onRepeatChanged()", @id = "repeat", @class = "form-control", @style = "width:80px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBox("repeat", "1", new { onchange = "onRepeatChanged()", @id = "repeat", @class = "form-control", @style = "width:50px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                                            }
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            @Html.LabelFor(m => m.TimeoutInMimutes, new { @style = "color:gray;font-size:smaller;" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.TimeoutInMimutes, new { onchange = "onTimeoutChanged()", @id = "timeout", @class = "form-control", @style = "width:50px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <select class="btn btn-toolbar" id="ipmiCommandSelect" onchange="onSelectedIpmiCommandChanged();" style="background-color:rgb(41, 42, 43);color:white;font-size:smaller;height:30px; width:225px;overflow-x: scroll;overflow-y: scroll;">
+                                                    <option id="-1" value="N/A" data-bind="">--Select Ipmi Command--</option>
+                                                    @foreach (var item in @maps.CommandMapList)
+                                                    {
+                                                        var name = @item.Name;
+                                                        var command = @item.IpmiCommand;
+                                                        var commandCode = @item.CommandCode;
+                                                        <option id="@name" value="@command" data-bind="@commandCode">@name &nbsp;@commandCode</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td style="height:5px;" /></tr>
+                                    <tr>
+                                        <td>
+                                            @Html.LabelFor(m => m.Delay, new { @style = "color:gray;font-size:smaller;" })
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            @if (null != @Model)
+                                            {
+                                                @Html.TextBoxFor(m => m.Delay, new { onchange = "onDelayChanged();", @id = "delay", @class = "form-control", @style = "width:80px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBox("delay", "0", new { onchange = "onDelayChanged();", @id = "delay", @class = "form-control", @style = "width:50px;height:25px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;" })
+                                            }
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            @Html.LabelFor(m => m.CustomerDefinedCommand, new { @id = "lblCustomerdefined", @style = "color:gray;font-size:smaller;" })
+                                        </td>
+                                        <td colspan="3">
+                                            @Html.TextAreaFor(m => m.CustomerDefinedCommand, new
+                                                                                       {
+                                                                                           placeholder = "Please enter ipmi command",
+                                                                                           onchange = "onCustomerDefinedChanged();",
+                                                                                           @id = "txtCustomerdefined",
+                                                                                           @class = "form-control",
+                                                                                           @title = Model.CustomerDefinedCommand,
+                                                                                           @style = "text-wrap:normal;width:500px;height:50px;background-color:black;font-size:small;color:white;border-color:grey;border-radius:3px;"
+                                                                                       })
+                                        </td>
+                                        <td />
+                                    </tr>
+                                    <tr><td style="height:5px;" /></tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            @Html.LabelFor(m => m.SutCfig.IsPowerOn, new { @style = "color:gray;font-size:smaller;" })
+                                            <img id='imgOsReady' width="16" height="16" style='display:none;' src="~/Images/Connected.png">
+                                            <img id='imgOsOff' width="16" height="16" style='display:none;' src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARMSURBVGhD7ZlbjxRFFMeXXfCBJwEVVAiB+AlMQCDw5iWKwQTkEnnVJ4kKCZeFkPigrK9KBPUrACZcPgcBuT1BwmXZZbqnq6p3CSxkWX7/nkPChktPz/T0jMn8ksr0OdVVdarq1OmqmoE+ffr0KcTMzMxQHMKa2PuDkQ+nIuevRC4k/D5qJJ69v0zeSd4Z5t2PKDNoxbtPHMdLYx9+w7hRDJ7m+XzswjEM/aHu/Vb0Hytlz0n4kbzjvHNB79Kp28gjqsOqq540Td/CiL8xaEqGYewu6Sw7l7GJiXdUhs5czOqg80XKlwIu8g2NxzKiHsLnuMgcyyqMytZC2Eidl6gzqnm/w7I6B43OY+T+okF8Pt2HPNey2kZ1MUPDqlvuV2bdsxgdHZ0fO3+OdJcGV5u6dLKA4fwY6azaNHU5MDpvYPwZRuq6c26FqTvGuPcrcdsbtHmatodM3T4s5n/w4Tv3vP/AVK+FxueR2gqtaotZqTF4f5qqPWxhE5madyc1Xndhj4ktQyBZpzVD6N5mqtZQOKSimI/ZXlO9krpLv+W9n/Us35Y7ZhltwgAe1Mx47xeaqjhZhCLEYlRuBImi++91Yv3ITRlM7RKOmqoY+trKpYjxX5jqpSgAJEmy3MSOgA1fMisPNVimap7GtiOcZ0Re+7Gr1+vL8t5pF9Xf2AGEI6ZqDgoOKkqRvjfVC9Sc+642OfmuiR1Hezc6c0u2mSofosVa3Gr6bpq+baoXYBEeVrw3seOMT0wsxqYnRaJnI1LgVib2DJl7eX/AxHx4+d9XfYiYWu23jpe+fWgCi6InTMyHjlyWT5o4C/mozhXqkKkqg478hG2XTMxHp7nYuc0m9gzY9LU+0Cbmo+8H6+RTE2dBtPqQUdlpYqWwVflMtpmYj15WIRNn8T/rSOZaW0zsGYq7FgtKC9rEnoHFvhvb/jMxH0LcKYVYE3uGwuGXhT6smxETewbNRuTcfhPz0bkZX5zWlY2puo72ddj0hM6sMlU+jU1juM3M7DJV19GaxaabhTaNAn8coaAOVR3dojeDbFAAIpr+aqrmee5gtdFUXSNK0q84WD1o6WAlFLk0Et3YVz1DbdOJay0fdUUIYZE+QIpipqoc2j5slw8LTNUabAu205lHupoxVWUkSbqeth+XtsuQi2lUmr2gK4NnF3R05HdTtQ9+OsQUnyaK3ajieKtOqC21qbZNXQ52iX2WNKYPpqlLp5akG2hjXJ3o2CmU0ZmLmx3TmqGhQ2VGM+rSRfkhrQki1B+lz8TLsO10RLoSJWETjbb1R4++E9R1VWtCdVtWNeguVrGdxh9qB6Azvq5sLDuXe5OTS5jd7AxOHQ80C865Ny27euL4/vsYcUT7IEaVTR2dyqJc2E3o1p+hnyhlz+hIbMWzv9n0LmXCL1Ve9OWCiwxi8GqMPICBJ/hlyx3qGDzVSDxn91LksRUnf5XKWPE+ffr0aYaBgafYJi5Rp3wyeQAAAABJRU5ErkJggg==">
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td colspan="5">
+                                            @Html.LabelFor(m => m.SutCfig.ifAboutAtFailure, new { @style = "color:gray;font-size:smaller;" })
+                                            <input id="ckIfAborAtFailure" type="checkbox" name="ckIfAborAtFailure" value="IfAborAtFailure" onclick="onCheckIfAbortClick();" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><td style="height:10px;" /></tr>
+                        <tr>
+                            <td colspan="6" style="color:dodgerblue;font-size:small;">
+                                <div class="custom-control custom-radio">
+                                    <label class="radio-inline">
+                                        <input id="radio-warm" type="radio" class="custom-control-input" name="optradio" value="Warm" onclick="onResetTypeClick('Warm');">Warm
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="radio-accycle" type="radio" class="custom-control-input" name="optradio" value="AcCycle" checked="checked" onclick="onResetTypeClick('AcCycle');">Cold
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="radio-mecold" type="radio" class="custom-control-input" name="optradio" value="MeCold" onclick="onResetTypeClick('MeCold');">ME Cold
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="radio-customerdefined" type="radio" class="custom-control-input" name="optradio" value="CustomerDefined" onclick="onResetTypeClick('CustomerDefined');">Customer Defined
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <span id="spRefresh" style="color:gray;font-size:small;margin-left:-80px;" onclick="onRefreshClick();">Refresh&nbsp;<i id="iRefresh" style="color:lime;" class="glyphicon glyphicon-refresh"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td style="height:5px;" /></tr>
+                        <tr>
+                            <td colspan="7">
+                                <div id="divIpmiResponse" style="display:none;">
+                                    <table style="width:100%;background-color:rgb(41, 42, 43);border:1px;border-radius:5px;">
+                                        <tr><td style="height:5px;" /></tr>
+                                        <tr>
+                                            <td></td>
+                                            <td align="center">
+                                                <span class="badge" style="width:120px;background-color:dimgray;color:silver;">Ipmi response:</span>
+                                            </td>
+                                        </tr>
+                                        <tr><td style="height:5px;" /></tr>
+                                        <tr>
+                                            <td style="width:10px;"></td>
+                                            <td>
+                                                <span id="spIpmiResponse" style="width:100%;max-width:100%; background-color:transparent;font-size:smaller;color:gray;border-color:steelblue;">
+                                                </span>
+                                            </td>
+                                            <td style="width:20px;" />
+                                        </tr>
+                                        <tr><td style="height:5px;" /></tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td style="height:10px;" /></tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit" onclick="onSubmitClick();" />
+                            </td>
+                            <td style="width:60px;" />
+                            <td>
+                                <input type="button" class="btn btn-danger" name="btnCancel" id="btnCancel" value="Cancel" onclick="onCancelClick();" />
+                            </td>
+                            <td />
+                        </tr>
+                    </table>
+                    @*}*@
+                </div>
+            </td>
+            <td>
+                <div class="col-md-4">
+                    <table>
+                        <tr>
+                            <td>
+                                @using (Html.BeginForm("LoadConfigJson", "RemoteSystemReset", null, FormMethod.Post, new { encType = "multipart/form-data", id = "frmLoadConfig", name = "frmLoadConfig" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                @Html.LabelFor(m => m.ConfigJson, new { @type = "file", @style = "color:gray;font-size:small;" })
+                                            </td>
+                                            <td>
+                                                @*<label class="btn btn-toolbar" style="width:250px;background-color:rgb(41,42,43);color:silver;margin-left:-30px;">
+                                                        Browse&hellip;
+                                                        <input required type="file" id="configJsonFile" class="btn btn-toolbar" name="configJsonFile" style="background-color:rgb(41, 42, 43);color:steelblue;font-size:14px;display:none;" />
+                                                    </label>*@
+                                                <input required type="file" id="configJsonFile" class="btn btn-toolbar" name="configJsonFile" style="background-color:rgb(41, 42, 43);color:steelblue;font-size:14px;" />
+                                                @Html.ValidationMessageFor(m => m.ConfigJson, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                <input type="submit" class="btn btn-primary" name="btnLoadConfig" id="btnLoadConfig" value="Load" style="width:100px;" />
+                                            </td>
+
+                                        </tr>
+                                        <tr style="color:dimgray;font-size:smaller;">
+                                            @if (!String.IsNullOrEmpty(Model.ConfigJson))
+                                            {
+                                                <td><span>File loaded:</span></td>
+                                                <td align="left" colspan="3" style="color:rgb(165, 77, 229);"><i class="glyphicon glyphicon-file"></i><span>&nbsp;@Model.ConfigJson</span></td>
+                                            }
+                                        </tr>
+                                        <tr><td style="height:10px;" />"</tr>
+                                        <tr>
+                                            <td />
+                                            <td>
+                                                @Html.LabelFor(m => m.CurrentCount, new { @style = "color:gray;font-size:small;" })
+                                            </td>
+                                            <td />
+                                        </tr>
+                                        <tr>
+                                            <td />
+                                            <td>
+                                                <div id="divCurrentCount">
+                                                    <span id="spCurrentCount" style="font-size:64px;font-weight:bold;color:rgb(244, 66, 122);">@Model.CurrentCount</span>
+                                                </div>
+                                            </td>
+                                            <td />
+                                        </tr>
+                                        <tr><td style="height:10px;" /></tr>
+                                        <tr>
+                                            <td />
+                                            <td>
+                                                @Html.Partial("../Shared/_Loader")
+                                            </td>
+                                            <td />
+                                        </tr>
+                                        <tr><td style="height:10px;" /></tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <div id="divCommandDoc" class="row">
+                                                    <table style="margin-left:-10px; width:600px;background-color:rgb(41, 42, 43);color:gray;font-size:small;border:1px;border-radius:5px;">
+                                                        <tr><td colspan="4"><span id="spCommandCode" style="background-color:transparent;color:gray;font-size:small;color:gold;"></span></td></tr>
+                                                        <tr>
+                                                            <th class="badge badge-toolbar" align="center">Request</th>
+                                                            <th>&nbsp;</th>
+                                                            <th class="badge badge-toolbar" align="center">Response</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <textarea id="txtCommandRequest" placeholder="Document Not available" style="word-break:break-all;text-wrap:normal; background-color:black;font-size:smaller;width:100%;max-width:100%;height:250px;max-height:100%;border-color:dimgray;"></textarea>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                <textarea id="txtCommandResponse" placeholder="Document Not available" style="word-break:break-all;text-wrap:normal; background-color:black;font-size:smaller;width:100%;max-width:100%;height:250px;max-height:100%;border-color:dimgray;"></textarea>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+}
+<table style='width:100%;'>
+    <tr>
+        <td>
+            <div id='divError' class='alert alert-dismissible alert-danger'>
+                <span id="spError" style="font-size:small;">
+                </span>
+            </div>
+        </td>
+    </tr>
+</table>
+@using (Html.BeginForm("SaveConfigJson", "RemoteSystemReset", null, FormMethod.Post, new { encType = "multipart/form-data", id = "frmSaveConfig", name = "frmSaveConfig" }))
+{
+    @Html.AntiForgeryToken()
+    <table style="width:100%;background-color:rgb(41, 42, 43);border:1px;border-radius:5px;">
+        <tr><td style="height:10px;" /></tr>
+        <tr>
+            <td style="width:10px;" />
+            <td>
+                <input type="submit" class="btn btn-success" name="btnSave" id="btnSave" value="Save Configuration" style="width:150px;display:none;" />
+            </td>
+            <td style="width:20px;" />
+            <td>
+                <span style="font-size:smaller;color:gray;">
+                    NOTE : This tool leverages the BMC to do the system warm reset, AC cycle or ME colde reset. The recurring numbers can be specified. The use case
+                    could be a strees test for FW, dimms etc.
+                </span>
+            </td>
+            <td style="width:20px;" />
+        </tr>
+        <tr><td style="height:10px;" /></tr>
+    </table>
+}
+
+<script type="text/javascript">
+    function updateSystemResetUI() {
+        var t = 1000;
+        @*model = @Html.Raw(Json.Encode(Model));
+        if (null != model) {
+            t = parseInt(model.Delay) * 1000;
+        }*@
+        $.ajax({
+            url: '/RemoteSystemReset/PingSut',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                //JsonString: $('#sutIpAddress').val()
+            },
+            success: function (data) {
+                t = parseInt(data.Delay) * 1000;
+                var isPoweron = false;
+                var imagOn = $('#imgOsReady');
+                var imagOff = $('#imgOsOff');
+                if (null != data) {
+                    if (null != data.SutCfig) {
+                        isPoweron = data.SutCfig.IsPowerOn;
+                        $('#spCurrentCount').html(data.CurrentCount.toString());
+                    }
+                    if (data.RestType == 'Warm') {
+                        $('#radio-warm').prop('checked', 'checked');
+                    } else if (data.RestType == 'AcCycle') {
+                        $('#radio-accycle').prop('checked', 'checked');
+                    } else if (data.RestType == 'CustomerDefined') {
+                        $('#radio-customerdefined').prop('checked', 'checked');
+                    } else {
+                        $('#radio-mecold').prop('checked', 'checked');
+                    }
+                    if (data.ErrorMessage != '') {
+                        $('#divError').attr("style", "visibility:visible;");
+                        $('#spError').html(data.ErrorMessage);
+                    }
+                    else {
+                        $('#divError').attr("style", "display:none;");
+                    }
+                    if (data.IpmiResponse != '') {
+                        $('#divIpmiResponse').attr("style", "visibility:visible;");
+                        $('#spIpmiResponse').html(data.IpmiResponse);
+                    } else {
+                        $('#divIpmiResponse').attr("style", "display:none;");
+                    }
+                    if (data.Status == 'Alive') {
+                        $('#btnCancel').attr("style", "visibility:visible;");
+                        disableGUIs(true);
+                    }
+                    else {
+                        $('#btnCancel').attr("style", "display:none;");
+                        $('#divProgress').attr("style", "display:none;");
+                        disableGUIs(false);
+                    }
+                    if (data.CanSubmit) {
+                        $('#btnSave').attr("style", "visibility:visible;");
+                        if (data.ErrorMessage == '') {
+                            $('#Submit').attr("style", "visibility:visible;");
+                        } else {
+                            $('#Submit').attr("style", "display:none;");
+                        }
+                    } else {
+                        $('#btnSave').attr("style", "display:none;");
+                        $('#Submit').attr("style", "display:none;");
+                    }
+                }
+                if (isPoweron) {
+                    if (null != imagOn) {
+                        imagOn.attr("style", "visibility:visible;");
+                    }
+                    if (null != imagOff) {
+                        imagOff.attr("style", "display:none;");
+                    }
+                } else {
+                    if (null != imagOn) {
+                        imagOn.attr("style", "display:none;");
+                    }
+                    if (null != imagOff) {
+                        imagOff.attr("style", "visibility:visible;");
+                    }
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+
+        setTimeout(updateSystemResetUI, t);
+    }
+
+    function disableGUIs(disabled) {
+        var guis = [$('#Submit'), $('#btnSave'), $('#spRefresh'), $('#iRefresh'), $('#configJsonFile'), $('#btnLoadConfig'), $('#bmcIpAddress'),
+                     $('#bmcUser'), $('#bmcPassword'), $('#sutIpAddress'), $('#repeat'), $('#timeout'), $('#delay'), $('#txtCustomerdefined'),
+         $('#ipmiCommandSelect'), $('#ckIfAborAtFailure'), $('#radio-warm'), $('#radio-accycle'), $('#radio-mecold'), $('#radio-customerdefined')];
+        guis.forEach(function (element) {
+            element.attr('disabled', disabled);
+        });
+    }
+
+    function onResetTypeClick(resetType) {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateResetTypeConfig',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: resetType
+            },
+            success: function (data) {
+                if (resetType != 'CustomerDefined') {
+                    document.getElementById("txtCustomerdefined").value = '';
+                    document.getElementById("ipmiCommandSelect").value = 'N/A';
+                } else {
+                    document.getElementById("repeat").value = '1';
+                }
+                if ('CustomerDefined' == resetType) {
+                    $('#divCommandDoc').attr("style", "visibility:visible;");
+                } else {
+                    $('#divCommandDoc').attr("style", "display:none;");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        //ShowProgress();
+    };
+
+    function onRepeatChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateRepeatConfig',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#repeat').val()
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        ShowProgress();
+    };
+
+    function onBmcIPChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateBmcIPAddressConfig',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#bmcIpAddress').val()
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        ShowProgress();
+    };
+
+    function onBmcUserChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateBmcUsersConfig',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#bmcUser').val()
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        ShowProgress();
+    };
+
+    function onBmcPasswordChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateBmcPasswordConfig',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#bmcPassword').val()
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        ShowProgress();
+    };
+
+    function onSutIPChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateSuTConfig',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: document.getElementById("sutIpAddress").value //$('#sutIpAddress').val()
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        ShowProgress();
+    };
+
+    function onTimeoutChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateTimeout',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#timeout').val()
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        ShowProgress();
+    };
+
+    function onDelayChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateDelay',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#delay').val()
+            },
+            success: function (data) {
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        ShowProgress();
+    };
+
+    function onCustomerDefinedChanged() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateCustomerDefinedCommand',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#txtCustomerdefined').val()
+            },
+            success: function (data) {
+                $('#divCommandDoc').attr("style", "visibility:visible;");
+                $('#spCommandCode').html(data.CommandCode);
+                $('#txtCommandRequest').html(data.RequestDoc);
+                $('#txtCommandResponse').html(data.ResponseDoc);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+        //ShowProgress();
+    };
+
+    function ShowProgress() {
+        $('#divProgress').attr("style", "visibility:visible;");
+    }
+
+    function ResetErrorMessage() {
+        if ($('#spCurrentCount').innerHTML != '0') {
+            $.ajax({
+                url: '/RemoteSystemReset/ResetErrorMessage',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+                },
+                success: function (data) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        }
+    }
+
+    function onCheckIfAbortClick() {
+        $.ajax({
+            url: '/RemoteSystemReset/UpdateIfAbortAtFailure',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+                JsonString: $('#ckIfAborAtFailure').is(":checked")
+            },
+            success: function (data) {
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+
+    }
+
+    function onSelectedIpmiCommandChanged() {
+        var value = $('#ipmiCommandSelect').val().toString();
+        if (value != 'N/A') {
+            document.getElementById("txtCustomerdefined").value = value;
+            $('#radio-customerdefined').prop('checked', 'checked');
+            onCustomerDefinedChanged();
+            onResetTypeClick('CustomerDefined');
+        }
+    }
+
+    function onSubmitClick() {
+        $.ajax({
+            url: '/RemoteSystemReset/PingSut',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (model) {
+                if (model.RestType == 'CustomerDefined' && model.CustomerDefinedCommand == '') {
+                    alert("Pleae enter the custom ipmi command!")
+                    return;
+                }
+
+                //var results = confirm("Are you sure you want to reset the system?");
+                $('#divError').attr("style", "display:none;");
+                if (model.CanSubmit) {
+                    $.ajax({
+                        url: '/RemoteSystemReset/Submit',
+                        dataType: 'json',
+                        type: "POST",
+                        cache: false,
+                        data: {
+                        },
+                        success: function (data) {
+
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            console.log('xhr.status : ' + xhr.status);
+                        }
+                    });
+                    $('#divProgress').attr("style", "visibility:visible;");
+                }
+
+
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    }
+
+    function onCancelClick() {
+        $.ajax({
+            url: '/RemoteSystemReset/Abort',
+            dataType: 'json',
+            type: "POST",
+            cache: false,
+            data: {
+            },
+            success: function (data) {
+                //$('#Submit').attr("style", "visibility:visible;");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log('xhr.status : ' + xhr.status);
+            }
+        });
+    }
+
+    function onRefreshClick() {
+        ResetErrorMessage();
+        ShowProgress();
+    }
+</script>

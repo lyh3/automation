@@ -1,0 +1,276 @@
+﻿@using IntelDCGSpsWebService.Models;
+@using IntelDCGSpsWebService.Models;
+@using WindowService.DataModel;
+
+@model BiosImageOperationsModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (null != @Model)
+{
+    var isextract = false;
+    if (@Model.OperationType == "ExtractBios")
+    {
+        isextract = true;
+    }
+    <h3 align="left" style="color:dodgerblue;">@Model.Title</h3>
+    <hr />
+    using (Html.BeginForm("UploadSpiImages", "BiosImageOperations", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formBiosImageOperation", name = "formBiosImageOperation" }))
+    {
+        @Html.AntiForgeryToken()
+        <table style="width:100%;">
+            <tr>
+                <td style="width:20%;">
+                    <table tyle="background-color:rgb(41, 42, 43); border: 1px; border-radius: 5px;">
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.IfwiImage, new { @type = "file", @style = "color:gray;font-size:small;" })
+                                <input required type="file" id="ifwiImage" class="btn btn-toolbar" name="ifwiImage" style="background-color:rgb(41, 42, 43); color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                @Html.ValidationMessageFor(m => m.IfwiImage, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                            </td>
+                        </tr>
+                        <tr><td style="height:10px;" /></tr>
+                        <tr>
+                            <td>
+
+                                <div id="divBiosImage" style="display:none;">
+                                    @Html.LabelFor(m => m.BiosImage, new { @id = "lbBiosImage", @type = "file", @style = "color:gray;font-size:small;" })
+                                    <input required type="file" id="biosImage" class="btn btn-toolbar" name="biosImage" style="background-color:rgb(41, 42, 43); color:steelblue;font-size:14px;" onclick="resetUI()" />
+                                    @Html.ValidationMessageFor(m => m.BiosImage, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" name="Submit" id="Submit" value="Submit" onclick="onSubmitBiosImageOperation();" />
+                                        </td>
+                                        <td style="width:60px;" />
+                                        <td>
+                                            <input type="button" class="btn btn-danger" style="width:80px;display:none;" name="btnCancel" id="btnCancel" value="Cancel" onclick="location.reload();" />
+                                        </td>
+
+                                        <td>
+                                            <div style="background-color:transparent;">
+                                                <span id="spRefresh" style="color:white;font-size:small;" onclick="onRefreshClick();">Refresh&nbsp;<i id="iRefresh" style="color:lime;" class="glyphicon glyphicon-refresh"></i></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width:2%;" />
+                <td style="width:20%;">
+                    @Html.Partial("../Shared/_Loader")
+                </td>
+                <td style="width:58%;">
+                    <table tyle="background-color:rgb(41, 42, 43); border: 1px; border-radius: 5px;">
+                        @if (Model.IsDownloadAvailable)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.IfwiImage, new { @type = "file", @style = "color:gray;font-size:smaller;" })
+                                    @Html.TextBoxFor(m => m.IfwiImage, new { @class = "form-control", @style = "width:400px;background-color:black;font-size:small;color:dimgray;border-color:grey;border-radius:3px;" })
+                                </td>
+                            </tr>
+                            if (@Model.OperationType != BiosImageOperationType.ExtractBios.ToString())
+                            {
+                                <tr><td style="height:10px;" /></tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(m => m.BiosImage, new { @type = "file", @style = "color:gray;font-size:smaller;" })
+                                        @Html.TextBoxFor(m => m.BiosImage, new { @class = "form-control", @style = "width:400px;background-color:black;font-size:small;color:dimgray;border-color:grey;border-radius:3px;" })
+                                    </td>
+                                </tr>
+                                <tr><td style="height:10px;" /></tr>
+                            }
+                        }
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.OutputName, new { @style = "color:gray;font-size:small;" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:transparent;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.OutputName, new
+                                            {
+                                                @class = "form-control",
+                                                @placeholder = "Enter the output file name.",
+                                                @style = "width:500px;background-color:rgb(41, 42, 43);font-size:small;color:white;border-color:grey;border-radius:3px;"
+                                            })
+                                            @Html.ValidationMessageFor(m => m.OutputName, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><td style="height:30px;" /></tr>
+                        <tr>
+                            <td style="color:dodgerblue;font-size:small;">
+                                <div id="divOperationType" class="custom-control custom-radio">
+                                    <label class="radio-inline">
+                                        <input id="radio-extractbios" type="radio" class="custom-control-input" name="optradio" value="ExtractBios" checked="checked" onclick="onOperationTypeClick('ExtractBios');">Extract Bios
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="radio-merebios" type="radio" class="custom-control-input" name="optradio" value="MergeBios" onclick="onOperationTypeClick('MergeBios');">Merge Bios
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="radio-swapbios" type="radio" class="custom-control-input" name="optradio" value="SwapBios" onclick="onOperationTypeClick('SwapBios');">Swap Bios
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    }
+
+    if (null != @Model && @Model.ProcessFailed)
+    {
+        <div id="divErrorMessage">
+            <table>
+                <tr>
+                    <td>
+                        <div id='divError' class='alert alert-dismissible alert-danger'>
+                            <span id="spError" style="font-size:small;">
+                                &nbsp;Failed to process the image file.  Please verify your source and region images are in binary format.  Make sure the map file is valid and the region data correct.
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    using (Html.BeginForm("DownloadSpiImage", "BiosImageOperations", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formSpiMerge_download", name = "formSpiMerge_download" }))
+    {
+        <table style="width:100%;background-color:rgb(41, 42, 43);border:1px;border-radius:5px;">
+            <tr><td style="height:10px;" /></tr>
+            <tr>
+                <td style="width:10px;" />
+                <td>
+                    @if (null != @Model && @Model.IsDownloadAvailable)
+                    {
+                    <div class="blinker">
+                        <input type="submit" class="btn btn-success" name="download" id="download" value="Download" onclick="onDownloadClick();" />
+                    </div>
+                    }
+                </td>
+                <td style="width:20px;" />
+                <td>
+                    <span style="font-size:smaller;color:gray;">
+                        NOTE : This tool provides the following three functions:
+                        (1). To extract BIOS region from an imput image binary file (.bin or .rom).
+                        (2). To swap/replace the BIOS region from a built BIOS to a target image, the size of the BIOS region from both files must be the same.
+                        (3). To merge the BIOS region from a built BIOS to a target image.  This function dosn't require the file size of the built image being the same size
+                        of the target image file unlike the function #2 does.
+                    </span>
+                </td>
+                <td style="width:20px;" />
+            </tr>
+            <tr><td style="height:10px;" /></tr>
+        </table>
+    }
+}
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function onOperationTypeClick(resetType) {
+            $.ajax({
+                url: '/BiosImageOperations/UpdateOperationType',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+                    JsonString: resetType
+                },
+                success: function (data) {
+                    if ('ExtractBios' == resetType) {
+                        $('#divBiosImage').attr("style", "display:none;");
+                        $('#biosImage').attr('required', false);
+                    } else {
+                        $('#divBiosImage').attr("style", "visibility:visible;");
+                        $('#biosImage').attr('requird', true);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        };
+        function resetUI() {
+            displayLoader(false);
+            $('#download').attr("style", "display:none;");
+            $('#Submit').attr("style", "visibility:visible;");
+            $('btnCancel').attr("style", "display:none;");
+        }
+        function onCancelUpload() {
+            $('#download').attr("style", "display:none;");
+            onCancelClick();
+        }
+        function onSubmitBiosImageOperation() {
+            $('#spRefresh').attr("style", "display:none;");
+            $('#divErrorMessage').attr("style", "display:none;");
+            if (IsFormFilled() || $('#radio-extractbios').attr('checked')) {
+                displayLoader(true);
+            } else {
+                $('#Submit').attr("style", "display:none;");
+                $('#spRefresh').attr("style", "visibility:visible;");
+            }
+        }
+
+        function onRefreshClick() {
+            $.ajax({
+                url: '/BiosImageOperations/Reset',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+
+                },
+                success: function (data) {
+                    $('#divOperationType').attrr("style", "visibility:visible;");
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+            $('#divErrorMessage').attr("style", "display:none;");
+            location.reload();
+        }
+
+        function onDownloadClick() {
+            $('#divOperationType').attr("style", "display:none;");
+            $('#spRefresh').attrr("style", "visibility:visible;");
+            $.ajax({
+                url: '/BiosImageOperations/DownloadSpiImage',
+                dataType: 'json',
+                type: "POST",
+                cache: false,
+                data: {
+                },
+                success: function (data) {
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr.status : ' + xhr.status);
+                }
+            });
+        }
+
+    </script>
+}

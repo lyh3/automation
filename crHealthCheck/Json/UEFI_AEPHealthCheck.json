@@ -1,0 +1,138 @@
+{
+    "UEFI":
+    {
+        "key":"UEFI",
+        "skip":false,
+        "tests":
+        [
+            {
+                "testid":"UEFI_001",
+                "skip":false,
+                "objective":"Apache Pass is discovered and trained during boot phase by the memory reference code as described in the Theory of Operations chapter. This test case provides specific verification of the discovery and training process. This test case may need to be repeated for each DIMM population combination to exercise paths in MRC as well as hardware paths on the board.",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"",
+                "pass/failCreterial":"Test passes if all installed DDR4 and Apache Pass dimm are discovered and trained with all channels enabled.",
+                "shellCommand":
+                [
+                    {
+                        "command":".\\archive\\UEFI_001.log"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"IntelDDRTIdSample",
+                        "value":"[\"8089\", \"KVAQ\"]"
+                    },
+                    {
+                        "name":"DDR4IdSample",
+                        "value":"[\"M393\", \"18AS\"]"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_101",
+                "skip":false,
+                "objective":"Part of validation of platform topology and SMBIOS tables. OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"Run the CLI commands and examine the returned details. Validate the recorded AEP serial number socket, channel and DIMM slot position are correct for all installed AEP devices. Ensure that no AEP devices are missing from returned data. 1, Execute the command with the extended option flag [-a|-all] to display all available attributes: show -a -topology106 2. Display the AEP device serial number for the associated DimmID and the compare the returned serial number to the manually recorded physical asset and position. show -d partnumber,serialnumber,socketid,channelid,channelpos -dimm (DimmIDs from step 1 list)",
+                "pass/failCreterial":"Pass - Commands must complete without error. DIMM topology data is accurate and complete when validated against installed physical asset inventory, including capacity. Physical position of AEP for each serial number has been validated as correct. Fail- All remaining instances.",
+                "shellCommand":
+                [
+                    {
+                        "command":"fs1:"
+                    },
+                    {
+                        "command":"ipmctl.efi show -a -topology"
+                    }
+                ],
+                "expecteddata":
+                [
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_102",
+                "skip":false,
+                "objective":"Part of validation of platform topology and SMBIOS tables. OS CLI and UEFI HII/CLI user interfaces. Repeat the test in each environment planned to be supported (UEFI and each OS in the test plan support matrix).",
+                "Test Setup / Preconditions":"The platform and BIOS DDR-T training and discovery of the AEP DIMM(s) was successful and that basic communications between the host and the Apache Pass SMBus mailbox are setup correctly.",
+                "testProcedure":"1. Run the CLI Show Socket command and examine the returned details. Execute the command with the extended option flag [-a|-all] to display all available attributes: show -a -socket 2. Review the output of the command. It should list all of the platform installed CPU sockets with correct values, including mapped memory limits and the current BIOS mapped memory.",
+                "pass/failCreterial":"Pass - Command must complete without error. All installed, CPUs must show up in the list with correct values for the command attributes, including the CPU SKU mapped memory limits and the current BIOS mapped memory capacity.",
+                "shellCommand":
+                [
+                    {
+                        "command":"fs1:"
+                    },
+                    {
+                        "command":"ipmctl.efi show -socket"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"MappedMemoryLimit",
+                        "value":"\u003e=  1.5 TiB"
+                    },
+                    {
+                        "name":"TotalMappedMemory",
+                        "value":"\u003e= 940  GiB"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            },
+            {
+                "testid":"UEFI_103",
+                "skip":false,
+                "objective":"Verify installed Apache Pass Entities.",
+                "Test Setup / Preconditions":"",
+                "testProcedure":"Extract NFIT table from live ACPI data - 1) acpidump _t PCAT \u003e PCAT.dat. 2) acpixtract -a PCAT.dat. 3) iasl -d PCAT.dat.",
+                "pass/failCreterial":"Examine resulting PCAT.dsl for number of Apache Pass entries. A quick way to do that is to count occurrences of \u0027Serial Number:\u0027 in the file. The number of occurrences should match the number of Apache Pass installed in chassis.",
+                "shellCommand":
+                [
+                    {
+                        "command":"fs1:"
+                    },
+                    {
+                        "command":"ipmctl.efi show -a -dimm"
+                    }
+                ],
+                "expecteddata":
+                [
+                    {
+                        "name":"FWVersion",
+                        "value":"01.00.00.4888"
+                    },
+                    {
+                        "name":"HealthState",
+                        "value":"Healthy"
+                    },
+                    {
+                        "name":"Capacity",
+                        "value":"125.7 GiB"
+                    }
+                ],
+                "powercycle":false,
+                "waitkeystroke":false
+            }
+        ]
+    },
+    "timeout":"300",
+    "recurring":"15",
+    "reporthtmlfilename":"HealthCheckReport.html",
+    "serialport":"COM3",
+    "serialportbaudrate":"115200",
+    "Client":
+    {
+        "ip":"10.54.0.236",
+        "user":"root",
+        "password":"inT3l123$"
+    },
+    "Report":
+    {
+        "versionCommand":"ipmctl version"
+    }
+}

@@ -1,0 +1,24 @@
+{
+	"default" : "ITP",
+	"devices" : [
+		{
+			"name" : "Aardvark",
+			"slaveaddress" : "0x20",
+			"port" : "0"
+		}, 
+		{
+			"name" : "BMC",
+			"protocol" : "lanplus",
+			"ipaddress" : "10.23.60.8",
+			"username" : "root",
+			"password" : "superuser",
+			"port"     : "623",
+			"path" : ""
+		},
+		{
+			"name" : "ITP"
+		}
+	],
+	"bridge" : "0x06",
+	"target" : "0x2c"
+}

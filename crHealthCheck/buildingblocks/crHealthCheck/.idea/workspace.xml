@@ -1,0 +1,1256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="4b5eab39-310e-4733-aacb-e87b015f2214" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="paecrautomation" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.7052214">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="crHealth_Template_State.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/crHealth_Template_State.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="4" selection-start-line="4" selection-end-line="4" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="crHealth_Template_State.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/workstates/Template/crHealth_Template_State.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="561">
+                  <caret line="36" selection-start-line="36" selection-end-line="36" />
+                  <folding>
+                    <element signature="e#0#42#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="crHealth_UEFI_001_State.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_001_State.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="276">
+                  <caret line="123" column="60" selection-start-line="123" selection-start-column="60" selection-end-line="123" selection-end-column="60" />
+                  <folding>
+                    <element signature="e#0#42#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="dimm.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/AEPDatamodels/dimm.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2074">
+                  <caret line="123" selection-start-line="123" selection-end-line="123" />
+                  <folding>
+                    <element signature="e#0#21#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="crTestState.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crTestState.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="168">
+                  <caret line="223" selection-start-line="223" selection-end-line="223" />
+                  <folding>
+                    <element signature="e#739#1361#0" />
+                    <element signature="e#1421#1584#0" />
+                    <element signature="e#1636#2635#0" />
+                    <element signature="e#2711#3569#0" />
+                    <element signature="e#3609#3685#0" />
+                    <element signature="e#5049#6609#0" />
+                    <element signature="e#6697#7490#0" />
+                    <element signature="e#7557#7720#0" />
+                    <element signature="e#7777#8075#0" />
+                    <element signature="e#8137#8880#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="crHealth_MGT_001_State.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_001_State.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="629">
+                  <caret line="38" selection-start-line="38" selection-end-line="43" selection-end-column="48" />
+                  <folding>
+                    <element signature="e#0#42#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="healthCheck.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/healthCheck.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="187">
+                  <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#0#20#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="crHealth_UEFI_004_State.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_004_State.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+                  <folding>
+                    <element signature="e#0#53#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>for k,v</find>
+      <find>@property</find>
+      <find>socket</find>
+      <find>NVMDIMMLRDIMM</find>
+      <find>@staticmethod</find>
+      <find>colunms</find>
+      <find>%2</find>
+      <find>rowData</find>
+      <find>expectedData</find>
+      <find>logicDictionary</find>
+      <find>_parseOperator</find>
+      <find>topologyResults</find>
+      <find>socketTableDictionary</find>
+      <find>u.value</find>
+      <find>1</find>
+      <find>_2</find>
+      <find>CrHealth_Template_State</find>
+      <find>CrHealth_Template_1_State</find>
+      <find>CrHealth_Template_2_State</find>
+      <find>_1</find>
+      <find>re.split(</find>
+      <find>dt</find>
+      <find>previousline</find>
+      <find>_datavalueFormat</find>
+      <find>_initializeTemplate</find>
+      <find>\s+\t</find>
+      <find>re.sub('\t', '', '</find>
+      <find>re.sub</find>
+      <find>SUPORTED_DIMM_SIZE_UNIT</find>
+      <find>SocketTableDictionary</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>expecteddata</replace>
+      <replace>false</replace>
+      <replace>self._reportHeader</replace>
+      <replace>14</replace>
+      <replace>border=&quot;0&quot;</replace>
+      <replace>self._resource['COLOR']</replace>
+      <replace>self._resource['CONST_STRING']</replace>
+      <replace>self._resource['ICON']</replace>
+      <replace>recur</replace>
+      <replace>&quot;recur&quot; : &quot;1&quot;</replace>
+      <replace>carrigeReturn</replace>
+      <replace>2</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>C:\PythonSV\elkvalley\cr_automation2.0</dir>
+      <dir>C:\PythonSV\crHealthCheck\ConfigEditor</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/workstates/openHtmlFileState.py" />
+        <option value="$PROJECT_DIR$/Json/Resource.json" />
+        <option value="$PROJECT_DIR$/workstates/systemControlState/initialParamicoClientState.py" />
+        <option value="$PROJECT_DIR$/workstates/systemControlState/initialITPState.py" />
+        <option value="$PROJECT_DIR$/buildingblocks/eventHandler.py" />
+        <option value="$PROJECT_DIR$/buildingblocks/workflow/workthread.py" />
+        <option value="$PROJECT_DIR$/Json/UItest.txt" />
+        <option value="$PROJECT_DIR$/Json/UItest.json" />
+        <option value="$PROJECT_DIR$/workthreads/htmlReportWorkthread.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_Template_State.py" />
+        <option value="$PROJECT_DIR$/buildingblocks/invokeAadvark.py" />
+        <option value="$PROJECT_DIR$/buildingblocks/invokeITP.py" />
+        <option value="$PROJECT_DIR$/Json/123.json" />
+        <option value="$PROJECT_DIR$/Json/BIOSConfig.json" />
+        <option value="$PROJECT_DIR$/workstates/SerialInvokeState/SerialWriteState.py" />
+        <option value="$PROJECT_DIR$/workstates/SerialInvokeState/serial_wait_State.py" />
+        <option value="$PROJECT_DIR$/workstates/systemControlState/systemControlState.py" />
+        <option value="$PROJECT_DIR$/workthreads/BIOSCheckThread.py" />
+        <option value="$PROJECT_DIR$/workstates/SerialInvokeState/serial_read_State.py" />
+        <option value="$PROJECT_DIR$/workstates/SerialInvokeState/serial_write_State.py" />
+        <option value="$PROJECT_DIR$/Json/AEPHealthCheck.json" />
+        <option value="$PROJECT_DIR$/workstates/systemControlState/osRebootState.py" />
+        <option value="$PROJECT_DIR$/healthCheck.py" />
+        <option value="$PROJECT_DIR$/workstates/SerialInvokeState/serial_waitFor_State.py" />
+        <option value="$PROJECT_DIR$/workstates/Template/crHealth_Template_1_State.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_Henry_001_State.py" />
+        <option value="$PROJECT_DIR$/Json/HealthCheckBIOSConfig - Copy.json" />
+        <option value="$PROJECT_DIR$/workthreads/biosCheckThread.py" />
+        <option value="$PROJECT_DIR$/biosCheckThread.py" />
+        <option value="$PROJECT_DIR$/workstates/SerialInvokeState/serialInvokeState.py" />
+        <option value="$PROJECT_DIR$/biosSettings.py" />
+        <option value="$PROJECT_DIR$/Json/SerialInvoke.json" />
+        <option value="$PROJECT_DIR$/Json/biosConfigTest.json" />
+        <option value="$PROJECT_DIR$/Json/HealthCheckBIOSConfig.json" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_006_State.py" />
+        <option value="$PROJECT_DIR$/buildingblocks/utils.py" />
+        <option value="$PROJECT_DIR$/AEPDatamodels/socketTable.py" />
+        <option value="$PROJECT_DIR$/workthreads/complianceCheckThread.py" />
+        <option value="$PROJECT_DIR$/buildingblocks/invokeSerial.py" />
+        <option value="$PROJECT_DIR$/workstates/Template/crHealth_Template_2_State.py" />
+        <option value="$PROJECT_DIR$/crHealth_Template_State.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_002_State.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_005_State.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_003_State.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crTestState.py" />
+        <option value="$PROJECT_DIR$/Json/Henry.json" />
+        <option value="$PROJECT_DIR$/workstates/Template/crHealth_Template_State.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_001_State.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_004_State.py" />
+        <option value="$PROJECT_DIR$/AEPDatamodels/dimm.py" />
+        <option value="$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_001_State.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="65" />
+    <option name="width" value="1360" />
+    <option name="height" value="975" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <showMembers ProjectPane="false" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="crHealthCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crHealthCheck" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crHealthCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crHealthCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="AEPDatamodels" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crHealthCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crHealthCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="Json" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crHealthCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crHealthCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="workstates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crHealthCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crHealthCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="workstates" type="462c0819:PsiDirectoryNode" />
+              <item name="CrTestState" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crHealthCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crHealthCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="workstates" type="462c0819:PsiDirectoryNode" />
+              <item name="systemControlState" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crHealthCheck" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crHealthCheck" type="462c0819:PsiDirectoryNode" />
+              <item name="workstates" type="462c0819:PsiDirectoryNode" />
+              <item name="Template" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/biosSettings.py" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PythonSV\crHealthCheck\workstates\Template" />
+      <recent name="C:\PythonSV\crHealthCheck\AEPDatamodels" />
+      <recent name="C:\PythonSV\crHealthCheck\workstates\SerialInvokeState" />
+      <recent name="C:\PythonSV\crHealthCheck\workstates\CrTestState" />
+      <recent name="C:\PythonSV\crHealthCheck\Json" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\PythonSV\crHealthCheck\workstates\systemControlState" />
+      <recent name="C:\PythonSV\crHealthCheck\workstates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.Selfcheck">
+    <configuration name="BiosSetting" type="PythonConfigurationType" factoryName="Python">
+      <module name="paecrautomation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/biosSettings.py" />
+      <option name="PARAMETERS" value="-s &quot;Serial Debug Message Level - Mininal&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="InvokeITP" type="PythonConfigurationType" factoryName="Python">
+      <module name="paecrautomation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/buildingblocks" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/buildingblocks/invokeITP.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="InvokeSerial" type="PythonConfigurationType" factoryName="Python">
+      <module name="paecrautomation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/buildingblocks" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/buildingblocks/invokeSerial.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="Keystroke" type="PythonConfigurationType" factoryName="Python">
+      <module name="paecrautomation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/workstates" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\PythonSV\crHealthCheck\workstates\systemControlState\waitKeyStrokeState.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="Selfcheck" type="PythonConfigurationType" factoryName="Python">
+      <module name="paecrautomation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/healthCheck.py" />
+      <option name="PARAMETERS" value="-j Json\Henry_Error.json" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="serialWaitFor" type="PythonConfigurationType" factoryName="Python">
+      <module name="paecrautomation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Python27\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/workstates/SerialInvokeState" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/workstates/SerialInvokeState/serial_waitFor_State.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="paecrautomation" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="paecrautomation" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="paecrautomation" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="paecrautomation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.Selfcheck" />
+      <item itemvalue="Python.BiosSetting" />
+      <item itemvalue="Python.InvokeSerial" />
+      <item itemvalue="Python.serialWaitFor" />
+      <item itemvalue="Python.Keystroke" />
+      <item itemvalue="Python.InvokeITP" />
+    </list>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\DCPAE-User\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4b5eab39-310e-4733-aacb-e87b015f2214" name="Default" comment="" />
+      <created>1526104600310</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1526104600310</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49775785" weight="0.18374091" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32905984" />
+      <window_info anchor="bottom" id="Statistic" order="7" weight="0.35327634" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5009914" side_tool="true" weight="0.41737893" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32905984" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32453415" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.1994302" />
+      <window_info id="Structure" order="1" sideWeight="0.50224215" side_tool="true" weight="0.19981916" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49966952" weight="0.26865673" />
+      <window_info id="Favorites" order="2" sideWeight="0.5019305" side_tool="true" weight="0.19695969" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4990086" visible="true" weight="0.35897437" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32905984" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32763532" />
+      <window_info anchor="right" id="Data View" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49775785" visible="true" weight="0.18374091" />
+      <window_info id="Structure" order="1" sideWeight="0.50224215" side_tool="true" weight="0.19981916" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32905984" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32905984" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.1994302" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" visible="true" weight="0.32905984" />
+      <window_info anchor="bottom" id="Statistic" order="7" weight="0.35327634" />
+      <window_info anchor="bottom" id="Python Console" order="9" weight="0.32453415" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32763532" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4990086" weight="0.18660969" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49966952" weight="0.26865673" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5009914" side_tool="true" weight="0.41737893" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Data View" order="3" />
+      <window_info id="Favorites" order="2" sideWeight="0.5019305" side_tool="true" weight="0.19695969" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/workstates/systemControlState/pingSUTState.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="569" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <condition expression="isinstance(state, ArchiveDataState)" language="Python" />
+          <url>file://$PROJECT_DIR$/healthCheck.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="732" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <condition expression="instance.class_id == 'crhealth_uefi_003_state'" language="Python" />
+          <url>file://$PROJECT_DIR$/healthCheck.py</url>
+          <line>80</line>
+          <option name="timeStamp" value="833" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <condition expression="isinstance(state, CrHealth_UEFI_004_State)" language="Python" />
+          <url>file://$PROJECT_DIR$/healthCheck.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="906" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/buildingblocks/invokeFactory.py</url>
+          <line>46</line>
+          <option name="timeStamp" value="966" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/buildingblocks/invokeSerial.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="1675" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/buildingblocks/invokeSerial.py</url>
+          <line>102</line>
+          <option name="timeStamp" value="1676" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/buildingblocks/invokeSerial.py</url>
+          <line>101</line>
+          <option name="timeStamp" value="1677" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_004_State.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="1872" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/workstates/CrTestState/crTestState.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="1873" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_001_State.py</url>
+          <line>122</line>
+          <option name="timeStamp" value="1902" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_001_State.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="1903" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_001_State.py</url>
+          <line>121</line>
+          <option name="timeStamp" value="1905" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="1906" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="socketTableDictionary" language="Python" />
+        <watch expression="dimmType" language="Python" />
+        <watch expression="ds" language="Python" />
+        <watch expression="idx" language="Python" />
+        <watch expression="dimmsize" language="Python" />
+        <watch expression="v[i]" language="Python" />
+        <watch expression="i" language="Python" />
+        <watch expression="Dimm_type([x.strip() for x in re.split(r'\s+', dimmType[d_idx]) if x != ''][0])" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>re.findall(':','	Error Correction Type: Single-bit ECC')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>re.findall(':','Error Correction Type: Single-bit ECC')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>'	Error Correction Type: Single-bit ECC'.split('\t')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>'	Error Correction Type: Single-bit ECC'[2:]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>'	Error Correction Type: Single-bit ECC'.lstrip(r'\t')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>'	Error Correction Type: Single-bit ECC'.lstrip('\t')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>re.sub('\t', ' ', '	Error Correction Type: Single-bit ECC')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>re.sub(r'\t', ' ', '	Error Correction Type: Single-bit ECC')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>re.sub('\t', '', '	Error Correction Type: Single-bit ECC')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>pattern.startswith('x1')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string />
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string />
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string />
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string />
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="watch">
+      <expression>
+        <expression-string>Dimm_type([x.strip() for x in re.split(r'\s+', dimmType[d_idx]) if x != ''][0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>v[i]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>dimmsize</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>idx</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>ds</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>dimmType</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>socketTableDictionary2</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>socketTableDictionary</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>results[i]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="setValue">
+      <expression>
+        <expression-string>'x1 [(]?ByOne[)]?'</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>u'ipmctl show -socket'</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>u'201.0.0.68'</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>0</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string />
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string />
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>line.replace('|', '').strip()[0:3]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>eval(v.keys()[0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>eval('[&quot;8080&quot;, &quot;KVAQ&quot;]')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>v.keys()[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lookup</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>re.findall(lookup, results)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>socketTableDictionary</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>line.replace('|', '').strip().startswith(DDR4dimmSearchPattern)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>line.replace('|', '').strip()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/buildingblocks/invokeITP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="67" column="16" lean-forward="true" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildingblocks/paramikoClient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/SerialInvokeState/serial_read_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="50" selection-start-line="7" selection-start-column="50" selection-end-line="7" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="753" selection-start-line="753" selection-end-line="753" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ConfigEditor/Controls/TestEditor/TestEditorControl.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="666" column="79" selection-start-line="666" selection-start-column="79" selection-end-line="666" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/random.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="274" selection-start-line="274" selection-end-line="274" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/systemControlState/powerCycleState.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/systemControlState/pingSUTState.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/systemControlState/systemControlState.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/systemControlState/osRebootState.py" />
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_Henry_001_State.py" />
+    <entry file="file://$PROJECT_DIR$/Json/HealthCheckBIOSConfig - Copy.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workthreads/htmlReportWorkthread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workthreads/biosCheckThread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biosCheckThread.py" />
+    <entry file="file://C:/Python27/Lib/site-packages/serial/serialwin32.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="302" selection-start-line="302" selection-end-line="302" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/SerialInvokeState/serialInvokeState.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/SerialInvokeState/serial_write_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Json/SerialInvoke.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Json/biosConfigTest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="38" column="6" lean-forward="true" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Json/Resource.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Json/AEPHealthCheck.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="78" column="108" selection-start-line="78" selection-start-column="34" selection-end-line="78" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildingblocks/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-340">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AEPDatamodels/socketTable.py" />
+    <entry file="file://$PROJECT_DIR$/workstates/SerialInvokeState/serial_waitFor_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="170" selection-start-line="170" selection-end-line="170" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Json/HealthCheckBIOSConfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildingblocks/invokeSerial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/biosSettings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_Template_State.py" />
+    <entry file="file://$PROJECT_DIR$/workstates/Template/crHealth_Template_1_State.py" />
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_006_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crHealth_Template_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/Template/crHealth_Template_2_State.py" />
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_003_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_002_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_005_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/healthCheck.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Json/Henry.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="291" lean-forward="true" selection-start-line="291" selection-end-line="291" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildingblocks/workflow/workthread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="135" selection-end-line="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildingblocks/workflow/workstate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/systemControlState/initialParamicoClientState.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/Template/crHealth_Template_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workthreads/complianceCheckThread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2/__builtin__.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="924" column="17" selection-start-line="924" selection-start-column="6" selection-end-line="924" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_002_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="68" selection-start-column="68" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_MGT_001_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="38" selection-start-line="38" selection-end-line="43" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AEPDatamodels/dimm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2074">
+          <caret line="123" selection-start-line="123" selection-end-line="123" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_004_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crTestState.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="223" selection-start-line="223" selection-end-line="223" />
+          <folding>
+            <element signature="e#739#1361#0" />
+            <element signature="e#1421#1584#0" />
+            <element signature="e#1636#2635#0" />
+            <element signature="e#2711#3569#0" />
+            <element signature="e#3609#3685#0" />
+            <element signature="e#5049#6609#0" />
+            <element signature="e#6697#7490#0" />
+            <element signature="e#7557#7720#0" />
+            <element signature="e#7777#8075#0" />
+            <element signature="e#8137#8880#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workstates/CrTestState/crHealth_UEFI_001_State.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="123" column="60" selection-start-line="123" selection-start-column="60" selection-end-line="123" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

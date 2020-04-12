@@ -1,0 +1,134 @@
+{
+    "BiosKnobs":
+    {
+        "NvmQos":
+        {
+            "knobParameters": {
+              "BiosLocation": "Socket Configuration|Memory Configuration|NGN Configuration|CR QoS",
+              "value": [0, 1, 2, 3]
+            }
+        },
+        "NvmdimmPerfConfig":
+        {
+            "knobParameters":
+            {
+              "BiosLocation": "Socket Configuration|Memory Configuration|NGN Configuration|NVM Performance Setting",
+              "value": [0, 1 ]
+            }
+        },
+        "IoDcMode":
+        {
+            "knobParameters": {
+              "BiosLocation": "Socket Configuration|UPI Configuration|UPI General Configuration|IO Directory Cache",
+              "value": [1, 2, 3, 4, 5, 0]
+            }
+        },
+        "FastGoConfig":
+        {
+            "knobParameters": {
+              "BiosLocation": "Socket Configuration|Memory Configuration|NGN Configuration|CR FastGo Configuration",
+              "value": [6, 0, 1, 2, 3, 4, 5]
+            }
+        },
+        "DisableDirForAppDirect":
+        {
+            "knobParameters": {
+              "BiosLocation": "Socket Configuration|Memory Configuration|NGN Configuration|/Snoopy mode for AD",
+              "value": [0, 1]
+            }
+        },
+        "EliminateDirectoryInFarMemory":
+        {
+            "knobParameters": {
+              "BiosLocation": "Socket Configuration|Memory Configuration|NGN Configuration|Snoopy mode for 2LM",
+              "value": [1, 0]
+            }
+        }
+    },
+    "PerfTuning":
+    {
+        "key":"PerfTunning",
+        "skip":false,
+        "tests":
+        [
+          {
+            "testid": "Tuning_001",
+            "skip": false,
+            "objective": "Document ID# 574422, Provide informative AEP ES1 Power and Performance (PnP) measurement data\n1. Compare AEP ES1 PnP measurements against targets for ES2 and PRQ\n2. Provide a tool to benchmark customer's systems against ES1 power\nand performance data provided by Intel\n3. AEP DIMM Bandwidth and Latency ES1 Measurements vs ES2 and PRQ\nTargets\n4. AEP PnP Tool for measuring ES1 performance",
+            "Test Setup / Preconditions": "",
+            "testProcedure": "",
+            "pass/failCreterial": "",
+            "shellCommand": [
+              {
+                "command": "sh ./dcpmm_perf_sweep.sh -m ./mlc_avx512 -p /mnt/AD1 -s 0"
+              }
+            ],
+            "expecteddata": [
+              {
+                "name": "DCPMMIdleSequentialLatency",
+                "value": "< 300 ns"
+              },
+              {
+                "name": "DCPMMIdleRandomLatency",
+                "value": "< 600 ns"
+              },
+              {
+                "name": "AverageOfMaxDCPMMBandwidth",
+                "value": "< 3500"
+              }
+            ],
+            "knobParameters": {
+              "BiosLocation": "Socket Configuration|Memory Configuration|NGN Configuration|CR QoS",
+              "value": [ "Enable", "Disable" ]
+            },
+            "powercycle": false,
+            "waitkeystroke": false
+          }
+        ]
+    },
+    "timeout":"60000",
+    "recurring":"15",
+    "reporthtmlfilename":"HealthCheckReport.html",
+    "skipAcCycle" : true,
+    "Client":
+    {
+        "ip":"201.0.0.65",
+        "user":"root",
+        "password":"inT3l123$"
+    },
+    "Report":
+    {
+        "versionCommand":"ipmctl version"
+    },
+    "PowerSwitcher":
+    {
+        "DLIPowerSwitch" : {
+            "active" : false,
+            "power_switch_ip" : "10.54.0.234",
+            "power_switch_user" : "hct",
+            "power_switch_password": "donotchange",
+            "port" : "2"
+        },
+        "usbPowerSwitch" : {
+            "active" : false,
+            "power_splitter_path" : "..\\USBPower.dll",
+            "port" : "2"
+        },
+        "sshClient" :  {
+            "active" : true,
+            "ip":"201.0.0.65",
+            "user":"root",
+            "password":"inT3l123$"
+        }
+    },
+    "sftp" : {
+        "sourcePath" : "C:/PythonSV/elkvalley/crHealthCheck/mlc",
+        "targetPath" : "/root/mlc",
+        "OS" : "Linux"
+    },
+    "serial" : {
+    "port": "COM4",
+    "baud": "115200"
+    },
+    "simulation" : true
+}
