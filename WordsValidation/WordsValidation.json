@@ -1,0 +1,31 @@
+﻿{
+    "Languages": [
+        {
+            "Name": "English",
+            "BroadVowels": [ "A", "O", "U" ],
+            "SlenderVowels": [ "E", "I" ],
+            "Consonants": [ "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "X", "Z", "W", "Y" ]
+
+        },
+        {
+            "Name": "Alias",
+            "BroadVowels": [ "a", "o", "u" ],
+            "SlenderVowels": [ "e", "i" ],
+            "Consonants": [ "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "X", "Z", "W", "Y" ]
+
+        },
+        {
+            "Name": "International",
+            "BroadVowels": [ "A", "O", "U" ],
+            "SlenderVowels": [ "E", "I", "Y" ],
+            "Consonants": [ "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "X", "Z", "W" ]
+        
+        },
+        {
+            "Name": "Russian",
+            "BroadVowels": [ "А", "О", "У", "Э", "Ы", "Я", "Ю", "Е", "И" ],
+            "SlenderVowels": [ "Ъ", "й", "Ё" ],
+            "Consonants": [ "б", "в", "г", "д", "ж", "з", "к", "л", "м", "н", "п", "р", "с", "т", "ф", "х", "ц", "ч", "ш", "щ" ]
+        }
+    ]
+}

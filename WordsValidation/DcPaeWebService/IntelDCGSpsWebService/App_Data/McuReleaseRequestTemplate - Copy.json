@@ -1,0 +1,365 @@
+{
+  "ReleaseLees": [
+    {
+      "status": "Idle",
+      "ReleaseTo": "Automation_Testing",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "Whiskey Lake",
+          "CpuSegment": "Mobile",
+          "ReleaseTarget": "debug",
+          "Stepping": "V-1",
+          "Scope": "RestrictedPkg",
+          "CpuID": "406a08",
+          "PlatformID": "",
+          "MicroCode": "m01406a8",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Apple_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "AWS_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Dell_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Google_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "HPE_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "HP_inc_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Lenovo_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Microsoft_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Samsung_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "AMI_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Insyde_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Wywinn_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+    {
+      "status": "Idle",
+      "ReleaseTo": "Quanta_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+	{
+      "status": "Idle",
+      "ReleaseTo": "Asus_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+	{
+      "status": "Idle",
+      "ReleaseTo": "Acer_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+	{
+      "status": "Idle",
+      "ReleaseTo": "Supermicro_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+	{
+      "status": "Idle",
+      "ReleaseTo": "Lenovo_only",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+	{
+      "status": "Idle",
+      "ReleaseTo": "NDA",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    },
+	{
+      "status": "Idle",
+      "ReleaseTo": "Public",
+      "Mcus": [
+        {
+          "Mcu": "GenericBinaryName_0",
+          "CPUCodeName": "",
+          "CpuSegment": "",
+          "ReleaseTarget": "",
+          "Stepping": "",
+          "Scope": "",
+          "CpuID": "",
+          "PlatformID": "",
+          "MicroCode": "",
+          "PkgPath": ""
+        }
+      ]
+    }
+  ],
+  "status": "Idle"
+}

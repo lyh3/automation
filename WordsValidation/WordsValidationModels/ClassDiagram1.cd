@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WordsValidationModels.Consts" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Definitions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.Language" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQAAAAAAQAAggAAAIAAQBBAAAAAAAAAAAIAAACAA=</HashCode>
+      <FileName>Language\Language.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.LanguageData" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAACAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Language\Language.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.LanguageDictionary" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAIACAAAAAAAAAAAAAAAQAEAgAABAAA=</HashCode>
+      <FileName>Language\LanguageDictionary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.BroadSlenderMutualExcludeRule" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidationRules\BroadSlenderMutualExcludeRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.ConsonantsDuplicatRule" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidationRules\ConsonantsDuplicatRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.ValidationAttributes" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAAAA=</HashCode>
+      <FileName>ValidationRules\ValidationAttributes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.LanguageValidationAttributes" Collapsed="true">
+    <Position X="5.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidationRules\ValidationAttributes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.WordValidationRule" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>ValidationRules\ValidationRule.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WordsValidationModels.AliasWord" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Word\AliasWord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.EnglishWord" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Word\EnglishWord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.InternationalWord" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Word\InternationalWord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.RussianWord" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Word\RussianWord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WordsValidationModels.Word" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAgAAAAQAAAgAAAAAEBIAAAAAAA=</HashCode>
+      <FileName>Word\Word.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="WordsValidationModels.ICommand" Collapsed="true">
+    <Position X="10" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Word\Word.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WordsValidationModels.IValidationVisitor" Collapsed="true">
+    <Position X="11.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Word\Word.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="WordsValidationModels.LanguageType" Collapsed="true">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAKAAAAAAAAAAAAABABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Definitions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WordsValidationModels.ValidationRuleType" Collapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Definitions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
