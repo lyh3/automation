@@ -23,6 +23,8 @@
         public const string README_WATCH_KEY = "ReadmeFileWatcher";
         public const string HSDMAP_WATCH_KEY = "HsdMapFileWatcher";
         public const string RELEASE_TO_SESSION_KEY = "ReleaseToSessionKey";
+        public const string SMART_CONFIG_SESSION_KEY = @"SmartConfig";
+        public const string SMART_CONFIG_TREE_KEY = @"SmartConfigTree";
     }
 
     public enum SpsToolsType

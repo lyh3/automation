@@ -24,7 +24,7 @@ namespace Automation.Base.BuildingBlocks
         public static bool FindProcess(this string name)
         {
             var processes = Process.GetProcesses();
-            foreach( var p in processes)
+            foreach (var p in processes)
             {
                 if (p.ProcessName.Contains(name))
                 {
@@ -43,9 +43,9 @@ namespace Automation.Base.BuildingBlocks
             return DateTime.Now - timeSince > timeOut;
         }
 
-        public static bool OpenSqlConnection( this SqlConnection connection,
+        public static bool OpenSqlConnection(this SqlConnection connection,
                                               int timeout = 5, //in seconds
-                                              string errorMessage = null )
+                                              string errorMessage = null)
         {
             bool success = true;
             var timestart = DateTime.Now;
@@ -84,8 +84,8 @@ namespace Automation.Base.BuildingBlocks
         public static dynamic RandomValue(this int size, bool digits = false, bool alphabatical = false)
         {
             if (_random == null)
-                _random = new Random(); 
-            
+                _random = new Random();
+
             size = size > 0 ? size : 1;
             var sourcestring = alphabatical ? "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" : "0123456789";
 
@@ -106,8 +106,8 @@ namespace Automation.Base.BuildingBlocks
                     + stopwatch.Elapsed.Milliseconds;
         }
 
-        public static void LoadEmbeddedXml( this string sourceFileName, 
-                                            XmlDocument xmlDoc, 
+        public static void LoadEmbeddedXml(this string sourceFileName,
+                                            XmlDocument xmlDoc,
                                             Assembly asm = null)
         {
             var assembly = null != asm ? asm : Assembly.GetExecutingAssembly();
@@ -128,8 +128,8 @@ namespace Automation.Base.BuildingBlocks
         /// <param name="filename"></param>
         /// <param name="targetpath"></param>
         /// <param name="embeddedFilePathFormat">AssemblyName.FolderName</param>
-        public static void CreateFileFromEmbeddedStream(this string filename, 
-                                                        string targetpath, 
+        public static void CreateFileFromEmbeddedStream(this string filename,
+                                                        string targetpath,
                                                         string embeddedFilePath)
         {
             const int ChunkSize = 32 * 1024;
@@ -154,7 +154,7 @@ namespace Automation.Base.BuildingBlocks
                     stream.Close();
                 }
                 else
-                    throw new ArgumentException(string.Format(@"Can not fitch out the embedded stream <{0}>", embeddedFilePath)); 
+                    throw new ArgumentException(string.Format(@"Can not fitch out the embedded stream <{0}>", embeddedFilePath));
             }
         }
 
@@ -173,9 +173,9 @@ namespace Automation.Base.BuildingBlocks
                     if ((attibutes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
                         attibutes = attibutes & ~FileAttributes.ReadOnly;
 
-                     File.SetAttributes(filepath, attibutes);
+                    File.SetAttributes(filepath, attibutes);
                 }
-                catch{ success = false; }
+                catch { success = false; }
             }
 
             return success;
@@ -186,8 +186,8 @@ namespace Automation.Base.BuildingBlocks
             Exception exception = null;
             try
             {
-                AuthorizationRuleCollection collection = Directory.GetAccessControl(path).GetAccessRules(true, 
-                                                                                                         true, 
+                AuthorizationRuleCollection collection = Directory.GetAccessControl(path).GetAccessRules(true,
+                                                                                                         true,
                                                                                                          typeof(NTAccount));
                 foreach (FileSystemAccessRule rule in collection)
                 {
@@ -303,10 +303,35 @@ namespace Automation.Base.BuildingBlocks
                 }
             }
         }
-
         public static IEnumerable<TSource> Page<TSource>(this IEnumerable<TSource> source, int page, int pageSize)
         {
             return source.Skip(page * pageSize).Take(pageSize);
+        }
+        public static string IntToBinary(this int number)
+        {
+            return Enumerable.Range(0, (int)Math.Log(number, 2) + 1).Aggregate(string.Empty, (collected, bitshifts) => ((number >> bitshifts) & 1) + collected);
+        }
+        public static byte IntToByte(this int number)
+        {
+            return Convert.ToByte(number.ToString(), 16);
+        }
+        public static int? HexToInt(this string hex)
+        {
+            int? ret = null;
+            try
+            {
+                return Convert.ToInt32(hex, 16);
+            }
+            catch { }
+            return ret;
+        }
+        public static string ByteToHex(this byte bInput)
+        {
+            return string.Format("{0:X2}", bInput);
+        }
+        public static string IntToHexString(this int number)
+        {
+            return $"0x{number:X}";
         }
     }
 }

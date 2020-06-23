@@ -5,7 +5,7 @@ using System.Web;
 
 namespace IntelDCGSpsWebService.Models
 {
-    public class JsonDataContener
+    public class JsonContainer
     {
         public string JsonString { get; set; }
     }

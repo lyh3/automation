@@ -1,0 +1,361 @@
+{
+  "Root": [
+    {
+      "Key": "Edk2Manu",
+      "Annotation": "EDKII Menu",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+        {
+
+          "Key": "Socket",
+          "Annotation": "Socket Configuration",
+          "Properties": {
+            "pType": "Hex",
+            "Default": "0xe0",
+            "CurrentValue": "0xe0",
+            "Options": [
+              "0xe0",
+              "0xe1",
+              "0xe2",
+              "0xe3"
+            ]
+          },
+          "SubMenu": [
+            {
+              "Key": "AdvancedPowerManagementConfiguration",
+              "Annotation": "Advanced Power Management Configuration",
+              "Properties": {
+                "pType": "Int",
+                "Default": "270",
+                "CurrentValue": "270",
+                "Options": [
+                  "270",
+                  "300"
+                ]
+              },
+              "SubMenu": [
+                {
+                  "Key": "IIOConfiguration",
+                  "Annotation": "IIOConfiguration",
+                  "Properties": {
+                    "pType": "",
+                    "Default": "",
+                    "CurrentValue": "",
+                    "Options": [
+                    ]
+                  },
+                  "SubMenu": [
+                    {
+                      "Key": "IOATConfiguration",
+                      "Annotation": "IOAT Configuration",
+                      "Properties": {
+                        "pType": "",
+                        "Default": "",
+                        "CurrentValue": "",
+                        "Options": [
+                        ]
+                      },
+                      "SubMenu": [
+                        {
+                          "Key": "DisableTPH",
+                          "Annotation": "Disable TPH",
+                          "Properties": {
+                            "pType": "",
+                            "Default": "",
+                            "CurrentValue": "",
+                            "Options": [
+                            ]
+                          },
+                          "SubMenu": [
+                          ],
+                          "RawDataMap": {
+                            "Offset": "0x300",
+                            "Size": "0x03",
+                            "Value": ""
+                          },
+                          "Options": [
+                          ],
+                          "Observer": [
+                            "Root.Edk2Manu.Socket",
+                            "Root.BootManagerMenu",
+                            "Root.Edk2Manu.Socket.AdvancedPowerManagementConfiguration"
+                          ],
+                          "UpdateDictionary": {
+                            "UpdateData": [
+                            ]
+                          }
+                        },
+                        {
+                          "Key": "EnableTPH",
+                          "Annotation": "Enable TPH",
+                          "Properties": {
+                            "pType": "",
+                            "Default": "",
+                            "CurrentValue": "",
+                            "Options": [
+                            ]
+                          },
+                          "SubMenu": [
+                          ],
+                          "RawDataMap": {
+                            "Offset": "0x200",
+                            "Size": "0x02",
+                            "Value": ""
+                          },
+                          "Options": [
+                          ],
+                          "Observer": [
+                            "Root.Edk2Manu.Socket",
+                            "Root.BootManagerMenu",
+                            "Root.Edk2Manu.Socket.AdvancedPowerManagementConfiguration"
+                          ],
+                          "UpdateDictionary": {
+                            "UpdateData": [
+                            ]
+                          }
+                        }
+                      ],
+                      "RawDataMap": {
+                        "Offset": "0x300",
+                        "Size": "0x03",
+                        "Value": ""
+                      },
+                      "Options": [
+                      ],
+                      "Observer": [
+                      ],
+                      "UpdateDictionary": {
+                        "UpdateData": [
+                        ]
+                      }
+                    }
+                  ],
+                  "RawDataMap": {
+                    "Offset": "0x300",
+                    "Size": "0x03",
+                    "Value": ""
+                  },
+                  "Options": [
+                  ],
+                  "Observer": [
+                  ],
+                  "UpdateDictionary": {
+                    "UpdateData": [
+                    ]
+                  }
+                }
+              ],
+              "RawDataMap": {
+                "Offset": "0x100",
+                "Size": "0x01",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            }
+          ],
+          "RawDataMap": {
+            "Offset": "0x100",
+            "Size": "0x01",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+              {
+                "Key": "DisableTPH",
+                "Value": {
+                  "OptionKey": "0",
+                  "Properties": {
+                    "pType": "",
+                    "Default": "",
+                    "CurrentValue": "",
+                    "Options": [
+                    ]
+                  },
+                  "RawDataMap": {
+                    "Offset": "",
+                    "Size": "",
+                    "Value": ""
+                  }
+                }
+              },
+              {
+                "Key": "DisableTPH",
+                "Value": {
+                  "OptionKey": "1",
+                  "Properties": {
+                    "pType": "Hex",
+                    "Default": "0xe3",
+                    "CurrentValue": "0xe3",
+                    "Options": [
+                      "0xe0",
+                      "0xe1",
+                      "0xe2",
+                      "0xe3"
+                    ]
+                  },
+                  "RawDataMap": {
+                    "Offset": "0x200",
+                    "Size": "0x02",
+                    "Value": ""
+                  }
+                }
+              },
+              {
+                "Key": "DisableTPH",
+                "Value": {
+                  "OptionKey": "2",
+                  "Properties": {
+                    "pType": "",
+                    "Default": "",
+                    "CurrentValue": "",
+                    "Options": [
+                    ]
+                  },
+                  "RawDataMap": {
+                    "Offset": "",
+                    "Size": "",
+                    "Value": ""
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "RawDataMap": {
+        "Offset": "0x10",
+        "Size": "0x1020",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "BootManagerMenu",
+      "Annotation": "Boot Manage rMenu",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "",
+        "Size": "",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "BootMaintenanceManager",
+      "Annotation": "Boot Maintenance Manager",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "",
+        "Size": "",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "Continue",
+      "Annotation": "Continue",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "",
+        "Size": "",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "Reset",
+      "Annotation": "Reset",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "",
+        "Size": "",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    }
+  ]
+}

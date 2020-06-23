@@ -67,7 +67,54 @@ namespace Automation.Base
             else
                 src.CopyTo((Stream)dest);
         }
+        public static MemoryStream ReadBytes(this string binaryFilePath, int offset, int length)
+        {
+            try
+            {
+                if (File.Exists(binaryFilePath))
+                {
+                    using (Stream source = File.OpenRead(binaryFilePath))
+                    {
+                        return source.ReadBytesFromStram(offset, length);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
+        }
+        public static MemoryStream ReadBytesFromStram(this Stream source, int offset, int length)
+        {
+            const int CHUNK = 2048;
+            var dest = new MemoryStream();
+            byte[] buffer = new byte[CHUNK];
+            int pos = offset;
+            int bytesReaded = 0;
+            if (source.CanSeek)
+            {
+                try
+                {
+                    while (bytesReaded < length)
+                    {
+                        var remainder = length - bytesReaded;
+                        var readcount = Math.Min(remainder, CHUNK);
+                        source.Seek((long)pos, SeekOrigin.Begin);
+                        var r = source.Read(buffer, 0, readcount);
+                        if (r > 0)
+                        {
+                            dest.Write(buffer, 0, (int)r);
+                            pos += (int)r;
+                            bytesReaded += r;
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                }
 
+            }
+            return dest;
+        }
     }
-
 }

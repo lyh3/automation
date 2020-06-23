@@ -1,0 +1,294 @@
+﻿@using WindowService.DataModel;
+@using System.Drawing;
+
+@model ConfigTreeNode
+
+@if (@Model != null)
+{
+    String idOptionSelect = "OptionSelect_" + @Model.SubNodeSelectId;
+    String id_P_OptionSelect = "P_Options_Select_" + @Model.SubNodeSelectId;
+    String id_O_OptionSelect = "O_Options_Select_" + @Model.SubNodeSelectId;
+    String id_R_OptionSelect = "R_Options_Select_" + @Model.SubNodeSelectId;
+    String idDivSubNode = @Model.Key + "_" + @Model.SubNodeSelectId;
+    String id_img_Update = "imgUpdate_" + @Model.SubNodeSelectId;
+
+    String idPropertyType = "Properties_Type_" + @Model.SubNodeSelectId;
+    String idPropertyDefaultValue = "Properties_DefaultValue_" + @Model.SubNodeSelectId;
+    String idPropertyCurrentValue = "Properties_CurrentValue_" + @Model.SubNodeSelectId;
+
+    String idRawDataSize = "RawdataMap_Size_" + @Model.SubNodeSelectId;
+    String idRawDataOffset = "RawdataMap_Offset_" + @Model.SubNodeSelectId;
+
+    String idRawDataOffsetSlider = "RawdataMap_Offset_Slider" + @Model.SubNodeSelectId;
+    String idRawDataSizeSlider = "RawdataMap_Size_Slider" + @Model.SubNodeSelectId;
+
+    String divEdit = "Edit_" + @Model.SubNodeSelectId;
+    String Update = "Update_" + @Model.SubNodeSelectId;
+    String idTable = "table_" + @Model.SubNodeSelectId;
+
+    String idContainerTable = "Container_" + @Model.SubNodeSelectId;
+
+    <table id="@idContainerTable">
+        <tr>
+            <td>
+                <div class="smartConfig" id=@Model.SubNodeSelectId>
+                    <table class="Idel" id="@idTable">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <table style="width:100%;background-color:transparent;border-style:outset;border-width:1px;border-color:gray;border-radius:5px;">
+                                    @* --------------- Sub Menu ----------------------------------------- *@
+                                    <tr><td style="height:5px;"></td></tr>
+                                    <tr style="opacity:0.8;">
+                                        <td>&nbsp;</td>
+                                        <td align="center">
+                                            @*<img id="imgEdit" width="18" height="18" title="@divEdit" src="~/Images/Pencil-48.png" onclick="onImgEditNodeClicked(this);">*@
+                                            <img id="@id_img_Update" class="updateDisabled" width="18" height="18" title=@Model.SubNodeSelectId src="~/Images/ArrowUp_White.png" onclick="onImgUpdaNodeClicked(this);">
+                                        </td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr><td style="height:3px;"></td></tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            @Html.LabelFor(m => m.SubMenu, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                        </td>
+                                        <td>
+                                            <select class="btn btn-toolbar" id=@Model.SubNodeSelectId title=@idDivSubNode onchange="onSelectedSelectedSubMenuChanged(this);" style="background-color:rgba(41, 42, 43, 0.7);color:white;border-color:steelblue;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                                                <option id="-1" value="N/A" data-bind="">-- Select Sub Menu --</option>
+                                                @foreach (var x in Model.SubMenu)
+                                                {
+                                                    var key = x.Key;
+                                                    var jpath = x.JPath;
+                                                    <option id="@key" value="@jpath">@key</option>
+                                                }
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr><td style="height:3px;"></td></tr>
+                                </table>
+                                <div id="@divEdit">
+                                    <table style="width:100%;background-color:transparent;border-style:outset;border-width:1px;border-color:gray;border-radius:5px;">
+                                        <tr><td style="height:5px;"></td></tr>
+                                        @* --------------------- Properties --------------------------------- *@
+                                        <tr>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);font-size:small;font-weight:100;">Properties</span></td>
+                                        </tr>
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                @Html.LabelFor(m => m.Properties.pType, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(m => m.Properties.pType, new { @id = idPropertyType, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox" })
+                                            </td>
+                                        </tr>
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                @Html.LabelFor(m => m.Properties.Default, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(m => m.Properties.Default, new { @id = idPropertyDefaultValue, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox" })
+                                            </td>
+                                        </tr>
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                @Html.LabelFor(m => m.Properties.CurrentValue, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(m => m.Properties.CurrentValue, new { @id = idPropertyCurrentValue, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox" })
+                                            </td>
+                                        </tr>
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                @Html.LabelFor(m => m.Properties.Options, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                            </td>
+                                            <td>
+                                                <select class="btn btn-toolbar" id=@id_P_OptionSelect title=@Model.SubNodeSelectId , onchange="onConfigPropertyChanged(this);" style="background-color:rgba(41, 42, 43, 0.7);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                                                    @foreach (var x in Model.Properties.Options)
+                                                    {
+                                                        var key = x;
+                                                        <option id="@key" value="@key">@key</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        @*--------------  Raw data map ------------------------------*@
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);font-size:small;font-weight:100;">Raw Data Map</span></td>
+                                        </tr>
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            @Html.LabelFor(m => m.RawDataMap.Offset, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;width:40px;" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => m.RawDataMap.Offset, new { @id = @idRawDataOffset, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox", @style = "width:110px;" })
+                                                        </td>
+                                                        <td>
+                                                            <input id="@idRawDataOffsetSlider" type="range" title="@idRawDataOffset" min="0" max="@Model.StreamTotalSizeText" step="1" list="ticks" value="@Model.RawDataMap.Offset" style="width:70px;"  
+                                                                   onchange="getElementById(this.title).value = '0x0{0}'.format(parseInt(this.value, 10).toString(16).toUpperCase());
+                                                                             onConfigPropertyChanged(getElementById(this.title));">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            @Html.LabelFor(m => m.RawDataMap.Size, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;width:40px;" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.TextBoxFor(m => m.RawDataMap.Size, new { @id = @idRawDataSize, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox", @style = "width:110px;" })
+                                                        </td>
+                                                        <td>
+                                                            <div>
+                                                                <input id="@idRawDataSizeSlider" type="range" title="@idRawDataSize" min="0" max="@Model.StreamTotalSizeText" step="1" list="ticks" style="width:70px;" 
+                                                                       onchange="getElementById(this.title).value = '0x0{0}'.format(parseInt(this.value, 10).toString(16).toUpperCase());
+                                                                                 onConfigPropertyChanged(getElementById(this.title));"> @*console.log('----Raw data size Slider -- id ={0}, size Id = {1}'.format(this.id, getElementById(this.title).value));   ">*@
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                @Html.Partial("_RawData", Model);
+                                            </td>
+                                        </tr>
+                                        @* ------------------- Observer -------------------------- *@
+                                        <tr>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);font-size:small;font-weight:100;">Observer</span></td>
+                                        </tr>
+                                        <tr><td style="height:5px;"></td></tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                @Html.LabelFor(m => m.Observer, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                            </td>
+                                            <td>
+                                                <select class="btn btn-toolbar" id=@id_R_OptionSelect title=@Model.SubNodeSelectId , onchange="onConfigPropertyChanged(this);" style="background-color:rgba(41, 42, 43, 0.7);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                                                    @foreach (var x in Model.Observer)
+                                                    {
+                                                        var key = x;
+                                                        <option id="@key" value="@key">@key</option>
+                                                    }
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr><td colspan="3"><hr /></td></tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td>&nbsp;</td>
+            <td rowspan="4">
+                <div id="@idDivSubNode" class="configSubNode"></div>
+            </td>
+        </tr>
+    </table>
+}
+<style>
+    input[type=range] {
+        -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+        background: silver;
+        height: 1px;
+        flex: 1;
+    }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: 1px solid dimgray;
+            height: 15px;
+            width: 5px;
+            border-radius: 3px;
+            background: lawngreen;
+            cursor: pointer;
+            margin-top: -6px; /* specify a margin in Chrome, in Firefox and IE it is automatic */
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        }
+
+    .form-control.textbox {
+        width: 150px;
+        height: 25px;
+        background-color: black;
+        font-size: small;
+        color: white;
+        border-color: dimgray;
+        border-radius: 3px;
+    }
+
+    .Idel {
+        border-color: rgba(100,100,100, 0.40);
+        background-color: transparent;
+        border-style: inset;
+        border-width: 1px;
+        border-radius: 5px;
+        background-color: transparent;
+    }
+
+    .Modified {
+        border-color: red;
+        background-color: transparent;
+        border-style: inset;
+        border-width: 1px;
+        border-radius: 5px;
+        background-color: transparent;
+    }
+
+    .Updated {
+        border-color: gold;
+        background-color: transparent;
+        border-style: inset;
+        border-width: 1px;
+        border-radius: 5px;
+        background-color: transparent;
+    }
+
+    .Applied {
+        border-color: green;
+        background-color: transparent;
+        border-style: inset;
+        border-width: 1px;
+        border-radius: 5px;
+        background-color: transparent;
+    }
+
+    img.updateDisabled {
+        opacity: 0.4;
+        visibility: collapse;
+    }
+
+    .smartConfig {
+        background: linear-gradient(250deg,dimgray 0%,black 60%) no-repeat;
+    }
+
+    .configSubNode {
+    }
+</style>
+<script src="@Url.Content("~/Scripts/SmartConfig.js")">
+
+</script>

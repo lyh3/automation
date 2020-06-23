@@ -72,7 +72,7 @@ namespace IntelDCGSpsWebService.Controllers
         }
         public JsonResult VerifyMiddleWareServiceAvailable()
         {
-            var jsonData = new JsonDataContener { JsonString = string.Empty };
+            var jsonData = new JsonContainer { JsonString = string.Empty };
             if (!@"McuReleaseSubmitApp".FindProcess())
             {
                 jsonData.JsonString = @"The Middleware service [McuReleaseSubmitApp] is not functional, please contact admin personal to resolve.";
@@ -299,7 +299,7 @@ namespace IntelDCGSpsWebService.Controllers
 
             return Json("N/A");
         }
-        public JsonResult UpdateReleasSource(JsonDataContener jsonData)
+        public JsonResult UpdateReleasSource(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             if (model != null && null != jsonData
@@ -310,7 +310,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json("N/A");
         }
-        public JsonResult UpdateReleaseTo(JsonDataContener jsonData)
+        public JsonResult UpdateReleaseTo(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             ReleaseLee releaselee = null;
@@ -342,7 +342,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(releaselee);
         }
-        public JsonResult AddReleaseTo(JsonDataContener jsonData)
+        public JsonResult AddReleaseTo(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             if (model != null && null != jsonData
@@ -373,7 +373,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json("N/A");
         }
-        public JsonResult GetReleaseLee(JsonDataContener jsonData)
+        public JsonResult GetReleaseLee(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             ReleaseLee releaselee = null;
@@ -393,7 +393,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(releaselee);
         }
-        public JsonResult AddMcu(JsonDataContener jsonData)
+        public JsonResult AddMcu(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             if (model != null && model.SelectedReleaseLee != null)
@@ -415,7 +415,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json("N/A");
         }
-        public JsonResult UpdateCPUCodeName(JsonDataContener jsonData)
+        public JsonResult UpdateCPUCodeName(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -435,7 +435,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateStepping(JsonDataContener jsonData)
+        public JsonResult UpdateStepping(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -455,7 +455,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateCpuID(JsonDataContener jsonData)
+        public JsonResult UpdateCpuID(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -478,7 +478,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(mcu);
         }
-        public JsonResult UpdatePlatformID_1(JsonDataContener jsonData)
+        public JsonResult UpdatePlatformID_1(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -498,7 +498,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdatePlatformID_2(JsonDataContener jsonData)
+        public JsonResult UpdatePlatformID_2(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -518,7 +518,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateMicrocode(JsonDataContener jsonData)
+        public JsonResult UpdateMicrocode(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -538,7 +538,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateScope(JsonDataContener jsonData)
+        public JsonResult UpdateScope(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -559,7 +559,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateMcuSelected(JsonDataContener jsonData)
+        public JsonResult UpdateMcuSelected(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -578,7 +578,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateCpuSegment(JsonDataContener jsonData)
+        public JsonResult UpdateCpuSegment(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -601,7 +601,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(mcu);
         }
-        public JsonResult UpdateReleaseTarget(JsonDataContener jsonData)
+        public JsonResult UpdateReleaseTarget(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -621,7 +621,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateCpuPubliSpecUpdate(JsonDataContener jsonData)
+        public JsonResult UpdateCpuPubliSpecUpdate(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -641,7 +641,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateIntelProductSpec(JsonDataContener jsonData)
+        public JsonResult UpdateIntelProductSpec(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -661,7 +661,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateCpuNDASpecUpdate(JsonDataContener jsonData)
+        public JsonResult UpdateCpuNDASpecUpdate(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -681,7 +681,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateProducts(JsonDataContener jsonData)
+        public JsonResult UpdateProducts(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -701,7 +701,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(msg);
         }
-        public JsonResult UpdateProcessorModel(JsonDataContener jsonData)
+        public JsonResult UpdateProcessorModel(JsonContainer jsonData)
         {
             var model = Session[Definitions.MICROCODE_RELEASE_ORCHSTRATION_KEY] as MicrocodeReleaseModel;
             var msg = string.Empty;
@@ -863,7 +863,7 @@ namespace IntelDCGSpsWebService.Controllers
             {
                 MvcApplication.Logger.ErrorFormat(@"Error caught at RefreshHsdMap, error = {0}", ex.Message);
             }
-            return Json(new JsonDataContener { JsonString = "HSD ID map sync completed." });
+            return Json(new JsonContainer { JsonString = "HSD ID map sync completed." });
         }
         #region Private methods
         private bool _submissionPreviligeVerification()

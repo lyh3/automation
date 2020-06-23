@@ -1,21 +1,37 @@
 {
-    "IpmiCommand":"chasis power reset",
+    "TimeoutInMimutes":5,
+    "CurrentCount":0,
+    "ErrorMessage":"",
+    "IpmiResponse":"",
+    "UserCanceled":false,
+    "IpmiCommand":"chassis power reset",
     "CanSubmit":true,
     "DeviceType":"BMC",
-    "RestType":"MeCold",
+    "RestType":"Warm",
+    "Status":"ShutDown",
     "IsRemote":true,
     "BMCCfig":
     {
-        "BmcIpAddress":"10.23.60.5",
+        "BmcIpAddress":"10.23.60.2",
         "User":"root",
         "Password":"superuser",
+        "Connected":false,
+        "IpmiAccessable":true,
+        "MEMode":"Recovery",
         "CanSubmit":true
     },
     "SutCfig":
     {
-        "IpAddress":"10.23.60.7",
-        "IsPowerOn":false
+        "IpAddress":"10.23.60.24",
+        "IsPowerOn":false,
+        "ifAboutAtFailure":false
     },
     "Repeat":"1",
-    "ConfigJson":""
+    "ConfigJson":"",
+    "CustomerDefinedCommand":"",
+    "Delay":"2",
+    "CmdMaps":null,
+    "RequestDoc":"",
+    "ResponseDoc":"",
+    "CommandCode":""
 }

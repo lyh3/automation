@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryChunk.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Extensions\DelimonWin32IOExtension.cs" />
     <Compile Include="Extensions\CustomReflection.cs" />
@@ -97,7 +98,12 @@
     <Compile Include="JsonFormatter\StringWalker.cs" />
     <Compile Include="MongoDBExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="Util\BitConverter\BigEndianBitConverter.cs" />
+    <Compile Include="Util\BitConverter\DoubleConverter.cs" />
+    <Compile Include="Util\BitConverter\EndianBitConverter.cs" />
+    <Compile Include="Util\BitConverter\Endianness.cs" />
+    <Compile Include="Util\BitConverter\LittleEndianBitConverter.cs" />
+    <Compile Include="Util\Utility.cs" />
     <Compile Include="ZipBomb.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -62,14 +62,14 @@
                                         <li><a href="@(Url.Action("Index", "BkcImageParser"))"><i class="glyphicon glyphicon-scissors" style="color:purple;"></i><span class="icon icon-search"></span>&nbsp;IFWI Image Parser</a></li>
                                         <li class="divider"></li>
                                         @*<li><a href="@(Url.Action("Index", "ReleaseOchestration"))"><i class="glyphicon glyphicon-music" style="color:lightblue;"></i><span class="icon icon-search"></span>&nbsp;Release Orchestration</a></li>
-                                        <li class="divider"></li>*@
+                                            <li class="divider"></li>*@
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li><a href="@(Url.Action("Index", "MicrocodeRelease"))"><i class="glyphicon glyphicon-cog" style="color:lawngreen;"></i><span class="icon icon-search"></span>&nbsp;Microcode Release</a></li>
-                    <li style="display:none;"><a href="@(Url.Action("Index", "RasAutomation"))"><i class="glyphicon glyphicon-thumbs-up" style="color:white;"></i><span class="icon icon-search"></span>&nbsp;RAS Automation</a></li>
+                    <li><a href="@(Url.Action("Index", "SmartConfig"))"><i class="glyphicon glyphicon-thumbs-up" style="color:white;"></i><span class="icon icon-search"></span>&nbsp;Smart Config</a></li>
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
                 <div class="navbar-header navbar-right">
@@ -78,8 +78,8 @@
                     </ul>
 
                     @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i><img id="imgTools" src="~/Images/Tools.png" width="24" height="24" />&nbsp;Shared Tools</i>
-                    </a>*@
+                            <i><img id="imgTools" src="~/Images/Tools.png" width="24" height="24" />&nbsp;Shared Tools</i>
+                        </a>*@
                 </div>
             </div>
 
@@ -99,19 +99,27 @@
             padding-right: 50px;
             padding-left: 50px;
             margin-right: auto;
-            margin-left: auto;  
+            margin-left: auto;
             width: 100%;
         }
+
         .blinker {
-        animation: blink 2s;
-        animation-iteration-count: infinite;
-    }
+            animation: blink 2s;
+            animation-iteration-count: infinite;
+        }
+
+        .disabled {
+            pointer-events: none;
+            background: rgba(100, 100, 100, 0.5);
+        }
+        .smartConfig{
+        }
     </style>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    @Scripts.Render("~/Scripts/Site.js")
+    @*@Scripts.Render("~/Scripts/Site.js")*@
     <script type="text/javascript">
         String.prototype.format = function () {
             var a = this;
@@ -122,9 +130,11 @@
         }
         $(document).ready(function () {
             displayLoader(false);
-            
+
             if (document.baseURI.endsWith('MicrocodeRelease')) {
                 updateMicrocodReleaeUI(document.baseURI.endsWith('MicrocodeRelease'));
+            } else if (document.baseURI.endsWith('SmartConfig')) {
+                updateSmartConfigUI();
             } else if (document.baseURI.endsWith('RemoteSystemReset')) {
                 updateSystemResetUI();
             } else if (document.baseURI.endsWith('ReleaseOchestration')) {
@@ -143,12 +153,12 @@
             // long version
             r = hex.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
             if (r) {
-                return r.slice(1,4).map(function(x) { return parseInt(x, 16); });
+                return r.slice(1, 4).map(function (x) { return parseInt(x, 16); });
             }
             // short version
             r = hex.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
             if (r) {
-                return r.slice(1,4).map(function(x) { return 0x11 * parseInt(x, 16); });
+                return r.slice(1, 4).map(function (x) { return 0x11 * parseInt(x, 16); });
             }
             return null;
         }
@@ -162,12 +172,12 @@
             // long version
             r = hex.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
             if (r) {
-                return r.slice(1,4).map(function(x) { return parseInt(x, 16); });
+                return r.slice(1, 4).map(function (x) { return parseInt(x, 16); });
             }
             // short version
             r = hex.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
             if (r) {
-                return r.slice(1,4).map(function(x) { return 0x11 * parseInt(x, 16); });
+                return r.slice(1, 4).map(function (x) { return 0x11 * parseInt(x, 16); });
             }
             return null;
         }

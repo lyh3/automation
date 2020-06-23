@@ -1,0 +1,38 @@
+﻿@using WindowService.DataModel;
+
+@model ConfigTreeNode
+
+@if (@Model != null)
+{
+    String idTreeNodeContainer = "Container_" + Model.Key;
+    String disp = Model.Collapse ? "none" : "block";
+
+    <table style="width:100%;background-color:transparent;border-style:outset;border-width:0px;border-color:gray;border-radius:5px;">
+        <tr>
+            <td style="width:2px;height:10px;"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="width:2px;"></td>
+            <td align="left">
+                <img type="button" class="collapsible" title="Collapse or Expand." width="24" height="24" src="~/Images/Collapse-40.png" onclick="onCollapseClick(@idTreeNodeContainer);" />
+                <img id="@Model.Key" type="button" class="collapsible" title="@Model.JPath" width="18" height="18" src="~/Images/CoderWall_2.png" onclick="onExpendAllClick(this);" />
+                <span style="transparent;color:steelblue;font-size:smaller;font-weight:lighter;text-align:left;text-wrap:normal;">&nbsp;@Model.Annotation</span>
+                <table style="width:100%;background-color:transparent;border-style:outset;border-width:1px;border-color:gray;border-radius:5px;">
+                    <tr><td></td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:15px;"></td>
+            <td>
+                <div id="@idTreeNodeContainer" class="content" style="display:@disp;">
+                    @Html.Partial("_ConfigTreeNodeContents", Model)
+                </div>
+            </td>
+        </tr>
+    </table>
+
+}
+
+<script src="@Url.Content("~/Scripts/SmartConfig.js")"></script>

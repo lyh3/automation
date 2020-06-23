@@ -201,6 +201,7 @@
     <Compile Include="Controllers\RasAutomationController.cs" />
     <Compile Include="Controllers\BiosAutomation\ReleaseOchestrationController.cs" />
     <Compile Include="Controllers\RemoteSystemResetController.cs" />
+    <Compile Include="Controllers\SmartConfigController.cs" />
     <Compile Include="Controllers\SpsToolsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -366,6 +367,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SmartConfig.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -415,6 +417,10 @@
     <Content Include="Views\Shared\_Loader_Intel.cshtml" />
     <Content Include="Views\MicrocodeRelease\_ViewReadmeReferences.cshtml" />
     <Content Include="Views\MicrocodeRelease\_VolunteerInput.cshtml" />
+    <Content Include="Views\SmartConfig\Index.cshtml" />
+    <Content Include="Views\SmartConfig\_ConfigTreeNode.cshtml" />
+    <Content Include="Views\SmartConfig\_ConfigTreeNodeContents.cshtml" />
+    <Content Include="Views\SmartConfig\_RawData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Download\" />

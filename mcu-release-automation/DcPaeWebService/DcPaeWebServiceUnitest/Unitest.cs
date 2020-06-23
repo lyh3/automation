@@ -16,6 +16,7 @@ using Newtonsoft.Json.Serialization;
 using IntelDCGSpsWebService.Models;
 using IntelDCGSpsWebService.Models.Buildingblocks;
 using CookComputing.XmlRpc;
+using WindowService.DataModel;
 
 namespace DcPaeWebServiceUnitest
 {
@@ -272,6 +273,207 @@ namespace DcPaeWebServiceUnitest
             var json = new JsonFormatter(JsonConvert.SerializeObject(_healthEventViewModel)).Format();
             Assert.True(!string.IsNullOrEmpty(json));
             //File.WriteAllText(JSON_FILE, json);
+        }
+
+        [Test]
+        public void SmartConfigJsonTest()
+        {
+            var model = new SmartConfigDataModel
+            {
+                Root = {
+                    new ConfigTreeNode {
+                        Key = @"Edk2Manu",
+                        Annotation = @"EDKII Menu",
+                        SubMenu =
+                        {
+                            new ConfigTreeNode
+                            {
+                                Key = @"Socket",
+                                Annotation = @"Socket Configuration",
+                                Properties =
+                                {
+                                    pType = @"Hex",
+                                    Options = {"0xe0", "0xe1", "0xe2", "0xe3" },
+                                    Default = "0xe0",
+                                    CurrentValue = "0xe0"
+                                },
+                                UpdateDictionary = new UpdateMatrix
+                                {
+                                    UpdateData =
+                                    {
+                                        new KeyValuePair<string, UpdateMatrixData>(@"DisableTPH", new UpdateMatrixData("0")),
+                                        new KeyValuePair<string, UpdateMatrixData>(@"DisableTPH", new UpdateMatrixData("1"){
+                                            Properties = new Props{
+                                                pType = "Hex",
+                                                Options = {"0xe0", "0xe1", "0xe2", "0xe3" },
+                                                Default = "0xe3",
+                                                CurrentValue = "0xe3"
+                                            },
+                                            RawDataMap = new RawData{
+                                                Offset = "0x200",
+                                                Size ="0x02",
+                                                Value ="0x02"
+                                            }
+                                        }),
+                                        new KeyValuePair<string, UpdateMatrixData>(@"DisableTPH", new UpdateMatrixData("2")),
+                                    }
+                                },
+                                RawDataMap =
+                                {
+                                    Offset = "0x100",
+                                    Size = "0x01",
+                                    Value = "0x01"
+                                },
+                                SubMenu =
+                                {
+                                    new ConfigTreeNode
+                                    {
+                                        Key = @"AdvancedPowerManagementConfiguration",
+                                        Annotation = @"Advanced Power Management Configuration",
+                                        Properties =
+                                        {
+                                            pType = "Int",
+                                            Options = { "270", "300" },
+                                            Default = "270",
+                                            CurrentValue = "270"
+                                        },
+                                        RawDataMap =
+                                        {
+                                            Offset = "0x100",
+                                            Size = "0x01",
+                                            Value = "0x01"
+                                        },
+                                        SubMenu =
+                                        {
+                                            new ConfigTreeNode
+                                            {
+                                                Key = "IIOConfiguration",
+                                                Annotation = "IIOConfiguration",
+                                                RawDataMap =
+                                                {
+                                                    Offset = "0x300",
+                                                    Size = "0x03",
+                                                    Value = "0x03"
+                                                },
+                                                SubMenu =
+                                                {
+                                                    new ConfigTreeNode
+                                                    {
+                                                        Key = "IOATConfiguration",
+                                                        Annotation = "IOAT Configuration",
+                                                        RawDataMap =
+                                                        {
+                                                            Offset = "0x300",
+                                                            Size = "0x03",
+                                                            Value = "0x03"
+                                                        },
+                                                        SubMenu =
+                                                        {                                           {
+                                                            new ConfigTreeNode
+                                                            {
+                                                                Key = "DisableTPH",
+                                                                Annotation = "Disable TPH",
+                                                                RawDataMap =
+                                                                {
+                                                                    Offset = "0x300",
+                                                                    Size = "0x03",
+                                                                    Value = "0x03"
+                                                                },
+                                                                Observer =
+                                                                {
+                                                                    "Root.Edk2Manu.Socket",
+                                                                    "Root.BootManagerMenu",
+                                                                    "Root.Edk2Manu.Socket.AdvancedPowerManagementConfiguration"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        }
+                    },
+                    new ConfigTreeNode{
+                        Key = @"BootManagerMenu",
+                        Annotation = @"Boot Manage rMenu"
+                    },
+                    new ConfigTreeNode{
+                        Key = @"BootMaintenanceManager",
+                        Annotation = @"Boot Maintenance Manager"
+                    },
+                    new ConfigTreeNode{
+                        Key = @"Continue",
+                        Annotation = @"Continue"
+                    },
+                    new ConfigTreeNode{
+                        Key = @"Reset",
+                        Annotation = @"Reset"
+                    },
+                }
+            };
+            var json = new JsonFormatter(JsonConvert.SerializeObject(model)).Format();
+            var jsonFile = @"C:\mcu-release-automation\DcPaeWebService\IntelDCGSpsWebService\App_Data\EdkIIConfig.json";
+            //File.WriteAllText(jsonFile, json);
+
+            SmartConfigDataModel root = null;
+            using (StreamReader file = File.OpenText(jsonFile))
+            {
+                var serializer = new JsonSerializer();
+                try
+                {
+                    root = (SmartConfigDataModel)serializer.Deserialize(file, typeof(SmartConfigDataModel));
+                    root.BuildTree();
+                    string[] keys = { "Edk2Manu",
+                                      "Socket",
+                                      "AdvancedPowerManagementConfiguration",
+                                      "IIOConfiguration",
+                                      "IOATConfiguration",
+                                      "DisableTPH" };
+                    var jpath = "Root";
+                    foreach (var key in keys)
+                    {
+                        jpath = string.Format("{0}.{1}", jpath, key);
+                        var x = root.GetConfigNodeByJPath(jpath);
+                    }
+
+                    var updateDictFile = @"C:/mcu-release-automation/ReleaseAutomation/buildingblocks/SmartJsonConfig/unittest_smart_json_config/UpdateDictionary.json";
+                }
+                catch(Exception ex)
+                {
+                }
+            }
+            var updateMatrix = new UpdateMatrix
+            {
+                UpdateData =
+                {
+                    new KeyValuePair<string, UpdateMatrixData>(@"DisableTPH", new UpdateMatrixData("0")),
+                    new KeyValuePair<string, UpdateMatrixData>(@"DisableTPH", new UpdateMatrixData("1"){
+                        Properties = new Props{
+                            pType = "Hex",
+                            Options = {"0xe0", "0xe1", "0xe2", "0xe3" },
+                            Default = "0xe3",
+                            CurrentValue = "0xe3"
+                        },
+                        RawDataMap = new RawData{
+                            Offset = "0x200",
+                            Size ="0x02",
+                            Value ="0x02"
+                        }
+                    }),
+                    new KeyValuePair<string, UpdateMatrixData>(@"DisableTPH", new UpdateMatrixData("2")),
+                }
+            };
+            json = new JsonFormatter(JsonConvert.SerializeObject(updateMatrix)).Format();
+            jsonFile = @"C:\mcu-release-automation\DcPaeWebService\IntelDCGSpsWebService\App_Data\UpdateDictionary.json";
+            //File.WriteAllText(jsonFile, json);
+            var jp = "Root.Edk2Manu.Socket.AdvancedPowerManagementConfiguration.IIOConfiguration.IOATConfiguration.DisableTPH";
+            var instance = root.GetConfigNodeByJPath(jp);
+            instance.UpdateSettings(json);
+
         }
     }
 }

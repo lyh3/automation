@@ -45,6 +45,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SmartConfig\ModelEdiStatusInfo.cs" />
+    <Compile Include="SmartConfig\Properties.cs" />
+    <Compile Include="SmartConfig\RawDataMap.cs" />
+    <Compile Include="SmartConfig\ConfigTreeNode.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="MicrocodeRelease\HsdMcuArticleIdMap.cs" />
     <Compile Include="MicrocodeRelease\McuSelectInfo.cs" />
@@ -59,9 +64,13 @@
     <Compile Include="MicrocodeRelease\ModelPackage.cs" />
     <Compile Include="MicrocodeRelease\ReadmeDocument.cs" />
     <Compile Include="MicrocodeRelease\WorkflowConfig.cs" />
+    <Compile Include="SmartConfig\SmartConfigDataModel.cs" />
+    <Compile Include="SmartConfig\UpdateMatrix.cs" />
+    <Compile Include="SmartConfig\UpdateInfo.cs" />
+    <Compile Include="SmartConfig\SubnodeInfo.cs" />
     <Compile Include="WorkerState\McuAutoReleaseMonitorState\HsdMcuAutoReleaseDataModel.cs" />
-    <Compile Include="McuReleaseAutomationMonitorProcess.cs" />
-    <Compile Include="McuReleaseSubmitProcess.cs" />
+    <Compile Include="MicrocodeRelease\McuReleaseAutomationMonitorProcess.cs" />
+    <Compile Include="MicrocodeRelease\McuReleaseSubmitProcess.cs" />
     <Compile Include="WorkerState\McuAutoReleaseMonitorState\HsdReleaseMonitorState.cs" />
     <Compile Include="WorkerState\McuAutoReleaseMonitorState\MonitorSetupState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

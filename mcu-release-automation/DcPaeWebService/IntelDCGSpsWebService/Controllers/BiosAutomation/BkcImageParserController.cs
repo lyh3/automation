@@ -34,7 +34,7 @@ namespace IntelDCGSpsWebService.Controllers
             return View(model);
         }
 
-        public ActionResult UpdateSelectedViewType(JsonDataContener jsonData)
+        public ActionResult UpdateSelectedViewType(JsonContainer jsonData)
         {
             var model = Session[Definitions.BKC_IMAGE_PARSER_KEY] as BkcImageParserModel;
             model.SelectedParserViewType = jsonData.JsonString;
@@ -42,7 +42,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Json(model);
         }
 
-        public ActionResult UpdateSelectedConfigJson(JsonDataContener jsonData)
+        public ActionResult UpdateSelectedConfigJson(JsonContainer jsonData)
         {
             var model = Session[Definitions.BKC_IMAGE_PARSER_KEY] as BkcImageParserModel;
             if (null != jsonData && jsonData.JsonString != "N/A")

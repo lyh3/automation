@@ -1,0 +1,104 @@
+﻿
+@using WindowService.DataModel;
+
+@model ConfigTreeNode
+@{
+    String idRawDataValue = "RawdataMap_Value_" + @Model.SubNodeSelectId;
+    String idRawDataSizeEdit = "RawdataMap_DataSizeEdit_" + @Model.SubNodeSelectId;
+    String idRawDataEdit = "RawdataMap_RawDataEdit_" + @Model.SubNodeSelectId;
+    String Radio_name = "Radio_name" + @Model.SubNodeSelectId;
+    <div id="divRawData">
+        <table style="width:100%;">
+            <tr><td style="height:3px;"></td></tr>
+            <tr>
+                <td class="editType">
+                    <div class="custom-control custom-radio">
+                        <label class="radio-inline">
+                            @if (Model.RawDataMap.EditType == "DataSizeEdit")
+                            {
+                                <label class="radio-inline">
+                                    <input id="@idRawDataSizeEdit" type="radio" class="custom-control-input" name="@Radio_name" value="DataSizeEdit" checked="checked" onclick="onConfigPropertyChanged(this);">Data size edit
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="radio-inline">
+                                    <input id="@idRawDataSizeEdit" type="radio" class="custom-control-input" name="@Radio_name" value="DataSizeEdit" onclick="onConfigPropertyChanged(this);">Data size edit
+                                </label>
+                            }
+                        </label>
+                    </div>
+                </td>
+                <td>&nbsp;</td>
+                <td class="editType">
+                    <div class="custom-control custom-radio">
+                        @if (Model.RawDataMap.EditType == "RawDataEdit")
+                        {
+                            <label class="radio-inline">
+                                <input id="@idRawDataEdit" type="radio" class="custom-control-input" name="@Radio_name" value="RawDataEdit" checked="checked" onclick="onConfigPropertyChanged(this);">Raw data edit
+                            </label>
+                        }
+                        else
+                        {
+                            <label class="radio-inline">
+                                <input id="@idRawDataEdit" type="radio" class="custom-control-input" name="@Radio_name" value="RawDataEdit" onclick="onConfigPropertyChanged(this);">Raw data edit
+                            </label>
+                        }
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <table style="width:100%;">
+                        <tr><td style="height:10px;"></td></tr>
+                        <tr>
+                            <td style="width:3px;"></td>
+                            <td>
+                                @Html.TextAreaFor(m => m.RawDataMap.Value, new
+                                {
+                                                  @id = idRawDataValue,
+                                                  @title = @Model.SubNodeSelectId,
+                                                  placeholder = "--- Raw data ---",
+                                                  onchange = "onConfigPropertyChanged(this);",
+                                                  @class = "rawdata"
+                                })
+                            </td>
+                            <td style="width:3px;"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<style type="text/css">
+    .rawdata {
+        text-wrap: normal;
+        text-align: left;
+        width: 100%;
+        height: 50px;
+        background-color: rgba(30, 30, 30, 0.6);
+        font-size: 8.5pt;
+        color: gray;
+        border-color: rgba(100, 100, 100, 0.8);
+        border-radius: 3px;
+    }
+
+    .rawdata_modified {
+        text-wrap: normal;
+        text-align: left;
+        width: 100%;
+        height: 50px;
+        background-color: rgba(30, 30, 30, 0.6);
+        font-size: 8.5pt;
+        color: darkgoldenrod;
+        border-color: rgba(100, 100, 100, 0.8);
+        border-radius: 3px;
+    }
+    .editType{
+        color:aqua;
+        font-size:9pt;
+        opacity:0.75;
+    }
+</style>
+

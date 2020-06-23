@@ -102,7 +102,7 @@ namespace IntelDCGSpsWebService.Controllers
             return null;
         }
 
-        public ActionResult UpdateRepeatConfig(JsonDataContener jsonData)
+        public ActionResult UpdateRepeatConfig(JsonContainer jsonData)
         {
             if (null != jsonData
                 && !string.IsNullOrEmpty(jsonData.JsonString)
@@ -119,7 +119,7 @@ namespace IntelDCGSpsWebService.Controllers
             return RedirectToAction("Index");
         }
 
-        public JsonResult UpdateResetTypeConfig(JsonDataContener jsonData)
+        public JsonResult UpdateResetTypeConfig(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != model
@@ -137,7 +137,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Json(model);
         }
 
-        public ActionResult UpdateBmcIPAddressConfig(JsonDataContener jsonData)
+        public ActionResult UpdateBmcIPAddressConfig(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != model && null != jsonData)
@@ -156,7 +156,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Redirect("Index");
         }
 
-        public JsonResult UpdateBmcUsersConfig(JsonDataContener jsonData)
+        public JsonResult UpdateBmcUsersConfig(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != model && null != jsonData)
@@ -175,7 +175,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Json(model);
         }
 
-        public JsonResult UpdateBmcPasswordConfig(JsonDataContener jsonData)
+        public JsonResult UpdateBmcPasswordConfig(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != model && null != jsonData)
@@ -194,7 +194,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Json(model);
         }
 
-        public JsonResult UpdateSuTConfig(JsonDataContener jsonData)
+        public JsonResult UpdateSuTConfig(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != model && null != jsonData)
@@ -216,7 +216,7 @@ namespace IntelDCGSpsWebService.Controllers
         }
 
 
-        public JsonResult UpdateTimeout(JsonDataContener jsonData)
+        public JsonResult UpdateTimeout(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != jsonData
@@ -236,7 +236,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return Json(model);
         }
-        public JsonResult UpdateDelay(JsonDataContener jsonData)
+        public JsonResult UpdateDelay(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != jsonData
@@ -255,7 +255,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Json(model);
         }
 
-        public JsonResult UpdateCustomerDefinedCommand(JsonDataContener jsonData)
+        public JsonResult UpdateCustomerDefinedCommand(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != jsonData)
@@ -270,7 +270,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Json(model);
         }
 
-        public JsonResult UpdateIfAbortAtFailure(JsonDataContener jsonData)
+        public JsonResult UpdateIfAbortAtFailure(JsonContainer jsonData)
         {
             var model = (IpmiResetModel)Session[Definitions.SYSTEM_RESET_MODEL_KEY];
             if (null != jsonData

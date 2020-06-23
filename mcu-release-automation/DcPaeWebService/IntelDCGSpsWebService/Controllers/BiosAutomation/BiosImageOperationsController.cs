@@ -26,7 +26,7 @@ namespace IntelDCGSpsWebService.Controllers
             return View(model);
         }
 
-        public ActionResult UpdateOperationType(JsonDataContener jsonData)
+        public ActionResult UpdateOperationType(JsonContainer jsonData)
         {
             var model = (BiosImageOperationsModel)Session[Definitions.BIOS_IMAGE_OPERATIONS_KEY];
             if (null != model

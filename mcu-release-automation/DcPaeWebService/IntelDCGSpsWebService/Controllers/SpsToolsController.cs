@@ -36,7 +36,7 @@ namespace IntelDCGSpsWebService.Controllers
             return View(model);
         }
 
-        public ActionResult DecodeHealthEvent(JsonDataContener jsonData)
+        public ActionResult DecodeHealthEvent(JsonContainer jsonData)
         {
             var sb = new StringBuilder();
             var regex = new Regex("^[0-9a-fA-F]{6}$");

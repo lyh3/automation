@@ -1,0 +1,147 @@
+﻿@using WindowService.DataModel;
+
+@model SmartConfigDataModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (null != @Model)
+{
+    <h3 align="left" style="color:dodgerblue;">@Model.Title</h3>
+    <hr />
+    String inlineDocument = @"This application provide a service when a Json confiburation data been modify all referenced sections will be
+    notified and updated to a new contents. The final out put will be write out to a target resources, such as the BIOS image binaries and
+    the users to download.";
+
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            @using (Html.BeginForm("LoadJsonConfig", "SmartConfig", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formLoadJosonConfig", name = "formLoadJosonConfig" }))
+                            {
+                                <table class="loadFile">
+                                    <tr>
+                                        <td>&nbsp;&nbsp;</td>
+                                        <td style="white-space:nowrap;">
+                                            @Html.LabelFor(m => m.JsonConfig, new { @type = "file", @style = "color:gray;font-weight:lighter;font-size:smaller;" })
+                                            <input required type="file" id="jsonConfig" class="btn btn-toolbar" name="jsonConfig" style="background-color:rgba(41, 42, 43, 0.7); color:steelblue;font-size:12px;" />
+                                            @Html.ValidationMessageFor(m => m.JsonConfig, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" style="width:100px;" name="Load" id="Load" value="Load Json" onclick="onLoadJsonClick();" />
+                                        </td>
+                                        <td>&nbsp;&nbsp;</td>
+                                    </tr>
+                                </table>
+                            }
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;</td>
+                        <td>
+                            <div id="divTargetBinaryForm" class="UploadBinaryDisabled">
+                                @using (Html.BeginForm("LoadBinary", "SmartConfig", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formLoadBinaryConfig", name = "formLoadBinaryConfig" }))
+                                {
+                                    <table  class="loadFile">
+                                        <tr>
+                                            <td>&nbsp;&nbsp;</td>
+                                            <td style="white-space:nowrap;">
+                                                @Html.LabelFor(m => m.TargetBinaryFile, new { @type = "file", @style = "color:gray;font-weight:lighter;font-size:smaller;" })
+                                                <input required type="file" id="binaryImage" class="btn btn-toolbar" name="binarySource" style="background-color:rgba(41, 42, 43, 0.7); color:steelblue;font-size:12px;" />
+                                                @Html.ValidationMessageFor(m => m.TargetBinaryFile, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                <input type="submit" class="btn btn-primary" style="width:100px;" name="LoadBinary" id="LoadBinary" value="Load Binary" onclick="onLoadBinaryClick();" />
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                <input type="button" class="btn btn-success" style="width:80px;" name="btnApply" id="btnApply" value="Apply" onclick="onApplyClicked();" />
+                                            </td>
+                                            <td>&nbsp;&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td align="right">
+                            <div id="divConfigProgress" class="loader" style="display:none;">
+                                <img id="imgGlobal" src="~/Images/Global.gif" width="120" height="70" style="border-radius:10px;background-color:dimgray;" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table style="width:100%;background-color:transparent;border-style:outset;border-width:1px;border-color:gray;border-radius:5px;">
+        @if (null != @Model.Root)
+        {
+            for (var i = 0; i < @Model.Root.Count; i++)
+            {
+                var node = Model.Root[i];
+                //node.Collapse = true;
+                <tr>
+                    <td>
+                        @Html.Partial("_ConfigTreeNode", node)
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <br />
+    using (Html.BeginForm("DownloadSpiImage", "SmartConfig", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formSpiMerge_download", name = "formSpiMerge_download" }))
+    {
+        <table style="width:100%;background-color:rgba(41, 42, 43, 0.9);border:1px;border-radius:5px;">
+            <tr><td style="height:10px;" /></tr>
+            <tr>
+                <td style="width:10px;" />
+                <td>
+                    @if (@Model.IsDownloadAvailable)
+                    {
+                        <div class="blinker">
+                            <input type="submit" class="btn btn-success" name="download" id="download" value="Download" onclick="onDownloadClick();" />
+                        </div>
+                    }
+                </td>
+                <td>
+                    <span style="font-size:x-small;color:gray;">
+                        @inlineDocument
+                    </span>
+                </td>
+                <td style="width:20px;" />
+            </tr>
+            <tr><td style="height:10px;" /></tr>
+        </table>
+    }
+}
+<script src="@Url.Content("~/Scripts/SmartConfig.js")"></script>
+<script type="text/javascript">
+</script>
+<style type="text/css">
+    .loadFile{
+        background: linear-gradient(220deg,dimgray 0%,black 60%) no-repeat; 
+        width:100%;
+        border-style:outset;
+        border-width:1px;
+        border-color:silver;
+        border-radius:5px;
+    }
+    div.UploadBinaryDisabled {
+        visibility: collapse;
+    }
+
+    div.UploadBinaryEnabled {
+        visibility: visible;
+    }
+</style>

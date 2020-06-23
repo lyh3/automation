@@ -25,7 +25,7 @@ namespace IntelDCGSpsWebService.Controllers
             return View(model);
         }
 
-        public ActionResult UpdateSelectedRelease(JsonDataContener jsonData)
+        public ActionResult UpdateSelectedRelease(JsonContainer jsonData)
         {
             var model = Session[Definitions.RELEASE_ORCHSTRATION_KEY] as ReleaseOrchstrationModel;
             if (null != jsonData && jsonData.JsonString != "N/A")
@@ -40,7 +40,7 @@ namespace IntelDCGSpsWebService.Controllers
             return Json(model[model.SelectedPlatform.ToString()]);
         }
 
-        public ActionResult UpdateSelectedPlatform(JsonDataContener jsonData)
+        public ActionResult UpdateSelectedPlatform(JsonContainer jsonData)
         {
             var model = Session[Definitions.RELEASE_ORCHSTRATION_KEY] as ReleaseOrchstrationModel;
             if (null != jsonData)
