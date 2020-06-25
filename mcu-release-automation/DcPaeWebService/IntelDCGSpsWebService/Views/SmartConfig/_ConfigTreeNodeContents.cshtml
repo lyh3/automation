@@ -65,15 +65,45 @@
                                             </select>
                                         </td>
                                     </tr>
-
                                     <tr><td style="height:3px;"></td></tr>
+
+                                    @*--- Un-comment folowing chunk if don't want the slider features*@
+                                    @*<tr><td style="height:5px;"></td></tr>
+                                    <tr>
+                                        <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);font-size:small;font-weight:100;">Raw Data Map</span></td>
+                                    </tr>
+                                    <tr><td style="height:5px;"></td></tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            @Html.LabelFor(m => m.RawDataMap.Offset, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.RawDataMap.Offset, new { @id = @idRawDataOffset, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox" })
+                                        </td>
+                                    </tr>
+                                    <tr><td style="height:5px;"></td></tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            @Html.LabelFor(m => m.RawDataMap.Size, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.RawDataMap.Size, new { @id = @idRawDataSize, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            @Html.Partial("_RawData", Model);
+                                        </td>
+                                    </tr>*@
                                 </table>
                                 <div id="@divEdit">
                                     <table style="width:100%;background-color:transparent;border-style:outset;border-width:1px;border-color:gray;border-radius:5px;">
                                         <tr><td style="height:5px;"></td></tr>
                                         @* --------------------- Properties --------------------------------- *@
                                         <tr>
-                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);font-size:small;font-weight:100;">Properties</span></td>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);color:silver;font-size:small;font-weight:100;">Properties</span></td>
                                         </tr>
                                         <tr><td style="height:5px;"></td></tr>
                                         <tr>
@@ -124,7 +154,7 @@
                                         @*--------------  Raw data map ------------------------------*@
                                         <tr><td style="height:5px;"></td></tr>
                                         <tr>
-                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);font-size:small;font-weight:100;">Raw Data Map</span></td>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);color:gray;font-size:small;font-weight:100;">Raw Data Map</span></td>
                                         </tr>
                                         <tr><td style="height:5px;"></td></tr>
                                         <tr>
@@ -133,7 +163,7 @@
                                                     <tr>
                                                         <td>&nbsp;</td>
                                                         <td>
-                                                            @Html.LabelFor(m => m.RawDataMap.Offset, new { @style = "color:dimgray;font-weight:normal;font-size:smaller;width:40px;" })
+                                                            @Html.LabelFor(m => m.RawDataMap.Offset, new { @style = "color:gray;font-weight:normal;font-size:smaller;width:40px;" })
                                                         </td>
                                                         <td>
                                                             @Html.TextBoxFor(m => m.RawDataMap.Offset, new { @id = @idRawDataOffset, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox", @style = "width:110px;" })
@@ -177,7 +207,7 @@
                                         </tr>
                                         @* ------------------- Observer -------------------------- *@
                                         <tr>
-                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);font-size:small;font-weight:100;">Observer</span></td>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);color:silver;font-size:small;font-weight:100;">Observer</span></td>
                                         </tr>
                                         <tr><td style="height:5px;"></td></tr>
                                         <tr>

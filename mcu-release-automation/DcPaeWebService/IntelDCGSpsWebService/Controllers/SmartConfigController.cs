@@ -16,14 +16,17 @@ namespace IntelDCGSpsWebService.Controllers
     {
         private static object _updateModelSyncObj = new object();
         private static object _syncObj = new object();
+        private static ViewDataDictionary _viewDataDictionary = new ViewDataDictionary();
 
         public ActionResult Index()
         {
             var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
             if (null == model)
             {
-                model = new SmartConfigDataModel();
-                this._UpdateSessionModel(model);
+                using (model = new SmartConfigDataModel())
+                {
+                    this._UpdateSessionModel(model);
+                }
             }
             return View(model);
         }
@@ -32,12 +35,17 @@ namespace IntelDCGSpsWebService.Controllers
         {
             if (null != jsonConfig && jsonConfig.ContentLength > 0)
             {
+                SmartConfigDataModel model = null;
                 try
                 {
                     const string uploadFolder = @"~/App_Data/Upload";
-                    var jsonFile = Path.Combine(Server.MapPath(uploadFolder), string.Format(@"{0}_{1}.json", Path.GetFileName(jsonConfig.FileName).ToLower().Replace(".json", string.Empty), System.Web.HttpContext.Current.Session.SessionID));
+                    var fileInfo = new FileInfo(jsonConfig.FileName);
+                    var jsonFile = Path.Combine(Server.MapPath(uploadFolder), 
+                                                string.Format(@"{0}_{1}" + fileInfo.Extension,
+                                                fileInfo.Name.Replace(fileInfo.Extension, string.Empty), 
+                                                System.Web.HttpContext.Current.Session.SessionID));
                     jsonConfig.SaveAs(jsonFile);
-                    SmartConfigDataModel model;
+                    
                     using (StreamReader file = System.IO.File.OpenText(jsonFile))
                     {
                         var serializer = new JsonSerializer();
@@ -45,12 +53,15 @@ namespace IntelDCGSpsWebService.Controllers
                         model = (SmartConfigDataModel)serializer.Deserialize(file, typeof(SmartConfigDataModel));
                         model.BuildTree();
                         model.ConfigLoaded = true;
+                        model.JsonConfig = jsonFile;
                         this._UpdateSessionModel(model);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MvcApplication.Logger.ErrorFormat(@"SmartConfig - Excepton caught at LoadJsonConfig", ex.Message);
+                    var errorMsg = string.Format(@"SmartConfig - Excepton caught at LoadJsonConfig", ex.Message);
+                    model.LastErrorMessage = errorMsg;
+                    MvcApplication.Logger.Error(errorMsg);
                 }
             }
             return RedirectToAction("Index");
@@ -123,6 +134,7 @@ namespace IntelDCGSpsWebService.Controllers
                         statusInfo.CurrentSelectedSubPath.Add(node.CurrentSelectedSubPath);
                         statusInfo.RawDataEditType.Add(node.RawDataMap.EditType);
                         statusInfo.RawDataClass.Add(node.RawDataMap.RawDataClass);
+                        statusInfo.LastErrorMessage = model.LastErrorMessage;
                     }
                     else
                     {
@@ -135,24 +147,54 @@ namespace IntelDCGSpsWebService.Controllers
         [HttpPost]
         public ActionResult LoadBinary(HttpPostedFileBase binarySource)
         {
+            var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
             if (null != binarySource && binarySource.ContentLength > 0)
             {
+                model.LastErrorMessage = string.Empty;
                 try
                 {
+                    var fileInfo = new FileInfo(binarySource.FileName);
+                    if (!(fileInfo.Extension.ToLower() == ".bin" || fileInfo.Extension.ToLower() == ".rom"))
+                    {
+                        model.LastErrorMessage = string.Format(@"The file [{0}] is not supported binary file.", fileInfo.Name);
+                        this._UpdateSessionModel(model);
+                        return RedirectToAction("Index");
+                    }
                     const string uploadFolder = @"~/App_Data/Upload";
-                    var binaryFile = Path.Combine(Server.MapPath(uploadFolder), string.Format(@"{0}_{1}.json", Path.GetFileName(binarySource.FileName).ToLower().Replace(".bin", string.Empty), System.Web.HttpContext.Current.Session.SessionID));
+                    var binaryFile = Path.Combine(Server.MapPath(uploadFolder), 
+                                                  string.Format(@"{0}_{1}" + fileInfo.Extension,
+                                                  fileInfo.Name.Replace(fileInfo.Extension, string.Empty), 
+                                                  System.Web.HttpContext.Current.Session.SessionID));
                     binarySource.SaveAs(binaryFile);
-                    var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
                     if (null != model)
                     {
+                        model.LastErrorMessage = string.Empty;
                         model.TargetBinaryFile = binaryFile;
                         this._UpdateSessionModel(model);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MvcApplication.Logger.ErrorFormat(@"SmartConfig - Excepton caught at LoadJsonConfig", ex.Message);
+                    var errorMsg = String.Format(@"SmartConfig - Excepton caught at LoadBinary, error = {0}", ex.Message);
+                    if(null != model)
+                    {
+                        model.LastErrorMessage = errorMsg;
+                        this._UpdateSessionModel(model);
+                    }
+                    MvcApplication.Logger.Error(errorMsg);
                 }
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Reset()
+        {
+            var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
+            if(null != model)
+            {
+                model.LastErrorMessage = string.Empty;
+                model.TargetBinaryFile = string.Empty;
+                this._UpdateSessionModel(model);
             }
             return RedirectToAction("Index");
         }
@@ -306,8 +348,10 @@ namespace IntelDCGSpsWebService.Controllers
                         catch { }
                         Session[Definitions.SMART_CONFIG_SESSION_KEY] = model;
                     }
-                    catch
+                    catch(Exception ex)
                     {
+                        model.LastErrorMessage = ex.Message;
+                        MvcApplication.Logger.Error(ex.Message);
                     }
                 }
             }

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.Configuration;
 using System.IO;
-
 
 using Newtonsoft.Json;
 using Automation.Base.BuildingBlocks;
@@ -13,15 +9,18 @@ using Automation.Base.BuildingBlocks;
 namespace WindowService.DataModel
 {
     [Serializable]
-    public class SmartConfigDataModel
+    public class SmartConfigDataModel : IDisposable
     {
         private static object _updateModelSyncObj = new object();
         protected string _title = @"Smart Configuration (- under construction -)";
         protected string _jsonConfig = string.Empty;
         protected string _targetFile = string.Empty;
         protected string _resultsFile = string.Empty;
+        protected string _lastErrorMessage = string.Empty;
         protected bool _configLoaded = false;
+        protected bool _binaryLoaded = false;
         protected Stream _sourceStream = null;
+        protected long _binarySize = 0L;
         protected List<ConfigTreeNode> _subMenu = new List<ConfigTreeNode>();
 
         [JsonIgnore]
@@ -40,16 +39,41 @@ namespace WindowService.DataModel
             get { return _targetFile; }
             set
             {
+                if (null != _sourceStream && _sourceStream.CanSeek)
+                {
+                    _sourceStream.Close();
+                }
+                if (_binaryLoaded && string.IsNullOrEmpty(value))
+                {
+                    if (File.Exists(_targetFile))
+                    {
+                        foreach(ConfigTreeNode sub in _subMenu)
+                        {
+                            sub.Reset();
+                        }
+                        File.Delete(_targetFile);
+                    }
+                    _binaryLoaded = false;
+                }
                 _targetFile = value;
                 if (File.Exists(_targetFile))
                 {
+                    var fileInfo = new FileInfo(value);
+                    _binarySize = fileInfo.Length;
                     _sourceStream = File.OpenRead(_targetFile);
                     foreach (var sub in _subMenu)
                     {
                         sub.TargetBinaryStream = _sourceStream;
                     }
+                    _binaryLoaded = true;
                 }
             }
+        }
+        [JsonIgnore]
+        public long BinarySize
+        {
+            get { return _binarySize; }
+            private set { _binarySize = value; }
         }
         [JsonIgnore]
         public Stream SourceStream
@@ -77,6 +101,12 @@ namespace WindowService.DataModel
             {
                 _resultsFile = value;
             }
+        }
+        [JsonIgnore]
+        public string LastErrorMessage
+        {
+            get { return _lastErrorMessage; }
+            set { _lastErrorMessage = value; }
         }
         public List<ConfigTreeNode> Root
         {
@@ -222,6 +252,21 @@ namespace WindowService.DataModel
                 return !string.IsNullOrEmpty(_resultsFile)
                        && File.Exists(_resultsFile)
                        && (new FileInfo(_resultsFile)).Length > 0;
+            }
+        }
+        public void Dispose()
+        {
+            string[] files = { this.JsonConfig, this.TargetBinaryFile };
+            foreach (var f in files)
+            {
+                if (File.Exists(f))
+                {
+                    try
+                    {
+                        File.Delete(f);
+                    }
+                    catch { }
+                }
             }
         }
     }

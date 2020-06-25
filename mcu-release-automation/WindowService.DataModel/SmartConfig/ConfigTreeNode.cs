@@ -33,6 +33,17 @@ namespace WindowService.DataModel
             add { _eventPropertyChanged = (EventHandler)Delegate.Combine(_eventPropertyChanged, value); }
             remove { _eventPropertyChanged = (EventHandler)Delegate.Remove(_eventPropertyChanged, value); }
         }
+        public void Reset()
+        {
+            _rawDataMap.Reset();
+            _streamTotalSize = 0L;
+            NodeEditStatus = ConfigNodeStatus.Idle.ToString();
+            _targetBinaryStream = null;
+            foreach (var sub in _submenu)
+            {
+                sub.Reset();
+            }
+        }
         [JsonIgnore]
         public string CurrentSelectedSubPath
         {
@@ -78,19 +89,27 @@ namespace WindowService.DataModel
             set
             {
                 _targetBinaryStream = value;
-                _rawDataMap.TargetBinaryStream = _targetBinaryStream;
-                _streamTotalSize = _targetBinaryStream.Length;
-                if (_rawDataMap.IsDataLoaded)
+                if (null != _targetBinaryStream && _targetBinaryStream.CanSeek)
                 {
-                    NodeEditStatus = ConfigNodeStatus.Modified.ToString();
-                }
-                else
-                {
-                    NodeEditStatus = ConfigNodeStatus.Idle.ToString();
-                }
-                foreach (var sub in _submenu)
-                {
-                    sub.TargetBinaryStream = value;
+                    _rawDataMap.TargetBinaryStream = _targetBinaryStream;
+                    _streamTotalSize = _targetBinaryStream.Length;
+                    if (_rawDataMap.IsDataLoaded)
+                    {
+                        NodeEditStatus = ConfigNodeStatus.Modified.ToString();
+                    }
+                    else
+                    {
+                        NodeEditStatus = ConfigNodeStatus.Idle.ToString();
+                    }
+
+                    _targetBinaryStream = value;
+
+                    foreach (var sub in _submenu)
+                    {
+                        sub.TargetBinaryStream = value;
+                    }
+
+
                 }
             }
         }

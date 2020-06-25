@@ -101,7 +101,23 @@ function onApplyClicked() {
         });
     }
 }
-
+function onRefreshClick() {
+    $.ajax({
+        url: '/SmartConfig/Reset',
+        dataType: 'json',
+        type: "POST",
+        cache: false,
+        data: {
+        },
+        success: function (data) {
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log('xhr.status : ' + xhr.status);
+        }
+    });
+    $('#divErrorMessage').attr("style", "display:none;");
+    location.reload();
+};
 function onSelectedSelectedSubMenuChanged(select) {
     console.log('--select id = ' + select.id);
     var value = select.value;
@@ -203,6 +219,20 @@ function onLoadBinaryClick() {
 };
 
 function onRefreshClick() {
+    $.ajax({
+        url: '/SmartConfig/Reset',
+        dataType: 'json',
+        type: "POST",
+        cache: false,
+        data: {
+        },
+        success: function (data) {
+            $('#divErrorMessage').attr("style", "display:none;");          
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log('xhr.status : ' + xhr.status);
+        }
+    });
     location.reload();
 }
 
@@ -225,45 +255,51 @@ function updateSmartConfigUI() {
             JsonString: guids.join(',')
         },
         success: function (data) {
-            if (null != data && data.Status.length == arr.length) {
-                var uploadBinary = $('#divTargetBinaryForm');
-                if (null != uploadBinary) {
-                    if (data.ConfigLoaded) {
-                        uploadBinary.removeClass('UploadBinaryDisabled');
-                        uploadBinary.addClass('UploadBinaryEnabled');
-                    } else {
-                        uploadBinary.removeClass('UploadBinaryEnabled');
-                        uploadBinary.addClass('UploadBinaryDisabled');
-                    }
+            if (null != data) {
+                if (data.LastErrorMessage.trim() != '') {
+                    $('#divErrorMessage').attr("style", "visibility:visible;");
+                    document.getElementById('spError').innerHTML = data.LastErrorMessage;
                 }
-                var idx = 0;
-                Array.from(arr).forEach(function (element) {
-                    var rawDataTextArea = document.getElementById('RawdataMap_Value_{0}'.format(element.id));
-                    var rawDataTextSelecter = $('#RawdataMap_Value_{0}'.format(element.id));
-                    if (null != rawDataTextArea && null != rawDataTextSelecter) {
-                        rawDataTextArea.readOnly = data.RawDataEditType[idx].toLowerCase() == 'DataSizeEdit'.toLocaleLowerCase() ? true : false;
-                        rawDataTextSelecter.removeClass('rawdata');
-                        rawDataTextSelecter.removeClass('rawdata_modified');
-                        rawDataTextSelecter.addClass(data.RawDataClass[idx]);
-                    }
-
-                    var selector = $('#table_{0}'.format(element.id));
-                    if (null != selector) {
-                        for (var i = 0; i < STATUS.length; ++i) {
-                            selector.removeClass(data.Status[idx]);
+                if (data.Status.length == arr.length) {
+                    var uploadBinary = $('#divTargetBinaryForm');
+                    if (null != uploadBinary) {
+                        if (data.ConfigLoaded) {
+                            uploadBinary.removeClass('UploadBinaryDisabled');
+                            uploadBinary.addClass('UploadBinaryEnabled');
+                        } else {
+                            uploadBinary.removeClass('UploadBinaryEnabled');
+                            uploadBinary.addClass('UploadBinaryDisabled');
                         }
-                        selector.addClass(data.Status[idx]);
-                        var imgUpdate = $('#imgUpdate_{0}'.format(element.id));
-                        if (null != imgUpdate) {
-                            imgUpdate.removeClass('updateDisabled');
-                            if (data.Status[idx].toLowerCase() != 'Modified'.toLowerCase()) {
-                                imgUpdate.addClass('updateDisabled');
+                    }
+                    var idx = 0;
+                    Array.from(arr).forEach(function (element) {
+                        var rawDataTextArea = document.getElementById('RawdataMap_Value_{0}'.format(element.id));
+                        var rawDataTextSelecter = $('#RawdataMap_Value_{0}'.format(element.id));
+                        if (null != rawDataTextArea && null != rawDataTextSelecter) {
+                            rawDataTextArea.readOnly = data.RawDataEditType[idx].toLowerCase() == 'DataSizeEdit'.toLocaleLowerCase() ? true : false;
+                            rawDataTextSelecter.removeClass('rawdata');
+                            rawDataTextSelecter.removeClass('rawdata_modified');
+                            rawDataTextSelecter.addClass(data.RawDataClass[idx]);
+                        }
+
+                        var selector = $('#table_{0}'.format(element.id));
+                        if (null != selector) {
+                            for (var i = 0; i < STATUS.length; ++i) {
+                                selector.removeClass(data.Status[idx]);
+                            }
+                            selector.addClass(data.Status[idx]);
+                            var imgUpdate = $('#imgUpdate_{0}'.format(element.id));
+                            if (null != imgUpdate) {
+                                imgUpdate.removeClass('updateDisabled');
+                                if (data.Status[idx].toLowerCase() != 'Modified'.toLowerCase()) {
+                                    imgUpdate.addClass('updateDisabled');
+                                }
                             }
                         }
-                    }
 
-                    idx += 1;
-                });
+                        idx += 1;
+                    });
+                }
             }
         },
         error: function (xhr, ajaxOptions, thrownError) {

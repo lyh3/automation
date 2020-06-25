@@ -18,6 +18,12 @@ namespace WindowService.DataModel
         private bool _isDataLoaded = false;
         private bool _dataModified = false;
         private EditDataType _editDataType = EditDataType.DataSizeEdit;
+        public void Reset()
+        {
+            _dataModified = false;
+            _isDataLoaded = false;
+            _value = string.Empty;
+        }
         [JsonIgnore]
         public ConfigTreeNode ParentNode
         {

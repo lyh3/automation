@@ -57,24 +57,32 @@ namespace Automation.Base.BuildingBlocks
         }
         public override string ToString()
         {
-            var sb = new StringBuilder();
-            foreach(var g in _group)
+            var group = _group;
+            if (null == group)
             {
-                var s = string.Empty;
-                foreach(var val in g)
-                {
-                    s += Extensions.ByteToHex(val);
-                }
-                sb.Append(string.Format(@"{0} ", s));
+                return base.ToString();
             }
-            return sb.ToString().TrimEnd();
+            var x = new List<string>();
+            foreach (var g in group)
+            {
+                foreach (var val in g)
+                {
+                    x.Add(Extensions.ByteToHex(val));
+                }
+            }
+            return string.Join(" ", x.ToArray()).TrimEnd();
         }
         private dynamic _group
         {
             get
             {
-                return _data.Select((value, index) => new { value, index })
-                    .GroupBy(x => x.index / (int)_alignment, x => x.value).ToArray();               
+                try
+                {
+                    return _data.Select((value, index) => new { value, index })
+                            .GroupBy(x => x.index / (int)_alignment, x => x.value).ToArray();
+                }
+                catch {}
+                return null;
             }
         }
     }

@@ -11,6 +11,7 @@ namespace WindowService.DataModel
         private List<string> _rawDataEditDataType = new List<string>();
         private List<string> _rawDataClass = new List<string>();
         private List<string> _status = new List<string>();
+        private string _lastErrorMessage = string.Empty;
 
         public bool ConfigLoaded
         {
@@ -36,6 +37,11 @@ namespace WindowService.DataModel
         {
             get { return _rawDataClass; }
             set { _rawDataClass = value; }
+        }
+        public string LastErrorMessage
+        {
+            get { return _lastErrorMessage; }
+            set { _lastErrorMessage = value; }
         }
     }
 }

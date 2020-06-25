@@ -1,4 +1,5 @@
 ﻿@using WindowService.DataModel;
+@using System.IO;
 
 @model SmartConfigDataModel
 
@@ -42,30 +43,44 @@
                         </td>
                         <td>&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <div id="divTargetBinaryForm" class="UploadBinaryDisabled">
-                                @using (Html.BeginForm("LoadBinary", "SmartConfig", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formLoadBinaryConfig", name = "formLoadBinaryConfig" }))
-                                {
-                                    <table  class="loadFile">
-                                        <tr>
-                                            <td>&nbsp;&nbsp;</td>
-                                            <td style="white-space:nowrap;">
-                                                @Html.LabelFor(m => m.TargetBinaryFile, new { @type = "file", @style = "color:gray;font-weight:lighter;font-size:smaller;" })
-                                                <input required type="file" id="binaryImage" class="btn btn-toolbar" name="binarySource" style="background-color:rgba(41, 42, 43, 0.7); color:steelblue;font-size:12px;" />
-                                                @Html.ValidationMessageFor(m => m.TargetBinaryFile, "", new { @class = "text-danger", @style = "font-size:smaller;" })
-                                            </td>
-                                            <td>&nbsp;</td>
-                                            <td>
-                                                <input type="submit" class="btn btn-primary" style="width:100px;" name="LoadBinary" id="LoadBinary" value="Load Binary" onclick="onLoadBinaryClick();" />
-                                            </td>
-                                            <td>&nbsp;</td>
-                                            <td>
-                                                <input type="button" class="btn btn-success" style="width:80px;" name="btnApply" id="btnApply" value="Apply" onclick="onApplyClicked();" />
-                                            </td>
-                                            <td>&nbsp;&nbsp;</td>
-                                        </tr>
-                                    </table>
-                                }
-                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div id="divTargetBinaryForm" class="UploadBinaryDisabled">
+                                            @using (Html.BeginForm("LoadBinary", "SmartConfig", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formLoadBinaryConfig", name = "formLoadBinaryConfig" }))
+                                            {
+                                                <table class="loadFile">
+                                                    <tr>
+                                                        <td>&nbsp;&nbsp;</td>
+                                                        <td style="white-space:nowrap;">
+                                                            @Html.LabelFor(m => m.TargetBinaryFile, new { @type = "file", @style = "color:gray;font-weight:lighter;font-size:smaller;" })
+                                                            <input required type="file" id="binaryImage" class="btn btn-toolbar" name="binarySource" style="background-color:rgba(41, 42, 43, 0.7); color:steelblue;font-size:12px;" />
+                                                            @Html.ValidationMessageFor(m => m.TargetBinaryFile, "", new { @class = "text-danger", @style = "font-size:smaller;" })
+                                                        </td>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            <input type="submit" class="btn btn-primary" style="width:100px;" name="LoadBinary" id="LoadBinary" value="Load Binary" onclick="onLoadBinaryClick();" />
+                                                        </td>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            <input type="button" class="btn btn-success" style="width:80px;" name="btnApply" id="btnApply" value="Apply" onclick="onApplyClicked();" />
+                                                        </td>
+                                                        <td>&nbsp;&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            }
+                                        </div>
+
+                                    </td>
+                                    <td>&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        @if (!String.IsNullOrEmpty(@Model.TargetBinaryFile)||!String.IsNullOrEmpty(@Model.LastErrorMessage))
+                                        {
+                                            <span id="spRefresh" style="color:grey; font-size:18px;" title="Reset loaded binary" onclick="onRefreshClick();"><i id="iRefresh" style="color:lime;" class="glyphicon glyphicon-refresh"></i></span>
+                                        }
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>
@@ -81,16 +96,64 @@
                     </tr>
                 </table>
             </td>
+            <td>
+                <table style="background-color:transparent;white-space:nowrap;font-size:8pt;font-weight:100;color:gray;">
+                    <tr><td styple="height:2px;" /></tr>
+                    <tr>
+                        <td>
+                            @if (!String.IsNullOrEmpty(@Model.JsonConfig))
+                            {
+                                <span>Json configuration file</span>
+                                <span class="badge badge-pill badge-primary" title="@Model.JsonConfig" style="background-color:transparent; color:silver;font-weight:100;">@Path.GetFileName(@Model.JsonConfig).Replace("_" + @Session.SessionID, string.Empty)</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr><td styple="height:1px;" /></tr>
+                    <tr>
+                        <td>
+                            @if (!String.IsNullOrEmpty(@Model.TargetBinaryFile))
+                            {
+                                <span>Target binary file</span>
+                                <span id="spTargetBinary" class="badge badge-pill badge-primary" title="@Model.TargetBinaryFile" style="background-color:transparent; color:silver;font-weight:100;">@Path.GetFileName(@Model.TargetBinaryFile).Replace("_" + @Session.SessionID, string.Empty)</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            @if (!String.IsNullOrEmpty(@Model.TargetBinaryFile) && String.IsNullOrEmpty(@Model.LastErrorMessage))
+                            {
+                                <span>@String.Format("( {0} MB, {1} )",
+                                                    (int)(@Model.BinarySize / 1000000),
+                                                    @BitConverter.IsLittleEndian ? "Little endian" : "Big endian")
+                            </span>
+                        }
+                        </td>
+                    </tr>
+                    <tr><td styple="height:2px;" /></tr>
+                </table>
+            </td>
         </tr>
     </table>
-
+    <div id="divErrorMessage" style="display:none;">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <div id='divError' class='alert alert-dismissible alert-danger'>
+                        <span id="spError" style="font-size:small;">
+                            &nbsp;Failed to release.  Please Please contact the admin person to resolve the issues and try again.
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
     <table style="width:100%;background-color:transparent;border-style:outset;border-width:1px;border-color:gray;border-radius:5px;">
         @if (null != @Model.Root)
         {
             for (var i = 0; i < @Model.Root.Count; i++)
             {
                 var node = Model.Root[i];
-                //node.Collapse = true;
+                node.Collapse = true;
                 <tr>
                     <td>
                         @Html.Partial("_ConfigTreeNode", node)
