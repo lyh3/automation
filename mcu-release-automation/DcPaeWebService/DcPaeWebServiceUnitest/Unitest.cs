@@ -472,7 +472,7 @@ namespace DcPaeWebServiceUnitest
             //File.WriteAllText(jsonFile, json);
             var jp = "Root.Edk2Manu.Socket.AdvancedPowerManagementConfiguration.IIOConfiguration.IOATConfiguration.DisableTPH";
             var instance = root.GetConfigNodeByJPath(jp);
-            instance.UpdateSettings(json);
+            instance.SyncUpdate(instance);
 
         }
     }

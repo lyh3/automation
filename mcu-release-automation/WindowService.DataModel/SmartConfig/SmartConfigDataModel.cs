@@ -136,6 +136,7 @@ namespace WindowService.DataModel
                 foreach (var jpath in ((ConfigTreeNode)sender).Observer)
                 {
                     var target = this.GetConfigNodeByJPath(jpath);
+                    target.SyncUpdate(sender as ConfigTreeNode);
                 }
             }
         }

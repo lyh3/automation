@@ -13,6 +13,7 @@ namespace WindowService.DataModel
         private String _default = string.Empty;
         private String _currentValue = string.Empty;
         private String _ptype = string.Empty;
+        private String _selectedValue = string.Empty;
         private ConfigTreeNode _parentNode = null;
         [JsonIgnore]
         public ConfigTreeNode ParentNode
@@ -72,6 +73,12 @@ namespace WindowService.DataModel
                     _parentNode.NodeEditStatus = ConfigNodeStatus.Modified.ToString();
                 }
             }
+        }
+        //[JsonIgnore]
+        public string SelectedValue
+        {
+            get { return _selectedValue; }
+            set { _selectedValue = value; }
         }
         public override string ToString()
         {

@@ -11,6 +11,11 @@ namespace WindowService.DataModel
         private List<string> _rawDataEditDataType = new List<string>();
         private List<string> _rawDataClass = new List<string>();
         private List<string> _status = new List<string>();
+        private List<string> _propertiesDefaultValue = new List<string>();
+        private List<string> _propertiesCurrentValue = new List<string>();
+        private List<string> _rawdataOffset = new List<string>();
+        private List<string> _rawdataSize = new List<string>();
+        private List<string> _rawdataValue = new List<string>();
         private string _lastErrorMessage = string.Empty;
 
         public bool ConfigLoaded
@@ -37,6 +42,31 @@ namespace WindowService.DataModel
         {
             get { return _rawDataClass; }
             set { _rawDataClass = value; }
+        }
+        public List<string> PropertiesDefaultValue
+        {
+            get { return _propertiesDefaultValue; }
+            set { _propertiesDefaultValue = value; }
+        }
+        public List<string> PropertiesCurrentValue
+        {
+            get { return _propertiesCurrentValue; }
+            set { _propertiesCurrentValue = value; }
+        }
+        public List<string> RawDataOffset
+        {
+            get { return _rawdataOffset; }
+            set { _rawdataOffset = value; }
+        }
+        public List<string> RawDataSize
+        {
+            get { return _rawdataSize; }
+            set { _rawdataSize = value; }
+        }
+        public List<string> RawDataValue
+        {
+            get { return _rawdataValue; }
+            set { _rawdataValue = value; }
         }
         public string LastErrorMessage
         {

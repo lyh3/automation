@@ -35,22 +35,28 @@ namespace IntelDCGSpsWebService.Controllers
         {
             if (null != jsonConfig && jsonConfig.ContentLength > 0)
             {
-                SmartConfigDataModel model = null;
+                SmartConfigDataModel model = new SmartConfigDataModel();
                 try
                 {
                     const string uploadFolder = @"~/App_Data/Upload";
                     var fileInfo = new FileInfo(jsonConfig.FileName);
-                    var jsonFile = Path.Combine(Server.MapPath(uploadFolder), 
+                    var jsonFile = Path.Combine(Server.MapPath(uploadFolder),
                                                 string.Format(@"{0}_{1}" + fileInfo.Extension,
-                                                fileInfo.Name.Replace(fileInfo.Extension, string.Empty), 
+                                                fileInfo.Name.Replace(fileInfo.Extension, string.Empty),
                                                 System.Web.HttpContext.Current.Session.SessionID));
                     jsonConfig.SaveAs(jsonFile);
-                    
+
                     using (StreamReader file = System.IO.File.OpenText(jsonFile))
                     {
                         var serializer = new JsonSerializer();
 
                         model = (SmartConfigDataModel)serializer.Deserialize(file, typeof(SmartConfigDataModel));
+                        if (model.Root.Count == 0)
+                        {
+                            model.LastErrorMessage = string.Format(@"-- There is no node been loaded, please verify the json file [{0}] is valid. ---", fileInfo.FullName);
+                            this._UpdateSessionModel(model);
+                            return RedirectToAction("Index");
+                        }
                         model.BuildTree();
                         model.ConfigLoaded = true;
                         model.JsonConfig = jsonFile;
@@ -81,7 +87,7 @@ namespace IntelDCGSpsWebService.Controllers
                 {
                     var subNodeHtml = _RenderToHtmlString(PartialView("_ConfigTreeNode", node));
                     var idx = jsonData.JsonString.LastIndexOf('.');
-                   if (-1 == idx)
+                   if (-1 != idx)
                     {
                         var parentNode = model.GetConfigNodeByJPath(jsonData.JsonString.Substring(0, idx));
                         if (null != parentNode)
@@ -135,6 +141,11 @@ namespace IntelDCGSpsWebService.Controllers
                         statusInfo.RawDataEditType.Add(node.RawDataMap.EditType);
                         statusInfo.RawDataClass.Add(node.RawDataMap.RawDataClass);
                         statusInfo.LastErrorMessage = model.LastErrorMessage;
+                        statusInfo.PropertiesDefaultValue.Add(node.Properties.Default);
+                        statusInfo.PropertiesCurrentValue.Add(node.Properties.CurrentValue);
+                        statusInfo.RawDataOffset.Add(node.RawDataMap.Offset);
+                        statusInfo.RawDataSize.Add(node.RawDataMap.Size);
+                        statusInfo.RawDataValue.Add(node.RawDataMap.Value);
                     }
                     else
                     {
@@ -283,9 +294,9 @@ namespace IntelDCGSpsWebService.Controllers
                         node.Properties.CurrentValue = updateInfo.Properties.CurrentValue;
                         node.NodeEditStatus = ConfigNodeStatus.Modified.ToString();
                     }
-                    if (updateInfo.Properties.Options != null && updateInfo.Properties.Options.Count > 0)
+                    if (!string.IsNullOrEmpty(updateInfo.Properties.SelectedValue))
                     {
-                        node.Properties.Options.AddRange(updateInfo.Properties.Options);
+                        node.Properties.CurrentValue = updateInfo.Properties.SelectedValue;
                         node.NodeEditStatus = ConfigNodeStatus.Modified.ToString();
                     }
                     jsonContainer.JsonString = _RenderToHtmlString(PartialView("_ConfigTreeNodeContents", node));

@@ -155,7 +155,7 @@ function onConfigPropertyChanged(setting) {
     console.log(msg);
     var jsondata = '';
     var jsondataFormat_RawDataMap = '{"{0}":{"Offset":"{1}","Size":"{2}","Value":"{3}"},"Group":"{0}","Id":"{4}"}';
-    var jsondataFormat_Properties = '{"{0}":{"pType":"{1}","Default":"{2}","CurrentValue":"{3}"},"Group":"{0}","Options":"{4}", "Id":"{5}"}';
+    var jsondataFormat_Properties = '{"{0}":{"pType":"{1}","Default":"{2}","CurrentValue":"{3}","SelectedValue":"{4}"},"Group":"{0}", "Id":"{5}"}';
     var group = split[0].trim();
     var updateContents = '';
     console.log('-- formatstring = {0}, group = {1}'.format(jsondataFormat_RawDataMap, group));
@@ -240,8 +240,6 @@ function updateSmartConfigUI() {
     //document.getElementById(form).querySelectorAll("[required]")
     var guids = new Array();
     var arr = document.getElementsByClassName('smartConfig');
-    var updatImg = document.getElementsByClassName('updateDisabled');
-    var subNodeIds = document.getElementsByClassName('configSubNode');
     Array.from(arr).forEach(function (element) {
         guids.push(element.id);
     });
@@ -280,12 +278,18 @@ function updateSmartConfigUI() {
                             rawDataTextSelecter.removeClass('rawdata');
                             rawDataTextSelecter.removeClass('rawdata_modified');
                             rawDataTextSelecter.addClass(data.RawDataClass[idx]);
+                            document.getElementById('RawdataMap_Value_{0}'.format(element.id)).value = data.RawDataValue[idx];
                         }
 
+                        document.getElementById('Properties_DefaultValue_{0}'.format(element.id)).value = data.PropertiesDefaultValue[idx];
+                        document.getElementById('Properties_CurrentValue_{0}'.format(element.id)).value = data.PropertiesCurrentValue[idx];
+                        //document.getElementById('RawdataMap_Offset_{0}'.format(element.id)).value = data.RawDataOffset[idx];
+                        document.getElementById('RawdataMap_Size_{0}'.format(element.id)).value = data.RawDataSize[idx];
+
                         var selector = $('#table_{0}'.format(element.id));
-                        if (null != selector) {
+                        if (null != selector) {  
                             for (var i = 0; i < STATUS.length; ++i) {
-                                selector.removeClass(data.Status[idx]);
+                                selector.removeClass(STATUS[i]);
                             }
                             selector.addClass(data.Status[idx]);
                             var imgUpdate = $('#imgUpdate_{0}'.format(element.id));
@@ -296,7 +300,6 @@ function updateSmartConfigUI() {
                                 }
                             }
                         }
-
                         idx += 1;
                     });
                 }

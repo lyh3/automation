@@ -6,12 +6,12 @@
 @if (@Model != null)
 {
     String idOptionSelect = "OptionSelect_" + @Model.SubNodeSelectId;
-    String id_P_OptionSelect = "P_Options_Select_" + @Model.SubNodeSelectId;
     String id_O_OptionSelect = "O_Options_Select_" + @Model.SubNodeSelectId;
     String id_R_OptionSelect = "R_Options_Select_" + @Model.SubNodeSelectId;
     String idDivSubNode = @Model.Key + "_" + @Model.SubNodeSelectId;
     String id_img_Update = "imgUpdate_" + @Model.SubNodeSelectId;
 
+    String id_P_OptionSelect = "Properties_Options_" + @Model.SubNodeSelectId;
     String idPropertyType = "Properties_Type_" + @Model.SubNodeSelectId;
     String idPropertyDefaultValue = "Properties_DefaultValue_" + @Model.SubNodeSelectId;
     String idPropertyCurrentValue = "Properties_CurrentValue_" + @Model.SubNodeSelectId;
@@ -103,7 +103,7 @@
                                         <tr><td style="height:5px;"></td></tr>
                                         @* --------------------- Properties --------------------------------- *@
                                         <tr>
-                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);color:silver;font-size:small;font-weight:100;">Properties</span></td>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);color:gray;font-size:small;font-weight:100;">Properties</span></td>
                                         </tr>
                                         <tr><td style="height:5px;"></td></tr>
                                         <tr>
@@ -143,6 +143,7 @@
                                             </td>
                                             <td>
                                                 <select class="btn btn-toolbar" id=@id_P_OptionSelect title=@Model.SubNodeSelectId , onchange="onConfigPropertyChanged(this);" style="background-color:rgba(41, 42, 43, 0.7);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                                                    <option id="-1" value="N/A" data-bind="">-- Select value --</option>
                                                     @foreach (var x in Model.Properties.Options)
                                                     {
                                                         var key = x;
@@ -207,7 +208,7 @@
                                         </tr>
                                         @* ------------------- Observer -------------------------- *@
                                         <tr>
-                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);color:silver;font-size:small;font-weight:100;">Observer</span></td>
+                                            <td align="center" colspan="3"><span class="badge badge-pill badge-primary" style="width:100%;background-color:rgba(41, 42, 43, 0.7);color:gray;font-size:small;font-weight:100;">Observer</span></td>
                                         </tr>
                                         <tr><td style="height:5px;"></td></tr>
                                         <tr>
@@ -217,6 +218,7 @@
                                             </td>
                                             <td>
                                                 <select class="btn btn-toolbar" id=@id_R_OptionSelect title=@Model.SubNodeSelectId , onchange="onConfigPropertyChanged(this);" style="background-color:rgba(41, 42, 43, 0.7);color:white;font-size:small;height:30px; width:155px;overflow-x: scroll;overflow-y: scroll;">
+                                                    <option id="-1" value="N/A" data-bind="">-- Select value --</option>
                                                     @foreach (var x in Model.Observer)
                                                     {
                                                         var key = x;
@@ -249,7 +251,7 @@
         flex: 1;
     }
 
-        input[type=range]::-webkit-slider-thumb {
+    input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
             border: 1px solid dimgray;
             height: 15px;
@@ -270,7 +272,6 @@
         border-color: dimgray;
         border-radius: 3px;
     }
-
     .Idel {
         border-color: rgba(100,100,100, 0.40);
         background-color: transparent;

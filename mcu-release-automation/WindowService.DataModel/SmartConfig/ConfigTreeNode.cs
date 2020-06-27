@@ -59,9 +59,12 @@ namespace WindowService.DataModel
                 var status = ConfigNodeStatus.Idle;
                 if (Enum.TryParse<ConfigNodeStatus>(value, out status))
                 {
-                    _nodeEditStatus = status;                   
+                    _nodeEditStatus = status;     
+                    if (status == ConfigNodeStatus.Updated)
+                    {
+                        UpdateSettingsEventDispatch();
+                    }
                 }
-                _rawDataMap.LoadBinaryData();
             }
         }
         [JsonIgnore]
@@ -194,15 +197,34 @@ namespace WindowService.DataModel
             foreach(var x in this._submenu)
             {
                 x.PropertryChanged += parent.onPropertyChange;
+                x.Properties.ParentNode = x.RawDataMap.ParentNode = x;
                 x.Build(_jpath, parent);
             }
         }
-        public void UpdateSettings(string json)
+        public void UpdateSettingsEventDispatch()
         {
-            var updateMatrix = JsonConvert.DeserializeObject<UpdateMatrix>(json);
             if (null != _eventPropertyChanged)
             {
                 _eventPropertyChanged(this, null);
+            }
+        }
+        public void SyncUpdate(ConfigTreeNode sender)
+        {
+            if (null == sender)
+            {
+                return;
+            }
+            var updateDataConfig = this.UpdateDictionary.UpdateData;
+            foreach (var updateData in updateDataConfig)
+            {
+                if (updateData.Key != sender.Key)
+                    continue;
+                if (updateData.Value.OptionKey != sender.Properties.CurrentValue)
+                    continue;
+                this.RawDataMap.Offset = updateData.Value.RawDataMap.Offset;
+                this.RawDataMap.Size = updateData.Value.RawDataMap.Size;
+                this.Properties = updateData.Value.Properties;
+                this._nodeEditStatus = ConfigNodeStatus.Modified;
             }
         }
     }

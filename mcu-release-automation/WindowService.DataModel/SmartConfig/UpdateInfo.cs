@@ -44,12 +44,18 @@ namespace WindowService.DataModel
     public class PropertiesInfo : UpdateInfo
     {
         private Props _rawData = new Props();
+        //private String _selectedValue = string.Empty;
         public PropertiesInfo(string id, string group) : base(id, group) { }
         public Props Properties
         {
             get { return _rawData; }
             set { _rawData = value; }
         }
+        //public string SelectedValue
+        //{
+        //    get { return _selectedValue; }
+        //    set { _selectedValue = value; }
+        //}
         public override string ToString()
         {
             return new JsonFormatter(JsonConvert.SerializeObject(this)).Format();

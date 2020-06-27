@@ -126,7 +126,7 @@ namespace WindowService.DataModel
         }
         public void LoadBinaryData()
         {
-            if(this._editDataType == EditDataType.RawDataEdit)
+            if (this._editDataType == EditDataType.RawDataEdit)
             {
                 return;
             }
@@ -136,8 +136,9 @@ namespace WindowService.DataModel
                     return;
                 int? offset = _offset.HexToInt();
                 int? size = _size.HexToInt();
-                var total = _targetBinaryStream.Length;
-                if ( offset < total && size < total)
+                long? total = null;
+                total = _targetBinaryStream.Length;
+                if (offset < total.Value && size < total.Value)
                 {
                     var buffer = _targetBinaryStream.ReadBytesFromStram(offset.Value, size.Value).ToArray();
                     _binaryChunk = new BinaryChunk(buffer);

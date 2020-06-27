@@ -66,11 +66,10 @@
                           "Key": "DisableTPH",
                           "Annotation": "Disable TPH",
                           "Properties": {
-                            "pType": "",
-                            "Default": "",
-                            "CurrentValue": "",
-                            "Options": [
-                            ]
+                            "pType": "Boolean",
+                            "Default": "No",
+                            "CurrentValue": "No",
+                            "Options": ["No", "Yes"]
                           },
                           "SubMenu": [
                           ],
@@ -162,6 +161,46 @@
               ],
               "UpdateDictionary": {
                 "UpdateData": [
+                  {
+                    "Key": "DisableTPH",
+                    "Value": {
+                      "OptionKey": "Yes",
+                      "Properties": {
+                        "pType": "",
+                        "Default": "0xA0",
+                        "CurrentValue": "0xA0",
+                        "Options": [
+                        ]
+                      },
+                      "RawDataMap": {
+                        "Offset": "0x800",
+                        "Size": "0x084",
+                        "Value": ""
+                      }
+                    }
+                  },
+                  {
+                    "Key": "DisableTPH",
+                    "Value": {
+                      "OptionKey": "No",
+                      "Properties": {
+                        "pType": "Hex",
+                        "Default": "0xB3",
+                        "CurrentValue": "0xB3",
+                        "Options": [
+                          "0xe0",
+                          "0xe1",
+                          "0xe2",
+                          "0xe3"
+                        ]
+                      },
+                      "RawDataMap": {
+                        "Offset": "0x500",
+                        "Size": "0x05",
+                        "Value": ""
+                      }
+                    }
+                  }
                 ]
               }
             }
@@ -180,17 +219,17 @@
               {
                 "Key": "DisableTPH",
                 "Value": {
-                  "OptionKey": "0",
+                  "OptionKey": "Yes",
                   "Properties": {
                     "pType": "",
-                    "Default": "",
-                    "CurrentValue": "",
+                    "Default": "0xe0",
+                    "CurrentValue": "0xe0",
                     "Options": [
                     ]
                   },
                   "RawDataMap": {
-                    "Offset": "",
-                    "Size": "",
+                    "Offset": "0x200",
+                    "Size": "0x034",
                     "Value": ""
                   }
                 }
@@ -198,7 +237,7 @@
               {
                 "Key": "DisableTPH",
                 "Value": {
-                  "OptionKey": "1",
+                  "OptionKey": "No",
                   "Properties": {
                     "pType": "Hex",
                     "Default": "0xe3",
@@ -213,24 +252,6 @@
                   "RawDataMap": {
                     "Offset": "0x200",
                     "Size": "0x02",
-                    "Value": ""
-                  }
-                }
-              },
-              {
-                "Key": "DisableTPH",
-                "Value": {
-                  "OptionKey": "2",
-                  "Properties": {
-                    "pType": "",
-                    "Default": "",
-                    "CurrentValue": "",
-                    "Options": [
-                    ]
-                  },
-                  "RawDataMap": {
-                    "Offset": "",
-                    "Size": "",
                     "Value": ""
                   }
                 }
@@ -276,6 +297,46 @@
       ],
       "UpdateDictionary": {
         "UpdateData": [
+          {
+            "Key": "DisableTPH",
+            "Value": {
+              "OptionKey": "Yes",
+              "Properties": {
+                "pType": "",
+                "Default": "0xd0",
+                "CurrentValue": "0xd0",
+                "Options": [
+                ]
+              },
+              "RawDataMap": {
+                "Offset": "0x600",
+                "Size": "0x064",
+                "Value": ""
+              }
+            }
+          },
+          {
+            "Key": "DisableTPH",
+            "Value": {
+              "OptionKey": "No",
+              "Properties": {
+                "pType": "Hex",
+                "Default": "0x73",
+                "CurrentValue": "0x73",
+                "Options": [
+                  "0xe0",
+                  "0xe1",
+                  "0xe2",
+                  "0xe3"
+                ]
+              },
+              "RawDataMap": {
+                "Offset": "0x900",
+                "Size": "0x09",
+                "Value": ""
+              }
+            }
+          }
         ]
       }
     },
