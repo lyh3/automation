@@ -259,8 +259,10 @@ function updateSmartConfigUI() {
             if (null != btnLoadBinary && null != binaryInput && null != btnApply) {
                 if (binaryInput.value != '') {
                     btnLoadBinary.attr("style", "visibility:visible;");
+                    btnApply.attr("style", "display:none;");
+                } else {
+                    btnApply.attr("style", "visibility:visible;");
                 }
-                btnApply.attr("style", "visibility:visible;");
             }
             if (null != data) {
                 if (data.LastErrorMessage.trim() != '') {
