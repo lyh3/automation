@@ -199,7 +199,7 @@
                                                         </td>
                                                         <td>
                                                             <div>
-                                                                <input id="@idRawDataSizeSlider" type="range" title="@idRawDataSize" min="0" max="@maxsize" step="1" list="ticks" style="width:70px;" 
+                                                                <input id="@idRawDataSizeSlider" type="range" title="@idRawDataSize" min="0" max="@maxsize" step="1" value="@rawSelectedvalue" list="ticks" style="width:70px;" 
                                                                        onchange="getElementById(this.title).value = '0x0{0}'.format(parseInt(this.value, 10).toString(16).toUpperCase());
                                                                                  onConfigPropertyChanged(getElementById(this.title));"> @*console.log('----Raw data size Slider -- id ={0}, size Id = {1}'.format(this.id, getElementById(this.title).value));   ">*@
                                                             </div>
