@@ -48,7 +48,9 @@
                                         <td>&nbsp;</td>
                                         <td align="center">
                                             @*<img id="imgEdit" width="18" height="18" title="@divEdit" src="~/Images/Pencil-48.png" onclick="onImgEditNodeClicked(this);">*@
-                                            <img id="@id_img_Update" class="updateDisabled" width="18" height="18" title=@Model.SubNodeSelectId src="~/Images/ArrowUp_White.png" onclick="onImgUpdaNodeClicked(this);">
+                                            <div class="blinker">
+                                                <img id="@id_img_Update" class="updateDisabled" width="18" height="18" title=@Model.SubNodeSelectId src="~/Images/ArrowUp_White.png" onclick="onImgUpdaNodeClicked(this);">
+                                            </div>
                                         </td>
                                         <td>&nbsp;</td>
                                     </tr>
