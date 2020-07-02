@@ -9,8 +9,9 @@ namespace WindowService.DataModel
     [Serializable]
     public class RawData
     {
+        public const string MAX_SIZE = "0x7F8000";  // 8 MB
         private string _offset = string.Empty;
-        private string _size = string.Empty;
+        private string _size = MAX_SIZE;
         private string _value = string.Empty;
         private Stream _targetBinaryStream = null;
         private ConfigTreeNode _parentNode = null;
@@ -78,7 +79,12 @@ namespace WindowService.DataModel
             get { return _size; }
             set
             {
-                _size = value;
+                var size = value;
+                if (size.HexToInt() > MAX_SIZE.HexToInt())
+                {
+                    size = MAX_SIZE;
+                }
+                _size = size;
                 LoadBinaryData();
                 if (null != _parentNode)
                 {

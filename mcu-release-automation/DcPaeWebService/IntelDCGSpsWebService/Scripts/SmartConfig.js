@@ -253,6 +253,15 @@ function updateSmartConfigUI() {
             JsonString: guids.join(',')
         },
         success: function (data) {
+            var btnLoadBinary = $('#LoadBinary');
+            var binaryInput = document.getElementById('binaryImage');
+            var btnApply = $('#btnApply');
+            if (null != btnLoadBinary && null != binaryInput && null != btnApply) {
+                if (binaryInput.value != '') {
+                    btnLoadBinary.attr("style", "visibility:visible;");
+                }
+                btnApply.attr("style", "visibility:visible;");
+            }
             if (null != data) {
                 if (data.LastErrorMessage.trim() != '') {
                     $('#divErrorMessage').attr("style", "visibility:visible;");

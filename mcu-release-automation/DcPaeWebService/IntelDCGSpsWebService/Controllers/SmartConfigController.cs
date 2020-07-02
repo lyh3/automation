@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.Mvc;
@@ -159,9 +157,11 @@ namespace IntelDCGSpsWebService.Controllers
         public ActionResult LoadBinary(HttpPostedFileBase binarySource)
         {
             var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
-            if (null != binarySource && binarySource.ContentLength > 0)
+            if (null != binarySource && binarySource.ContentLength > 0 && null != model)
             {
                 model.LastErrorMessage = string.Empty;
+                model.TargetBinaryFile = string.Empty;
+                this._UpdateSessionModel(model);
                 try
                 {
                     var fileInfo = new FileInfo(binarySource.FileName);
@@ -177,6 +177,29 @@ namespace IntelDCGSpsWebService.Controllers
                                                   fileInfo.Name.Replace(fileInfo.Extension, string.Empty), 
                                                   System.Web.HttpContext.Current.Session.SessionID));
                     binarySource.SaveAs(binaryFile);
+                    var isAscii = true;
+                    var buffer = new byte[1024];
+                    using (FileStream fs = System.IO.File.OpenRead(binaryFile))
+                    {                        
+                        while (fs.Read(buffer, 0, buffer.Length) > 0 && isAscii)
+                        {
+                            foreach(var b in buffer)
+                            {
+                                isAscii &= b <= 127;
+                                if (!isAscii)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (isAscii)
+                    {
+                        model.LastErrorMessage = string.Format(@"The file [{0}] is not supported binary file.", fileInfo.Name);
+                        this._UpdateSessionModel(model);
+                        return RedirectToAction("Index");
+                    }
+
                     if (null != model)
                     {
                         model.LastErrorMessage = string.Empty;
