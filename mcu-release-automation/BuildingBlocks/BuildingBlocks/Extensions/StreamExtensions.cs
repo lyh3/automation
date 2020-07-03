@@ -107,6 +107,11 @@ namespace Automation.Base
                             pos += (int)r;
                             bytesReaded += r;
                         }
+                        else
+                        {
+                            dest.Write(new byte[0], 0, 0);
+                            break;
+                        }
                     }
                 }
                 catch(Exception ex)

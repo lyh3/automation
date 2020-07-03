@@ -9,7 +9,7 @@ namespace WindowService.DataModel
     [Serializable]
     public class RawData
     {
-        public const string MAX_SIZE = "0x7F8000";  // 8 MB
+        public const string MAX_SIZE = "0x7C000";  // 4 MB
         private string _offset = string.Empty;
         private string _size = MAX_SIZE;
         private string _value = string.Empty;
@@ -144,7 +144,7 @@ namespace WindowService.DataModel
                 int? size = _size.HexToInt();
                 long? total = null;
                 total = _targetBinaryStream.Length;
-                if (offset < total.Value && size < total.Value)
+                if (offset <= total.Value && size < total.Value)
                 {
                     var buffer = _targetBinaryStream.ReadBytesFromStram(offset.Value, size.Value).ToArray();
                     _binaryChunk = new BinaryChunk(buffer);
