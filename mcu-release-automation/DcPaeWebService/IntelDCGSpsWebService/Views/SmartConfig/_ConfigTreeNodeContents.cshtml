@@ -177,9 +177,12 @@
                                                             @Html.TextBoxFor(m => m.RawDataMap.Offset, new { @id = @idRawDataOffset, @title = @Model.SubNodeSelectId, placeholder = "--- Enter value ---", onchange = "onConfigPropertyChanged(this);", @class = "form-control textbox", @style = "width:110px;" })
                                                         </td>
                                                         <td>
-                                                            <input id="@idRawDataOffsetSlider" type="range" title="@idRawDataOffset" min="0" max="@Model.StreamTotalSizeText" step="1" list="ticks" value="@offsetSelectedValue" style="width:70px;"  
+                                                            <input id="@idRawDataOffsetSlider" type="range" title="@idRawDataOffset" min="0" max="@Model.StreamTotalSizeText" step="1" list="ticks" value="@offsetSelectedValue" style="width:65px;"
                                                                    onchange="getElementById(this.title).value = '0x0{0}'.format(parseInt(this.value, 10).toString(16).toUpperCase());
                                                                              onConfigPropertyChanged(getElementById(this.title));">
+                                                        </td>
+                                                        <td>
+                                                            <span style="color:gray;font-size:xx-small;">@String.Format("{0:0.0} MB", (float)(@Model.StreamTotalSize*1.0 / 1000000.0))</span>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -199,10 +202,13 @@
                                                         </td>
                                                         <td>
                                                             <div>
-                                                                <input id="@idRawDataSizeSlider" type="range" title="@idRawDataSize" min="0" max="@maxsize" step="1" value="@rawSelectedvalue" list="ticks" style="width:70px;" 
+                                                                <input id="@idRawDataSizeSlider" type="range" title="@idRawDataSize" min="0" max="@maxsize" step="1" value="@rawSelectedvalue" list="ticks" style="width:65px;"
                                                                        onchange="getElementById(this.title).value = '0x0{0}'.format(parseInt(this.value, 10).toString(16).toUpperCase());
                                                                                  onConfigPropertyChanged(getElementById(this.title));"> @*console.log('----Raw data size Slider -- id ={0}, size Id = {1}'.format(this.id, getElementById(this.title).value));   ">*@
-                                                            </div>
+                                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span style="color:gray;font-size:xx-small;">@String.Format("{0:0.0} MB", (float)RawData.MAX_SIZE.HexToInt().Value*1.0 / 1000000.0)</span>
                                                         </td>
                                                     </tr>
                                                 </table>
