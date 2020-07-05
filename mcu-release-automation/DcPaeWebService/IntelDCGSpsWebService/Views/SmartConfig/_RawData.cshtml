@@ -54,14 +54,14 @@
                         <tr>
                             <td style="width:3px;"></td>
                             <td>
-                                @Html.TextAreaFor(m => m.RawDataMap.Value, new
-                                {
-                                                  @id = idRawDataValue,
-                                                  @title = @Model.SubNodeSelectId,
-                                                  placeholder = "--- Raw data ---",
-                                                  onchange = "onConfigPropertyChanged(this);",
-                                                  @class = "rawdata"
-                                })
+                               @Html.TextAreaFor(m => m.RawDataMap.Value, new
+                              {
+                                  @id = idRawDataValue,
+                                  @title = @Model.SubNodeSelectId,
+                                  placeholder = "--- Raw data ---",
+                                  onchange = "onConfigPropertyChanged(this);",
+                                  @class = "rawdata"
+                              })
                             </td>
                             <td style="width:3px;"></td>
                         </tr>

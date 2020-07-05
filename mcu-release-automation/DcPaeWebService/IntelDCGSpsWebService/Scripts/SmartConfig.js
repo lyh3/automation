@@ -301,7 +301,6 @@ function updateSmartConfigUI() {
 
                         document.getElementById('Properties_DefaultValue_{0}'.format(element.id)).value = data.PropertiesDefaultValue[idx];
                         document.getElementById('Properties_CurrentValue_{0}'.format(element.id)).value = data.PropertiesCurrentValue[idx];
-                        //document.getElementById('RawdataMap_Offset_{0}'.format(element.id)).value = data.RawDataOffset[idx];
                         document.getElementById('RawdataMap_Size_{0}'.format(element.id)).value = data.RawDataSize[idx];
 
                         var selector = $('#table_{0}'.format(element.id));

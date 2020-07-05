@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -68,7 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryChunk.cs" />
+    <Compile Include="BinaryChunk\BinaryChunk.FasConverter.cs" />
+    <Compile Include="BinaryChunk\BinaryChunk.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Extensions\DelimonWin32IOExtension.cs" />
     <Compile Include="Extensions\CustomReflection.cs" />
