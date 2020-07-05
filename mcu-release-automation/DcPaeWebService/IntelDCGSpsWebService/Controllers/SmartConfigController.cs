@@ -151,7 +151,7 @@ namespace IntelDCGSpsWebService.Controllers
                     }
                 }
             }
-            return Json(statusInfo);
+            return new JsonResult { Data = statusInfo, MaxJsonLength = 86753090 };  //Json(statusInfo);
         }
         [HttpPost]
         public ActionResult LoadBinary(HttpPostedFileBase binarySource)

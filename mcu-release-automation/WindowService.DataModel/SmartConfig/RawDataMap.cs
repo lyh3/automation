@@ -9,7 +9,7 @@ namespace WindowService.DataModel
     [Serializable]
     public class RawData
     {
-        public const string MAX_SIZE = "0x100000";  // 1 MB
+        public const string MAX_SIZE = "0x1000000";  // 16 MB
         private string _offset = string.Empty;
         private string _size = MAX_SIZE;
         private string _value = string.Empty;

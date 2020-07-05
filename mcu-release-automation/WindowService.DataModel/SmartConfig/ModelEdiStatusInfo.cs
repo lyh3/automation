@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Automation.Base.BuildingBlocks;
 
 namespace WindowService.DataModel
 {
@@ -16,6 +17,7 @@ namespace WindowService.DataModel
         private List<string> _rawdataOffset = new List<string>();
         private List<string> _rawdataSize = new List<string>();
         private List<string> _rawdataValue = new List<string>();
+        private List<BinaryChunk> _binaryChunk = new List<BinaryChunk>();
         private string _lastErrorMessage = string.Empty;
 
         public bool ConfigLoaded
@@ -72,6 +74,11 @@ namespace WindowService.DataModel
         {
             get { return _lastErrorMessage; }
             set { _lastErrorMessage = value; }
+        }
+        public List<BinaryChunk> BinaryChunk
+        {
+            get { return _binaryChunk; }
+            set { _binaryChunk = value; }
         }
     }
 }

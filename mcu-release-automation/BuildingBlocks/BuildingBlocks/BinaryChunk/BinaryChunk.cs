@@ -63,9 +63,8 @@ namespace Automation.Base.BuildingBlocks
             //                  .ToArray();
             //return string.Join(" ", buffer).TrimEnd();
 
-            //return string.Join(" ", _data.Select(x => Extensions.ByteToHex(x))).TrimEnd();
-            //return string.Join(" ", _data.Select(x => BinaryChunk.ToHexString(new byte[] { x }, true))).TrimEnd();
-            return BinaryChunk.ToHexString(_data).Replace("20", " ").TrimStart();
+            return string.Join(" ", _data.Select(x => Extensions.ByteToHex(x))).TrimEnd();
+            // return BinaryChunk.ToHexString(_data).Replace("20", " ").TrimStart();
         }
     }
 }
