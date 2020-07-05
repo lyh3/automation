@@ -60,7 +60,12 @@ namespace WindowService.DataModel
                 {
                     var fileInfo = new FileInfo(value);
                     _binarySize = fileInfo.Length;
-                    _sourceStream = File.OpenRead(_targetFile);
+                    _sourceStream = new MemoryStream();
+                    using (var stream = File.OpenRead(_targetFile))
+                    {
+                        stream.CopyTo(_sourceStream);
+                    }
+                    File.Delete(_targetFile);
                     foreach (var sub in _subMenu)
                     {
                         sub.TargetBinaryStream = _sourceStream;
