@@ -333,5 +333,16 @@ namespace Automation.Base.BuildingBlocks
         {
             return $"0x{number:X}";
         }
+        public static byte[] HexStringToByteArray(this string hexString)
+        {
+            if (!string.IsNullOrEmpty(hexString))
+            {
+                return Enumerable.Range(0, hexString.Length)
+                                 .Where(x => x % 2 == 0)
+                                 .Select(x => Convert.ToByte(hexString.Substring(x, 2), 16))
+                                 .ToArray();
+            }
+            return null;
+        }
     }
 }

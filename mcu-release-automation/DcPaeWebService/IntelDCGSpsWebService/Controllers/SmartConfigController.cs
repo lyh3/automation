@@ -7,6 +7,7 @@ using System.Text;
 using Newtonsoft.Json;
 using WindowService.DataModel;
 using IntelDCGSpsWebService.Models;
+using Automation.Base.BuildingBlocks;
 
 namespace IntelDCGSpsWebService.Controllers
 {
@@ -260,7 +261,10 @@ namespace IntelDCGSpsWebService.Controllers
                     }
                     model.ResultsFile = downloadFile;
                 }
-
+                if (System.IO.File.Exists(model.JsonConfig))
+                {
+                    System.IO.File.Delete(model.JsonConfig);
+                }
                 model.TransactionStatus(ConfigNodeStatus.Updated, ConfigNodeStatus.Applied);
                 this._UpdateSessionModel(model);
             }
@@ -301,6 +305,16 @@ namespace IntelDCGSpsWebService.Controllers
                         else
                         {
                             node.RawDataMap.Value = val;
+                            var buffer = val.Replace(" ", string.Empty).HexStringToByteArray();
+                            if (null != buffer)
+                            {
+                                var offset = (long)node.RawDataMap.Offset.HexToInt();
+                                if (node.RawDataMap.TargetBinaryStream.CanSeek)
+                                {
+                                    node.RawDataMap.TargetBinaryStream.Seek(offset, SeekOrigin.Begin);
+                                    node.RawDataMap.TargetBinaryStream.Write(buffer, 0, buffer.Length);
+                                }                               
+                            }
                         }
                         node.NodeEditStatus = ConfigNodeStatus.Modified.ToString();
                     }
