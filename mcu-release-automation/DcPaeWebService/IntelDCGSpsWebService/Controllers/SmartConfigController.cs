@@ -144,6 +144,7 @@ namespace IntelDCGSpsWebService.Controllers
                         statusInfo.RawDataOffset.Add(node.RawDataMap.Offset);
                         statusInfo.RawDataSize.Add(node.RawDataMap.Size);
                         statusInfo.RawDataValue.Add(node.RawDataMap.Value);
+                        statusInfo.IsDownloadAvailable = model.IsDownloadAvailable;
                     }
                     else
                     {
@@ -226,6 +227,15 @@ namespace IntelDCGSpsWebService.Controllers
             var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
             if(null != model)
             {
+                if (System.IO.File.Exists(model.ResultsFile))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(model.ResultsFile);
+                        model.ResultsFile = string.Empty;
+                    }
+                    catch { }                  
+                }
                 model.LastErrorMessage = string.Empty;
                 model.TargetBinaryFile = string.Empty;
                 this._UpdateSessionModel(model);
@@ -238,6 +248,19 @@ namespace IntelDCGSpsWebService.Controllers
             var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
             if (null != model)
             {
+                const string downloadFolder = @"~/App_Data/Download";
+                var fileInfo = new FileInfo(model.TargetBinaryFile);
+                if(null != model.SourceStream && model.SourceStream.CanSeek)
+                {
+                    model.SourceStream.Seek(0, SeekOrigin.Begin);
+                    var downloadFile = Path.Combine(Server.MapPath(downloadFolder), fileInfo.Name);
+                    using (var f = new FileStream(downloadFile, FileMode.Create, FileAccess.Write))
+                    {
+                        model.SourceStream.CopyTo(f);
+                    }
+                    model.ResultsFile = downloadFile;
+                }
+
                 model.TransactionStatus(ConfigNodeStatus.Updated, ConfigNodeStatus.Applied);
                 this._UpdateSessionModel(model);
             }
@@ -350,7 +373,7 @@ namespace IntelDCGSpsWebService.Controllers
             }
             return sb.ToString();
         }
-        public FileResult DownloadSpiImage()
+        public FileResult DownloadResultsImage()
         {
             var model = Session[Definitions.SMART_CONFIG_SESSION_KEY] as SmartConfigDataModel;
             if (null == model || string.IsNullOrEmpty(model.ResultsFile) || !System.IO.File.Exists(model.ResultsFile))
@@ -358,9 +381,16 @@ namespace IntelDCGSpsWebService.Controllers
 
             var fileName = model.ResultsFile;
             byte[] buffer = System.IO.File.ReadAllBytes(fileName);
-
-            Session[Definitions.BIOS_IMAGE_OPERATIONS_KEY] = model;
-
+            if (System.IO.File.Exists(model.ResultsFile))
+            {
+                try
+                {
+                    System.IO.File.Delete(model.ResultsFile);
+                    model.ResultsFile = string.Empty;
+                }
+                catch { }
+            }
+            this._UpdateSessionModel(model);
             return File(buffer, System.Net.Mime.MediaTypeNames.Application.Octet, System.IO.Path.GetFileName(fileName));
         }
         private void _UpdateSessionModel(SmartConfigDataModel model)

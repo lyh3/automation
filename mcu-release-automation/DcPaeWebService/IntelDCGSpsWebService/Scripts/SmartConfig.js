@@ -323,6 +323,15 @@ function updateSmartConfigUI() {
                     });
                 }
             }
+
+            var btnDownload = $('#download');
+            if (null != btnDownload) {
+                if (data.IsDownloadAvailable) {
+                    btnDownload.attr("style", "visibility:visible;");
+                } else {
+                    btnDownload.attr("style", "display:none;");
+                }
+            }
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log('xhr.status : ' + xhr.status);

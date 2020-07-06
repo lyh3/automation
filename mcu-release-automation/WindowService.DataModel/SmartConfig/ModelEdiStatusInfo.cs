@@ -18,12 +18,18 @@ namespace WindowService.DataModel
         private List<string> _rawdataSize = new List<string>();
         private List<string> _rawdataValue = new List<string>();
         private List<BinaryChunk> _binaryChunk = new List<BinaryChunk>();
+        private bool _isDownloadAvailable = false;
         private string _lastErrorMessage = string.Empty;
 
         public bool ConfigLoaded
         {
             get { return _configLoaded; }
             set { _configLoaded = value; }
+        }
+        public bool IsDownloadAvailable
+        {
+            get { return _isDownloadAvailable; }
+            set { _isDownloadAvailable = value; }
         }
         public List<string> CurrentSelectedSubPath
         {

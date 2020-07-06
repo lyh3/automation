@@ -163,19 +163,14 @@
         }
     </table>
     <br />
-    using (Html.BeginForm("DownloadSpiImage", "SmartConfig", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formSpiMerge_download", name = "formSpiMerge_download" }))
+    using (Html.BeginForm("DownloadResultsImage", "SmartConfig", null, FormMethod.Post, new { encType = "multipart/form-data", id = "formSmartConfig_download", name = "formSmartConfig_download" }))
     {
         <table style="width:100%;background-color:rgba(41, 42, 43, 0.9);border:1px;border-radius:5px;">
             <tr><td style="height:10px;" /></tr>
             <tr>
                 <td style="width:10px;" />
                 <td>
-                    @if (@Model.IsDownloadAvailable)
-                    {
-                        <div class="blinker">
-                            <input type="submit" class="btn btn-success" name="download" id="download" value="Download" onclick="onDownloadClick();" />
-                        </div>
-                    }
+                    <input type="submit" class="btn btn-success" style="display:none;" name="download" id="download" value="Download" />
                 </td>
                 <td>
                     <span style="font-size:x-small;color:gray;">
