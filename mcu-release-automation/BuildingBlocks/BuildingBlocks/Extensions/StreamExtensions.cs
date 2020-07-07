@@ -67,7 +67,7 @@ namespace Automation.Base
             else
                 src.CopyTo((Stream)dest);
         }
-        public static MemoryStream ReadBytes(this string binaryFilePath, int offset, int length)
+        public static MemoryStream ReadBytes(this string binaryFilePath, long offset, long length)
         {
             try
             {
@@ -84,13 +84,13 @@ namespace Automation.Base
             }
             return null;
         }
-        public static MemoryStream ReadBytesFromStram(this Stream source, int offset, int length)
+        public static MemoryStream ReadBytesFromStram(this Stream source, long offset, long length)
         {
             const int CHUNK = 2048;
             var dest = new MemoryStream();
             byte[] buffer = new byte[CHUNK];
-            int pos = offset;
-            int bytesReaded = 0;
+            long pos = offset;
+            long bytesReaded = 0;
             if (source.CanSeek)
             {
                 try
@@ -100,11 +100,11 @@ namespace Automation.Base
                         var remainder = length - bytesReaded;
                         var readcount = Math.Min(remainder, CHUNK);
                         source.Seek((long)pos, SeekOrigin.Begin);
-                        var r = source.Read(buffer, 0, readcount);
+                        var r = source.Read(buffer, 0, (int)readcount);
                         if (r > 0)
                         {
                             dest.Write(buffer, 0, (int)r);
-                            pos += (int)r;
+                            pos += (long)r;
                             bytesReaded += r;
                         }
                         else

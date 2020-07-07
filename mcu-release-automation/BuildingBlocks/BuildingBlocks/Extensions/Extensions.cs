@@ -325,11 +325,25 @@ namespace Automation.Base.BuildingBlocks
             catch { }
             return ret;
         }
+        public static long? HexToLong(this string hex)
+        {
+            long? ret = null;
+            try
+            {
+                return Convert.ToInt64(hex, 16);
+            }
+            catch { }
+            return ret;
+        }
         public static string ByteToHex(this byte bInput)
         {
             return string.Format("{0:X2}", bInput);
         }
         public static string IntToHexString(this int number)
+        {
+            return $"0x{number:X}";
+        }
+        public static string LongToHexString(this long number)
         {
             return $"0x{number:X}";
         }

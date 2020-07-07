@@ -9,7 +9,7 @@ namespace WindowService.DataModel
     [Serializable]
     public class RawData
     {
-        public const string MAX_SIZE = "0x1000000";  // 16 MB
+        public const string MAX_SIZE = "0x2000000";  // 32 MB
         private string _offset = string.Empty;
         private string _size = MAX_SIZE;
         private string _value = string.Empty;
@@ -140,8 +140,8 @@ namespace WindowService.DataModel
             {
                 if (null == _targetBinaryStream || !_targetBinaryStream.CanSeek)
                     return;
-                int? offset = _offset.HexToInt();
-                int? size = _size.HexToInt();
+                long? offset = _offset.HexToLong();
+                long? size = _size.HexToLong();
                 long? total = null;
                 total = _targetBinaryStream.Length;
                 if (offset <= total.Value && size < total.Value)

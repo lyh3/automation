@@ -1,0 +1,1864 @@
+{
+  "Root": [
+    {
+      "Key": "DescriptorRegion",
+      "Annotation": "Descriptor Region",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+        {
+          "Key": "FLMAP0",
+          "Annotation": "FLMAP0 - Flash Map 0 Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000014",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLMAP1",
+          "Annotation": "FLMAP1 - Flash Map 1 Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000018",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLMAP2",
+          "Annotation": "FLMAP2 - Flash Map 2 Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x0000001C",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG1",
+          "Annotation": "FLREG1 - Flash Region 1 (Bios) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000044",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG2",
+          "Annotation": "FLREG2 - Flash Region 2 (Intel (R) ME) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000048",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG3",
+          "Annotation": "FLREG3 - Flash Region 3 (GBE) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x0000004C",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG4",
+          "Annotation": "FLREG4 - Flash Region 4 (Platform Data) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000050",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG5",
+          "Annotation": "FLREG5 - Flash Region 5 (DER #1) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000054",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG6",
+          "Annotation": "FLREG6 - Flash Region 6 (Secondary Bios) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000058",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG7",
+          "Annotation": "FLREG7 - Flash Region 7 (Micro Code Patch) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x0000005C",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG8",
+          "Annotation": "FLREG8 - Flash Region 8 (Embedded Controller) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000060",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG9",
+          "Annotation": "FLREG9 - Flash Region 9 (DER #2) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000064",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG10",
+          "Annotation": "FLREG10 - Flash Region 10 (IE) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000068",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG11",
+          "Annotation": "FLREG11 - Flash Region 11 (10 GBE A) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x0000006C",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG12",
+          "Annotation": "FLREG12 - Flash Region 12 (10 GBE B) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000070",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG12",
+          "Annotation": "FLREG12 - Flash Region 11 (10 GBE B) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000070",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG13",
+          "Annotation": "FLREG13 - Flash Region 13 (Spare1) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000074",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG14",
+          "Annotation": "FLREG14 - Flash Region 14 (Spare2) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000078",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLREG15",
+          "Annotation": "FLREG15 - Flash Region 15 (Spare3) Register",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000074",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLMSTR1",
+          "Annotation": "FLMSTR1 - Flash Master 1 (Host CPU/ BIOS)",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000080",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLMSTR2",
+          "Annotation": "FLMSTR2 - Flash Master 2 (Intel (R) ME)",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000084",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLMSTR3",
+          "Annotation": "FLMSTR3 - Flash Master 3 (GbE)",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000088",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLMSTR5",
+          "Annotation": "FLMSTR5 - Flash Master 5 (EC)",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000090",
+            "Size": "0x00000004",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "PchStraps",
+          "Annotation": "Pch Straps",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000100",
+            "Size": "0x00000300",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "CPUStraps",
+          "Annotation": "CPU Straps",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000400",
+            "Size": "0x00000040",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "VSCCTable",
+          "Annotation": "VSCC Table",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+            {
+              "Key": "VsccEntry0",
+              "Annotation": "VsccEntry0",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x000000F0",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry1",
+              "Annotation": "VsccEntry1",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x000000F8",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry2",
+              "Annotation": "VsccEntry2",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E00",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry3",
+              "Annotation": "VsccEntry3",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E08",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry4",
+              "Annotation": "VsccEntry4",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E10",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry5",
+              "Annotation": "VsccEntry5",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E18",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry6",
+              "Annotation": "VsccEntry6",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E20",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry7",
+              "Annotation": "VsccEntry7",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E28",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry8",
+              "Annotation": "VsccEntry8",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E30",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry9",
+              "Annotation": "VsccEntry9",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E38",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry10",
+              "Annotation": "VsccEntry10",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E40",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry11",
+              "Annotation": "VsccEntry11",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E48",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry12",
+              "Annotation": "VsccEntry12",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E50",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry13",
+              "Annotation": "VsccEntry13",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E58",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry14",
+              "Annotation": "VsccEntry14",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E60",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry15",
+              "Annotation": "VsccEntry15",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E68",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry16",
+              "Annotation": "VsccEntry16",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E70",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry17",
+              "Annotation": "VsccEntry17",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E78",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry18",
+              "Annotation": "VsccEntry18",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E80",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry19",
+              "Annotation": "VsccEntry19",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E88",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry20",
+              "Annotation": "VsccEntry20",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E90",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry21",
+              "Annotation": "VsccEntry21",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000E98",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry22",
+              "Annotation": "VsccEntry22",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000EA0",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            },
+            {
+              "Key": "VsccEntry23",
+              "Annotation": "VsccEntry23",
+              "Properties": {
+                "pType": "",
+                "Default": "",
+                "CurrentValue": "",
+                "Options": [
+                ]
+              },
+              "SubMenu": [
+              ],
+              "RawDataMap": {
+                "Offset": "0x00000EA8",
+                "Size": "0x00000008",
+                "Value": ""
+              },
+              "Options": [
+              ],
+              "Observer": [
+              ],
+              "UpdateDictionary": {
+                "UpdateData": [
+                ]
+              }
+            }
+          ],
+          "RawDataMap": {
+            "Offset": "0x000000F0",
+            "Size": "0x00000110",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "OEMData",
+          "Annotation": "OEM Data",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00000F00",
+            "Size": "0x00000100",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        }
+      ],
+      "RawDataMap": {
+        "Offset": "0x00000000",
+        "Size": "0x00001000",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+          {
+            "Key": "DisableTPH",
+            "Value": {
+              "OptionKey": "Yes",
+              "Properties": {
+                "pType": "",
+                "Default": "0xd0",
+                "CurrentValue": "0xd0",
+                "Options": [
+                ]
+              },
+              "RawDataMap": {
+                "Offset": "0x600",
+                "Size": "0x064",
+                "Value": ""
+              }
+            }
+          },
+          {
+            "Key": "DisableTPH",
+            "Value": {
+              "OptionKey": "No",
+              "Properties": {
+                "pType": "Hex",
+                "Default": "0x73",
+                "CurrentValue": "0x73",
+                "Options": [
+                  "0xe0",
+                  "0xe1",
+                  "0xe2",
+                  "0xe3"
+                ]
+              },
+              "RawDataMap": {
+                "Offset": "0x900",
+                "Size": "0x09",
+                "Value": ""
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Key": "GBERegion",
+      "Annotation": "GBE Region",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "0x00001000",
+        "Size": "0x00002000",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "MERegion",
+      "Annotation": "ME Region",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+        {
+          "Key": "FPT",
+          "Annotation": "FPT",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00006000",
+            "Size": "0x00001000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FPTB",
+          "Annotation": "FPTB",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00007000",
+            "Size": "0x00001000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "MFSB",
+          "Annotation": "MFSB",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00008000",
+            "Size": "0x00020000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "MFS",
+          "Annotation": "MFX",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00028000",
+            "Size": "0x00061000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "IVB1",
+          "Annotation": "IVB1",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00009000",
+            "Size": "0x00040000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "IVB2",
+          "Annotation": "IVB2",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x0008D000",
+            "Size": "0x0004000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "BIS",
+          "Annotation": "BIS",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00092000",
+            "Size": "0x00001000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FLOG",
+          "Annotation": "FLOG",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00093000",
+            "Size": "0x00001000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "UTOK",
+          "Annotation": "UTOK",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00094000",
+            "Size": "0x00002000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "RESERVED1",
+          "Annotation": "reserved",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x00096000",
+            "Size": "0x00001000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "RESERVED2",
+          "Annotation": "RESERVED",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x000A6000",
+            "Size": "0x00002000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "FTPR",
+          "Annotation": "FTPR",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x000A8000",
+            "Size": "0x000C4000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        },
+        {
+          "Key": "OPR1",
+          "Annotation": "OPR1",
+          "Properties": {
+            "pType": "",
+            "Default": "",
+            "CurrentValue": "",
+            "Options": [
+            ]
+          },
+          "SubMenu": [
+          ],
+          "RawDataMap": {
+            "Offset": "0x0016C000",
+            "Size": "0x0026C000",
+            "Value": ""
+          },
+          "Options": [
+          ],
+          "Observer": [
+          ],
+          "UpdateDictionary": {
+            "UpdateData": [
+            ]
+          }
+        }
+      ],
+      "RawDataMap": {
+        "Offset": "0x00003000",
+        "Size": "0x03DD000",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "PDRRegion",
+      "Annotation": "PDR Region",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "0x02FD8000",
+        "Size": "0x00010000",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "Spare3Region",
+      "Annotation": "Spare 3 Region",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "0x02FE8000",
+        "Size": "0x00018000",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    },
+    {
+      "Key": "BIOS",
+      "Annotation": "BIOS Region",
+      "Properties": {
+        "pType": "",
+        "Default": "",
+        "CurrentValue": "",
+        "Options": [
+        ]
+      },
+      "SubMenu": [
+      ],
+      "RawDataMap": {
+        "Offset": "0x03000000",
+        "Size": "0x0100000",
+        "Value": ""
+      },
+      "Options": [
+      ],
+      "Observer": [
+      ],
+      "UpdateDictionary": {
+        "UpdateData": [
+        ]
+      }
+    }
+  ]
+}

@@ -153,7 +153,7 @@ namespace IntelDCGSpsWebService.Controllers
                     }
                 }
             }
-            return new JsonResult { Data = statusInfo, MaxJsonLength = 86753090 };  //Json(statusInfo);
+            return new JsonResult { Data = statusInfo, MaxJsonLength = 2147483647 };  //Json(statusInfo);
         }
         [HttpPost]
         public ActionResult LoadBinary(HttpPostedFileBase binarySource)
@@ -308,10 +308,10 @@ namespace IntelDCGSpsWebService.Controllers
                             var buffer = val.Replace(" ", string.Empty).HexStringToByteArray();
                             if (null != buffer)
                             {
-                                var offset = (long)node.RawDataMap.Offset.HexToInt();
+                                var offset = node.RawDataMap.Offset.HexToLong();
                                 if (node.RawDataMap.TargetBinaryStream.CanSeek)
                                 {
-                                    node.RawDataMap.TargetBinaryStream.Seek(offset, SeekOrigin.Begin);
+                                    node.RawDataMap.TargetBinaryStream.Seek(offset.Value, SeekOrigin.Begin);
                                     node.RawDataMap.TargetBinaryStream.Write(buffer, 0, buffer.Length);
                                 }                               
                             }
