@@ -5,7 +5,7 @@
 # Author:      liyingho
 #
 # Created:     06/03/2019
-# Copyright:   (c) Intel Co. 2019
+# Copyright:   
 # Licence:     <your licence>
 #-------------- -----------------------------------------------------------------
 import time

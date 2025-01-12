@@ -3,7 +3,6 @@
 # Purpose:
 #
 # Author:      liyingho, henry.li@intel.com
-#
 # Created:     07/13/2019
 # Copyright:   (c) liyingho 2017
 # Licence:     <your licence>

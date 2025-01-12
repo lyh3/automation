@@ -2,7 +2,6 @@
 # Name:        module1
 # Purpose:
 #
-# Author:      liyingho, henry.li@intel.com
 #
 # Created:     07/20/2019
 # Copyright:   (c) liyingho 2017
