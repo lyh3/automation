@@ -3299,7 +3299,7 @@
 			<summary>Prepare for any call.</summary>
 		</member>
 		<member name="T:Microsoft.Xaml.Symbols.IXamlSymbols">
-			<summary>Represents symbols that are used in IntelliSense.</summary>
+			<summary>Represents symbols that are used inliSense.</summary>
 		</member>
 		<member name="M:Microsoft.Xaml.Symbols.IXamlSymbols.CanAddElement(System.String,System.String)">
 			<summary>Returns a value indicating whether the specified container type can contain an element of the specified content type. </summary>
