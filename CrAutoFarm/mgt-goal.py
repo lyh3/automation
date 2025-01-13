@@ -11,7 +11,7 @@ import re, os, subprocess
 
 def fail(msg):
     print ('Status: FAIL')
-    print msg
+    print (msg)
     raise SystemExit
 
 

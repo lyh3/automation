@@ -76,6 +76,8 @@ class bkc_automation_thread(WorkThread):
                     skip = False
                 if not skip:
                     instance = util.CreateInstance(key, Consts.BKC_AUTOMATION_PACKAGE)
+                    # if instance is None:
+                    #     continue
                     instance.Config = self._config
                     instance.Logger = self._logger
                     self._queue.put(instance)
